@@ -1,0 +1,10 @@
+5/19/2024:
+
+I need to establish a very clear structure of how I will proceed 
+working on this project.
+
+1. very basic setup with two 2 period lived agents. One of which
+   has 0 endowment in period 1 and 10 in period 2 and visa versa 
+   for the other person.
+2. Build it up from here step by step.
+
