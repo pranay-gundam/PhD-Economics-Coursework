@@ -3,3 +3,6 @@ struct JobSearch
 end
 
 
+function run_VFI!(jbs:JobSearch)
+    pass
+end
