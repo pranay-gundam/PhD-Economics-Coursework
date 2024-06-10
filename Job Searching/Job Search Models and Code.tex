@@ -1,0 +1,115 @@
+%--------------------
+% Packages
+% -------------------
+\documentclass[11pt,english]{article}
+\usepackage{amsfonts}
+\usepackage[left=2.5cm,top=2cm,right=2.5cm,bottom=3cm,bindingoffset=0cm]{geometry}
+\usepackage{amsmath, amsthm, amssymb}
+\usepackage{tikz}
+\usetikzlibrary{calc}
+\usetikzlibrary{decorations.pathreplacing,calligraphy}
+\usepackage{fancyhdr}
+%\usepackage{currfile}
+\usepackage{nicefrac}
+\usepackage{cite}
+\usepackage{graphicx}
+\usepackage{caption}
+\usepackage{longtable}
+\usepackage{rotating}
+\usepackage{lscape}
+\usepackage{booktabs}
+\usepackage{float}
+\usepackage{placeins}
+\usepackage{setspace}
+\usepackage[font=itshape]{quoting}
+\onehalfspacing
+\usepackage{mathrsfs}
+\usepackage{tcolorbox}
+\usepackage{xcolor}
+\usepackage{subcaption}
+\usepackage{float}
+\usepackage[multiple]{footmisc}
+\usepackage[T1]{fontenc}
+\usepackage[sc]{mathpazo}
+\usepackage{listings}
+\usepackage{longtable}
+\definecolor{cmured}{RGB}{175,30,45}
+\definecolor{macroblue}{RGB}{56,108,176}
+\usepackage[format=plain,
+            labelfont=bf,
+            textfont=]{caption}
+\usepackage[colorlinks=true,citecolor=macroblue,linkcolor=macroblue,urlcolor=macroblue]{hyperref}
+\usepackage{varioref}
+\usepackage{chngcntr}
+
+\definecolor{darkgreen}{RGB}{30,175,88}
+\definecolor{darkblue}{RGB}{30,118,175}
+\definecolor{maroon}{rgb}{0.66,0,0}
+\definecolor{darkgreen}{rgb}{0,0.69,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+\lstdefinestyle{juliastyle}{
+    backgroundcolor=\color{backcolour},   
+    commentstyle=\color{darkgreen},
+    keywordstyle=\color{darkblue},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{maroon},
+    basicstyle=\ttfamily\footnotesize,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,                                 
+    numbersep=5pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=2
+}
+
+\lstset{style=juliastyle}
+
+%Counters
+\newtheorem{theorem}{Theorem}[section] 
+\newtheorem{proposition}{Proposition}
+\newtheorem{lemma}{Lemma}
+\newtheorem{corollary}{Corollary}
+\newtheorem{assumption}{Assumption}
+\newtheorem{axiom}{Axiom}
+\newtheorem{case}{Case}
+\newtheorem{claim}{Claim}
+\newtheorem{condition}{Condition}
+\newtheorem{definition}{Definition}
+\newtheorem{example}{Example}
+\newtheorem{notation}{Notation}
+\newtheorem{remark}{Remark}
+
+
+
+\hypersetup{ 	
+pdfsubject = {},
+pdftitle = {Job Search Models and Code},
+pdfauthor = {Pranay Gundam},
+linkcolor= macroblue
+}
+
+
+\title{\textbf{Job Search Models and Code}}
+\author{Pranay Gundam}
+
+%-----------------------
+% Begin document
+%-----------------------
+\begin{document}
+
+\maketitle
+
+\section{The Basic Job Search Question}
+
+Consider a worker who lives infinitely and lives their life in discrete time periods $t=0,1,\ldots$. They posses some temporal discount factor $0 < \beta < 1$ and also have a increasing concave utility function $u(\cdot)$. At each time period $t$, this worker can either be employed or unemployed. If they are employed then they will have been given some job offer in the past they they have accepted which pays them a wage $w$. If they are unemployed, in the beginning of the time period they draw an employment offer $w$ from some distribution $F(\cdot)$ and then have the choice to accept the job for life such that they earn that wage $w$ for the rest of their lives or recieve a unemployment benefit $b$ in that period to remain unemployed in the beginning of the next period.
+
+This is the basic setup of the problem from which point there are a a few questions that are typically asked such as: at any point in time, if the worker is unemployed, what is the smallest wage from a job offer they would accept. This involves solving for the opportunity cost of taking the offer.
+
+
+
+\end{document}

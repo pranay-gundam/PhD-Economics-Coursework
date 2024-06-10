@@ -1,0 +1,5 @@
+struct JobSearch
+    pass
+end
+
+
