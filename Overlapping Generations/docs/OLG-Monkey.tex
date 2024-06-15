@@ -1,0 +1,278 @@
+%--------------------
+% Packages
+% -------------------
+\documentclass[11pt,english]{article}
+\usepackage{amsfonts}
+\usepackage[left=2.5cm,top=2cm,right=2.5cm,bottom=3cm,bindingoffset=0cm]{geometry}
+\usepackage{amsmath, amsthm, amssymb}
+\usepackage{tikz}
+\usetikzlibrary{calc}
+\usetikzlibrary{decorations.pathreplacing,calligraphy}
+\usepackage{fancyhdr}
+%\usepackage{currfile}
+\usepackage{nicefrac}
+\usepackage{cite}
+\usepackage{graphicx}
+\usepackage{caption}
+\usepackage{longtable}
+\usepackage{rotating}
+\usepackage{lscape}
+\usepackage{booktabs}
+\usepackage{float}
+\usepackage{placeins}
+\usepackage{setspace}
+\usepackage[font=itshape]{quoting}
+\onehalfspacing
+\usepackage{mathrsfs}
+\usepackage{tcolorbox}
+\usepackage{xcolor}
+\usepackage{subcaption}
+\usepackage{float}
+\usepackage[multiple]{footmisc}
+\usepackage[T1]{fontenc}
+\usepackage[sc]{mathpazo}
+\usepackage{listings}
+\usepackage{longtable}
+\definecolor{cmured}{RGB}{175,30,45}
+\definecolor{macroblue}{RGB}{56,108,176}
+\usepackage[format=plain,
+            labelfont=bf,
+            textfont=]{caption}
+\usepackage[colorlinks=true,citecolor=macroblue,linkcolor=macroblue,urlcolor=macroblue]{hyperref}
+\usepackage{varioref}
+\usepackage{chngcntr}
+
+\definecolor{darkgreen}{RGB}{30,175,88}
+\definecolor{darkblue}{RGB}{30,118,175}
+\definecolor{maroon}{rgb}{0.66,0,0}
+\definecolor{darkgreen}{rgb}{0,0.69,0}
+
+%Counters
+\newtheorem{theorem}{Theorem}[section] 
+\newtheorem{proposition}{Proposition}
+\newtheorem{lemma}{Lemma}
+\newtheorem{corollary}{Corollary}
+\newtheorem{assumption}{Assumption}
+\newtheorem{axiom}{Axiom}
+\newtheorem{case}{Case}
+\newtheorem{claim}{Claim}
+\newtheorem{condition}{Condition}
+\newtheorem{definition}{Definition}
+\newtheorem{example}{Example}
+\newtheorem{notation}{Notation}
+\newtheorem{remark}{Remark}
+
+
+
+\hypersetup{ 	
+pdfsubject = {},
+pdftitle = {Thoughts on OLGs},
+pdfauthor = {Pranay Gundam},
+linkcolor= macroblue
+}
+
+
+\title{\textbf{Thoughts on OLGs}}
+\author{Pranay Gundam}
+
+%-----------------------
+% Begin document
+%-----------------------
+\begin{document}
+
+\maketitle
+
+\subsection*{Introduction}
+
+\noindent As some context beforehand, overlapping generations models (OLGs) at a very basic sense with only groups of consumers looks at the trends in savings and consumption for households who live for only a finite number of time periods. From this standpoint we can then incorporate firms with production functions that determine the amount of goods available for households to consume who offer labor to firms in exchange, and also governments who can tax and offer other consumption services. Let's put the basic OLG model into math language before we discuss how we can extend the problem.\\
+
+\noindent Specifically, let $N$ many households be born in each time period $t=1,2,3,\ldots$. Each household lives for two periods; the period in which they were born and the next consecutive period in which they consume a single type of a non-storable good. Let there also be $N$ many "initially old" households at time $t=1$: this means that at time $t=1$ we also populate it with a group of households that act as if they were born in $t=0$ but are not able to consume anything in that period. The utility for an household born in period $t$ who values consumption in a current period with the function $u(c)$ is $$U\left(c_t^t, c_{t+1}^t\right) = u\left(c_t^t\right) + \beta u\left(c_{t+1}^t\right).$$ Here $\beta\in (0,1]$ is a discount factor, and $c_i^j$ is the consumption for a household in period $i$ who was born in period $j$. Households are meant to optimize their utility with respect to the conditions that \begin{align*}c_t^{t} &\leq w_t^t,\\ 
+c_{t+1}^t &\leq w_{t+1}^t.\end{align*} Here, similarly to the indexing on consumption, $w_i^j$ is the endowment of the consumption good for a household in period $i$ who was born in period $j$. In a market in which each of these households interact with eachother we allow the existence of consumption bonds, or agreements between households that in exchange for one household giving another household units of the consumption good in the current period, in the next period the household who recieved the goods must then give some number of consumption goods in the future period to the household that originally gave the goods. Note that this restricts households to trading bonds only with other households born in the same time period since if they were to trade with households in different periods then in the next period the previously old generation of households would no longer be alive and would not be able to fufill their debt obligations. Furthermore, it is also logically consistent that if all the households born in a certain time period are homogenous in both utility functions and endowment then it would make no sense for them to trade bonds with eachother since there is no scenario in which a trade between two households would benefit both parties.\\
+
+\noindent With this setup in mind in order to solve one such scenario we can setup the following lagrangian maximization problem for a consumer at time $t$ $$\mathcal{L}(c_t^t, c_{t+1}^t, \mu_1, \mu_2) = u\left(c_t^t\right) + \beta u\left(c_{t+1}^t\right) + \mu_1\left(w_t^t - c_t^t\right) + \mu_2\left(w_{t+1}^t - c_{t+1}^t\right),$$ and the following first order conditions:
+\begin{align*}
+	c_t^t:\,& u'\left(c_t^t\right) = \mu_1,\\
+	c_{t+1}^t:\,& u'\left(c_{t+1}^t\right) = \mu_2,\\
+	\mu_1:\,& c_t^t = w_t^t,\\
+	\mu_2:\,& c_{t+1}^t = w_{t+1}^t.
+\end{align*} Which would then very clearly imply that $c_t^t = w_t^t$ and $c_{t+1}^t = w_{t+1}^t$ meaning each household consumes exactly their in period endowment. This is not a very exciting outcome but introducing even a little bit of complexity can lead to more interesting scenarios.\\
+
+\noindent In class we discussed a few variations of the setup above:\begin{enumerate}
+	\item Added in-period heterogeneity that incentivizes consumption bond trading.
+
+	\item Added in the concept of fiat money.
+
+	\item Added in governments that tax households and also consume some amount goods as well.
+
+	\item Added in varying population sizes over time.
+
+	\item We discussed a very basic version of adding firms with production functions
+\end{enumerate} There are some things that I want to explore that we didn't explicitly discuss in class:
+\begin{enumerate}
+	\item Households that live for $N$ many periods
+
+	\item  Add in stochasticity
+
+	\item Discuss a generalized sense of heterogeneity
+
+	\item Develop a more involved model with firms
+
+	\item Consider a continuum of firms and/or firms
+
+	\item What other financial instruments can we consider other than fiat money and consumption bonds
+
+	\item Add a more complicated government (basically a government that does more than just taxes and consumes goods)
+
+	\item Multiple goods
+\end{enumerate}
+
+\noindent I'm sure that each of these concepts have been picked apart and discussed in fine detail since whenever the first theory on OLGs was developed but I want to work through and model some of them myself without having been influenced by any of the papers or textbooks that discuss these topics (which also leaves a lot of room for errors on my end so be aware of that) as a means to work out my - econ related - creative muscles. In addition, to preface, with the foresight of having already done a bit of work on each of these questions, in order to come to some level of a meaningful answer that relates a trend of savings or an actual equilibrium we have to impose more restrictions on the structure of the endowments (if not actual quantities then at least relationships between values in the form of inequalities). All that being said, here are my thoughts on a few of these items.
+
+\subsection*{Multiple Goods}
+
+The basic difference here is that we add dimensionality to the utility function, endowments, and consumption choices. In this case let's just assume that there are two goods. Let's proactively introduce a little bit of heterogeneity (otherwise we have the degenerate case where everyone just consume their endowment) and say that each period an equal number of two types of workers are born. A worker who gets endowment $(0,0)$ when they are young and $(w_1^o, w_2^o)$, and another worker who gets endowment $(w_1^y,w_2^y)$ when they are young and $(0, 0)$. With this in mind (and by normalizing both the young income and old income populations to $N=1$), we can write the household's optimization problem as
+\begin{align*}
+	\max_{(c_{1,t}^t, c_{1,t+1}^t), (c_{2,t}^t, c_{2,t+1}^t), (s_{1,1}^t, s_{1,2}^t, s_{2,1}^t, s_{2,2}^t)} u(c_{1,t}^t, c_{2,t}^t) + \beta u(c_{1,t+1}^t, c_{2,t+1}^t)
+\end{align*} such that the individual budget constraints are satisfied respectively for the young income and the old income worker are
+\begin{align*}
+	&c_{1,t}^t + s_{1,1}^t + s_{1,2}^t \leq w_1^y			&c_{2,t}^t + s_{2,1}^t + s_{2,2}^t \leq w_2^y\\
+	&c_{1,t+1}^t \leq R_{1,1}^ts_{1,1}^t + R_{1,2}^t s_{1,2}^t 		&c_{2,t+1}^t \leq R_{2,1}^ts_{2,1}^t + R_{2,2}^ts_{2,2}^t\\
+\end{align*}
+and
+\begin{align*}
+	&c_{1,t}^t + s_{1,1}^t + s_{1,2}^t \leq 0			&c_{2,t}^t + s_{2,1}^t + s_{2,2}^t \leq 0\\
+	&c_{1,t+1}^t \leq R_{1,1}^ts_{1,1}^t + R_{1,2}^t s_{1,2}^t 	+ w_1^o	&c_{2,t+1}^t \leq R_{2,1}^ts_{2,1}^t + R_{2,2}^ts_{2,2}^t + w_2^o\\
+\end{align*}
+In addition, the following markets must clear
+\begin{itemize}
+	\item \textbf{Consumption Bonds}
+	
+	Specifically that for all $t$ we have that \begin{align*}
+		s_{1,1}^{y,t} + s_{1,1}^{o,t} &= 0 \\
+		s_{1,2}^{y,t} + s_{1,2}^{o,t} &= 0 \\
+		s_{2,1}^{y,t} + s_{2,1}^{o,t} &= 0 \\
+		s_{2,2}^{y,t} + s_{2,2}^{o,t} &= 0
+	\end{align*}
+
+	\item \textbf{Goods Market} 
+
+	Specifically that for all $t$ we have that \begin{align*}
+		c_{1,t}^{y,t} + c_{1,t}^{o,t} + c_{1,t}^{y,t-1} + c_{1,t}^{o,t-1} &= w_1^y + w_1^o \\
+		c_{2,t}^{y,t} + c_{2,t}^{o,t} + c_{2,t}^{y,t-1} + c_{2,t}^{o,t-1} &= w_2^y + w_2^o \\
+	\end{align*}
+\end{itemize}
+Now with all this in mind, I'm just going to leave it after writing out the first order conditions for the young agent. They are
+\begin{align*}
+	c_{1,t}^t &:\, u_1(c_{1,t}^t, c_{2,t}^t) - \lambda_{1,t} = 0 \\
+	c_{2,t}^t &:\, u_2(c_{1,t}^t, c_{2,t}^t) - \lambda_{2,t}  = 0 \\
+	c_{1,t+1}^t &:\, \beta u_1(c_{1,t+1}^t, c_{2,t+1}^t) - \lambda_{1,t+1} = 0 \\
+	c_{2,t+1}^t &:\, \beta u_2(c_{1,t+1}^t, c_{2,t+1}^t) - \lambda_{2,t+1} = 0 \\
+	s_{1,1}^t &:\,  \lambda_{1,t} + \lambda_{1,t+1}R_{1,1}^t = 0 \\
+	s_{1,2}^t &:\,  \lambda_{1,t} + \lambda_{1,t+1}R_{1,2}^t = 0 \\
+	s_{2,1}^t &:\,  \lambda_{2,t} + \lambda_{2,t+1}R_{2,1}^t = 0 \\
+	s_{2,2}^t &:\,  \lambda_{2,t} + \lambda_{2,t+1}R_{2,2}^t = 0 \\
+	\lambda_{1,t} &:\, c_{1,t}^t + s_{1,1}^t + s_{1,2}^t = w_1^y \\
+	\lambda_{2,t} &:\, c_{2,t}^t + s_{2,1}^t + s_{2,2}^t = w_2^y \\
+	\lambda_{1,t+1} &:\, R_{1,1}^ts_{1,1}^t + R_{1,2}^ts_{1,2}^t = c_{1,t+1}^t  \\
+	\lambda_{2,t+1} &:\, R_{2,1}^ts_{2,1}^t + R_{2,2}^ts_{2,2}^t = c_{2,t+1}^t \\
+\end{align*}
+
+From this discussion we can see a few key takeaways:
+\begin{itemize}
+	\item There is a new interaction between individuals in that in the vanilla model I discussed at the very top where in the name of consumption smoothing, since there is no means of transforming one good into another, agents can make agreements to trade one good for another. This means that as the number of goods increases linearly the dimentionality of the problem increases exponentially. Again, there might be some tricks to reduce the dimensionality that I'm missing or some other issues with my setup but as of now I see how there are often issues in models when we increase the number of goods just from one to two. 
+
+	\item The general FOCs structure is similar but one important detail is that the FOCs for consumption are dependent on both foods irregarless which one we are taking the derivative with respect to.
+
+	\item We can assume that for $N$ many goods, the FOCs and setup is very similar except we have exponentially more conditions and constraints.
+\end{itemize}
+
+\subsection*{N Period Lives}
+
+\noindent In this case, individuals live for longer than just two periods. The case we will work out is if an individual lives for three periods and there some easy generalizations to make after this example. There are many reasons why we would want to develop a model where agents can live for multiple periods, we might want to represent a more clear distinction between more parts of a household's life (for example, an education period where household's are not making any money, an initial job period where household's recieve a wage but that is not as high as the income they recieve in their next period where they are in the peak of their career, and finally a retirement period where they make no income once again). We can also introduce another dimension of heterogeneity here as well in creating households that live for varying time periods. \\
+
+\noindent That all being said, this case will cover the scenario where agents live for three periods, when they are young, middle aged, and old. Each agent is the same and they recieve endowments $w_y, w_m, w_o$ in each of the respective periods. There will not be any level of heterogeneity other than the differences in age and each agent observes utility $ u(c_t^t) + \beta u(c_{t+1}^t) + \beta^2u(c_{t+2}^t)$ and chooses their consumption and consumption bond trading in each period. More specifically, each agent faces the optimization problem:
+\begin{align*}
+	\max_{(c_t^t, c_{t+1}^t, c_{t+2}^t), (s_t^t, s_{t+1}^t)} u(c_t^t) + \beta u(c_{t+1}^t) + \beta^2 u(c_{t+2}^t)
+\end{align*} such that the following budget contraints are satisfied
+\begin{align*}
+	c_t^t + s_t^t &\leq w_y\\
+	c_{t+1}^t + s_{t+1}^t &\leq w_m + R_t s_t^t\\
+	c_{t+2}^t &\leq w_o + R_{t+1}s_{t+1}^t
+\end{align*} In addition, the following markets must clear \begin{itemize}
+	\item \textbf{Consumption Bonds}
+	
+	Specifically that for all $t$ we have that \begin{align*}
+		s_{t}^{t} + s_{t}^{t-1} &= 0 
+	\end{align*}
+
+	\item \textbf{Goods Market} 
+
+	Specifically that for all $t$ we have that \begin{align*}
+		c_{t}^{t} + c_{t}^{t-1} + c_{t}^{t-2} &= w_y + w_m + w_o
+	\end{align*}
+\end{itemize}
+Now with all this in mind, I'm just going to leave it after writing out the first order conditions for the young agent. They are
+\begin{align*}
+	c_t^t &:\, u'(c_t^t) - \lambda_t = 0\\
+	c_{t+1}^t &:\, \beta u'(c_{t+1}^t) - \lambda_{t+1} = 0 \\
+	c_{t+2}^t &:\, \beta^2 u'(c_{t+2}^t) - \lambda_{t+2} = 0\\
+	s_t^t &:\, \lambda_t + R_t\lambda_{t+1}\\
+	s_{t+1}^t &:\lambda_{t+1} + R_{t+1}\lambda_{t+2} \\
+	\lambda_{t} &:\, c_t^t + s_t^t = w_y\\
+	\lambda_{t+1} &:\, c_{t+1}^t + s_{t+1}^t = w_m + R_ts_t^t\\
+	\lambda_{t+2} &:\, c_{t+2}^t = w_o + R_{t+1}s_{t+1}^t 
+\end{align*}
+From this discussion there are a few key takeaways:
+\begin{itemize}
+	\item A cool new interaction that happens here is that even though each of the agents are the exact same, consumption bond trading still occurs. Specifically in the two period case people didn't want to trade with others in a different generation since old people don't want to make trade with the young generation as they won't be alive to complete the transaction in the next period; and if you are a young agent then you have no other choice than to try to trade with an old agent given that all the people in the same generation are homogenous. Now, however, even if every single agent in a generation is homogenous, in a model where agents live for more than two periods non-old agents still have other generations who want to trade. 
+
+	\item Another intruiging detail that I thought about but isn't apparent in this model (since it is only three period and also doesn't have any heterogeneity) is that in models with multiple periods there should be bonds whose maturity are longer than just one period. The reason why they dont appear in this scenario is that at any time $t$ are no generations that are both alive and not old at $t+2$. Although these bonds should exist in theory, I do think that you could create them using the other one period consumption bonds. For example if you wanted to trade one good of consumption now in return for one good of consumption in two periods you could do so by just buying both a bond at time $t$ and at $t+1$.
+
+	\item Finally, another important detail to note that I don't think I have made clear here is that the consumer should be reoptimizing their choices each period. This is more of a nuance that is grounded in behavioural econ but often times people have an additional discount factor that is applied uniformly to all future periods in addition to the $\beta^t$ discounting. This creates a clear distinction between current period utility and future period utility so often times when an individual ages from young to middle aged they might have a different optimal decision in how to allocate their consumption in middle and old ages as they did when they were young. In the setup above, I didn't add this additional discount factor and so since each future period is discounted by multiplying an additional $\beta$ the optimal decisions should stay the same at each period in their life (the difference in utility from time $t_0$ to time $t_1$ is always relativistically the same).
+\end{itemize}
+
+\subsection*{Stochasticity}
+
+Finally, we had discussed stochasticity in the setting of an infinitely lived agent but not in the case of the OLG model. It makes sense, however, to include it since stochasticity is often the cornerstone of a lot of models and no one can really say that they know what will happen in the future deterministically (unless you happen to have some model that encompasses everything in the known universe). The OLG analog of the infinitely lived agent with randomness is not too different other than introducing expected values and contingent claims. Note that a vanilla model with homogeneity and non-state contingent endowments essentially degenerates to the vanilla model that I introduced in the very beginning of this document. A vanilla model with homogeneity and state contingent endowments is a little more interesting but would also have no consumption bond trading either since each agent experiences the same endowments and utility meaning that no two trade partners could both benefit from a trade. As such, the model setup that I will go through now will be one where agents live for two periods, are either a young-income or old-income agent, and face state-contingent endowments. I am not going to say anything about the probability distribution of the states and I will denote a state vector as $h^t = (h_0,h_1,\cdots, h_t)$ since I've been consistently using $s_t^t$ to denote savings/consumption bonds. To put into an optimization problem setup, both workers try to maximize 
+\begin{align*}
+	\max_{\{c_t^t(h^t), c_{t+1}^t(h_{t+1}|h^t), s_{t}(h^t)\}_{t, h^t, h_{t+1}|h^t} } \sum_{h^t}\pi_t(h^t)u(c_t^t(h^t)) + \sum_{h_{t+1}|h^t} \beta \pi_{t+1}(h_{t+1}|h^t)u(c_{t+1}^t(h_{t+1}|h^t)) 
+\end{align*}
+where the young-income worker faces budget constraints for all $h^t$ and $h_{t+1}|h^t$
+\begin{align*}
+	c^t_t(h^t) + s_t(h^t) &\leq w_y(h^t)\\
+	c_{t+1}^t(h_{t+1}, h^t) &\leq R_ts_t(h^t)
+\end{align*}
+and the old-income worker faces budget constraints
+\begin{align*}
+	c^t_t(h^t) + s_t(h^t) &\leq 0\\
+	c_{t+1}^t(h_{t+1}|h^t) &\leq R_ts_t(h^t) + w_o(h_{t+1}|h^t)
+\end{align*}
+In addition, the following markets must clear \begin{itemize}
+	\item \textbf{Consumption Bonds}
+	
+	Specifically that for all $t,h^t$ we have that \begin{align*}
+		s_{t}^{y}(h^t) + s_{t}^{o}(h^t) &= 0 
+	\end{align*}
+
+	\item \textbf{Goods Market} 
+
+	Specifically that for all $t, h^t$ we have that \begin{align*}
+		c_{t}^{y,t}(h^t) + c_{t}^{y,t-1}(h^t) + c_{t}^{o,t}(h^t) + c_{t}^{o,t-1}(h^t) &= w_y(h^t) + w_o(h^t)
+	\end{align*}
+\end{itemize}
+Before we get into the FOCs and some key takeaways I want to make very clear what is going on with the $h^t, h_{t+1}$ terms since the notation can get a little crazy and I don't even think I understood what the textbook meant or why it was neccesary when I was taking the Sargent/Ljunqvist class until I tried to write it out myself just now. Specifically, I am using this weird notation where in terms of future states, we can only maximize over $h_{t+1}|h^t$. This is mostly because whenever we consider future states we must do so from the perspective of an agent who is realizing $h^t$ since this is information they already know and if $h_{t+1}$ is not independent to $h^t$ then $h^t$ (which is expressed in the probabilities $\pi_t$) is important to determine the likelihood of the next states. I think there is some redundancy where this notation is not neccesary but looking at conditional probabilities is what makes the most sense to me. That being said here are the FOCs for the young-income worker for each $t$ and corresponding $h^t, h_{t+1}|h^t$ are
+\begin{align*}
+	c_t^t(h^t) &:\, \pi_t(h^t)u'(c_t^t(h^t)) - \lambda(h^t) = 0\\	
+	c_{t+1}^t(h_{t+1}|h^t) &:\, \beta \pi_{t+1}(h_{t+1}|h^t)u'(c_{t+1}^t(h_{t+1}|h^t))  - \lambda(h_{t+1}|h^t) = 0\\
+	s_t(h^t) &:\, \lambda(h^t) + \lambda(h_{t+1}|h^t) R_t = 0 \\
+	\lambda(h^t) &:\, c^t_t(h^t) + s_t(h^t) = w_y(h^t)\\
+	\lambda(h_{t+1}|h^t) &:\, c_{t+1}^t(h_{t+1}, h^t) = R_ts_t(h^t)
+\end{align*}
+So finally, from this discussion there are a few key takeaways:
+\begin{itemize}
+	\item The size of the linear system of equations that we have to solve in this situation is much larger than in the vanilla no stochasticity situation. This of course depends on the nature of the probability distribution but the more values with positive probaility in the distribution the more equations there are in the system of FOC conditions to solve. One can see how in conjuction with multiple goods and agents living multiple lives alone how the problem becomes very analytically difficult to solve to find competitive equilibrium.
+
+	\item In the setup above I kind of glossed over state contingent claims to consumption and using a pricing kernel, but to be more thorough this is something that would probably enter the setup as well. I am pretty sure that mathematically including a guaranteed bond is basically the same (put vaguely I think the interest rate and savings is basically equivalent to the conditional expected values of all the contingent claims and pricing kernels).
+\end{itemize}
+
+\end{document}

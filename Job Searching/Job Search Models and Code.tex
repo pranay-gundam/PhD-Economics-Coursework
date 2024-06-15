@@ -121,7 +121,7 @@ Consider a worker who lives infinitely and lives their life in discrete time per
 
 \section{Value Function Iteration (VFI)}
 
-Value function iteration is one of the analytical processes people use to learn the shape of certain functions and is used a lot in Macroeconomics. The benefit of value function iteration is that it is stable, meaning that we know it will eventually converge to the true solution. It is, however, also very slow and achieving the granularity that we often desire requires us to keep track of a very large statespace especially as we increase the dimensionality of the state we want to track.\\
+Value function iteration is one of the analytical processes people use to learn the shape of certain functions and is used a lot in Macroeconomics. The benefit of value function iteration is that it is stable global solution method, meaning that we know it will eventually converge to the true solution. It is, however, also very slow and achieving the granularity that we often desire requires us to keep track of a very large statespace especially as we increase the dimensionality of the state we want to track.\\
 
 \noindent The algorithm will look slightly difference based on the notation and problem setup but the general idea is the same. For the problem defined above we can do VFI as such: determine the statespace $S$ (that spans the domain of the distribution of our wage draws $w$) and initialize a $v_0(s)$ for all $s\in S$. Then determine $v_1, v_2, \ldots$ with the update rule: $$v_k(s) = \max_{accept, reject}\left\{\frac{s}{1-\beta},b + \beta\int v_{k-1}(s')\,dF(s')\right\}.$$
 
@@ -163,13 +163,26 @@ for i = 1:iterations
 end
 \end{lstlisting}
 
-
 \subsection{Efficiency and Speed of VFI}
-The code above is quite innefficient in both speed and memory. First it keeps track of 
+The code above is quite innefficient in both speed and memory. First it keeps track of each of the iterations of improvement in our value function which are not objects we want to keep track of if we are only concerned with solving the job search problem (rather than an exercise in understanding VFI); this is a very simple change to make. Since each iteration only depends on values from the previous iteration it is really easy to parallelize the code and so another change one can make without changing the general structure of the algorithm is adding a parallelization functionality.\\
+
+\noindent Beyond this, VFI is generally a very intensive process that is not feasible for models on the frontiers of their respective econ sub-literatures. A lot of the macro modeling literature is concerned with the problem of computational methods to solve for equilibria or agent behaviour that take advantage of the economic relationships baked into the structure of the model.
+
+\subsection{General VFI}
 
 \section{Common Extenstions of the Job Search Question}
 
-The different types of problems that workers can face in this literature is quite vast.
+The different types of problems that workers can face in this literature is quite vast and as such its a good exercise to cover a few of the basic canonical problems with a final summary on approaching a general framework.
+
+\subsection{Disutility of Labor}
+
+
+\subsection{Multiple Endogenous States}
+Life is more complicated than 
+
+
+\subsection{Quiting}
+
 
 \section{Code Documentation}
 
