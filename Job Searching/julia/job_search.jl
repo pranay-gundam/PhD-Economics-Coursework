@@ -1,14 +1,12 @@
-include("agents.jl")
 struct JobSearch
-    agents::AbtractVector{Agent}
-    statespace::AbstractMatrix{AbtractFloat}
+    agents::AbstractVector{Agent}
+    statespace::AbstractMatrix{AbstractFloat}
     state_distr::AbstractVector{Distribution}
 end
 
 struct value_iteration
     pass
 end
-
 
 
 function calc_state_prob(state::AbstractVector{AbstractFloat}, state_distr::AbstractVector{Distribution}; 
@@ -31,5 +29,7 @@ function run_VFI!(jb::JobSearch, vi::value_iteration; save_iterations = false)
     if save_iterations
         iterations = []
     end
+   
     
+
 end

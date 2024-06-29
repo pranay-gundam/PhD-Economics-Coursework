@@ -1,6 +1,5 @@
 # Loading in package files
-include("agents.jl")
-include("job_search.jl")
+include("includeall.jl")
 
 # Creating basic primitives to use
 
