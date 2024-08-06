@@ -26,4 +26,22 @@ A2 = Agent("Bobby"; temporal_discount = 0.999, utility_func = sqrt)
 # Testing Job Search object creation and modification
 
 
+
+
+
+
+
+# Basic Problem and Value Iteration Testing
+
+## Create the basic problem where the worker is either employed forever or unemployed and draws wages from a distribution
+## each time period. There is no quitting. There is also a bounded unemployment benefit.
+
+
+## Do Value Iteration on the setup above.
+
+
+## Create graphs with changes in teh reservation wage as the unemployment benefit changes, as the variance of normal
+## distribution of wage draws change, are the mean of the wage draws changes.
+
+
 println("All tests passed!")
