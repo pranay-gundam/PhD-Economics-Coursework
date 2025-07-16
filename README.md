@@ -1,7 +1,17 @@
-# Context
+# Read Me
 
-The description of this repository is pretty self explanatory. I took PhD Macro I at NYU during Fall 2023 and figured out that I indeed do want to do macro when it comes to econ focus during grad school. I find that my personal endeavors in writing code and working with concepts is what helps me learn best and so this repo is just that.
+I really want to learn these subjects well. I tend to learn things well when I write code and try to experiment with concepts in writing myself.
 
-As of right now, the job search code and documentation is a bit further along than the OLG code. I am not sure when I intend on finishing up both repos or if I will ever come to a point where I will consider it finished. Regardless I'll continue to write code until I'm done with another first semester of Macro during grad school (maybe even envelop this repo into a larger one with code relating to the general Macro sequence).
+Most everything will be written in julia. All code will be written modular enough so that it is pretty applicable to a variety of projects and/or tasks. If you have any questions or would like to use this code, please feel free to reach out to me at [pranaygundam00@gmail.com](mailto:pranaygundam00@gmail.com).
 
-I wrote a few things in python but most everything will be in julia.
+## Code structure and notes
+
+### Macro_I-NYU
+
+Class code ECON-GA 1025, taught by Sargent and Ljungqvist in Fall 2023.
+
+### Macro-Minnesota
+
+### Micro-Minnesota
+
+### Econometrics-Minnesota
