@@ -1,0 +1,4 @@
+Before classes start. I need to build out some basic functionality so that I don't get overwhelmed 
+writing something very organized without a good direction from the ground up.
+
+Building out the parameter objects and some idea about the basic workflow of how models operate.
