@@ -35,10 +35,11 @@
 \usepackage{longtable}
 \definecolor{cmured}{RGB}{175,30,45}
 \definecolor{macroblue}{RGB}{56,108,176}
+\definecolor{microgreen}{RGB}{0, 153,76}
 \usepackage[format=plain,
             labelfont=bf,
             textfont=]{caption}
-\usepackage[colorlinks=true,citecolor=macroblue,linkcolor=macroblue,urlcolor=macroblue]{hyperref}
+\usepackage[colorlinks=true,citecolor=microgreen,linkcolor=microgreen,urlcolor=microgreen]{hyperref}
 \usepackage{varioref}
 \usepackage{chngcntr}
 
@@ -57,7 +58,7 @@
 \newtheorem{case}{Case}
 \newtheorem{claim}{Claim}
 \newtheorem{condition}{Condition}
-\newtheorem{definition}{Definition}
+\newtheorem{definition}{Definition}[section]
 \newtheorem{example}{Example}
 \newtheorem{notation}{Notation}
 \newtheorem{remark}{Remark}
@@ -68,7 +69,7 @@
 pdfsubject = {},
 pdftitle = {Micro Notes},
 pdfauthor = {Pranay Gundam},
-linkcolor= macroblue
+linkcolor= microgreen
 }
 
 
@@ -84,8 +85,89 @@ linkcolor= macroblue
 
 \tableofcontents
 
-\subsection*{Introduction}
+\section{Introduction}
 
-This document serves as a collection of concepts covered in graduate level microeconomics.
+This document serves as a collection of concepts covered in graduate level microeconomics. Specifically, the PhD Microeconomics sequence ECON 8101 (Werner), ECON 8102 (Phelan), ECON 8103 (Rustichini), and ECON 8104 (Rahman) at the University of Minnesota. If you ever encouter these notes and have questions or spot an error, be sure to reach out to \href{mailto:pranaygundam00@gmail.com}{me here}. Note that everything below is very personalized. I will officially state some theorems but the main goal of writing everything out is to cement my own intuition. Most everything will include statements to help intimidating things feel a bit more friendly.
+
+\section{ECON 8101 (Werner)}
+
+The main units/concepts that have been covered thus far have been Production Sets, Production Functions, Profit Maximization, Convex Analysis and Duality, Supply and Profit, Preferences and Utility Functions, Walrasian Demand, the Slutsky Matrix, Revealed Preference, Theorem of Topkis. I will discuss the main ideas and theorems that pervade the aforementioned concepts.
+
+\subsection{Production}
+
+\begin{definition}[Supermodularity]
+A function $f$ is supermodular if for any $x,y$ we have that $$f(x\lor y) - f(x) \geq f(x\land y) - f(y).$$ This also implies the complementary of inputs (which intuitively is something that is indeed defined by the production function and not an inherent chracteristic of the inputs themselves).
+\end{definition}
+
+There are two more key concepts in this section: Profit Maximization and Cost Minimization. The concepts are simple enough and likely won't come up much on the midterm so I'm just going to note down the two relevant definitions.
+
+\begin{definition}[Profit Function]
+Given a price vector $p\in \mathbb{R}^n$, the profit function $\pi^*$ is $$\pi^*(p) = \sup_{y\in Y} py.$$ Note here that $Y$ is a production set which means it is usually structured as a vector of inputs and one ouput stacked on top of eachother where the inputs are usually normalized to be negative.
+\end{definition}
+
+\begin{definition}[Cost Function]
+Given a vector of prices $p\in \mathbb{R}^n_+$, output level $z\in \mathbb{R}$, and production function $f$, the cost function $C^*$ is \begin{align*}
+C^*(w,z) = \min_{x \geq 0}&\quad px\\
+s.t.&\quad f(x) \geq z
+\end{align*}
+The conditional factor demand correspondence $x^*$ is defined as $C^*(p,z) \equiv p x^*(p,z)$ or can also be seen as \begin{align*}
+x^*(w,z) = \arg\min_{x \geq 0}&\quad px\\
+s.t.&\quad f(x) \geq z
+\end{align*}
+\end{definition}
+
+I need to be comfortable with working with these optimization objects. They are not things that you can do simple algebra with but require more nuanced arguments that take advantage of inequalities and properties of the maxima and minima.
+
+\subsection{Consumer Theory}
+
+\begin{definition}[Indirect Utility Function]
+The function $u^*$ such that given a price vector $p \in \mathbb{R}_+^n$ and income $w \in \mathbb{R}_{++}$ \begin{align*}
+u^*(p,w) = \max_{x \geq 0} & \quad u(x)\\
+s.t. \quad & px \leq w
+\end{align*}
+\end{definition}
+
+\begin{definition}[Walrasian Demand Function]
+The function $x^*$ such that given a price vector $p \in \mathbb{R}_+^n$ and income $w \in \mathbb{R}_{++}$ \begin{align*}
+x^*(p,w) = \arg\max_{x \geq 0} & \quad u(x)\\
+s.t. \quad & px \leq w
+\end{align*} Note that $u^*(p,w) = u(x^*(p,w))$.
+\end{definition}
+
+I want to dedicate a small section to talk about the Walrasian demand function and the indirect utility function. The key intuition to keep in mind is Walras law, that given prices and income, the optimal consumption bundle consumes all of the income which is something that is guaranteed when a utility function is locally non-satiated. This is a necessary condition of a bundle that optimized utility, not sufficient. It is only a relation between optimal bundles and their corresponding prices not that a bundle that satisfies that price relation is optimal. This is something that often trips me up. If we want to make statements about similar consumption bundles by price then we have to use the definition, not the price relation that lns gives us.
+
+\begin{theorem}[Generalized Weak Axiom of Revealed Preference - GWARP]
+Given two price vectors $p^a, p^b \in \mathbb{R}_{++}^n$ and consumption bundles $x^a, x^b \in \mathbb{R}_+^n$. If we have that $$p^ax^b \leq p^a x^a$$ then $$p^b x^b \leq p^b x^a$$ follows. Tangent to this GWARP for Walrasian demand functions. Specifically, given prices $p, p' >> 0$ and incomes $w, w'$ we have that $$px^*(p',w') \leq w \implies p'x^*(p,w) \geq w'.$$
+\end{theorem} Intuitively we can think of this as analyzing the preference behavior of individuals by looking at what types of bundles they pick (hence the "revealed prefence"). For the Walrasian demand function, think of it as; if a given utility maximizing consumption bundle (under prices and income basket a) is affordable given prices and income basket b , then the utility maximizing consumption bundle under prices and income basket b is not affordable given prices and income basket a. 
+
+The strong axiom of revealed preference is an argument in transitivity. If we have a chain of consumption bundles whose preferences have been "revealed" then we can relate the first and $n-$th bundle in that chain.
+
+\begin{theorem}[The Law of Compensated Demand]
+Let $x^*$ be a Walrasian demand function of a consumer with continuous and locally non-satiated utility function. Then for every $p >> 0, w>0, p'>>0, w'> 0$ such that $w' = p'x^*(p,w)$ we have that $$[x^*(p',w') - x^*(p,w)][p'-p] \leq 0.$$
+\end{theorem} To be completely honest, I'm lacking in my intuition here. I think something like: if the optimal consumption bundle is affordable at a different price set then either the other bundles prices are lower or the other bundle is smaller.
+
+\begin{definition}[The Slutsky Matrix]
+Given a differentiable Walrasian demand function $x^*$ we define the Slutsky matrix by element as $$s_{k\ell} = \frac{\partial x^*_k(p,w)}{\partial p_\ell} + \frac{\partial x^*_k(p,w)}{\partial w}x^*_\ell(p,w).$$
+\end{definition} Law of compensated demand implies that this matrix is negative semi-definite and the matrix is also symmetric (we are often asked to confirm these facts).
+
+\subsection{Comparative Statics}
+The main concept to keep in mind here is the Theorem of Topkis. The motivation here is that we can use this Theorem to make statements about the behavior of certain functions with respect to certain variables. For example, say we have some input demand function $x^*(p,w,t)$ that is a function of input prices, output prices, and some tax rate and we want to analyze the behavior (non-decreasing, non-increasing) with respect to a to any of the tax rate or inputs, we can apply Topkis. On onset, it personally feels a little specialized, but it has the flavor of something that is subtly very powerful.
+
+\begin{theorem}[Theorem of Topkis]
+Consider a function $f:X\times T \to R$ and the corresponding function $$\phi(t) = \arg\max_{x\in X}f(x,t).$$ We can say that $\phi$ is nondecreasing (nonincreasing) in $t$ on $S$ if
+\begin{enumerate}
+\item $S$ is a lattice (the $\lor$ and $\land$ operations are included in $S$).
+
+\item $f(x,t)$ is supermodular in $x$ for every $t$
+
+\item $f(x,t)$ has nondecreasing (nonincreasing) difference in $t$. Aka for $t' > t$ and $x' > x$ we have $$f(x',t') - f(x', t) \geq (\leq) f(x,t') - f(x, t).$$
+\end{enumerate}
+\end{theorem}
+
+\section{ECON 8102 (Phelan)}
+
+\section{ECON 8103 (Rustichini)}
+
+\section{ECON 8104 (Rahman)}
 
 \end{document}
