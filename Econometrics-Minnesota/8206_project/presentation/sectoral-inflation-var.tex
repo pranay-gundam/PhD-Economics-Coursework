@@ -1,0 +1,133 @@
+\documentclass{beamer}
+\usetheme{metropolis}           % Use metropolis theme
+\setbeamertemplate{itemize item}{$\diamond$}
+% set the itemize subitem symbol as a triangle
+\setbeamertemplate{itemize subitem}{\scriptsize$\blacktriangleright$}
+% set the itemize subsubitem symbol as a circle with a dot
+\setbeamertemplate{itemize subsubitem}{\scriptsize$\odot$}
+
+\hypersetup{
+    colorlinks=true,
+    urlcolor=blue, % Set the URL color to dark blue
+    linkcolor=red % You can also set the color for other types of links if needed
+}
+
+
+\title{Energy Inflation Pass Through}
+\date{\today}
+\author{Pranay Gundam}
+\institute{University of Minnesota}
+\begin{document}
+  \maketitle
+
+\begin{frame}{We typically report inflation across a bundle of goods / sectors.}
+\begin{center}
+	\includegraphics[width = 10.5cm]{../final_figures/aggregate_cpi_yoy_inflation_2000_present.png}
+\end{center}
+\end{frame}
+
+\begin{frame}{Aggregate CPI series loses the nuance of each sector.}
+\begin{center}
+	\includegraphics[width = 10.5cm]{../final_figures/cpi_categories_yoy_comparison_2000_present.png}
+\end{center}
+\end{frame}
+
+\begin{frame}{There does seem to be some qualitative co-movement.}
+\begin{center}
+	\includegraphics[width = 10.5cm]{../final_figures/cpi_categories_yoy_comparison_2018_present_twinx.png}
+\end{center}
+\end{frame}
+
+%\begin{frame}{Data Description}
+%\begin{itemize}
+%\item BLS sectoral inflation across 5 sectors
+%\begin{itemize}
+%\item Seasonally adjusted
+
+%\item Disaggregates composed as to span aggregate CPI
+%\end{itemize}
+%\item Expected FFR is an important component
+%\end{itemize}
+%\end{frame}
+
+\begin{frame}{More recent Macro work in interaction of prices amongst sectors.}
+\begin{itemize}
+\item \href{https://direct.mit.edu/rest/article-abstract/98/4/770/58346/Core-Inflation-and-Trend-Inflation}{Stock and Watson(2016)} examines if measurement of trend inflation can be improved by using disaggregated sectoral inflation data.
+
+\item \href{https://www.newyorkfed.org/medialibrary/media/research/staff_reports/sr1053.pdf?sc_lang=en}{Del Negro, di Giovanni, Dogra (2025)} studies the inflationary trends across green and dirty sectors.
+
+\item <2> I personally feel Energy Commodities (gasoline, natural gas, etc.) is a fundamental sector that is an core input across most other sectors.
+\end{itemize}
+\end{frame}
+
+
+
+\begin{frame}{This Project}
+	\begin{itemize}
+		\item<+-> What do I ask?
+			\begin{itemize}
+				\item What role do energy-commodity inflation shocks play in other industries’ inflation?
+			\end{itemize}
+		\item<+-> How do I do it?
+			\begin{itemize}
+				\item Eastimate a VAR and identify structural shocks via Cholesky Decomposition.
+			\end{itemize}
+		\item<+-> What do I find?
+			\begin{itemize}
+				\item A 1pp shock to energy-commodities inflation leads to a lagged spike in other sectoral inflation. 
+			\end{itemize}
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{VAR Model Description}
+$$X_t = \sum_{j=1}^{6}\beta_j'X_{t-j} + \epsilon_t$$
+\begin{itemize}
+\item $X_t$ is a $6\times 1$ vector of sectoral inflation and FFR, $\beta_j$ is a matrix of coefficients, and $\epsilon_t$ is a $6\times 1$ vector of errors
+\item  6 lags, following recent suggestion by \href{https://economics.mit.edu/sites/default/files/2025-05/lp_var_primer.pdf}{Olea et al. (2025)}
+\item Ordering for Cholesky Decomposition:
+\end{itemize}
+$$\text{Energy Commodities} \to \text{Energy Services} \to \text{Food} \to $$
+$$\text{Commodities less} \to \text{Services less} \to \text{FFR}$$
+\end{frame}
+
+\begin{frame}{Primary Results}
+\begin{center}
+	\includegraphics[width = 9cm]{../final_figures/irf_grid_all_lags=6_yoy=true.png}
+\end{center}
+\end{frame}
+
+\begin{frame}{Variance table}
+\begin{center}
+\begin{tabular}{ c | c }
+ Sector & Variance\\
+\hline 
+ Energy Commodities & 445.809\\
+ Energy Services & 29.9498\\
+ Effective Federal Funds Rate & 12.5945\\ 
+Food & 9.65913\\
+ Commodities less food and energy & 4.8576\\
+ Services less energy services & 1.29883
+\end{tabular}
+\end{center}
+\end{frame}
+
+\begin{frame}{Robustness Checks}
+\textbf{What I have done:}
+\begin{itemize}
+\item VAR with MoM inflation.
+\item Various lag lengths yield similar trend and magnitude results.
+\end{itemize}
+\textbf{What still could be done:}
+\begin{itemize}
+\item Extend the network analysis of inflation to include spatial sectors of inflation.
+\item Run model on pre-pandemic data and analyze post-pandemic shock.
+\item Choose lag length based on AIC.
+\item Compare magnitude of response between other sectoral inflation shocks.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+    \centering
+    \textbf{\Huge Thank You!} % Puts the text in the center, bold, and a large font size
+\end{frame}
+\end{document}

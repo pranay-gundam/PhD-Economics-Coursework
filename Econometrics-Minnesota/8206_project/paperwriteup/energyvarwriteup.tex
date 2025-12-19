@@ -1,0 +1,159 @@
+%--------------------
+% Packages
+% -------------------
+\documentclass[11pt,english]{article}
+\usepackage{amsfonts}
+\usepackage[left=2.5cm,top=2cm,right=2.5cm,bottom=3cm,bindingoffset=0cm]{geometry}
+\usepackage{amsmath, amsthm, amssymb}
+\usepackage{tikz}
+\usetikzlibrary{calc}
+\usetikzlibrary{decorations.pathreplacing,calligraphy}
+\usepackage{fancyhdr}
+%\usepackage{currfile}
+\usepackage{nicefrac}
+\usepackage{cite}
+\usepackage{graphicx}
+\usepackage{caption}
+\usepackage{longtable}
+\usepackage{rotating}
+\usepackage{lscape}
+\usepackage{booktabs}
+\usepackage{float}
+\usepackage{placeins}
+\usepackage{setspace}
+\usepackage[font=itshape]{quoting}
+\onehalfspacing
+\usepackage{mathrsfs}
+\usepackage{tcolorbox}
+\usepackage{xcolor}
+\usepackage{subcaption}
+\usepackage{float}
+\usepackage[multiple]{footmisc}
+\usepackage[T1]{fontenc}
+\usepackage[sc]{mathpazo}
+\usepackage{listings}
+\usepackage{longtable}
+\definecolor{cmured}{RGB}{175,30,45}
+\definecolor{macroblue}{RGB}{56,108,176}
+\usepackage[format=plain,
+            labelfont=bf,
+            textfont=]{caption}
+\usepackage[colorlinks=true,citecolor=macroblue,linkcolor=macroblue,urlcolor=macroblue]{hyperref}
+\usepackage{varioref}
+\usepackage{chngcntr}
+
+\definecolor{darkgreen}{RGB}{30,175,88}
+\definecolor{darkblue}{RGB}{30,118,175}
+\definecolor{maroon}{rgb}{0.66,0,0}
+\definecolor{darkgreen}{rgb}{0,0.69,0}
+
+%Counters
+\newtheorem{theorem}{Theorem}[section] 
+\newtheorem{proposition}{Proposition}
+\newtheorem{lemma}{Lemma}
+\newtheorem{corollary}{Corollary}
+\newtheorem{assumption}{Assumption}
+\newtheorem{axiom}{Axiom}
+\newtheorem{case}{Case}
+\newtheorem{claim}{Claim}
+\newtheorem{condition}{Condition}
+\newtheorem{definition}{Definition}
+\newtheorem{example}{Example}
+\newtheorem{notation}{Notation}
+\newtheorem{remark}{Remark}
+
+
+
+\hypersetup{ 	
+pdfsubject = {},
+pdftitle = {Energy VAR Writeup},
+pdfauthor = {Pranay Gundam},
+linkcolor= macroblue
+}
+
+
+\title{\textbf{Econ 8206: Energy VAR}}
+\author{Pranay Gundam}
+
+%-----------------------
+% Begin document
+%-----------------------
+\begin{document}
+
+\maketitle
+
+
+\subsection*{Motivation}
+
+Although aggregate measures of inflation, such as the Consumer Price Index (CPI), are important for identifying trends in prices that are important to consumers, studying only the aggregate measure loses important sectoral nuance. Each sector experiences it's own set of idiosyncratic shocks that do not directly affect other sectors but may have an indirect effect through an input-output network that connects each of the sectors. Figure \ref{fig:timeseries} shows that although indeed each sector does not match the others perfectly, there does seem to be some level of co-movement.
+
+Energy commodities is, in particular, a core sector in that it acts as in input for many other sectors through fundamental channels such as gasoline needed to transport goods or fuel machinery. This project is a study to continue existing work in Macroeconomics such as Stock, Watson (2016)\cite{StockWatson2016}, Del Negro et al. (2025) \cite{DelNegro2025}, and Kanzig (2021) \cite{Kanzig2021} to study the passthrough effects of Energy Services inflation shocks to other sectoral inflation series.
+
+\begin{figure}
+\centering
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=0.9\linewidth]{../final_figures/cpi_categories_yoy_comparison_2000_present.png}
+  \caption{Unscaled (2000 - )}
+  \label{fig:sub1}
+\end{subfigure}%
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=0.9\linewidth]{../final_figures/cpi_categories_yoy_comparison_2018_present_twinx.png}
+  \caption{Scaled Energy Services (2018 - )}
+  \label{fig:sub2}
+\end{subfigure}
+\caption{Timeseries of sectoral inflation}
+\label{fig:timeseries}
+\end{figure}
+
+\subsection*{Data}
+
+The data is from two sources: 
+\begin{itemize}
+\item \href{https://fred.stlouisfed.org/series/FEDFUNDS}{FRED}: I pull monthly effective federal funds rate data from FRED. I incorporate Federal Funds Rate data as lots of economic literature describes the relationship between interest rates (effectively representing the cost of capital)
+
+\item \href{https://download.bls.gov/pub/time.series/cu/}{BLS}: I pull the monthly price levels (base year of 1982-84) of five sectors that, in total, span the sectors that compose aggregate CPI. The five sectors are Energy Commodities, Energy Services, Food, Commodities less Food and Energy Commodities, and Services less Energy Services. I transform these price level values into percent change year-over-year inflation values.
+\end{itemize}
+
+\subsection* {Model Description and Approach}
+
+This project employs a VAR model as described below
+$$X_t = \sum_{j=1}^{n\_lags}\beta_{j}X_{t-j} + \epsilon_t.$$ Here $X_t$ is a vector of sectoral inflation series and FFR, $\beta_j$ is a matrix of coefficients, and $\epsilon_t$ is a vector of shocks. In order to capture a causal response, I perform a Cholesky Decomposition with the following ordering: Energy Commodities $\to$ Energy Services $\to $ Food $\to $ Commodities less Energy and Food Services $\to $ Services less Energy Services $\to $ FFR.
+
+The model that is displayed has $6$ lags. This is actually far less than recommended by recent work by Olea et al. \cite{Olea2025} but the general trends are similar from 6 to 24 lags save some non-statistically significant noise.
+
+\subsection*{Results}
+
+The main result of this project is the collection of IRFs displayed in figure \ref{fig:irfs}. There are two main takeaways:
+\begin{itemize}
+\item A 1 percentage point shock to Energy Commodities leads a jump in sectoral inflation and federal funds rate across the board.
+
+\item The timing of inflation spike is variable across sectors. Specifically there are two main trends. First is a rapid increase and decrease such as depeicted in Commodities less food an energy which may be likely due to the fact that goods in this sector are produced on a faster, more flexible timescale relative to others and as such they respond quickly to changes in energy commodities prices since there is no backstock of fuel. The second trend is a gradual rise and gradual fall in inflation; this is likely because these sectors operate in such a manner as to maintain a stock of energy commodities as an input to produce their goods. One such example is in the food sector where farmers often maintain a silo of fuel for their tractors and only refuel this when it empties or when prices decline. As such, the effect of a rise in energy commodities may only effect those farms than need to refuel during a jump in prices or may take a longer time for the effect of a jump of energy commodities prices to hit farms.
+\end{itemize}
+
+\begin{figure}
+\centering
+\includegraphics[width = 0.8\linewidth]{../final_figures/irf_grid_all_lags=6_yoy=true.png}
+\caption{Sectoral Inflation response to a 1pp shocks to Energy Services}
+\label{fig:irfs}
+\end{figure}
+
+\begin{thebibliography}{9}
+
+\bibitem{StockWatson2016}
+Stock, J. H., and M. W. Watson (2016).\ ``Core Inflation and Trend Inflation.''\ \emph{Review of Economics and Statistics}, 98(4), 770--784.
+
+\bibitem{DelNegro2025}
+Del Negro, M., J. di Giovanni, and K. Dogra (2025).\ ``Green and Dirty Inflation.''\ Federal Reserve Bank of New York Staff Report No. 1053.\ \url{https://www.newyorkfed.org/medialibrary/media/research/staff_reports/sr1053.pdf}
+
+\bibitem{Kanzig2021}
+Känzig, Diego R. 2021.\ "The Macroeconomic Effects of Oil Supply News: Evidence from OPEC Announcements."\ \emph{American Economic Review} 111 (4): 1092–1125.
+
+\bibitem{Olea2025}
+Olea, J., Plagborg-Moller, M., Qian, E., Wolf, C.,  (2025).\ "Local Projections or VARs? A Primer for Macroeconomists."\ \emph{NBER Macroeconomics Annual 2025}, Volume 40
+\end{thebibliography}
+
+
+
+\end{document}
