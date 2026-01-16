@@ -86,19 +86,42 @@ linkcolor= macroblue
 
 \section{Introduction}
 
-This document serves as a collection of concepts covered in graduate level macroeconomics. Specifically, the PhD Macroeconomics sequence ECON 8105 (Kehoe), ECON 8106 (Chari), ECON 8107 (Amador), and ECON 8108 (Luttmer) at the University of Minnesota. If you ever encouter these notes and have questions or spot an error, be sure to reach out to \href{mailto:pranaygundam00@gmail.com}{me here}.
+This document serves as a collection of concepts covered in graduate level macroeconomics. Specifically, the PhD Macroeconomics sequence ECON 8105 (Kehoe), ECON 8106 (Chari), ECON 8107 (Amador), and ECON 8108 (Luttmer) at the University of Minnesota. If you ever encouter these notes and have questions or spot an error, be sure to reach out to \href{mailto:pranaygundam00@gmail.com}{me here}. 
+
+For anyone from Minnesota who is reading this guide, my intention in writing out these notes and code is not to be a specific guide for the classes but a post-hoc personal recap that is meant to be more general.
 
 \section{ECON 8105 (Kehoe)}
 
 \subsection{General Equilibrium}
 
-There are two main types of economic modeling strategies that we need to talk about. Arrow-Debreu (AD) representations and Sequential Markets (SM) representations. The crux of the idea is to develop a theory for the dynamic interactions of various households (and other sorts of agents) who face various resource constraints and optimization choices. We pose this question as simultaneously solving multiple maximization problems. The AD and SM representations are techniques of translating the structure of economies into a specific mathematical formulation with prices (formed based off of the relative utility preferences of agents).
+There are two main types of economic modeling strategies that we need to talk about in this section. Arrow-Debreu (AD) representations and Sequential Markets (SM) representations. The crux of the idea is to develop a theory for the dynamic interactions of various households (and other sorts of agents) who face various resource constraints and optimization choices. We pose this question as simultaneously solving multiple maximization problems. The AD and SM representations are techniques of translating the structure of economies into a specific mathematical formulation with prices (formed based off of the relative utility preferences of agents).
 
-In the AD representation, households are able to trade in futures contacts for some single consumption good at time zero (before the economy gets up and running) and are allowed to   
+In the AD representation, households are able to trade in futures contacts for some single consumption good at time zero (before the economy gets up and running) and there is no other specific mechanism to save the consumption good.
 
-\subsection{The Canonical Basic Model}
+In the SM representation, households are able to trade one-period-ahead futures contracts for a consumption good in each time period.
 
-Consider an economy that consists of one household that lives forever and wants to maximize their lifetime utility. They are endowed with some income stream that are in the units of the consumptino good.
+\begin{definition}{Arrow Debreu Competitive Equilibrium}
+
+An Arrow Debreu Competitive Equilibrium is a collection of household allocations $\{c_t,\}$
+
+\end{definition}
+
+Let's set up an example very carefully with some math. 
+
+\subsection{My Canonical Basic Model}
+
+Consider an economy that consists of two households who live forever and want to maximize their lifetime utility. Let $u_i(\cdot)$ be the in-period utility function for agent $i\in \{1,2\}$. Given a consumption stream $\{x_t^i\}_{t=0}^\infty$ (where each $x_t^i$ represents the amount of consumption that person $i$ does at time $t$), we can write the total lifetime utility of agent $i$ as $$\sum_{t=0}^\infty \beta^t u_i(x^i_t).$$
+The reason as to why we include this $\beta^t$ discounting is one of these types of details that does not seem immediately obvious but soon becomes so after working a few problems. In short, it is meant to make sure that infinite sequences (since these agents live forever) converge and that lifetime utility is a well defined object.
+
+Now let $\{w_t^i\}_{t=0}^\infty$ be the endowment stream of person $i$, where each $w_t^i$ represents the amount of the consumption good that person $i$ recieves at time $t$.
+
+There are a lot of ways that we can modify this basic model and ask some interesting questions. I'm not going to be as detailed as I was above in working them out, but here are a few examples:
+\begin{itemize}
+\item 
+
+\item 
+
+\end{itemize}
 
 \subsubsection{Adding Production}
 
@@ -128,9 +151,21 @@ Initial fiat money is $0$ implies that bonds are $0$ for the rest of time and th
 
 \subsection{Deterministic Dynamic Programming}
 
+I'm going to cover most of everything in the Chari section. Long story short, though, 
+
+There is a lot of legwork that goes on in the background to make sure that 
+
 Contractions and Blackwell's Sufficient Conditions
 
 \section{ECON 8106 (Chari)}
+
+\subsection{Dynamic Programming (Deterministic and Stochastic)}
+
+\subsection{Recursive Competitive Equilibria}
+
+\subsection{Cash-Credit-Good Models}
+
+\subsection{Sticky Prices}
 
 \section{ECON 8107 (Amador)}
 
