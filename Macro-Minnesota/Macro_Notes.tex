@@ -2,74 +2,7 @@
 % Packages
 % -------------------
 \documentclass[11pt,english]{article}
-\usepackage{amsfonts}
-\usepackage[left=2.5cm,top=2cm,right=2.5cm,bottom=3cm,bindingoffset=0cm]{geometry}
-\usepackage{amsmath, amsthm, amssymb}
-\usepackage{tikz}
-\usetikzlibrary{calc}
-\usetikzlibrary{decorations.pathreplacing,calligraphy}
-\usepackage{fancyhdr}
-%\usepackage{currfile}
-\usepackage{nicefrac}
-\usepackage{cite}
-\usepackage{graphicx}
-\usepackage{caption}
-\usepackage{longtable}
-\usepackage{rotating}
-\usepackage{lscape}
-\usepackage{booktabs}
-\usepackage{float}
-\usepackage{placeins}
-\usepackage{setspace}
-\usepackage[font=itshape]{quoting}
-\onehalfspacing
-\usepackage{mathrsfs}
-\usepackage{tcolorbox}
-\usepackage{xcolor}
-\usepackage{subcaption}
-\usepackage{float}
-\usepackage[multiple]{footmisc}
-\usepackage[T1]{fontenc}
-\usepackage[sc]{mathpazo}
-\usepackage{listings}
-\usepackage{longtable}
-\definecolor{cmured}{RGB}{175,30,45}
-\definecolor{macroblue}{RGB}{56,108,176}
-\usepackage[format=plain,
-            labelfont=bf,
-            textfont=]{caption}
-\usepackage[colorlinks=true,citecolor=macroblue,linkcolor=macroblue,urlcolor=macroblue]{hyperref}
-\usepackage{varioref}
-\usepackage{chngcntr}
-
-\definecolor{darkgreen}{RGB}{30,175,88}
-\definecolor{darkblue}{RGB}{30,118,175}
-\definecolor{maroon}{rgb}{0.66,0,0}
-\definecolor{darkgreen}{rgb}{0,0.69,0}
-
-%Counters
-\newtheorem{theorem}{Theorem}[section] 
-\newtheorem{proposition}{Proposition}
-\newtheorem{lemma}{Lemma}
-\newtheorem{corollary}{Corollary}
-\newtheorem{assumption}{Assumption}
-\newtheorem{axiom}{Axiom}
-\newtheorem{case}{Case}
-\newtheorem{claim}{Claim}
-\newtheorem{condition}{Condition}
-\newtheorem{definition}{Definition}
-\newtheorem{example}{Example}
-\newtheorem{notation}{Notation}
-\newtheorem{remark}{Remark}
-
-
-
-\hypersetup{ 	
-pdfsubject = {},
-pdftitle = {Macro Notes},
-pdfauthor = {Pranay Gundam},
-linkcolor= macroblue
-}
+\input{tex_formatting.tex}
 
 
 \title{\textbf{Macro Notes}}
@@ -88,87 +21,329 @@ linkcolor= macroblue
 
 This document serves as a collection of concepts covered in graduate level macroeconomics. Specifically, the PhD Macroeconomics sequence ECON 8105 (Kehoe), ECON 8106 (Chari), ECON 8107 (Amador), and ECON 8108 (Luttmer) at the University of Minnesota. If you ever encouter these notes and have questions or spot an error, be sure to reach out to \href{mailto:pranaygundam00@gmail.com}{me here}. 
 
-For anyone from Minnesota who is reading this guide, my intention in writing out these notes and code is not to be a specific guide for the classes but a post-hoc personal recap that is meant to be more general.
-
 \section{ECON 8105 (Kehoe)}
 
 \subsection{General Equilibrium}
 
 There are two main types of economic modeling strategies that we need to talk about in this section. Arrow-Debreu (AD) representations and Sequential Markets (SM) representations. The crux of the idea is to develop a theory for the dynamic interactions of various households (and other sorts of agents) who face various resource constraints and optimization choices. We pose this question as simultaneously solving multiple maximization problems. The AD and SM representations are techniques of translating the structure of economies into a specific mathematical formulation with prices (formed based off of the relative utility preferences of agents).
 
-In the AD representation, households are able to trade in futures contacts for some single consumption good at time zero (before the economy gets up and running) and there is no other specific mechanism to save the consumption good.
+In the AD representation, households are able to trade in futures contacts for some single consumption good at time zero (before the economy gets up and running) and there is no other specific mechanism to save the consumption good. The also are often able to trade futures contracts for bonds and capital as well depending on the model. We are often asked to describte the structure of such a market and the official wording is below:
+
+\begin{definition}{[Arrow Debreu Market Structure]}
+With an Arrow-Debreu markets structure futures, markets for goods are open in period $0$ . Consumers trade futures contracts among themselves. If there are 
+\end{definition}
 
 In the SM representation, households are able to trade one-period-ahead futures contracts for a consumption good in each time period.
 
-\begin{definition}{Arrow Debreu Competitive Equilibrium}
-
-An Arrow Debreu Competitive Equilibrium is a collection of household allocations $\{c_t,\}$
-
+\begin{definition}{[Sequential Markets Structure]}
+With sequential markets market structure, there are markets for goods and bonds open every period. Consumers trade goods and bonds among themselves.
 \end{definition}
 
-Let's set up an example very carefully with some math. 
+For the context of this class, one key detail that always tripped me up is that whenever there is capital, there is also a firm (which often goes unspecified) that utilizes this capital and transforms it into the consumption good. In this case, the market structure shifts to households also interacting with the firm who buys claims on capital and labor in exchange for claims on the consumption good. With sequential markets, there are also bonds that households trade amongst themselves.
 
-\subsection{My Canonical Basic Model}
+\subsubsection{The Paradox of General Equilibrium}
+Finally, I wanted to speak a little about the simultaneity of determining all the components of an equilibrium. It is a feature of the economics that is difficult to really intuit and appreciate in the beginning but comes as you work with more models and do more problems. The main confusion is that a lot of times we discuss economics as a series of cause and effects, whereas in these equilibrium models, everything is intertwined. It seems somewhat paradoxical that both households and firms consider prices to be a truth of the world that is independent of their behavior but somehow is also pinned down exactly through the preferences/characteristics of households and firms.
+
+In the math, the simultaneity is clear, we solve all of the maximization problems and try to find such a solution that fit's all the agents in the economy while also satisfying the market clearing conditions. Qualitatively it took me some time to come to terms with how to interpret it until (I am a big fan of sci-fi) I thought about it in the context of the short story "Stories of your life" (it is also the basis for the movie "Arrival" and also a quick read for anyone who is interested) and how it describes the worldview of the aliens through various mathematical problems where there is an analogy between the physical causal interpretation and the simultaneity interpretation through Fermat's Principle of Least Time.
+
+We do a lot of causal analysis in economics, even using general equilibrium models, and I think overcoming this paradox of how the model pins down each of the important objects versus the exercise of causal analysis that we are trying to do is important for getting a foundation of intuition. It will come as you are more involved in it, but I had a easier time with it when I tried to draw analogies to other concepts. The idea is that yes, everything interacts with everything else through some channel or the other, but we can try to wean out to what extent is each channel important.
+
+
+\subsection{Basic Endowment Model}
 
 Consider an economy that consists of two households who live forever and want to maximize their lifetime utility. Let $u_i(\cdot)$ be the in-period utility function for agent $i\in \{1,2\}$. Given a consumption stream $\{x_t^i\}_{t=0}^\infty$ (where each $x_t^i$ represents the amount of consumption that person $i$ does at time $t$), we can write the total lifetime utility of agent $i$ as $$\sum_{t=0}^\infty \beta^t u_i(x^i_t).$$
-The reason as to why we include this $\beta^t$ discounting is one of these types of details that does not seem immediately obvious but soon becomes so after working a few problems. In short, it is meant to make sure that infinite sequences (since these agents live forever) converge and that lifetime utility is a well defined object.
+The reason as to why we include this $\beta^t$ discounting is one of these types of details that does not seem immediately obvious but soon becomes so after working a few problems. In short, it is meant to make sure that infinite sequences (since these agents live forever) converge so that lifetime utility is a well defined object.
 
-Now let $\{w_t^i\}_{t=0}^\infty$ be the endowment stream of person $i$, where each $w_t^i$ represents the amount of the consumption good that person $i$ recieves at time $t$.
+Now let $\{w_t^i\}_{t=0}^\infty$ be the endowment stream of person $i$, where each $w_t^i$ represents the amount of the consumption good that person $i$ recieves at time $t$. Each household $i$ is constrained such that they can only consume as much as their lifetime utility allows.  This description of the model may seem a little vague right now, but hopefully a description of the equilibria will pin it down.
 
-There are a lot of ways that we can modify this basic model and ask some interesting questions. I'm not going to be as detailed as I was above in working them out, but here are a few examples:
+\begin{definition}{[Arrow Debreu Equilibrium for basic endowment]} An Arrow Debreu market equilibrium for such an economy as above is a collection of household allocations $\{( \hat{c}_t^1,\hat{c}_t^2)\}_{t=0}^\infty$ and prices $\{\hat{p}_t\}$ such that 
 \begin{itemize}
-\item 
-
-\item 
-
+\item \underline{Household Maximization:} Given prices and endowment stream $\{w_t^i\}_{t = 0}^\infty$, the household allocations solve the household's maximization problem for each $i$ \begin{align*}
+\max_{\{c_t^i\}_{t=0}^\infty} &\sum_{t=0}^\infty \beta^t u_i(c_t^i)\\
+s.t.\quad  (1)&\quad \sum_{t=0}^\infty \hat{p}_t c_t^i \leq \sum_{t=0}^\infty \hat{p}_t w_t^i,\\
+(2)&\quad c_t^i \geq 0, \forall t\geq 0.
+\end{align*}
+\item \underline{Market Clearing:} Given endowment streams $\{(w_t^1, w_t^2)\}_{t = 0}^\infty$, the household allocations also satisfy \begin{align*}
+&(1)\quad \hat{c}_t^1 + \hat{c}_t^2 = w_t^1 + w_t^2.
+\end{align*}
 \end{itemize}
-
-\subsubsection{Adding Production}
-
-Optimal growth problem
-
-\subsubsection{Overlapping Generations}
-
-An overlapping generations model is not necessarily a separate entity from the concept of general equilibrium. The idea is still to solve for an equilibrium but the main difference from the models we will discuss in this section versus the section above is in the lifespan of an agent. 
+\end{definition}
+One key difference between the AD and Sequential Markets formulations is that we need to rule out schemes where an individual can keep on borrowing forever and paying but their loans in the current period by borrowing more from future periods (aka a Ponzi scheme). This means we need to also say that there is some borrowing limit that is sufficiently large so that it wouldn't affect any behavior other than disrupting Ponzi schemes.
+\begin{definition}{[Sequential Markets Equilibrium for basic endowment]} A Sequential Markets equilibrium for such an economy as above is a collection of household allocations $\{( \hat{c}_t^1, \hat{b}_{t+1}^1,\hat{c}_t^2, \hat{b}_{t+1}^2)\}_{t=0}^\infty$ and prices $\{\hat{r}_t\}$ such that 
+\begin{itemize}
+\item \underline{Household Maximization:} Given prices, endowment stream $\{w_t^i\}_{t = 0}^\infty$, and initial bond holdings $b_0^i$, the household allocations solve the household's maximization problem for each $i$ \begin{align*}
+\max_{\{c_t^i, b_{t+1}^i\}_{t=0}^\infty} &\sum_{t=0}^\infty \beta^t u_i(c_t^i)\\
+s.t.\quad  (1)& \quad c_t^i + b_{t+1}^i \leq \hat{r}_tb_t^i + w_t^i,\forall t\geq 0,\\
+(2)&\quad c_t^i \geq 0, \forall t\geq 0,\\
+(3)&\quad b_t^i \geq -B,\text{ for some sufficiently large } B.
+\end{align*}
+\item \underline{Market Clearing:} Given endowment streams $\{(w_t^1, w_t^2)\}_{t = 0}^\infty$, the household allocations also satisfy \begin{align*}
+&(1)\quad \hat{c}_t^1 + \hat{c}_t^2 = w_t^1 + w_t^2,\\
+&(2)\quad \hat{b}_t^1 + \hat{b}_t^2 = 0.
+\end{align*}
+\end{itemize}
+\end{definition}
 
 \subsubsection{Equivalence of Arrow-Debreu and Sequential Markets}
+Both of these markets are indeed equivalent after doing some transformations between the sets of equilibria objects. The main idea is that the allocations will always be the same but the prices, given of course that the prices relay different mechanisms of trading, require some transformation. The exact equivalence will be dependent on the economy structure, but the general idea in deriving the equivalence is to take advantage of the euler equations (I'll point it out clearly below but in general this is the equation that we can back out of the households' first order conditions that intertemporaly relates consumption, aka relates $c_t$ to $c_{t+1}$) and the fact that the allocations are the same across both sets of equilibria. You can find out a specific worked out example of how this equivalence comes to be in the exercises.
 
-\subsection{Analytical Solution Methods}
+\begin{proposition}{[Equivalence of AD and Sequential Markets Equilibrium]} Consider the AD equilibrium for the economy above, a collection of household allocations household allocations $\{( \hat{c}_t^1,\hat{c}_t^2)\}_{t=0}^\infty$ and prices $\{\hat{p}_t\}$. With this, we can write that the corresponding sequential markets equilibrium of household allocations $\{( \bar{c}_t^1, \bar{b}_{t+1}^1,\bar{c}_t^2, \bar{b}_{t+1}^2)\}_{t=0}^\infty$ and prices $\{\bar{r}_t\}$ is
+\begin{itemize}
+\item $\bar{c}_t^i = \hat{c}_t^i$, $\forall t,i$
+\item $\bar{r}_t = \frac{\hat{p}_{t-1}}{\hat{p}_t} - 1$
+\item $\bar{b}_0 = 0$, and $\bar{b}_{t+1} = w_t^i + (1 + \bar{r}_t) - \bar{c}_t^i$
+\end{itemize} We can back out the reverse relationship through the relationships decribed above.
+\end{proposition}
+
+\subsection{Basic Optimal Growth Model}
+Now, consider an economy with a representative household and a representative firm. The household now has the ability to sell their labor and capital to the firm which it uses as inputs to create the consumption good via technology $F(\cdot)$. In return, the firm pays the household wages (for labor) and rent (for capital). It will be a bit more clear once we talk about the equilibrium concepts. For this basic version, the firm acts as if it is operating in a perfectly competitive market which means that it makes zero profit and minimizes costs. Assuming that $w_t$ is the wage rate for labor and $r_t^k$ is the rent for capital, the profits for the firm are $p_tF(k_t, \ell_t) - w_t\ell_t - r_t^kk_t$. We can back out the optimality conditions of the firm from this formulation and will use this in our definition of the equilibrium. 
+
+Each household has a constant endowment of labor each period which we will normalize to one. This means that they can spend their time on either working for a wage or something else (the effect of which is captured in the utility function).
+
+One final important detail to hash out is how the capital market works. Households invest in new capital at time $t$ which they can rent out to firms at time $t+1$. This capital sticks around over time but depreciates with rate $\delta$. It is NOT the case that capital acts like a bond where households lend a certain amount to the firm in time period $t$ and gets paid with interest in time period $t+1$.
+\begin{definition}{[Arrow Debreu Equilibrium for basic growth model]} An Arrow Debreu market equilibrium for such an economy as above is a collection of household allocations $\{( \hat{c}_t, \hat{k}_{t+1}, \hat{\ell}_{t+1})\}_{t=0}^\infty$, firm allocations $\{\hat{k}_t^f, \hat{\ell}_t^f\}_{t=0}^\infty$, and prices $\{\hat{p}_t, \hat{r}_t^k, \hat{w}_t\}$ such that 
+\begin{itemize}
+\item \underline{Household Maximization:} Given prices and initial level of capital (bestowed by some higher power) $k_0$, the household allocations solve the household's maximization problem for each $i$ \begin{align*}
+\max_{\{c_t, \ell_t, k_{t+1}\}_{t=0}^\infty} &\sum_{t=0}^\infty \beta^t u(c_t, \ell_t)\\
+s.t.\quad  (1)&\quad \sum_{t=0}^\infty \hat{p}_t c_t + \hat{p}_tk_{t+1}  - \hat{p}_t(1 - \delta)k_t\leq \sum_{t=0}^\infty \hat{w}_t \ell_t + \hat{r}^k_t k_t,\\
+(2)&\quad c_t \geq 0, k_t \geq 0, 0 \leq \ell_t \leq 1, \forall t\geq 0.
+\end{align*}
+\item \underline{Firm Maximization:} Given prices, firms minimize costs and make zero profits, specifically the firm allocations satisfy
+$$\frac{\hat{r}^k_t}{\hat{p}_t} = \frac{\partial F}{\partial k}(\hat{k}_t^f, \hat{\ell}^f_t)$$
+$$\frac{\hat{w}_t}{\hat{p}_t} = \frac{\partial F}{\partial w}(\hat{k}_t^f, \hat{\ell}^f_t)$$
+
+\item \underline{Market Clearing:} The household and firm allocations also satisfy \begin{align*}
+\text{Goods Market:}&\quad \hat{c}_t + \hat{k}_{t+1}  = F(\hat{k}_t^f, \hat{\ell}_t^f) + (1 - \delta)\hat{k}_t,\forall t \geq 0,\\
+\text{Capital Market:}&\quad \hat{k}_t = \hat{k}_t^f,\forall t \geq 0,\\
+\text{Labor Market:}&\quad \hat{\ell}_t = \hat{\ell}_t^f,\forall t \geq 0.
+\end{align*}
+\end{itemize}
+\end{definition}
+
+Of course, in the sequential markets definition we have bonds. So far, we have described a model with a representative consumer which means that the household has no one to trade bonds with and as a result bond holdings are trivially $0$ at any point in time. This will change as we add multiple types of households or some other agent, such as a government, that is willing to buy/sell bonds.
+
+\begin{definition}{[Sequential Markets Equilibrium for basic growth model]} A sequential markets equilibrium for such an economy as above is a collection of household allocations $\{( \hat{c}_t, \hat{k}_{t+1}, \hat{b}_{t+1}, \hat{\ell}_{t+1})\}_{t=0}^\infty$, firm allocations $\{\hat{k}_t^f, \hat{\ell}_t^f\}_{t=0}^\infty$, and prices $\{\hat{p}_t, \hat{r}_t^k, \hat{r}^b_t, \hat{w}_t\}$ such that 
+\begin{itemize}
+\item \underline{Household Maximization:} Given prices and initial level of capital (bestowed by some higher power) $k_0$ and bond holdings $b_0$, the household allocations solve the household's maximization problem for each $i$ \begin{align*}
+\max_{\{c_t, \ell_t, k_{t+1}, b_{t+1}\}_{t=0}^\infty} &\sum_{t=0}^\infty \beta^t u(c_t, \ell_t)\\
+s.t.\quad  (1)& \quad c_t + k_{t+1} + \hat{b}_{t+1}  \leq (1 - \delta + \hat{r}^k_t)k_t + \hat{w}_t \ell_t +   (1 + \hat{r}_t^b)b_{t},\\
+(2)& \quad c_t \geq 0, k_t \geq 0, 0 \leq \ell_t \leq 1,\forall t\geq 0,
+(3)&\quad b_t \geq -B,\text{ for some sufficiently large } B.
+\end{align*}
+\item \underline{Firm Maximization:} Given prices, firms minimize costs and make zero profits, specifically the firm allocations satisfy
+$$\frac{\hat{r}^k_t}{\hat{p}_t} = \frac{\partial F}{\partial k}(\hat{k}_t^f, \hat{\ell}^f_t)$$
+$$\frac{\hat{w}_t}{\hat{p}_t} = \frac{\partial F}{\partial w}(\hat{k}_t^f, \hat{\ell}^f_t)$$
+
+\item \underline{Market Clearing:} The household and firm allocations also satisfy \begin{align*}
+\text{Goods Market:}&\quad \hat{c}_t + \hat{k}_{t+1}  = F(\hat{k}_t^f, \hat{\ell}_t^f) + (1 - \delta)\hat{k}_t,\forall t \geq 0,\\
+\text{Capital Market:}&\quad \hat{k}_t = \hat{k}_t^f,\forall t \geq 0,\\
+\text{Labor Market:}&\quad \hat{\ell}_t = \hat{\ell}_t^f, \forall t \geq 0,\\
+\text{Bonds Market:}&\quad \hat{b}_{t+1} = 0 ,\forall t \geq 0.
+\end{align*}
+\end{itemize}
+\end{definition}
+\subsection{Basic Overlapping Generations Model}
+An overlapping generations model is not necessarily a separate entity from the concept of the topics we have discussed so far. The idea is still to solve for an equilibrium but the main difference from the models we will discuss in this section versus the section above is that households only live for two periods (something that is often extended in a lot of other models in use right now but the basic version we cover will only have two periods of life) and recieve different endowments in their young and old ages.
+
+Specifically, consider a world with time periods $t\in (1,2,\ldots)$. In each period, there are two households: one old and one young. The old household will die in the next period and the young household will live for one more period and become old. In this sense, we imbue some heterogeneity between households which often time leads to trading taking place. One important piece of notation is that we will designate an allocation or endowment that belongs to an individual born at time $t$ at time $t$ and $t+1$ respectively as $c_t^t, c_{t+1}^t$. Or in other words, the subscript denotes the time period in which a certain object belongs to and the superscript denotes the time period in which the person was born. We will also say that in period $1$, there exists some person who was born in period $0$ that starts out as some old guy in period $1$. We don't recognize anything that happened in period 0 or before. This is just to make sure that there are always one old and young household in the economy at any time period $t\geq 1$.
+
+Whether or not trading takes place is an important question in this model. If the old generation has a higher income than the younger generation, then they want to consume the entirety of their income given that they will die in the next period and not be able to recoup any returns from bonds; this often times leads to no trading occuring in the model and there are some exercises later in this section that will demonstrate that.
+
+We can also do growth in an overlapping generations model as well, but I won't cover that in this guide since there aren't many differences between the OLG and infinitely lived versions. As with the previous model, let's look at what an AD and Sequential Markets Equilibrium looks like
+\begin{definition}{[Arrow Debreu Equilibrium for basic OLG model]} An Arrow Debreu Equilibrium for such an economy as above is a collection of household allocations $\{(\hat{c}_t^t, \hat{c}_{t+1}^t)\}_{t=0}^\infty$ and prices $\{\hat{p}_t\}_{t=0}^\infty$ such that 
+\begin{itemize}
+\item \underline{Initial Old Household Maximization:} Given price $\hat{p}_1$ and endowments $(m, w_1^0)$, the household allocation $\hat{c}_1^0$ solves the following maximization problem
+\begin{align*}
+\max_{c^0_1}&\quad u(c^0_1)\\
+s.t.\quad (1)&\quad \hat{p}_1 c_1^0 \leq \hat{p}_1w_1^0 + m,\\
+(2)&\quad c_1^0 \geq 0.
+\end{align*}
+\item\underline{Household Maximization:} Given prices and endowment structure $\{(w_t^t, w_{t+1}^t\}_{t=0}^\infty$, the household allocations solve the series of maximization problems for every $t \geq 1$
+\begin{align*}
+\max_{c^t_t, c_{t+1}^t}&\quad u(c^t_t, c_{t+1}^t)\\
+s.t.\quad (1)&\quad \hat{p}_t c^t_t + \hat{p}_{t+1} c_{t+1}^t \leq \hat{p}_t w^t_t + \hat{p}_{t+1} w_{t+1}^t,\\
+(2)&\quad c_t^t, c_{t+1}^t \geq 0.
+\end{align*}
+\item\underline{Market Clearing:} The allocations also satisfy \begin{align*}
+\text{Goods Market:}&\quad \hat{c}_t + \hat{c}_{t-1}^t = w_t^t + w_{t-1}^t
+\end{align*}
+\end{itemize}
+\end{definition}
+Then for the sequential markets representation, we add one-period bonds.
+\begin{definition}{[Sequential Markets Equilibrium for basic OLG model]} A Sequential Markets Equilibrium for such an economy as above is a collection of household allocations $\{(\hat{c}_t^t, \hat{c}_{t+1}^t, \hat{b}_{t+1}^t)\}_{t=0}^\infty$ and prices $\{\hat{r}_{t+1}\}_{t=0}^\infty$ such that 
+\begin{itemize}
+\item \underline{Initial Old Household Maximization:} Given price and endowments $(m, w_1^0)$, the household allocation $\hat{c}_1^0$ solves the following maximization problem
+\begin{align*}
+\max_{c^0_1}& \quad u(c^0_1)\\
+s.t.\quad (1)&\quad c_1^0 \leq w_1^0 + m,\\
+(2)&\quad c_1^0 \geq 0.
+\end{align*}
+\item\underline{Household Maximization:} Given prices and endowment structure $\{(w_t^t, w_{t+1}^t\}_{t=0}^\infty$, the household allocations solve the series of maximization problems for every $t \geq 1$
+\begin{align*}
+\max_{c^t_t, c_{t+1}^t, b_{t+1}^t}& \quad u(c^t_t, c_{t+1}^t)\\
+s.t.\quad (1)&\quad c^t_t + b_{t+1}^t \leq  w^t_t ,\\
+(2)&\quad c^{t+1}_t  \leq  w^{t}_{t+1} + \hat{r}_{t+1}b_{t+1}^t ,\\
+(3)&\quad c_t^t, c_{t+1}^t \geq 0.
+\end{align*}
+\item\underline{Market Clearing:} The allocations also satisfy \begin{align*}
+\text{Goods Market:}&\quad \hat{c}_t + \hat{c}_{t-1}^t = w_t^t + w_{t-1}^t\\
+\text{Bonds Market:}&\quad \hat{b}_2^1 = m,\quad \hat{b}_{t+1}^1 = \Pi_{\tau=2}^t(1 + \hat{r}_{\tau})m
+\end{align*}
+\end{itemize}
+\end{definition}
+\subsection{Other Notes}
 
 \subsubsection{Algebra and Useful Places to Look}
 
-Setting up the lagrangian.
-  
-Inada conditions!
+It's tough to talk vaguely about algebra, so the goal is to cover at least one of each type of problem you may face in the prelim. I've found that in most cases, for those models that we are able to solve analytically, we can usually do so by backing out the euler condition from the first order conditions and then plugging in this expression into the market clearing conditions. This usually pins down consumption and from this we can look back to the euler condition to determine prices.
 
-Sum up the euler equations from different types of consumers to be able to plug in the market clearing conditions.
+The final note of precaution is to be careful about the inada conditions. The inada conditions are a set of conditions what we look at for the utility function of households (but more generally for any sort of maximization problem) that allow us to disregard any lagrangian maximization edge cases. I will cover at least one problem where the inada conditions don't hold and how we work through it.
+\begin{definition}{[Inada Conditions]} Consider any utility function $U(C_t)$. If $\lim_{C_t \to \infty} \frac{\partial U}{\partial C_t} = 0$ and $\lim_{C_t \to 0} \frac{\partial U}{\partial C_t} = \infty$ then the equilibrium value $C_t^* \in (0,+\infty)$.
+\end{definition}
 
-Initial fiat money is $0$ implies that bonds are $0$ for the rest of time and there is usually autarky.
+\subsubsection{Transfers and the Negishi Method}
 
-\subsubsection{Negishi Method}
+I will come back to this after prelims given that I don't think he typically asks questions about this.
 
-\subsection{Pareto Optimality Analysis}
+\subsubsection{Pareto Optimality Analysis}
 
-\subsection{Deterministic Dynamic Programming}
+Pareto optimality is a descriptor used for a specific feasible allocation that is no worse than any other feasible allocation with respect to overall welfare. We can define welfare in any manner of ways but generally in this class we take it to be some weighted sum of the lifetime utility of all households. There are two types of questions we could be faced with
+\begin{itemize}
+\item Solve for optimal allocations as a social planner based on some pareto weights.
+\item Identify if a particular competitive equilibrium is optimal or not (usually with respect to OLG models given that these are not complete markets). Prove or disprove.
+\end{itemize}
 
-I'm going to cover most of everything in the Chari section. Long story short, though, 
+\subsubsection{The Time Varying Constraint}
 
-There is a lot of legwork that goes on in the background to make sure that 
+We will see why more clearly in the Chari section and conditions that ensure that dynamic programming works, but we also require that asset accumulation, be it capital or bonds (or any other type of asset), doesn't blow up over time relative to prices. The most generalized version of this is the expression $$\lim_{T\to \infty}\beta^T \lambda_Ta_{T+1} = 0.$$ Here $\lambda_T$ is the lagrange multiplier on the time $T$ budget constraint. The condition itself says that the present discounted value of wealth must go to zero as $T \to \infty$. There are two ways it can fail which have their own implications:
+\begin{itemize}
+\item $a_{T+1}\to +\infty$: the consumer is dying with leftover wealth — they over-saved, which can't be optimal since they could have consumed more.
 
-Contractions and Blackwell's Sufficient Conditions
+\item $a_{T+1}\to -\infty$: the consumer is running a Ponzi scheme — borrowing without bound, which lenders won't allow (this is ruled out by the no-Ponzi condition separately).
+\end{itemize}
+
+\subsection{Exercises}
+
+Go back to each section and make clear which questions they should refer to corresponding to each section!
 
 \section{ECON 8106 (Chari)}
 
 \subsection{Dynamic Programming (Deterministic and Stochastic)}
 
 \subsection{Recursive Competitive Equilibria}
+This is perhaps the concept that I have had the most trouble with in this class. Not because it encapsulates a particularly difficult concept, but more so because it is a lot to remember without the right intuition.
 
 \subsection{Cash-Credit-Good Models}
 
 \subsection{Sticky Prices}
 
+\subsection{Exercises}
+
 \section{ECON 8107 (Amador)}
+
+\subsection{Hugget Model}
+
+\subsection{Aiyagari Model}
+
+\subsection{Exercises}
 
 \section{ECON 8108 (Luttmer)}
 
+\subsection{The canonical continuous time consumer problem}
+
+\subsection{Exercises}
+
+\subsubsection{Durable Consumption}
+Consider an economy in which $K_t$ represents the stock of durable consumption goods
+at time $t$, and $C_t$ measures the flow of consumption services generated by the stock of
+durable consumption goods. Preferences are
+\[
+\int_0^{\infty} e^{-\rho t} \left(\ln(C_t) - J(L_t)\right) dt.
+\]
+The technology is
+\begin{align*}
+C_t &\leq AK_t \\
+DK_t &= -\delta K_t + zL_t
+\end{align*}
+
+Here, $\rho$, $\delta$, $A$, and $z$ are all positive parameters. The function $J : \mathbb{R}_+ \to \mathbb{R}$ is smooth,
+strictly increasing, and strictly convex.
+
+Consider the competitive equilibrium of this economy. Write $w_t$ for the wage, and
+$q_t$ for the price of a unit of the durable consumption good, both measured in units of
+consumption services at time $t$. The real interest rate (in terms of consumption services)
+is $r_t$. A consumer with wealth $W_t$ can consume subject to the sequence of constraints
+$dW_t = (r_t W_t - C_t)dt$ together with $W_t \geq 0$ at all times.
+
+\textbf{a.} Explain why aggregate consumption services and the real interest rate must satisfy
+$r_t = \rho + DC_t/C_t$.
+\begin{solution}
+
+\end{solution}
+\textbf{b.} There will be an asset pricing equation of the form $r_t q_t = v_t + Dq_t - \delta q_t$. What is $v_t$?
+What will be the wage $w_t$?
+\begin{solution}
+
+\end{solution}
+\textbf{c.} Give the differential equation for $K_t$ and $q_t/C_t$ that must hold in any equilibrium. Construct the phase diagram for this differential equation.
+\begin{solution}
+
+\end{solution}
+\textbf{d.} Suppose the economy is in its steady state and there is an unforeseen permanent increase in $A$ at $t = 0$. Describe what happens to $\{K_t, q_t/C_t, C_t, L_t, w_t, q_t, r_t\}_{t \geq 0}$.
+\begin{solution}
+
+\end{solution}
+\textbf{e.} Suppose the economy is in its steady state and there is an unforeseen permanent increase in $z$ at $t = 0$. Describe what happens to $\{K_t, q_t/C_t, C_t, L_t, w_t, q_t, r_t\}_{t \geq 0}$.
+\textbf{Note:} If you want to compute an example to check your logic, use $J(L) = L^{1+1/\psi}/(1 + 1/\psi)$, for some $\psi > 0$.
+\begin{solution}
+
+\end{solution}
+
+\subsubsection{A Simple Consumption-Savings Problem}
+
+Define
+\[
+U(W) = \max_{C_t \geq 0} \left( \int_0^{\infty} \rho e^{-\rho t} C_t^{1-1/\varepsilon} \, dt \right)^{1/(1-1/\varepsilon)}
+\]
+subject to
+\[
+DW_t = rW_t - C_t
+\]
+and $W_t \geq 0$ for all $t \geq 0$, starting from $W_0 = W$ for some given $W > 0$.
+
+\textbf{a.} Find a candidate solution for $\{C_t\}_{t \geq 0}$ and verify that it is well defined if
+\[
+\rho - \left(1 - \frac{1}{\varepsilon}\right) r > 0
+\]
+Compute $U(W)$.
+\begin{solution}
+First, let $\sigma = 1 - \frac{1}{\epsilon}$ and note that $0 < \sigma < 1$ which implies that $f(x) = x^{1/\sigma}$ is a monotone transformation of $x$ which means we can solve the maximization problem using $$U(W) = \max_{C_t\geq 0}\int_0^\infty \rho e^{-\rho t} C_t^\sigma\,dt.$$ With this, we can write out the lagrangian \begin{align*}
+\mathcal{L}(C_t, \lambda_t) &= \int_0^\infty \rho e^{-\rho t} C_t^\sigma\,dt - \int_0^\infty\lambda_te^{-\rho t}\left(DW_t - rW_t + C_t\right)\,dt,\\
+&= \int_0^\infty \rho e^{-\rho t} C_t^\sigma -\lambda_te^{-\rho t}\left(DW_t - rW_t + C_t\right)\,dt,\\
+&= \int_0^\infty e^{-\rho t}\left(\rho  C_t^\sigma -\lambda_t\left(DW_t - rW_t + C_t\right)\right)\,dt,\\
+&= \int_0^\infty e^{-\rho t}\left(\rho  C_t^\sigma -\lambda_t\left(rW_t + C_t\right)\right)\,dt - \int_0^\infty \lambda_t e^{-\rho t} DW_t\,dt.
+\end{align*}
+In order to get rid of the $DW_t$ term, we can do integration by parts
+\begin{align*}
+\int_0^\infty\lambda_te^{-\rho t}DW_t\,dt &= \lambda_te^{-\rho t}W_t\Big|_{t=0}^\infty - \int_0^\infty W_t(D\lambda_te^{-\rho t} -\rho \lambda_te^{-\rho t})\,dt\\
+ &= \lambda_te^{-\rho t}W_t\Big|_{t=0}^\infty - \int_0^\infty e^{-\rho t}W_t(D\lambda_t -\rho \lambda_t)\,dt\\
+ &= -\lambda_0W_0 + \lim_{t\to \infty}\lambda_te^{-\rho t}W_t - \int_0^\infty e^{-\rho t}W_t(D\lambda_t -\rho \lambda_t)\,dt\\
+\end{align*}
+\end{solution}
+Now suppose labor income is $zL > 0$ and assets on hand evolve subject to
+\[
+DA_t = rA_t + zL - C_t
+\]
+and $A_t \geq 0$ for all $t \geq 0$, starting from $A_0 = A$ for some given $A > 0$.
+
+\textbf{b.} Suppose that $r \geq \rho > (1 - 1/\varepsilon)r$. What is the optimal consumption trajectory?
+\begin{solution}
+
+\end{solution}
+\textbf{c.} Suppose that $r < \rho$. Use the Lagrangian for this problem. Conjecture that there will be
+some optimal time $T \in (0, \infty)$ such that $A_t = 0$ if and only if $t \in [T, \infty)$. Find the equation
+that defines $T$ and show that it must have a solution in $(0, \infty)$.
+\begin{solution}
+
+\end{solution}
 \end{document}
