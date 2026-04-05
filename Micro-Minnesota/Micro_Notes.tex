@@ -2,78 +2,10 @@
 % Packages
 % -------------------
 \documentclass[11pt,english]{article}
-\usepackage{amsfonts}
-\usepackage[left=2.5cm,top=2cm,right=2.5cm,bottom=3cm,bindingoffset=0cm]{geometry}
-\usepackage{amsmath, amsthm, amssymb}
-\usepackage{tikz}
-\usetikzlibrary{calc}
-\usetikzlibrary{decorations.pathreplacing,calligraphy}
-\usepackage{fancyhdr}
-%\usepackage{currfile}
-\usepackage{nicefrac}
-\usepackage{cite}
-\usepackage{graphicx}
-\usepackage{caption}
-\usepackage{longtable}
-\usepackage{rotating}
-\usepackage{lscape}
-\usepackage{booktabs}
-\usepackage{float}
-\usepackage{placeins}
-\usepackage{setspace}
-\usepackage[font=itshape]{quoting}
-\onehalfspacing
-\usepackage{mathrsfs}
-\usepackage{tcolorbox}
-\usepackage{xcolor}
-\usepackage{subcaption}
-\usepackage{float}
-\usepackage[multiple]{footmisc}
-\usepackage[T1]{fontenc}
-\usepackage[sc]{mathpazo}
-\usepackage{listings}
-\usepackage{longtable}
-\definecolor{cmured}{RGB}{175,30,45}
-\definecolor{macroblue}{RGB}{56,108,176}
-\definecolor{microgreen}{RGB}{0, 153,76}
-\usepackage[format=plain,
-            labelfont=bf,
-            textfont=]{caption}
-\usepackage[colorlinks=true,citecolor=microgreen,linkcolor=microgreen,urlcolor=microgreen]{hyperref}
-\usepackage{varioref}
-\usepackage{chngcntr}
-
-\definecolor{darkgreen}{RGB}{30,175,88}
-\definecolor{darkblue}{RGB}{30,118,175}
-\definecolor{maroon}{rgb}{0.66,0,0}
-\definecolor{darkgreen}{rgb}{0,0.69,0}
-
-%Counters
-\newtheorem{theorem}{Theorem}[section] 
-\newtheorem{proposition}{Proposition}
-\newtheorem{lemma}{Lemma}
-\newtheorem{corollary}{Corollary}
-\newtheorem{assumption}{Assumption}
-\newtheorem{axiom}{Axiom}
-\newtheorem{case}{Case}
-\newtheorem{claim}{Claim}
-\newtheorem{condition}{Condition}
-\newtheorem{definition}{Definition}[section]
-\newtheorem{example}{Example}
-\newtheorem{notation}{Notation}
-\newtheorem{remark}{Remark}
+\input{tex_formatting.tex}
 
 
-
-\hypersetup{ 	
-pdfsubject = {},
-pdftitle = {Micro Notes},
-pdfauthor = {Pranay Gundam},
-linkcolor= microgreen
-}
-
-
-\title{\textbf{Micro Notes}}
+\title{\textbf{University of Minnesota Micro Notes}}
 \author{Pranay Gundam}
 
 %-----------------------
@@ -86,6 +18,7 @@ linkcolor= microgreen
 \tableofcontents
 
 \section{Introduction}
+
 
 This document serves as a collection of concepts covered in graduate level microeconomics. Specifically, the PhD Microeconomics sequence ECON 8101 (Werner), ECON 8102 (Phelan), ECON 8103 (Rustichini), and ECON 8104 (Rahman) at the University of Minnesota. If you ever encouter these notes and have questions or spot an error, be sure to reach out to \href{mailto:pranaygundam00@gmail.com}{me here}. Note that everything below is very personalized. I will officially state some theorems but the main goal of writing everything out is to cement my own intuition. Most everything will include statements to help intimidating things feel a bit more friendly.
 
@@ -164,10 +97,85 @@ Consider a function $f:X\times T \to R$ and the corresponding function $$\phi(t)
 \end{enumerate}
 \end{theorem}
 
+\subsection{Exercises}
+\subsubsection{Micro Prelim 2025 Spring}
+Consider a family of utility functions $\{U_t\}_{t=0}^{\infty}$ defined on the set $\ell_+^{\infty}$ of bounded, positive consumption plans of a single good over infinite time horizon without uncertainty.
+
+\begin{enumerate}[label = (\alph*)]
+    \item Define what it means for the utility functions $\{U_t\}$ to be recursive. Define what it means for $\{U_t\}$ to be dynamically consistent.
+\begin{solution}
+$\{U_t\}$ is \textbf{recursive} if we can write $$U_t(c_t) = G(u(c_t), U_{t+1}(c^{t+1})),$$ for every $c$ and $t$ and some aggregator function $G:\mathbb{R}^2 \to \mathbb{R}$ and period-utility function $u:\mathbb{R}_+ \to \mathbb{R}.$
+
+It is \textbf{dynamically consistent} if for every $t$, and $c,d\in \mathbb{R}^\infty_+$ such that $c_\tau = d_\tau$ for any $\tau < t$, $$U_0(c) \geq U_0(d)\Longleftrightarrow U_t(c^t) \geq U_t(d^t).$$
+\end{solution}
+    \item Consider a stationary recursive utility function with aggregator
+    \[
+    G(z_1, z_2) = z_1 + \beta \ln(z_2 + 1),
+    \]
+    for $z_1 \geq 0$ and $z_2 \geq 0$, where $0 < \beta < 1$, and linear period-utility $u(x) = x$. Show that this recursive utility function is dynamically consistent.
+\begin{solution}
+Pick any arbitrary $t\geq 0$. Using this, select any arbitrary $c,d\in \mathbb{R}^\infty_+$ such that $c_\tau = d_\tau$ for any $\tau < t$.
+We can write for any $\tau < t$
+\begin{align*}
+U_\tau(c^\tau) &\geq U_\tau(d^\tau)\\
+\Longleftrightarrow c_\tau + \beta \ln\left(U_{\tau+1}(c^{\tau+1}) + 1\right) &\geq d_{\tau} + \beta \ln\left(U_{{\tau+1}}(d^{\tau+1}) + 1\right),\\
+\Longleftrightarrow \beta \ln\left(U_{\tau+1}(c^{\tau+1}) + 1\right) &\geq \beta \ln\left(U_{\tau+1}(d^{\tau+1}) + 1\right),\\
+\Longleftrightarrow \ln\left(U_{\tau+1}(c^{\tau+1}) + 1\right) &\geq \ln\left(U_{\tau+1}(d^{\tau+1}) + 1\right),\\
+\Longleftrightarrow U_{\tau+1}(c^{\tau+1}) + 1 &\geq U_{\tau+1}(d^{\tau+1}) + 1,\\
+\Longleftrightarrow U_{\tau+1}(c^{\tau+1}) &\geq U_{\tau+1}(d^{\tau+1}).
+\end{align*} Since we used double implication statements the whole way, we can inductively use this fact to generally state that $$U_s(c^s) \geq U_s(d^s) \Longleftrightarrow U_k(c^k) \geq U_k(d^k),$$ for any $s,k \leq t$. Pick $s = 0$ and $k = t$ and this is exactly the definition of dynamic consistency for our utility function.
+\end{solution}
+    \item A stationary recursive utility function $U$ is said to exhibit preference for early consumption if, for any consumption plan that yields $w$ at date $t$ and $y$ at date $t+1$, with $w > y$, the agent prefers it to an otherwise identical plan (i.e., consumption is the same at all other dates) that delivers $y$ at date $t$ and $w$ at date $t+1$. State this definition formally. Show that the recursive utility function of part (b) exhibits preference for early consumption.
+\begin{solution}
+A recursive family of functions exhibits a preference for early consumption if for every $c\in C$, $w,y\in \mathbb{R}_+$ with $w > y$, and $t \geq 0$ we have that $$U_t(\hat{c}^t) > U_t(\bar{c}^t)$$ where $\hat{c} = (c_1, \ldots, c_{t-1}, w, y, c_{t+2}, \ldots)$ and $\bar{c} = (c_1, \ldots, c_{t-1}, y,w, c_{t+2}, \ldots)$.
+
+To prove this for the recursive utility function from before, pick any $c\in C$, $w,y\in \mathbb{R}_+$ with $w > y$, and $t \geq 0$. We can then write out
+\begin{align*}
+U_t(\hat{c}^t) &> U_t(\bar{c}^t),\\
+\Longleftrightarrow w + \beta\ln(U_{t+1}(\hat{c}^{t+1}) +1) &> y + \beta\ln(U_{t+1}(\bar{c}^{t+1}) +1),\\
+\Longleftrightarrow w + \beta\ln(\beta\ln(U_{t+2}(\hat{c}^{t+2})) + y +1) &> y + \beta\ln(\beta\ln(U_{t+2}(\bar{c}^{t+2})) + w +1)\\
+\Longleftrightarrow w + \beta\ln( y +1) &> y + \beta\ln( w +1)
+\end{align*}
+\end{solution}
+    \item Derive the marginal rate of intertemporal substitution between consumption at dates $t+1$ and $t$, and demonstrate that it is strictly less than 1 for every consumption plan.
+\begin{solution}
+\end{solution}
+\end{enumerate}
+
+
 \section{ECON 8102 (Phelan)}
+
+\subsection{Exercises}
+\subsubsection{Micro Prelim 2025 Spring}
+Consider an economy with 2 goods, grapes and wine, and two agents, Amy and Barney. Initially, there exists 1 grape. There exist two firms which can turn grapes into wine according to the production function $w = 2\sqrt{g}$, where $g$ is the quantity of grapes put into the production function, and $w$ is the amount of wine produced. Amy only likes grapes. Barney only likes wine. Each prefer more to less and each has an ability to consume any non-negative quantity of either good.
+
+\begin{enumerate}[label = (\alph*)]
+    \item What are the production and consumption sets?
+\begin{solution}
+The production set is 
+\end{solution}
+    \item Define an allocation given the environment described above. When is such an allocation feasible?
+\begin{solution}
+An allocation is the vector $($
+\end{solution}
+    \item Characterize the set of Pareto efficient allocations.
+\begin{solution}
+\end{solution}
+    \item For general specifications of ownership of the initial grapes and the firms, define a competitive equilibrium. Will the allocation associated with any competitive equilibrium be efficient?
+\begin{solution}
+\end{solution}
+    \item Find the set of competitive equilibria if Barney initially owns the grapes and Amy owns the firms?
+\begin{solution}
+\end{solution}
+    \item Find the set of competitive equilibria if Amy initially owns the grapes and Barney owns the firms?
+\begin{solution}
+\end{solution}
+\end{enumerate}
 
 \section{ECON 8103 (Rustichini)}
 
-\section{ECON 8104 (Rahman)}
+\subsection{Exercises}
 
+\section{ECON 8104 (Rahman)}
+\subsection{Exercises}
 \end{document}

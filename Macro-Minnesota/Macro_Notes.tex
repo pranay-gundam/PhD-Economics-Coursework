@@ -5,7 +5,7 @@
 \input{tex_formatting.tex}
 
 
-\title{\textbf{Macro Notes}}
+\title{\textbf{University of Minnesota Macro Notes}}
 \author{Pranay Gundam}
 
 %-----------------------
@@ -127,7 +127,7 @@ Of course, in the sequential markets definition we have bonds. So far, we have d
 \item \underline{Household Maximization:} Given prices and initial level of capital (bestowed by some higher power) $k_0$ and bond holdings $b_0$, the household allocations solve the household's maximization problem for each $i$ \begin{align*}
 \max_{\{c_t, \ell_t, k_{t+1}, b_{t+1}\}_{t=0}^\infty} &\sum_{t=0}^\infty \beta^t u(c_t, \ell_t)\\
 s.t.\quad  (1)& \quad c_t + k_{t+1} + \hat{b}_{t+1}  \leq (1 - \delta + \hat{r}^k_t)k_t + \hat{w}_t \ell_t +   (1 + \hat{r}_t^b)b_{t},\\
-(2)& \quad c_t \geq 0, k_t \geq 0, 0 \leq \ell_t \leq 1,\forall t\geq 0,
+(2)& \quad c_t \geq 0, k_t \geq 0, 0 \leq \ell_t \leq 1,\forall t\geq 0,\\
 (3)&\quad b_t \geq -B,\text{ for some sufficiently large } B.
 \end{align*}
 \item \underline{Firm Maximization:} Given prices, firms minimize costs and make zero profits, specifically the firm allocations satisfy
@@ -223,12 +223,133 @@ We will see why more clearly in the Chari section and conditions that ensure tha
 \end{itemize}
 
 \subsection{Exercises}
-
 Go back to each section and make clear which questions they should refer to corresponding to each section!
+
+\subsubsection{Prelim: Spring 2025}
+Consider an economy with a representative consumer with the utility function
+\[
+\sum_{t=0}^{\infty} \beta^t \log c_t
+\]
+where $0 < \beta < 1$. This consumer has an endowment of $\bar{\ell}_t = 1$ units of labor in each period and $\bar{k}_0$ units of capital in period 0. Feasible allocation/production plans satisfy
+$$
+c_t + k_{t+1} \leq \theta k_t^{\alpha} \ell_t^{1-\alpha}.
+$$
+
+\begin{enumerate}[label=(\alph*)]
+    \item Describe an Arrow-Debreu market structure for this economy, explaining when markets are open, who trades with whom, and so on. Define a sequential markets equilibrium.
+\begin{solution}
+An \textbf{Arrow Debreu market structure} for this economy is one where futures markets to trade the consumption good, capital, and labor opens in period $0$. The representative consumer buys consumption good futures contracts from the representative firm and sell futures contracts for labor and capital to the firm.
+
+An \textbf{Arrow Debreu equilibrium} for this economy is a collection of household allocations $\{\hat{c}_t, \hat{k}_{t}, \hat{\ell}_t\}_{t=0}^\infty$, firm allocations $\{\hat{k}_t^f. \hat{\ell}_t^f\}_{t=0}^\infty$, and prices $\{\hat{p}_t, \hat{r}_t, \hat{w}_t\}_{t=0}^\infty$ such that:
+\begin{itemize}
+\item \underline{Household Maximization:} Given prices and initial household capital holdings $\bar{k}_0$, the household allocations satisfy the following maximization problem
+\begin{align*}
+\max_{c_t,k_t, \ell_t}&\quad \sum_{t=0}^\infty \beta^t \log c_t\\
+s.t.\quad (1)&\quad \sum_{t=0}^\infty \hat{p}_t c_t + \hat{p}_t k_{t+1} - \hat{p}_t(1 - \delta) k_t \leq \sum_{t=0}^\infty \hat{r}_tk_t + \hat{w}_t \ell_t,\\
+(2)&\quad c_t,k_t \geq 0,\quad 0 \leq \ell_t \leq 1,\\
+(3)&\quad k_0 = \bar{k}_0.
+\end{align*}
+
+\item \underline{Firm Problem}: Given prices, the firm allocations solve the firm's cost minimization problem satisfy the following two conditions
+$$\frac{\hat{r}_t}{\hat{p}_t} = F_k(\hat{k}_t^f, \hat{\ell}_t^f),$$
+$$\frac{\hat{w}_t}{\hat{p}_t} = F_\ell(\hat{k}_t^f, \hat{\ell}_t^f).$$
+
+\item \underline{Market Clearing:} The allocations also satisfy the following market clearing conditions\begin{align*}
+[Goods]&: \hat{c}_t + \hat{k}_{t+1}  = F(\hat{k}_t^f, \hat{\ell}_t^f) + (1 - \delta)\hat{k}_t,\\
+[Labor]&: \hat{\ell}_t = \hat{\ell}_t^f,\\
+[Capital]&: \hat{k}_t = \hat{k}_t^f.
+\end{align*}
+\end{itemize}
+\end{solution}
+    \item Describe a sequential markets structure for this economy, explaining when markets are open, who trades with whom, and so on. Define a sequential markets equilibrium.
+\begin{solution}
+A \textbf{sequential markets structure} for this economy is one where markets for goods, labor, one-period-ahead bonds, and capital opens every period. Here the representative consumer trivially trades bonds with themselves, buys the consumption good from the firm and sells their labor and capital to the firm.
+
+A \textbf{sequential markets equilibrium} for such an economy as above is a collection of household allocations $\{( \hat{c}_t, \hat{k}_{t+1}, \hat{b}_{t+1}, \hat{\ell}_{t+1})\}_{t=0}^\infty$, firm allocations $\{\hat{k}_t^f, \hat{\ell}_t^f\}_{t=0}^\infty$, and prices $\{\hat{r}_t^k, \hat{r}^b_t, \hat{w}_t\}$ such that 
+\begin{itemize}
+\item \underline{Household Maximization:} Given prices and initial level of capital $\bar{k}_0$ and bond holdings $\bar{b}_0$, the household allocations solve the household's maximization problem \begin{align*}
+\max_{\{c_t, \ell_t, k_{t+1}, b_{t+1}\}_{t=0}^\infty} &\sum_{t=0}^\infty \beta^t \log c_t\\
+s.t.\quad  (1)& \quad c_t + k_{t+1} + \hat{b}_{t+1}  \leq (1 - \delta + \hat{r}^k_t)k_t + \hat{w}_t \ell_t +   (1 + \hat{r}_t^b)b_{t},\\
+(2)& \quad c_t \geq 0, k_t \geq 0, 0 \leq \ell_t \leq 1,\forall t\geq 0,\\
+(3)&\quad b_t \geq -B,\text{ for some sufficiently large } B,\\
+(4)&\quad k_0 = \bar{k}_0, b_0 = \bar{b}_0.
+\end{align*}
+\item \underline{Firm Maximization:} Given prices, firms minimize costs and make zero profits, specifically the firm allocations satisfy
+$$\hat{r}^k_t = F_k(\hat{k}_t^f, \hat{\ell}^f_t)$$
+$$\hat{w}_t = F_w(\hat{k}_t^f, \hat{\ell}^f_t)$$
+
+\item \underline{Market Clearing:} The household and firm allocations also satisfy \begin{align*}
+\text{Goods Market:}&\quad \hat{c}_t + \hat{k}_{t+1}  = F(\hat{k}_t^f, \hat{\ell}_t^f) + (1 - \delta)\hat{k}_t,\forall t \geq 0,\\
+\text{Capital Market:}&\quad \hat{k}_t = \hat{k}_t^f,\forall t \geq 0,\\
+\text{Labor Market:}&\quad \hat{\ell}_t = \hat{\ell}_t^f, \forall t \geq 0,\\
+\text{Bonds Market:}&\quad \hat{b}_{t+1} = 0 ,\forall t \geq 0.
+\end{align*}
+\end{itemize}
+\end{solution}
+    \item Carefully state a proposition or propositions that establish the essential equivalence of the equilibrium concept in part a with that in part b. Be sure to specify the relationships between the objects in the Arrow-Debreu equilibrium and those in the sequential markets equilibrium.
+\begin{solution}
+Let's do AD $\to $ Sequential first. Consider the set of household allocations $\{\hat{c}_t, \hat{k}_{t}, \hat{\ell}_t\}_{t=0}^\infty$, firm allocations $\{\hat{k}_t^f, \hat{\ell}_t^f\}_{t=0}^\infty$, and prices $\{\hat{p}_t, \hat{r}_t, \hat{w}_t\}_{t=0}^\infty$ to be an Arrow Debreu equilibrium. We can then write the corresponding Sequential Markets equilibrium of household allocations $\{( \bar{c}_t, \bar{k}_{t+1}, \bar{b}_{t+1}, \bar{\ell}_{t+1})\}_{t=0}^\infty$, firm allocations $\{\bar{k}_t^f, \bar{\ell}_t^f\}_{t=0}^\infty$, and prices $\{\bar{r}_t^k, \bar{r}^b_t, \bar{w}_t\}$ to be:
+\begin{itemize}
+\item $\hat{c}_t = \bar{c}_t$, $\hat{k}_t = \bar{k}_t$, $\hat{\ell}_t = \bar{\ell}_t$, $\hat{\ell}^f_t = \bar{\ell}_t^f$, $\hat{k}_t^f = \bar{k}_t^f$ for all $t\geq 0$.
+
+\item $\frac{\hat{w}_t}{\hat{p}_t} = \bar{w}_t$, $\frac{\hat{r}_t}{\hat{p}_t} = \bar{r}_t^k$, and $\bar{r}_t^b = \bar{r}_t^k - 1$ for all $t \geq 0$.
+
+\item For the economy above, we have that $b_t = 0$ for all $t\geq 0$.
+\end{itemize}
+
+Now, for the opposite direction, consider the Sequential Markets equilibrium of household allocations $\{( \bar{c}_t, \bar{k}_{t+1}, \bar{b}_{t+1}, \bar{\ell}_{t+1})\}_{t=0}^\infty$, firm allocations $\{\bar{k}_t^f, \bar{\ell}_t^f\}_{t=0}^\infty$, and prices $\{\bar{r}_t^k, \bar{r}^b_t, \bar{w}_t\}$. We can then write the corresponding Arrow Debreu equilibrium of household allocations $\{\hat{c}_t, \hat{k}_{t}, \hat{\ell}_t\}_{t=0}^\infty$, firm allocations $\{\hat{k}_t^f, \hat{\ell}_t^f\}_{t=0}^\infty$, and prices $\{\hat{p}_t, \hat{r}_t, \hat{w}_t\}_{t=0}^\infty$ to be:
+\begin{itemize}
+\item $\hat{c}_t = \bar{c}_t$, $\hat{k}_t = \bar{k}_t$, $\hat{\ell}_t = \bar{\ell}_t$, $\hat{\ell}^f_t = \bar{\ell}_t^f$, $\hat{k}_t^f = \bar{k}_t^f$ for all $t\geq 0$.
+\item Set numeraire $\hat{p}_0 = 1$, then we also have $\hat{p}_t = \Pi_{i=1}^t \frac{1}{\bar{r}_t^k}$
+\item $\hat{r}_t = \hat{p}_t \bar{r}_t^k$  and $\hat{w}_t = \hat{p}_t \bar{w}_t$ 
+\end{itemize}
+\end{solution}
+    \item Define a Pareto efficient allocation/production plan. Prove either that an Arrow-Debreu allocation/production plan is Pareto efficient or that a sequential markets allocation/production plan is Pareto efficient.
+\begin{solution}
+A pareto efficient allocation/production plan is a set of household alloctions $\{\hat{c}_t, \hat{k}_{t}, \hat{\ell}_t\}_{t=0}^\infty$such that it is feasible, meaning that it satisfies the following condition
+\begin{align*}
+\hat{c}_t + \hat{k}_{t+1}  \leq \theta \hat{k}_t^\alpha \hat{\ell}_t^{1 - \alpha},
+\end{align*} 
+and also that there exists no other set of feasible household allocations $\{\bar{c}_t, \bar{k}_{t}, \bar{\ell}_t\}_{t=0}^\infty$ where $$\sum_{t=0}^\infty \beta^t \log \hat{c}_t < \sum_{t=0}^\infty \beta^t \log \bar{c}_t.$$
+
+Let's now prove that an AD allocation is Pareto Efficient. To do so, let household allocations $\{\hat{c}_t, \hat{k}_{t}, \hat{\ell}_t\}_{t=0}^\infty$, firm allocations $\{\hat{k}_t^f, \hat{\ell}_t^f\}_{t=0}^\infty$, and prices $\{\hat{p}_t, \hat{r}_t, \hat{w}_t\}_{t=0}^\infty$ be an AD equilibrium and assume for the sake of contradiction that there exists some other allocation  $\{\bar{c}_t, \bar{k}_{t}, \bar{\ell}_t\}_{t=0}^\infty$ that is both feasible and achieves a higher lifetime utility than the allocation from the AD equilibrium.
+
+From the inherent definition of optimization problems, if $$\sum_{t = 0}^\infty \beta^t \hat{c}_t < \sum_{t = 0}^\infty \bar{c}_t$$ then we must have that $$\sum_{t =0}^\infty \hat{p}_t (\bar{c}_t  + \hat{k}_{t+1} - (1 - \delta)\hat{k}_t) > \sum_{t=0}^\infty \hat{r}_t \bar{k}_t + \hat{w}_t\bar{\ell}_t,$$ because if otherwise, then the bar allocations would have solved the optimization problem instead of the hat allocations. 
+
+Now, assuming that the firm has the same CRS production as in the feasibility constraint and using the fact that we are assuming competitive markets in which the firm makes 0 profit at equilibrium, we know that $$\pi_t(\bar{k}_t^f, \bar{\ell}_t^f) = \hat{p}_t\theta (\bar{k}_t^f)^\alpha (\bar{\ell}_t^f)^{1 - \alpha} -   \hat{r}_t \bar{k}_t - \hat{w}_t\bar{\ell}_t\leq 0$$ from the optimality of $\hat{k}_t^f, \hat{\ell}_t^f$. This then let's us write (also assuming that $\delta = 1$)
+$$\sum_{t =0}^\infty \hat{p}_t (\bar{c}_t  + \bar{k}_{t+1}) > \sum_{t=0}^\infty \hat{r}_t \bar{k}_t + \hat{w}_t\bar{\ell}_t \geq \sum_{t=0}^\infty \hat{p}_t\theta (\bar{k}_t^f)^\alpha (\bar{\ell}_t^f)^{1 - \alpha} = \sum_{t=0}^\infty \hat{p}_t\theta \bar{k}_t^\alpha \bar{\ell}_t^{1 - \alpha}.$$ This, however, implies that $\bar{c}_t  + \bar{k}_{t+1} > \theta \bar{k}_t^\alpha \bar{\ell}_t^{1 - \alpha}$ which violates the feasibility constraint. We have thus reached a contradiction and indeed it must be that the AD equilibrium is pareto efficient.
+\end{solution}
+    \item Write down Bellman's equation that defines the value function for the dynamic programming problem that a Pareto efficient allocation/production plan solves. Guess that the value function has the form $V(k) = a_0 + a_1 \log k$ for some yet-to-be-determined constants $a_0$ and $a_1$. Solve for the policy function $k' = g(k)$.
+\begin{solution}
+Note first that because labor $\ell$ does not enter the household's utility function in any manner, we can immediately claim that they will always use up their entire endowment to produce the consumption good; $\ell_t = 1$ for all $t\geq 0$. Second, since we know that the household's utilty satisfies the inada conditions, we can claim that the feasibility constraint will be binding, i.e. that $$c_t + k_{t+1} = \theta k_t^\alpha \implies c_t = \theta k_t^\alpha - k_{t+1}.$$ With these facts in hand, we can write down the Bellman equation $$\boxed{V(k) = \max_{k'}\left\{\log(\theta k^\alpha - k') + \beta V(k')\right\}.}$$ Next, we guess that $V(k) = a_0 + a_1\log(k) \implies V'(k) = \frac{a_1}{k}$. With this, we can take the first order condition of the RHS of the expression above in order to find the optimal value of $k'$.  
+\begin{align*}
+\frac{\partial }{\partial k'}\left[\log(\theta k^\alpha - k') + \beta V(k')\right] &= 0\\
+- \frac{1}{\theta k^\alpha - k'} + \beta \frac{a_1}{k'} &= 0\\
+k' &= \beta a_1(\theta k^\alpha - k')\\
+k' &= \frac{a_1\beta\theta k^\alpha}{1 + a_1\beta}
+\end{align*} Now we just need to determine what the value of $a_1$ is to be. To do so, we can plug the optimal $k'$ back into the bellman equation.
+\begin{align*}
+V(k) &= \max_{k'}\left\{\log(\theta k^\alpha - k') + \beta V(k')\right\},\\
+a_0 + a_1\log(k) &= \log\left(\theta k^\alpha - \frac{a_1\beta\theta k^\alpha}{1 + a_1\beta}\right) + \beta a_0 + \beta a_1 \log\left(\frac{a_1\beta\theta k^\alpha}{1 + a_1\beta}\right),\\
+a_0 + a_1\log(k) &= \log\left(\frac{\theta k^\alpha}{1 + a_1\beta}\right) + \beta a_0 + \beta a_1 \log\left(\frac{a_1\beta\theta k^\alpha}{1 + a_1\beta}\right),\\
+a_0 + a_1\log(k) &= \beta a_0  + \log\left(\frac{\theta}{1 + a_1\beta}\right) \beta a_1 \log\left(\frac{a_1\beta\theta}{1 + a_1\beta}\right)+ \alpha\log\left(k\right) + \beta a_1 \alpha \log\left(k\right),\\
+a_1 &= \alpha + \beta \alpha a_1,\\
+a_1 &= \frac{\alpha}{1 - \beta\alpha}.
+\end{align*} Now, we can finally classify the policy function as $$\boxed{k' = g(k) = \alpha \beta \theta k^\alpha.}$$
+\end{solution}
+    \item Use the policy function from part e to calculate the sequential markets equilibrium.
+\begin{solution}
+We know from the get go using the bonds market clearing condition that $\bar{b}_t = 0$ for all $t\geq 0$. We also already know from the explanation above regarding labor that $\hat{\ell}^f_t = \hat{\ell}_t = 1$ for all $t\geq 0$.
+
+Next, since we are given $\bar{k}_0$, we can use this in conjunction with the policy function above to first determine the equilibrium capital is $$\hat{k}_t^f = \hat{k}_t = \left(\alpha\beta\theta\right)^{\sum_{s=0}^{t-1}\alpha^s}\bar{k}_0^{\alpha^t}.$$ Now we can back out consumption from the goods market clear condition $$\hat{c}_t = F(\hat{k}_t, 1) + (1 - \delta)\hat{k}_t - \hat{k}_{t+1}.$$ Finally, we have to now compute prices, but these come quite directly from the firm's problem $$1 + \hat{r}^b_t = \hat{r}^k_t = F_k(\hat{k}_t,1),$$
+$$\hat{w}_t = F_w(\hat{k}_t, 1).$$
+\end{solution}
+\end{enumerate}
+
 
 \section{ECON 8106 (Chari)}
 
-\subsection{Dynamic Programming (Deterministic and Stochastic)}
+\subsection{Dynamic Programming (Deterministic and Stochastic)} 
 
 \subsection{Recursive Competitive Equilibria}
 This is perhaps the concept that I have had the most trouble with in this class. Not because it encapsulates a particularly difficult concept, but more so because it is a lot to remember without the right intuition.
@@ -239,6 +360,79 @@ This is perhaps the concept that I have had the most trouble with in this class.
 
 \subsection{Exercises}
 
+\subsubsection{Prelim: Spring 2025}
+
+Consider a stochastic cash credit goods economy. in which households have
+preferences over deterministic sequences of the form
+\[
+\sum_{t=0}^{\infty} \beta^t \log c_{1t} + \alpha \log c_{2t}
+\]
+where $c_{1t}$ and $c_{2t}$ denote consumption of cash and credit goods respectively,
+and $0 < \beta < 1$ is the discount factor. Households are endowed with $y$ units of
+a composite good which can be converted into cash and credit goods at a 1-1
+rate. The resource constraint for deterministic sequences is given by
+\[
+c_{1t} + c_{2t} = y.
+\]
+The endowment $y$ follows a first order Markov process and is the only source
+of uncertainty in the economy. The securities market meets at the beginning
+of the period. The household's securities market constraint (for a deterministic
+version of the economy) is
+\[
+M_t + B_t = (M_{t-1} - p_{t-1}c_{1t-1}) - p_{t-1}c_{2t-1} + p_{t-1}y + R_{t-1}B_{t-1} + T_{t-1}
+\]
+where $M_t$ denotes cash balances, $B_t$ denotes holdings of one-period debt,
+$p_t$ denotes the price level, $R_t$ denotes the (gross) interest rate on debt and $T_t$
+denotes lump-sum transfers by the government. The cash in advance constraint
+(for a deterministic version of the economy) is
+\[
+p_t c_{1t} \leq M_t
+\]
+
+Assume real debt holdings are bounded below by a large negative number.
+
+\begin{enumerate}[label = (\alph*)]
+    \item Define a competitive equilibrium. In particular, be precise about what allocations depend on.
+\begin{solution}
+A competitive equilibrium in this economy is a collection of household allocations $\{\hat{c}_{1t}, \hat{c}_{2t}, \hat{M}_t, \hat{B}_t\}_{t = 0}^\infty$, government allocations $\{\hat{M}_t^g, \hat{B}_t^g, \hat{T}_t\}_{t=0}^\infty$, and prices $\{\hat{p}_t, \hat{R}_t\}_{t=0}^\infty$ such that:
+\begin{itemize}
+\item \underline{Household Maximization:} Given prices, endowment $y$, initial money holdings $\bar{M}_0$, initial bond holdings $\bar{B}_0$, and government transfers, the household allocations solve the maximization problem
+\begin{align*}
+\max_{c_{1t}, c_{2t}, M_t, B_t}&\quad \sum_{t=0}^\infty\beta^t(\log c_{1t} + \alpha \log c_{2t})\\
+s.t. \quad (1)&\quad M_t + B_t = (M_{t-1} - \hat{p}_{t-1}c_{1t-1}) - \hat{p}_{t-1}c_{2t-1} + \hat{p}_{t-1}y + \hat{R}_{t-1}B_{t-1} + \hat{T}_{t-1} ,\\
+(2)&\quad \hat{p}_t c_{1t} \leq M_t,\\
+(3)&\quad c_{1t}, c_{2t}, M_t \geq 0,\\
+(4)&\quad B_t \geq -B.
+\end{align*}
+\item \underline{Government Budget Constraint:} Given prices, the government allocations satisfy the following budget clearing constraint for all $t\geq 1$
+$$\hat{M}_{t}^g + B_t^g = \hat{M}^g_{t-1} + \hat{R}_{t-1}B_{t-1}^g + \hat{T}_{t-1}.$$
+\item \underline{Market Clearing:} The allocations also satisfy the following market clearing conditions for all $t\geq 0$
+\begin{align*}
+[Goods]&: \quad \hat{c}_{1t} + \hat{c}_{2t} = y,\\
+[Bonds]&: \quad \hat{B}_t^g = \hat{B}_t,\\
+[Money]&:\quad \hat{M}_t^g = \hat{M}_t.
+\end{align*}
+\end{itemize}
+\end{solution}
+    \item Assume government policy is characterized by a sequence of constant interest rates, $R_t = R > 1$ for all $t$ and for all realizations of the exogenous uncertainty. Characterize the stationary competitive equilibrium.
+\begin{solution}
+Let's first take a look at the household's optimization problem and corresponding first order conditions, given that the utility function satisfies the inada conditions, we can write the lagrangian as
+$$\mathcal{L}(c_{1t}, c_{2t}, M_t, B_t, \lambda_t, \mu_t) = \sum_{t=0}^\infty \beta^t(\log c_{1t} + \alpha \log c_{2t}) + \sum_{t=0}^\infty\lambda_t(\text{long BC}) + \sum_{t=0}^\infty\mu_t(M_t - p_tc_{1t}).$$
+The corresponding FOCs are then:
+\begin{align*}
+[c_{1t}]&: \frac{\beta^t}{c_{1t}} - \lambda_{t+1} \hat{p}_t - \mu_{t+1}\hat{p}_t = 0,\\
+[c_{2t}]&: \frac{\alpha \beta^t}{c_{2t}} - \lambda_{t+1} \hat{p}_t = 0,\\
+[M_t]&: -\lambda_t + \lambda_{t+1} + \mu_{t} = 0,\\
+[B_t]&: - \lambda_t + \lambda_{t+1}R_{t} = 0.
+\end{align*} 
+
+Now let's handle the case that the money in advance constraint is indeed binding, specifically that $M_t = p_tc_{1t}$. Using this, we can rewrite the first FOC as $$\beta^t - \lambda_{t+1} M_t - \mu_{t+1}M_t = 0 \implies M_t = \frac{\beta^t}{\lambda_{t+1} + \mu_{t+1}}$$
+\end{solution}
+    \item Compare stationary equilibrium outcomes and welfare for two economies with different constant interest rates, but are otherwise identical.
+\begin{solution}
+\end{solution}
+\end{enumerate}
+
 \section{ECON 8107 (Amador)}
 
 \subsection{Hugget Model}
@@ -247,9 +441,47 @@ This is perhaps the concept that I have had the most trouble with in this class.
 
 \subsection{Exercises}
 
+
+
+
 \section{ECON 8108 (Luttmer)}
+I never had done any continuous time macro before this class and so getting intuition about how to solve models and generally what was going on took quite a bit of time.
 
 \subsection{The canonical continuous time consumer problem}
+Here, \textbf{preferences} are $$\int_0^\infty e^{-\rho t}U(C_t)$$ for some well behaving $U(C_t)$. Off the get go, the main thing to note that instead of the $\beta$ temporal discounting that we had before, the continuous time equivalent is $e^{-\rho t}$ where we should note that $\int_0^\infty e^{-\rho t}\,dt = \frac{1}{\rho}$ for $\rho > 0$. Next, the present-value \textbf{budget constraint} is (think an Arrow-Debreu world) is $$\int_0^\infty\pi_tC_t\,dt\leq \pi_0 W_0.$$ We are abstracting right now from firms or income processes. We are looking at lifetime wealth $W_0$ and prices $\pi_t$ as some exogenous feature. 
+
+So with this in mind, let's write down the lagrangian 
+$$\mathcal{L}(C_t, \lambda) = \int_0^\infty e^{-\rho t}U(C_t)\,dt - \lambda\left(\int_0^\infty \pi_t C_t\,dt - \pi_0W_0\right).$$ Which leads to the following two first order conditions
+\begin{align*}
+[C_t]&:\quad e^{-\rho t}DU(C_t) = \lambda\pi_t \\
+[\lambda]&:\quad  \pi_0W_0 = \int_0^\infty \pi_tC_t\,dt.
+\end{align*}
+Taking the first FOC, we can write \begin{align*}
+e^{-\rho t}DU(C_t) &= \lambda\pi_t,\\
+DU(C_t) &= e^{\rho t}\lambda\pi_t,\\
+C_t &= [DU]^{-1}\left(\lambda\pi_te^{\rho t}\right).
+\end{align*} Putting this into the second first order conditions, we get $$\pi_0W_0 = \int_0^\infty \pi_t[DU]^{-1}\left(\lambda\pi_te^{\rho t}\right)\,dt$$ with which we can solve for $\lambda > 0$.
+
+To do a concrete example, take CES utility $$U(C) = \frac{C^{1 - 1/\epsilon}}{1 - 1/\epsilon} \implies DU(C) = C^{-1/\epsilon} \implies [DU]^{-1}(A) = A^{-\epsilon}.$$ Putting this into the expression above, we get that 
+\begin{align*}
+\int_0^\infty \pi_t[DU]^{-1}\left(\lambda\pi_te^{\rho t}\right)\,dt &= \pi_0W_0\\
+\int_0^\infty \pi_t\left(\lambda\pi_te^{\rho t}\right)^{-\epsilon}\,dt &= \pi_0W_0\\
+\int_0^\infty \lambda^{-\epsilon}\pi_t^{1-\epsilon}e^{-\epsilon\rho t}\,dt &= \pi_0W_0\\
+\lambda^{-\epsilon}\int_0^\infty \pi_t^{1-\epsilon}e^{-\epsilon\rho t}\,dt &= \pi_0W_0\\
+\lambda^{-\epsilon} &= \frac{\pi_0W_0}{\int_0^\infty \pi_t^{1-\epsilon}e^{-\epsilon\rho t}\,dt}\\
+\lambda &= \left[\frac{\pi_0W_0}{\int_0^\infty \pi_t^{1-\epsilon}e^{-\epsilon\rho t}\,dt}\right]^{-1/\epsilon}
+\end{align*}
+We can plug in the original expression that we derived for $C_t$ above and we get that $$\pi_t C_t = \frac{e^{\epsilon \rho t}}{\int_0^\infty \pi_t^{1-\epsilon}e^{-\epsilon\rho t}\,dt}\times \pi_0 W_0 \xrightarrow{\epsilon \to 1} \pi_t C_t = \rho ^{-\rho t} \pi_0W_0.$$ This finally implies that $C_0 = \rho W_0$.
+
+All the discussion thus far has been for the present value budget constraint case. We could also, however, consider the same maximization problem but now with a sequential markets budget constraint $$dW_t = (r_tW_t - C_t)\,dt \Longleftrightarrow DW_t = r_tW_t - C_t,$$ where $r_t$ represents some measure of an interest rate. Specifically, we would have $$\pi_t = \pi_0\exp\left(-\int_0^tr_s\,ds\right).$$
+
+\subsection{Kass-Coopmans}
+Now, let's introduce some production and investment dynamics into the model.
+\subsection{Hamiltonians}
+
+\subsection{The Uzawa two-sector economy}
+
+\subsection{Capital Accumulation and Adjustment Costs}
 
 \subsection{Exercises}
 

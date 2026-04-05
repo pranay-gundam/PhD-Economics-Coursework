@@ -44,7 +44,7 @@
 \usepackage[format=plain,
             labelfont=bf,
             textfont=]{caption}
-\usepackage[colorlinks=true,citecolor=macroblue,linkcolor=macroblue,urlcolor=macroblue]{hyperref}
+\usepackage[colorlinks=true,citecolor=darkgreen,linkcolor=darkgreen,urlcolor=darkgreen]{hyperref}
 \usepackage{varioref}
 \usepackage{chngcntr}
 \usepackage{enumitem}
@@ -52,7 +52,7 @@
 \definecolor{darkgreen}{RGB}{30,175,88}
 \definecolor{darkblue}{RGB}{30,118,175}
 \definecolor{maroon}{rgb}{0.66,0,0}
-\definecolor{darkgreen}{rgb}{0,0.69,0}
+\definecolor{darkgreen}{rgb}{0,0.5,0}
 
 \allowdisplaybreaks[1]
 
@@ -75,9 +75,9 @@
 
 \hypersetup{ 	
 pdfsubject = {},
-pdftitle = {Macro Notes},
+pdftitle = {Micro Notes},
 pdfauthor = {Pranay Gundam},
-linkcolor= macroblue
+linkcolor= darkgreen
 }
 \newcommand{\R}{\mathbb{R}}
 \newcommand{\N}{\mathbb{N}}
@@ -85,14 +85,12 @@ linkcolor= macroblue
 \newcommand{\len}{\text{length }}
 \newcommand*{\bigchi}{\mbox{\Large$\chi$}}
 
-\renewcommand{\theenumi}{\Alph{enumi}}
-
 \definecolor{mygreen}{rgb}{0,0.6,0}
 \definecolor{mygray}{rgb}{0.5,0.5,0.5}
 \definecolor{mymauve}{rgb}{0.58,0,0.82}
 
 \newenvironment{solution}{%
-	\leavevmode\begin{tcolorbox}[breakable, colback=macroblue!5!white,colframe=macroblue!75!black, enhanced jigsaw] \proof[\scshape Solution:] \setlength{\parskip}{2mm}%
+	\leavevmode\begin{tcolorbox}[breakable, colback=darkgreen!5!white,colframe=darkgreen!75!black, enhanced jigsaw] \proof[\scshape Solution:] \setlength{\parskip}{2mm}%
 	}{\renewcommand{\qedsymbol}{$\blacksquare$} \endproof \end{tcolorbox}}
 
 \lstdefinelanguage{Julia}%
