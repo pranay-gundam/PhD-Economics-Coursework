@@ -133,8 +133,12 @@ To prove this for the recursive utility function from before, pick any $c\in C$,
 \begin{align*}
 U_t(\hat{c}^t) &> U_t(\bar{c}^t),\\
 \Longleftrightarrow w + \beta\ln(U_{t+1}(\hat{c}^{t+1}) +1) &> y + \beta\ln(U_{t+1}(\bar{c}^{t+1}) +1),\\
-\Longleftrightarrow w + \beta\ln(\beta\ln(U_{t+2}(\hat{c}^{t+2})) + y +1) &> y + \beta\ln(\beta\ln(U_{t+2}(\bar{c}^{t+2})) + w +1)\\
-\Longleftrightarrow w + \beta\ln( y +1) &> y + \beta\ln( w +1)
+\Longleftrightarrow w + \beta\ln(\beta\ln(U_{t+2}(\hat{c}^{t+2}) + 1) + y +1)  &> y + \beta\ln(\beta\ln(U_{t+2}(\bar{c}^{t+2}) + 1) + w +1).
+\end{align*}
+From here we continue
+\begin{align*}
+\Longleftrightarrow w - y &> \beta\ln(\beta\ln(U_{t+2}(\bar{c}^{t+2}) + 1) + w +1) - \beta\ln(\beta\ln(U_{t+2}(\hat{c}^{t+2}) + 1) + y +1),\\
+\Longleftrightarrow 1&> \frac{\beta\left[\ln(\beta\ln(U_{t+2}(\bar{c}^{t+2}) + 1) + w +1) - \ln(\beta\ln(U_{t+2}(\hat{c}^{t+2}) + 1) + y +1)\right]}{w - y},\\
 \end{align*}
 \end{solution}
     \item Derive the marginal rate of intertemporal substitution between consumption at dates $t+1$ and $t$, and demonstrate that it is strictly less than 1 for every consumption plan.
