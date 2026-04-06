@@ -97,8 +97,37 @@ Consider a function $f:X\times T \to R$ and the corresponding function $$\phi(t)
 \end{enumerate}
 \end{theorem}
 
+\subsection{Uncertainty and Utility}
+state-separable utility representation
+
+expected utility representation
+
+ICC
+
+riskiness
+
+ellsberg paradox
+
+lotteries and risk aversion
+
+stochastic dominance
+
+optimal portfolios (dont need a section but definitely need some problems worked out)
+
+\subsection{Recursive Utility}
+
+definition of recursive family of utility functions, and corresponding properties of them
+
+epstein zin weil functions
+
+\subsection{Social Choice}
+
+social welfare function definition
+
+arrow theorem
+
 \subsection{Exercises}
-\subsubsection{Micro Prelim 2025 Spring}
+\subsubsection{Prelim: Spring 2025}
 Consider a family of utility functions $\{U_t\}_{t=0}^{\infty}$ defined on the set $\ell_+^{\infty}$ of bounded, positive consumption plans of a single good over infinite time horizon without uncertainty.
 
 \begin{enumerate}[label = (\alph*)]
@@ -139,37 +168,80 @@ From here we continue
 \begin{align*}
 \Longleftrightarrow w - y &> \beta\ln(\beta\ln(U_{t+2}(\bar{c}^{t+2}) + 1) + w +1) - \beta\ln(\beta\ln(U_{t+2}(\hat{c}^{t+2}) + 1) + y +1),\\
 \Longleftrightarrow 1&> \frac{\beta\left[\ln(\beta\ln(U_{t+2}(\bar{c}^{t+2}) + 1) + w +1) - \ln(\beta\ln(U_{t+2}(\hat{c}^{t+2}) + 1) + y +1)\right]}{w - y},\\
-\end{align*}
+\Longleftrightarrow 1&> \frac{\beta\left[\ln(w +A) - \ln(y +A)\right]}{w - y},
+\end{align*}where $A = \beta\ln(U_{t+2}(\bar{c}^{t+2}) + 1) + 1 = \beta\ln(U_{t+2}(\hat{c}^{t+2}) + 1) + 1$. From here, using mean value theorem, we can write $$\frac{\beta\left[\ln(w +A) - \ln(y +A)\right]}{w - y} < \frac{\beta}{w + A} \leq \beta < 1.$$ Since we used double implications the whole way, we have shown that $$U_t(\hat{c}^t) > U_t(\bar{c}^t)$$ and indeed this family of utility functions exhibits preference for early consumption.
 \end{solution}
     \item Derive the marginal rate of intertemporal substitution between consumption at dates $t+1$ and $t$, and demonstrate that it is strictly less than 1 for every consumption plan.
 \begin{solution}
+Since this utility function is a recursive one and also linearly separable, we can pick any consumption plan $c\in C$ and write
+\begin{align*}
+MRS_{t+1,t} &= \frac{\partial U_t(c^t)/\partial c_{t+1}}{\partial U_t(c^t)/\partial c_{t}},\\
+&= \frac{\frac{1}{\partial c_{t+1}}\left[G(c_t, G(c_{t+1}, U_{t+2}(c^{t+2}))\right]}{\frac{1}{\partial c_{t}}\left[G(c_t, G(c_{t+1}, U_{t+2}(c^{t+2}))\right]},\\
+&= \frac{\frac{1}{\partial c_{t+1}}\left[c_t + \beta\ln(1 + G(c_{t+1}, U_{t+2}(c^{t+2})))\right]}{\frac{1}{\partial c_{t}}\left[c_t + \beta\ln(1 + G(c_{t+1}, U_{t+2}(c^{t+2})))\right]},\\
+&= \frac{1}{\partial c_{t+1}}\left[c_t + \beta\ln(1 + G(c_{t+1}, U_{t+2}(c^{t+2})))\right],\\
+&= \frac{1}{\partial c_{t+1}}\left[\beta\ln(1 + G(c_{t+1}, U_{t+2}(c^{t+2})))\right],\\
+&= \frac{1}{\partial c_{t+1}}\left[\beta\ln(1 + c_{t+1} + \beta\ln(U_{t+2}(c^{t+2}) + 1))\right],\\
+&= \frac{\beta}{1 + c_{t+1} + \beta\ln(U_{t+2}(c^{t+2}) + 1)},\\
+&\leq \frac{\beta}{1 + c_{t+1}},\\
+&\leq \beta,\\
+&< 1.
+\end{align*}
 \end{solution}
 \end{enumerate}
 
 
 \section{ECON 8102 (Phelan)}
+Phelan's class is very good for grounding intuition about competitive equilibrium. We don't cover as many topics as in the later mini's, which gives one a lot of time to really understand what's going on.
+
+\subsection{Economy Primitives}
+
+Preference characteristics
+
+Consumption sets, production sets, utility possibilities frontier, better than sets
+
+\subsection{Efficiency}
+
+General definition of pareto efficiency
+
+Negishi problem, Arrow's problem
+
+\subsection{Equilibrium Concepts}
+What does an equilibrium mean?
+
+Jungle equilibria, Competitive equilibria, production definitions
+
+\subsection{Introducing Randomness}
 
 \subsection{Exercises}
-\subsubsection{Micro Prelim 2025 Spring}
+\subsubsection{Prelim: Spring 2025}
 Consider an economy with 2 goods, grapes and wine, and two agents, Amy and Barney. Initially, there exists 1 grape. There exist two firms which can turn grapes into wine according to the production function $w = 2\sqrt{g}$, where $g$ is the quantity of grapes put into the production function, and $w$ is the amount of wine produced. Amy only likes grapes. Barney only likes wine. Each prefer more to less and each has an ability to consume any non-negative quantity of either good.
 
 \begin{enumerate}[label = (\alph*)]
     \item What are the production and consumption sets?
 \begin{solution}
-The production set is 
+The production set is $$P = \{(-g,w)\in \mathbb{R}^2: 0 \leq g \leq 1, \, 0 \leq w \leq 2\sqrt{g}\}.$$ The consumption set, for each agent $i\in \{Amy, Barney\}$, $$C_i = \{(g,w)\in \mathbb{R}^2_+\}.$$
 \end{solution}
     \item Define an allocation given the environment described above. When is such an allocation feasible?
 \begin{solution}
-An allocation is the vector $($
+Let $(g_A,w_A) = Z_A \in C_{Amy}$ and $(g_B,w_B) = Z_B \in C_{Barney}$ represent a particular consumption bundle for Amy and Barney respectively, and $(-g_1, w_1) = H_1\in P, (-g_2, w_2) = H_2 \in P$ be elements of the production set for firm 1 and firm 2 respectively (given that they are both identical firms).
+
+An \textbf{allocation} is the collection $\{Z_A, Z_B, H_1, H_2\}$. An allocation is \textbf{feasible} in this economy when, $g_A + g_B + g_1 + g_2 \leq 1$ and $w_A + w_B \leq w_1 + w_2$.
 \end{solution}
     \item Characterize the set of Pareto efficient allocations.
 \begin{solution}
+Since each consumer prefers only different goods and grapes necessarily must be used to produce wine we can classify the set of pareto efficient allocations as $$\boxed{\left\{(Z_A, Z_B, H_1, H_2)\,:\, g_B = 0,\, w_A = 0,\, g_A + g_1 + g_2 = 1,\, w_B = 2(\sqrt{g_1} + \sqrt{g_2})\right\}.}$$
 \end{solution}
     \item For general specifications of ownership of the initial grapes and the firms, define a competitive equilibrium. Will the allocation associated with any competitive equilibrium be efficient?
 \begin{solution}
+A \textbf{competitive equilibrium} in this economy is a set of the collection of allocations $\{Z_A, Z_B, H_1, H_2\}$ and prices $\{p_g, p_w\}$ such that, given initial endowments of grapes $e_A, e_B$ (where $e_A + e_B = 1$) and ownership of firm profits $\theta_{A1}, \theta_{A2}, \theta_{B1}, \theta_{B2}$ (where $\theta_{A1} + \theta_{B1} = \theta_{A2} + \theta_{B2} = 1$) such that
+\begin{itemize}
+\item $test$
+\item $p_g, p_w\in \mathbb{R}_+$
+\end{itemize}
+Since this is indeed a complete market, we can use the first welfare theorem and indeed conclude that any allocation associated with competitive equilibrium will be efficient.
 \end{solution}
     \item Find the set of competitive equilibria if Barney initially owns the grapes and Amy owns the firms?
-\begin{solution}
+\begin{solution} 
 \end{solution}
     \item Find the set of competitive equilibria if Amy initially owns the grapes and Barney owns the firms?
 \begin{solution}
@@ -177,6 +249,8 @@ An allocation is the vector $($
 \end{enumerate}
 
 \section{ECON 8103 (Rustichini)}
+
+
 
 \subsection{Exercises}
 
