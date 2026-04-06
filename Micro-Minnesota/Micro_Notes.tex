@@ -235,13 +235,24 @@ Since each consumer prefers only different goods and grapes necessarily must be 
 \begin{solution}
 A \textbf{competitive equilibrium} in this economy is a set of the collection of allocations $\{Z_A, Z_B, H_1, H_2\}$ and prices $\{p_g, p_w\}$ such that, given initial endowments of grapes $e_A, e_B$ (where $e_A + e_B = 1$) and ownership of firm profits $\theta_{A1}, \theta_{A2}, \theta_{B1}, \theta_{B2}$ (where $\theta_{A1} + \theta_{B1} = \theta_{A2} + \theta_{B2} = 1$) such that
 \begin{itemize}
-\item $test$
+\item $hello$
 \item $p_g, p_w\in \mathbb{R}_+$
 \end{itemize}
 Since this is indeed a complete market, we can use the first welfare theorem and indeed conclude that any allocation associated with competitive equilibrium will be efficient.
 \end{solution}
     \item Find the set of competitive equilibria if Barney initially owns the grapes and Amy owns the firms?
 \begin{solution} 
+Let's first look at the firm's problem for each firm $i\in \{1,2\}$.
+\begin{align*}
+\max_{g_i}&\quad p_w(2\sqrt{g_i}) - p_g g_i
+\end{align*} Taking the first order condition, we get that 
+\begin{align*}
+\frac{p_w}{\sqrt{g_i}} - p_g &= 0\\
+\implies g_i &= \left(\frac{p_w}{p_g}\right)^2
+\end{align*} This then also yeilds profits $\pi_i = \frac{p_w^2}{p_g}.$ With this, we can now consider both of Amy and Barney's maximization problems. For Barney, we know that he is initially endowed with all of the grapes and he only likes wine. This means that they make income $p_g$ and uses all of that to buy wine at price $p_w$. Barney's consumption of wine is $p_g/p_w$ (and he consumes 0 grapes).
+
+For Amy, we know that her only source of income is through the firm of the profits and she like's to consume grapes at unit cost $p_g$. As such, we know that her consumption of grapes is $2\frac{p_w^2}{p_g^2}$ (and she consumes 0 units of wine).
+
 \end{solution}
     \item Find the set of competitive equilibria if Amy initially owns the grapes and Barney owns the firms?
 \begin{solution}
