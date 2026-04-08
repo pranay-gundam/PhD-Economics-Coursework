@@ -420,16 +420,29 @@ Let's first take a look at the household's optimization problem and correspondin
 $$\mathcal{L}(c_{1t}, c_{2t}, M_t, B_t, \lambda_t, \mu_t) = \sum_{t=0}^\infty \beta^t(\log c_{1t} + \alpha \log c_{2t}) + \sum_{t=0}^\infty\lambda_t(\text{long BC}) + \sum_{t=0}^\infty\mu_t(M_t - p_tc_{1t}).$$
 The corresponding FOCs are then:
 \begin{align*}
-[c_{1t}]&: \frac{\beta^t}{c_{1t}} - \lambda_{t+1} \hat{p}_t - \mu_{t+1}\hat{p}_t = 0,\\
-[c_{2t}]&: \frac{\alpha \beta^t}{c_{2t}} - \lambda_{t+1} \hat{p}_t = 0,\\
-[M_t]&: -\lambda_t + \lambda_{t+1} + \mu_{t} = 0,\\
-[B_t]&: - \lambda_t + \lambda_{t+1}R_{t} = 0.
+[c_{1t}]&: \frac{\beta^t}{c_{1t}} - \lambda_{t} \hat{p}_t - \mu_{t}\hat{p}_t = 0,\\
+[c_{2t}]&: \frac{\alpha \beta^t}{c_{2t}} - \lambda_{t} \hat{p}_t = 0,\\
+[M_t]&: \lambda_{t+1} - \lambda_{t} + \mu_{t+1} = 0,\\
+[B_t]&:  \lambda_{t+1}\hat{R}_{t+1} - \lambda_{t} = 0.
 \end{align*} 
+If the cash-in-advance constraint is not binding, then we know that $\mu_{t} = 0$ for all $t\geq 0$. From the first FOC, this gives us that $\lambda_{t+1} = \lambda_{t}$ which further implies that $R_{t+1} = R = 1$. This, however, is a contradiction with the government policy that $R > 1$.
 
-Now let's handle the case that the money in advance constraint is indeed binding, specifically that $M_t = p_tc_{1t}$. Using this, we can rewrite the first FOC as $$\beta^t - \lambda_{t+1} M_t - \mu_{t+1}M_t = 0 \implies M_t = \frac{\beta^t}{\lambda_{t+1} + \mu_{t+1}}$$
+Now let's handle the case that the money in advance constraint is indeed binding, specifically that $M_t = p_tc_{1t}$. Using this, we can rewrite the first FOC as $$\beta^t - \lambda_{t} M_t - \mu_{t}M_t = 0 \implies M_t = \frac{\beta^t}{\lambda_{t} + \mu_{t}}, \,\lambda_t + \mu_t = \frac{\beta^t}{M_t}.$$ Using the third FOC, we then get that $$\lambda_{t+1} - \lambda_{t} + \mu_{t+1} = 0 \implies \lambda_t = \frac{\beta^{t+1}}{M_{t+1}} \implies \beta_{t+1} = \lambda_t p_t c_{1t}.$$
+Next from the second FOC, we get $$\beta^t = \frac{\lambda_t p_t c_{2t}}{\alpha}.$$
+Dividing these two expressions we get that $$\beta = \frac{\alpha c_{1t}}{c_{2t}} \implies c_{2t} = \frac{\alpha}{ \beta } c_{1t}.$$ To get consumption, we can finally plug this into the market clearing for goods. 
+$$c_{1t} + c_{2t} = y \implies c_{1t}(1 + \alpha / \beta) = y \implies \boxed{c_{1t} = \frac{\beta}{\alpha + \beta}y,\, c_{2t} = \frac{\alpha}{\alpha + \beta}y.}$$
+Next, to pin down prices, we know from the last FOC that 
+\begin{align*}
+R &= \frac{\lambda_t}{\lambda_{t+1}},\\
+R &= \frac{\beta^{t+1}}{p_tc_{1t}}\frac{p_{t+1}c_{1t+1}}{\beta^{t+2}},\\
+\beta R &= \frac{p_{t+1}}{p_t},\\
+\beta R p_t &= p_{t+1}.
+\end{align*} Setting $p_0 = 1$ as the numeraire, we get that prices are $$\boxed{p_t = (\beta R)^t.}$$ Money holdings follows very clearly $$\boxed{M_t^g = M_t = \frac{R^t\beta^{t+1}y}{\alpha + \beta}.}$$
+Finally, we can't really pin down $B_t$ and $T_t$ (we don't have enough equations to do so) other than noting that $T_t = B_{t+1} - RB_t$ and $B_t^g = B_t$.
 \end{solution}
     \item Compare stationary equilibrium outcomes and welfare for two economies with different constant interest rates, but are otherwise identical.
 \begin{solution}
+Note that the equilibrium consumption allocations don't depend on the interest rate. This means that welfare will be equal across both economies. What does change, however, are the price levels and money holdings, both of which increase at the same rate as $R$ increases and decrease at the same rate when $R$ decreases.
 \end{solution}
 \end{enumerate}
 
@@ -445,12 +458,10 @@ Now let's handle the case that the money in advance constraint is indeed binding
 
 
 \section{ECON 8108 (Luttmer)}
-I never had done any continuous time macro before this class and so getting intuition about how to solve models and generally what was going on took quite a bit of time.
+I've never done any continuous time macro before this class and so getting intuition about what is going on is taking me some time. These notes will likely be very detailed as I'm writing them in order to learn myself.
 
 \subsection{The canonical continuous time consumer problem}
-Here, \textbf{preferences} are $$\int_0^\infty e^{-\rho t}U(C_t)$$ for some well behaving $U(C_t)$. Off the get go, the main thing to note that instead of the $\beta$ temporal discounting that we had before, the continuous time equivalent is $e^{-\rho t}$ where we should note that $\int_0^\infty e^{-\rho t}\,dt = \frac{1}{\rho}$ for $\rho > 0$. Next, the present-value \textbf{budget constraint} is (think an Arrow-Debreu world) is $$\int_0^\infty\pi_tC_t\,dt\leq \pi_0 W_0.$$ We are abstracting right now from firms or income processes. We are looking at lifetime wealth $W_0$ and prices $\pi_t$ as some exogenous feature. 
-
-So with this in mind, let's write down the lagrangian 
+Here, \textbf{preferences} are $$\int_0^\infty e^{-\rho t}U(C_t)$$ for some well behaving $U(C_t)$. Off the get go, the main thing to note that instead of the $\beta$ temporal discounting that we had before, the continuous time equivalent is $e^{-\rho t}$ where we should note that $\int_0^\infty e^{-\rho t}\,dt = \frac{1}{\rho}$ for $\rho > 0$. Next, the present-value \textbf{budget constraint} is (think an Arrow-Debreu world) is $$\int_0^\infty\pi_tC_t\,dt\leq \pi_0 W_0.$$ We are abstracting right now from firms or income processes. We are looking at lifetime wealth $W_0$ and prices $\pi_t$ as some exogenous feature. So with this in mind, let's write down the lagrangian 
 $$\mathcal{L}(C_t, \lambda) = \int_0^\infty e^{-\rho t}U(C_t)\,dt - \lambda\left(\int_0^\infty \pi_t C_t\,dt - \pi_0W_0\right).$$ Which leads to the following two first order conditions
 \begin{align*}
 [C_t]&:\quad e^{-\rho t}DU(C_t) = \lambda\pi_t \\
@@ -460,9 +471,7 @@ Taking the first FOC, we can write \begin{align*}
 e^{-\rho t}DU(C_t) &= \lambda\pi_t,\\
 DU(C_t) &= e^{\rho t}\lambda\pi_t,\\
 C_t &= [DU]^{-1}\left(\lambda\pi_te^{\rho t}\right).
-\end{align*} Putting this into the second first order conditions, we get $$\pi_0W_0 = \int_0^\infty \pi_t[DU]^{-1}\left(\lambda\pi_te^{\rho t}\right)\,dt$$ with which we can solve for $\lambda > 0$.
-
-To do a concrete example, take CES utility $$U(C) = \frac{C^{1 - 1/\epsilon}}{1 - 1/\epsilon} \implies DU(C) = C^{-1/\epsilon} \implies [DU]^{-1}(A) = A^{-\epsilon}.$$ Putting this into the expression above, we get that 
+\end{align*} Putting this into the second first order conditions, we get $$\pi_0W_0 = \int_0^\infty \pi_t[DU]^{-1}\left(\lambda\pi_te^{\rho t}\right)\,dt$$ with which we can solve for $\lambda > 0$. To do a concrete example, take CES utility $$U(C) = \frac{C^{1 - 1/\epsilon}}{1 - 1/\epsilon} \implies DU(C) = C^{-1/\epsilon} \implies [DU]^{-1}(A) = A^{-\epsilon}.$$ Putting this into the expression above, we get that 
 \begin{align*}
 \int_0^\infty \pi_t[DU]^{-1}\left(\lambda\pi_te^{\rho t}\right)\,dt &= \pi_0W_0\\
 \int_0^\infty \pi_t\left(\lambda\pi_te^{\rho t}\right)^{-\epsilon}\,dt &= \pi_0W_0\\
@@ -476,7 +485,58 @@ We can plug in the original expression that we derived for $C_t$ above and we ge
 All the discussion thus far has been for the present value budget constraint case. We could also, however, consider the same maximization problem but now with a sequential markets budget constraint $$dW_t = (r_tW_t - C_t)\,dt \Longleftrightarrow DW_t = r_tW_t - C_t,$$ where $r_t$ represents some measure of an interest rate. Specifically, we would have $$\pi_t = \pi_0\exp\left(-\int_0^tr_s\,ds\right).$$
 
 \subsection{Kass-Coopmans}
-Now, let's introduce some production and investment dynamics into the model.
+Now, let's introduce some production and investment dynamics into the model. This time, consider some utility function $U(\cdot)$ that is strictly increasing, concave, and sufficiently smooth. This economy contains one representative agent who has \textbf{preferences}, for some $\rho > 0$, $$\int_0^\infty e^{-\rho t} U(C_t)\,dt.$$
+
+We will have production, but we abstract from having a firm that manages production. Specifically, households will have the chance to choose between dedicating their available resources between consumption and capital investment. There is a production function $F(k, l)$ that is strictly increasing, concave, sufficiently smooth, and homogeneous of degree 1. We will also denote $f(k) = F(k,1)$. Finally let $X_t$ be the amount of investment at time $t$ and $\delta$ be the depreciation rate. These definition all help define the \textbf{resource contraints} that the consumer faces
+\begin{align*}
+C_t + X_t &\leq f(K_t),\\
+DK_t &\leq - \delta K_t + X_t,\\
+C_t, K_t &\geq 0.
+\end{align*}Combining all of these constraints gives us the one collapsed constraint $$DK_t \leq f(K_t) -\delta K_t - C_t.$$
+
+Now let's look at the lagrangian now and derive the first order constraints that can help us solve this model.
+$$\mathcal{L}(C_t, K_t, \lambda_t) = \int_0^\infty e^{-\rho t}U(C_t)\,dt + \int_0^\infty e^{-\rho t}\lambda_t(f(K_t) - \delta K_t - C_t - DK_t)\,dt.$$
+Since we don't like to work with $DK_t$, let's do integration by parts.
+\begin{align*}
+\int_0^\infty e^{-\rho t} \lambda_t DK_t\,dt &= e^{-\rho T} \lambda_T K_T \Big|_{T=0}^\infty - \int_0^\infty e^{-\rho t}K_t(D\lambda_t -\rho \lambda_t)\,dt,\\
+&= \lim_{T\to \infty}e^{-\rho T} \lambda_T K_T  - \lambda_0K_0 - \int_0^\infty e^{-\rho t}K_t(D\lambda_t -\rho \lambda_t)\,dt.
+\end{align*}Using this, we can then rewrite the lagrangian as 
+\begin{align*}
+\mathcal{L}(C_t, K_t, \lambda_t) &= \int_0^\infty e^{-\rho t}U(C_t)\,dt + \int_0^\infty e^{-\rho t}\lambda_t(f(K_t) - \delta K_t - C_t - DK_t)\,dt,\\
+&= \int_0^\infty e^{-\rho t}\left[U(C_t) + \lambda_t(f(K_t) - \delta K_t - C_t)\right]\,dt - \int_0^\infty e^{-\rho t}\lambda_t DK_t\,dt,\\
+&= \lambda_0K_0 - \lim_{T\to \infty}e^{-\rho T}\lambda_TK_T +  \int_0^\infty e^{-\rho t}\left[U(C_t) + \lambda_t(f(K_t) - (\delta +\rho)K_t - C_t) + K_tD\lambda_t\right]\,dt,\\
+&= \lambda_0K_0 +  \int_0^\infty e^{-\rho t}\left[U(C_t) + \lambda_t(f(K_t) - (\delta +\rho)K_t - C_t) + K_tD\lambda_t\right]\,dt.
+\end{align*}Note, we use the transversality condition to claim $\lim_{T\to \infty}e^{-\rho T}\lambda_TK_T = 0$. Now let's take the first order conditions:
+\begin{align*}
+[C_t]&: e^{-\rho t}[ U'(C_t) -  \lambda_t] = 0\implies DU(C_t) = \lambda_t \implies C_t = [DU]^{-1}(\lambda_t),\\
+[K_t]&: e^{-\rho t}[ \lambda_t f'(K_t) - (\delta + \rho)\lambda_t + D\lambda_t] = 0 \implies D\lambda_t = \lambda_t(\rho + \delta - Df(K_t)).
+\end{align*} Right now, this is a system of two equations has three unkowns in $C_t, \lambda_t$ and $K_t$. We can, however, collapse this into a system of two equations of two unknowns using the condensed budget constraint. Specifically we plug in the first FOC condition. This gives us the following system of two differential equations
+\begin{align*}
+DK_t &= f(K_t) - \delta K_t - [DU]^{-1}(\lambda_t),\\
+D\lambda_t &= \lambda_t(\rho + \delta - Df(K_t)).
+\end{align*}
+
+\subsubsection{Solving the System}
+
+If you have done some Partial Differential Equations before then you know that a solution to the system above is not some simple concept of neat expressions for $K_t$ and $\lambda_t$ but rather a dynamic object in itself that we often try to represent using things such as phase diagrams. 
+
+The idea is that given an initial condition of capital $K_0$ and $\lambda_0$ (which we can recover from the envelope condition $\lambda_0 = DV(K_0)$ an interpret as the shadow price of capital) we trace out the curve of $K_t$ and $\lambda_t$ depending on the direction of $DK_t$ and $D\lambda_t$ which changes as $K_t$ and $\lambda_t$ evolves. This traced out curve is the solution and we can use phase diagrams to help build out this curve.
+
+A \textbf{steady state solution} is, however, something that we can think about and back out easily. We know that a steady state implies that the equilibrium allocations don't change over time. As such, by definition, we can very directly claim that a steady state implies that $DK_t = 0, \,D\lambda_t = 0$ and we get the new system
+\begin{align*}
+0 &= f(K) - \delta K - [DU]^{-1}(\lambda),\\
+0 &= \lambda(\rho + \delta - Df(K)).
+\end{align*} Disregarding the edge case of $\lambda = 0$, we can then back out $$K = [Df]^{-1}(\rho + \delta), \, C = f(K) - \delta K.$$
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.7\textwidth]{images/Kass-Koopmans Basic Phase Diagram.png}
+\caption{The phase diagram for $(K_t, \lambda_t)$}
+\label{fig:BasicCassKoop}
+\end{figure}
+
+\subsubsection{Competitive Equilibrium}
+
 \subsection{Hamiltonians}
 
 \subsection{The Uzawa two-sector economy}
@@ -550,16 +610,17 @@ and $W_t \geq 0$ for all $t \geq 0$, starting from $W_0 = W$ for some given $W >
 Compute $U(W)$.
 \begin{solution}
 First, let $\sigma = 1 - \frac{1}{\epsilon}$ and note that $0 < \sigma < 1$ which implies that $f(x) = x^{1/\sigma}$ is a monotone transformation of $x$ which means we can solve the maximization problem using $$U(W) = \max_{C_t\geq 0}\int_0^\infty \rho e^{-\rho t} C_t^\sigma\,dt.$$ With this, we can write out the lagrangian \begin{align*}
-\mathcal{L}(C_t, \lambda_t) &= \int_0^\infty \rho e^{-\rho t} C_t^\sigma\,dt - \int_0^\infty\lambda_te^{-\rho t}\left(DW_t - rW_t + C_t\right)\,dt,\\
-&= \int_0^\infty \rho e^{-\rho t} C_t^\sigma -\lambda_te^{-\rho t}\left(DW_t - rW_t + C_t\right)\,dt,\\
-&= \int_0^\infty e^{-\rho t}\left(\rho  C_t^\sigma -\lambda_t\left(DW_t - rW_t + C_t\right)\right)\,dt,\\
-&= \int_0^\infty e^{-\rho t}\left(\rho  C_t^\sigma -\lambda_t\left(rW_t + C_t\right)\right)\,dt - \int_0^\infty \lambda_t e^{-\rho t} DW_t\,dt.
+\mathcal{L}(C_t, \lambda_t) &= \int_0^\infty \rho e^{-\rho t} C_t^\sigma\,dt + \int_0^\infty\lambda_te^{-\rho t}\left(rW_t - C_t - DW_t\right)\,dt,\\
+&= \int_0^\infty \rho e^{-\rho t} C_t^\sigma +\lambda_te^{-\rho t}\left(rW_t - C_t - DW_t \right)\,dt,\\
+&= \int_0^\infty e^{-\rho t}\left(\rho  C_t^\sigma +\lambda_t\left(rW_t - C_t - DW_t \right)\right)\,dt,\\
+&= \int_0^\infty e^{-\rho t}\left(\rho  C_t^\sigma +\lambda_t\left(rW_t - C_t\right)\right)\,dt - \int_0^\infty \lambda_t e^{-\rho t} DW_t\,dt.
 \end{align*}
 In order to get rid of the $DW_t$ term, we can do integration by parts
 \begin{align*}
 \int_0^\infty\lambda_te^{-\rho t}DW_t\,dt &= \lambda_te^{-\rho t}W_t\Big|_{t=0}^\infty - \int_0^\infty W_t(D\lambda_te^{-\rho t} -\rho \lambda_te^{-\rho t})\,dt\\
- &= \lambda_te^{-\rho t}W_t\Big|_{t=0}^\infty - \int_0^\infty e^{-\rho t}W_t(D\lambda_t -\rho \lambda_t)\,dt\\
- &= -\lambda_0W_0 + \lim_{t\to \infty}\lambda_te^{-\rho t}W_t - \int_0^\infty e^{-\rho t}W_t(D\lambda_t -\rho \lambda_t)\,dt\\
+&= \lambda_te^{-\rho t}W_t\Big|_{t=0}^\infty - \int_0^\infty e^{-\rho t}W_t(D\lambda_t -\rho \lambda_t)\,dt\\
+&= -\lambda_0W_0 + \lim_{t\to \infty}\lambda_te^{-\rho t}W_t - \int_0^\infty e^{-\rho t}W_t(D\lambda_t -\rho \lambda_t)\,dt\\
+&= 
 \end{align*}
 \end{solution}
 Now suppose labor income is $zL > 0$ and assets on hand evolve subject to

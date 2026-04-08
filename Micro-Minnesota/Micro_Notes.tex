@@ -235,10 +235,15 @@ Since each consumer prefers only different goods and grapes necessarily must be 
 \begin{solution}
 A \textbf{competitive equilibrium} in this economy is a set of the collection of allocations $\{Z_A, Z_B, H_1, H_2\}$ and prices $\{p_g, p_w\}$ such that, given initial endowments of grapes $e_A, e_B$ (where $e_A + e_B = 1$) and ownership of firm profits $\theta_{A1}, \theta_{A2}, \theta_{B1}, \theta_{B2}$ (where $\theta_{A1} + \theta_{B1} = \theta_{A2} + \theta_{B2} = 1$) such that
 \begin{itemize}
-\item $hello$
+\item $Z_A, Z_B \geq 0.$
 \item $p_g, p_w\in \mathbb{R}_+$
+\item (Grapes Market Clearing) $Z_A(g) + Z_B(g) \leq e_A + e_B + H_1(g) + H_2(g)$
+\item (Wine Market Clearing) $Z_A(w) + Z_B(w) \leq H_1(w) + H_2(w)$
+\item (Budget Constraint) $p_gZ_i(g) + p_wZ_i(w) \leq p_ge_i + \theta_{i1}(p_g H_1(g) + p_wH_1(w)) + \theta_{i2}(p_g H_2(g) + p_wH_2(w))$ for $i\in \{A, B\}$
+\item For all other agent allocations $\{\hat{Z}_A, \hat{Z}_B\}$ that are prefered to $\{Z_A, Z_B\}$, it must be that $\{\hat{Z}_A, \hat{Z}_B\}$ violates the budget constraint
+\item For all other firm allocations $\{\hat{H}_1, \hat{H}_2\}$, we have that it makes less profit for the firms.
 \end{itemize}
-Since this is indeed a complete market, we can use the first welfare theorem and indeed conclude that any allocation associated with competitive equilibrium will be efficient.
+Since this is a complete market, we can use the first welfare theorem and indeed conclude that any allocation associated with competitive equilibrium will be efficient.
 \end{solution}
     \item Find the set of competitive equilibria if Barney initially owns the grapes and Amy owns the firms?
 \begin{solution} 
@@ -249,13 +254,32 @@ Let's first look at the firm's problem for each firm $i\in \{1,2\}$.
 \begin{align*}
 \frac{p_w}{\sqrt{g_i}} - p_g &= 0\\
 \implies g_i &= \left(\frac{p_w}{p_g}\right)^2
-\end{align*} This then also yeilds profits $\pi_i = \frac{p_w^2}{p_g}.$ With this, we can now consider both of Amy and Barney's maximization problems. For Barney, we know that he is initially endowed with all of the grapes and he only likes wine. This means that they make income $p_g$ and uses all of that to buy wine at price $p_w$. Barney's consumption of wine is $p_g/p_w$ (and he consumes 0 grapes).
+\end{align*} This then also yields profits $\pi_i = \frac{p_w^2}{p_g}.$ With this, we can now consider both of Amy and Barney's maximization problems. For Barney, we know that he is initially endowed with all of the grapes and he only likes wine. This means that they make income $p_g$ and uses all of that to buy wine at price $p_w$. Barney's consumption of wine is $p_g/p_w$ (and he consumes 0 grapes).
 
 For Amy, we know that her only source of income is through the firm of the profits and she like's to consume grapes at unit cost $p_g$. As such, we know that her consumption of grapes is $2\frac{p_w^2}{p_g^2}$ (and she consumes 0 units of wine).
 
+Finally, to pin down the prices, we use the market clearing condition for grapes. We know that the sum of the grapes that Amy consumes and the grapes the firms use to produce wine must equal $1$.
+\begin{align*}
+2\frac{p_w^2}{p_g^2} + 2\frac{p_w^2}{p_g^2} &= 1,\\
+\frac{p_w^2}{p_g^2} &= \frac{1}{4},\\
+\frac{p_w}{p_g} &= \frac{1}{2},\\
+2p_w &= p_g.
+\end{align*} Setting $p_w = 1$  as the numeraire, we get that $p_g = 2$. Putting everything together, we can finally classify the competitive equilibrium as 
+$$\boxed{Z_A = (0,2),\,Z_B = (1/2, 0),\, H_1 = H_2 = (-1/4, 1),\, p_g = 2,\, p_w = 1.}$$
+We can get the whole set of equilibria by shifting the numeraire.
 \end{solution}
     \item Find the set of competitive equilibria if Amy initially owns the grapes and Barney owns the firms?
 \begin{solution}
+A simple trap that people may fall into is conclude that Amy consumes all of her endowment of grapes simply because she prefers only grapes and has no reason to sell her endowment. This is not how competitive equilibrium works! The agents in the economy don't know that no one else has no endowment of grapes or any of their characteristics. Agents only interact with prices and the wealth generation from the value that prices imbues on their endowment. So even if this may end up being the case, the reason is not because Amy knows specific information about other people and refuses to share her endowment.
+
+Note first that the firm's problem is the exact same as before. Now, we know that Barney get's the profits and consumes only wine, this means that he consumes $ 2\frac{p_w}{p_g}$ units of wine. For Amy, she sells her entire endowment of grapes at price $p_g$ and uses it to buy only grapes, which means that she consumes $p_g/p_g = 1$ units of grapes.
+
+To pin down prices, consider the market clearing condition for grapes
+\begin{align*}
+1 + 2\frac{p_w^2}{p_g^2} &= 1,\\
+\frac{p_w^2}{p_g^2} &= 0.
+\end{align*} Setting a numeraire of $p_g = 1$ we get that $p_w = 1$. Putting everything together, we can finally classify the competitive equilibrium as $$\boxed{Z_A = (0,1),\,Z_B = (0, 0),\, H_1 = H_2 = (0, 0),\, p_g = 1,\, p_w = 0.}$$
+We can get the whole set of equilibria by shifting the numeraire.
 \end{solution}
 \end{enumerate}
 
