@@ -454,8 +454,71 @@ Note that the equilibrium consumption allocations don't depend on the interest r
 
 \subsection{Exercises}
 
-
-
+\subsubsection{Prelim: Spring 2025 (Incomplete Markets, Labor Supply, and Aggregate Risk)}
+\textit{This question is related to the 2025 8108 final.} There is a mass one
+of households. The household's discount factor is $\beta \in (0,1)$ and their
+period utility function is given by
+\[
+  u(c, n) = \log(c) - \psi n,
+\]
+where $c$ is consumption, $n$ is labor supply, and $\psi > 0$.
+ 
+A household supplies $zn$ units of effective labor to the market at a wage
+$w_t$ and where $z$ is stochastic. It can take one of two values: $z_H$ and
+$z_L$, with $z_H > z_L > 0$. The probability of being in state $z_H$ is
+$\pi_z$ and the probability of being in state $z_L$ is $1 - \pi_z$. The
+realization is idiosyncratic, independent across households and time.
+Households also have access to a one-period risk-free uncontingent asset that
+pays a gross interest rate $R_t$. A household faces the following budget
+constraint:
+\[
+  c + a' = R_{t-1} a + w_t z n,
+\]
+where $a$ are assets, and has the following (ad-hoc) borrowing constraint:
+\[
+  a' \geq -\phi,
+\]
+where $\phi > 0$. In what follows we allow the household's choice of $n$ to
+be in $(-\infty, \infty)$.
+ 
+Firms operate in a competitive environment and have a linear production
+function to produce the final consumption good:
+\[
+  Y = A_t N,
+\]
+where $N$ are the \emph{total effective units of labor} and $A_t$ is
+\underline{aggregate productivity}. The aggregate productivity $A_t$ is
+realized at the beginning of period $t$, taking value $A_H$ with probability
+$\pi_A$ and $A_L$ with probability $1 - \pi_A$, with $A_H > A_L > 0$. This
+realization is iid.
+ 
+We will discuss the competitive equilibrium of this incomplete markets economy.
+ 
+\begin{enumerate}[label = (\alph*)]
+  \item Show that the consumption of a household with state $z$ when
+    productivity is $A$ is:
+    \[
+      c(z, A) = \frac{zA}{\psi}.
+    \]
+ \begin{solution}
+\end{solution}
+  \item The equilibrium interest rate $R_t$ is stochastic, but only a
+    function of the realized aggregate productivity level $A$. Find $R(A)$.
+    \textbf{Hint:} \textit{Use that households with the lowest $z$, $z_L$, are
+    always borrowing constrained.}
+  \begin{solution}
+\end{solution}
+  \item Let's introduce a government that issues a constant amount of bonds
+    $B > 0$ in every period and uses lump-sum transfers/taxes to balance its
+    budget. What happens to the equilibrium interest rate after this policy?
+  \begin{solution}
+\end{solution}
+  \item Under what conditions is such a policy certain to deliver a Pareto
+    improvement to all households? How does your answer here differ from the
+    case with no aggregate risk? Explain your answers.
+ \begin{solution}
+\end{solution}
+\end{enumerate}
 
 \section{ECON 8108 (Luttmer)}
 I've never done any continuous time macro before this class and so getting intuition about what is going on is taking me some time. These notes will likely be very detailed as I'm writing them in order to learn myself.
@@ -567,29 +630,31 @@ consumption services at time $t$. The real interest rate (in terms of consumptio
 is $r_t$. A consumer with wealth $W_t$ can consume subject to the sequence of constraints
 $dW_t = (r_t W_t - C_t)dt$ together with $W_t \geq 0$ at all times.
 
-\textbf{a.} Explain why aggregate consumption services and the real interest rate must satisfy
+\begin{enumerate}[label = (\alph*)]
+\item Explain why aggregate consumption services and the real interest rate must satisfy
 $r_t = \rho + DC_t/C_t$.
 \begin{solution}
 
 \end{solution}
-\textbf{b.} There will be an asset pricing equation of the form $r_t q_t = v_t + Dq_t - \delta q_t$. What is $v_t$?
+\item There will be an asset pricing equation of the form $r_t q_t = v_t + Dq_t - \delta q_t$. What is $v_t$?
 What will be the wage $w_t$?
 \begin{solution}
 
 \end{solution}
-\textbf{c.} Give the differential equation for $K_t$ and $q_t/C_t$ that must hold in any equilibrium. Construct the phase diagram for this differential equation.
+\item Give the differential equation for $K_t$ and $q_t/C_t$ that must hold in any equilibrium. Construct the phase diagram for this differential equation.
 \begin{solution}
 
 \end{solution}
-\textbf{d.} Suppose the economy is in its steady state and there is an unforeseen permanent increase in $A$ at $t = 0$. Describe what happens to $\{K_t, q_t/C_t, C_t, L_t, w_t, q_t, r_t\}_{t \geq 0}$.
+\item Suppose the economy is in its steady state and there is an unforeseen permanent increase in $A$ at $t = 0$. Describe what happens to $\{K_t, q_t/C_t, C_t, L_t, w_t, q_t, r_t\}_{t \geq 0}$.
 \begin{solution}
 
 \end{solution}
-\textbf{e.} Suppose the economy is in its steady state and there is an unforeseen permanent increase in $z$ at $t = 0$. Describe what happens to $\{K_t, q_t/C_t, C_t, L_t, w_t, q_t, r_t\}_{t \geq 0}$.
+\item Suppose the economy is in its steady state and there is an unforeseen permanent increase in $z$ at $t = 0$. Describe what happens to $\{K_t, q_t/C_t, C_t, L_t, w_t, q_t, r_t\}_{t \geq 0}$.
 \textbf{Note:} If you want to compute an example to check your logic, use $J(L) = L^{1+1/\psi}/(1 + 1/\psi)$, for some $\psi > 0$.
 \begin{solution}
 
 \end{solution}
+\end{enumerate}
 
 \subsubsection{A Simple Consumption-Savings Problem}
 
@@ -603,7 +668,8 @@ DW_t = rW_t - C_t
 \]
 and $W_t \geq 0$ for all $t \geq 0$, starting from $W_0 = W$ for some given $W > 0$.
 
-\textbf{a.} Find a candidate solution for $\{C_t\}_{t \geq 0}$ and verify that it is well defined if
+\begin{enumerate}[label = (\alph*)]
+\item Find a candidate solution for $\{C_t\}_{t \geq 0}$ and verify that it is well defined if
 \[
 \rho - \left(1 - \frac{1}{\varepsilon}\right) r > 0
 \]
@@ -629,14 +695,78 @@ DA_t = rA_t + zL - C_t
 \]
 and $A_t \geq 0$ for all $t \geq 0$, starting from $A_0 = A$ for some given $A > 0$.
 
-\textbf{b.} Suppose that $r \geq \rho > (1 - 1/\varepsilon)r$. What is the optimal consumption trajectory?
+\item  Suppose that $r \geq \rho > (1 - 1/\varepsilon)r$. What is the optimal consumption trajectory?
 \begin{solution}
 
 \end{solution}
-\textbf{c.} Suppose that $r < \rho$. Use the Lagrangian for this problem. Conjecture that there will be
+\item Suppose that $r < \rho$. Use the Lagrangian for this problem. Conjecture that there will be
 some optimal time $T \in (0, \infty)$ such that $A_t = 0$ if and only if $t \in [T, \infty)$. Find the equation
 that defines $T$ and show that it must have a solution in $(0, \infty)$.
 \begin{solution}
 
 \end{solution}
+\end{enumerate}
+
+\subsubsection{Prelim: Spring 2024 (Firm Size Distributions)}
+Consider an economy with a representative household whose preferences over
+trajectories $\{C_t\}_{t \geq 0}$ are given by $\int_0^\infty e^{-\rho t} U(C_t)\,dt$,
+where $\rho > 0$ and $U(\cdot)$ is a nice utility function. This household
+inelastically supplies a flow $\mathcal{L} > 0$ of labor and produces a flow
+$\mathcal{E} > 0$ of capital from scratch. Starting from some $K_0 > 0$, the
+resource constraints are
+\[
+  C_t = F(K_t, L_t), \qquad L_t + M_t \leq \mathcal{L}, \qquad
+  DK_t = -\delta K_t + G(K_t, M_t) + \mathcal{E},
+\]
+where $\delta > 0$, and where $F$ and $G$ are both constant returns to scale
+production functions that are increasing and concave, with smooth marginal
+products that range throughout $(0,\infty)$. Consider competitive equilibria.
+Write $r_t$ for the risk-free rate, $w_t$ for the wage, and $q_t$ for the
+price of capital.
+ 
+\begin{enumerate}[label = (\alph*)]
+  \item Give the conditions for a competitive equilibrium. Briefly explain.
+\begin{solution}
+\end{solution}
+  \item Show that in a steady state, the steady state capital stock
+    $K_t = K$ must satisfy
+    \begin{align}
+      K &= \frac{\mathcal{E}}{\delta - G(1,\, m[q])}, \label{eq:K1} \\[6pt]
+      K &= \frac{\mathcal{L}}{l[q] + m[q]}, \label{eq:K2}
+    \end{align}
+    where $l[\cdot]$ and $m[\cdot]$ are functions of $q$ that are determined by
+    solving (for $l$ and $m$) the conditions
+    \begin{equation}
+      q = \frac{D_1 F(1,l)}{\rho + \delta - D_1 G(1,m)}, \qquad
+      q = \frac{D_2 F(1,l)}{D_2 G(1,m)}. \label{eq:FOC}
+    \end{equation}
+ \begin{solution}
+\end{solution}
+
+  \item Eliminate $q$ from \eqref{eq:FOC} and use this to show that $l$
+    and $m$ must co-move in the region where $G(1,m) < \delta$. You may want to
+    write $g(m) \equiv G(1,m)$ to simplify the algebra. Use this to show that
+    \eqref{eq:K1} is increasing in $q$ and \eqref{eq:K2} is decreasing in $q$.
+\begin{solution}
+\end{solution}
+
+\end{enumerate}
+ 
+\noindent Now suppose the flow $\mathcal{E} > 0$ is an average of single units of
+``startup'' capital that arrive at Poisson rates. All the capital that is
+produced, directly or indirectly, from one particular unit of startup capital
+is defined to be a firm. Assume that $\delta = \delta_F + \delta_K$, where
+$\delta_K > 0$ is the rate at which capital inside a firm depreciates
+continuously, and $\delta_F > 0$ is the rate at which a firm with all its
+capital is randomly destroyed.
+ 
+\begin{enumerate}
+  \item[(d)] Determine the steady state measure of firms. Determine the
+    stationary distribution of capital across firms when the equilibrium is such
+    that firms grow at a positive rate. How does a reduction in $\mathcal{E} > 0$
+    affect the mean of this distribution?
+\begin{solution}
+\end{solution}
+
+\end{enumerate}
 \end{document}
