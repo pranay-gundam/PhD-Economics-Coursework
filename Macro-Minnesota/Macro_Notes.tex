@@ -360,6 +360,16 @@ This is perhaps the concept that I have had the most trouble with in this class.
 
 \subsection{Exercises}
 
+There is a very specific set of questions that Chari tends to pull from for the prelim and final/midterm. Here's a quick list
+\begin{itemize}
+\item Cash-Credit Goods Models (with and without Production)
+\item Recursive Competitive Equilibria
+\item Search and Unemployment Models
+\item Sticky Prices
+\item Island Economy Models
+\item Sustainable Commitment
+\end{itemize}
+
 \subsubsection{Prelim: Spring 2025}
 
 Consider a stochastic cash credit goods economy. in which households have
@@ -394,55 +404,58 @@ Assume real debt holdings are bounded below by a large negative number.
 \begin{enumerate}[label = (\alph*)]
     \item Define a competitive equilibrium. In particular, be precise about what allocations depend on.
 \begin{solution}
-A competitive equilibrium in this economy is a collection of household allocations $\{\hat{c}_{1t}, \hat{c}_{2t}, \hat{M}_t, \hat{B}_t\}_{t = 0}^\infty$, government allocations $\{\hat{M}_t^g, \hat{B}_t^g, \hat{T}_t\}_{t=0}^\infty$, and prices $\{\hat{p}_t, \hat{R}_t\}_{t=0}^\infty$ such that:
+A competitive equilibrium in this economy is a collection of household allocations $\{\hat{c}_{1t}(s^t), \hat{c}_{2t}(s^t), \hat{M}_t(s^t), \hat{B}_t(s^t)\}_{t,s^t}$, government allocations $\{\hat{M}_t^g(s^t), \hat{B}_t^g(s^t), \hat{T}_t(s^t)\}_{t, s^t}$, and prices $\{\hat{p}_t(s^t), \hat{R}_t(s^t)\}_{t, s^t}$ such that:
 \begin{itemize}
-\item \underline{Household Maximization:} Given prices, endowment $y$, initial money holdings $\bar{M}_0$, initial bond holdings $\bar{B}_0$, and government transfers, the household allocations solve the maximization problem
+\item \underline{Household Maximization:} Given prices, endowment $y$, initial money holdings $\bar{M}_0(s^0)$, initial bond holdings $\bar{B}_0(s^0)$, government transfers, and probabilities of state the household allocations solve the maximization problem
 \begin{align*}
-\max_{c_{1t}, c_{2t}, M_t, B_t}&\quad \sum_{t=0}^\infty\beta^t(\log c_{1t} + \alpha \log c_{2t})\\
-s.t. \quad (1)&\quad M_t + B_t = (M_{t-1} - \hat{p}_{t-1}c_{1t-1}) - \hat{p}_{t-1}c_{2t-1} + \hat{p}_{t-1}y + \hat{R}_{t-1}B_{t-1} + \hat{T}_{t-1} ,\\
-(2)&\quad \hat{p}_t c_{1t} \leq M_t,\\
-(3)&\quad c_{1t}, c_{2t}, M_t \geq 0,\\
-(4)&\quad B_t \geq -B.
+&\max_{c_{1t}(s^t), c_{2t}(s^t), M_t(s^t), B_t(s^t)} \sum_{t=0}^\infty\sum_{s^t}\beta^t(\log c_{1t}(s^t) + \alpha \log c_{2t}(s^t))\\
+s.t. \quad &(1)\quad M_t(s^t) + B_t(s^t) = (M_{t-1}(s^{t-1}) - \hat{p}_{t-1}(s^{t-1})c_{1t-1}(s^{t-1})) \\- &\hat{p}_{t-1}(s^{t-1})c_{2t-1}(s^{t-1}) + \hat{p}_{t-1}(s^{t-1})y_{t-1}(s^{t-1})\\ + &\hat{R}_{t-1}(s^{t-1})B_{t-1}(s^{t-1}) + \hat{T}_{t-1}(s^{t-1}) ,\\
+&(2)\quad \hat{p}_t(s^t) c_{1t}(s^t) \leq M_t(s^t),\\
+&(3)\quad c_{1t}(s^t), c_{2t}(s^t), M_t(s^t) \geq 0,\\
+&(4)\quad B_t(s^t) \geq -B.
 \end{align*}
-\item \underline{Government Budget Constraint:} Given prices, the government allocations satisfy the following budget clearing constraint for all $t\geq 1$
-$$\hat{M}_{t}^g + B_t^g = \hat{M}^g_{t-1} + \hat{R}_{t-1}B_{t-1}^g + \hat{T}_{t-1}.$$
-\item \underline{Market Clearing:} The allocations also satisfy the following market clearing conditions for all $t\geq 0$
+\item \underline{Government Budget Constraint:} Given prices, the government allocations satisfy the following budget clearing constraint for all $t\geq 1$ and $s^t$
+$$\hat{M}_{t}^g(s^t) + B_t^g(s^t) = \hat{M}^g_{t-1}(s^t) + \hat{R}_{t-1}(s^t)B_{t-1}^g(s^t) + \hat{T}_{t-1}(s^t).$$
+\item \underline{Market Clearing:} The allocations also satisfy the following market clearing conditions for all $t\geq 0$ and $s^t$
 \begin{align*}
-[Goods]&: \quad \hat{c}_{1t} + \hat{c}_{2t} = y,\\
-[Bonds]&: \quad \hat{B}_t^g = \hat{B}_t,\\
-[Money]&:\quad \hat{M}_t^g = \hat{M}_t.
+[Goods]&: \quad \hat{c}_{1t}(s^t) + \hat{c}_{2t}(s^t) = y_t(s^t),\\
+[Bonds]&: \quad \hat{B}_t^g (s^t)= \hat{B}_t(s^t),\\
+[Money]&:\quad \hat{M}_t^g(s^t) = \hat{M}_t(s^t).
 \end{align*}
 \end{itemize}
 \end{solution}
     \item Assume government policy is characterized by a sequence of constant interest rates, $R_t = R > 1$ for all $t$ and for all realizations of the exogenous uncertainty. Characterize the stationary competitive equilibrium.
 \begin{solution}
 Let's first take a look at the household's optimization problem and corresponding first order conditions, given that the utility function satisfies the inada conditions, we can write the lagrangian as
-$$\mathcal{L}(c_{1t}, c_{2t}, M_t, B_t, \lambda_t, \mu_t) = \sum_{t=0}^\infty \beta^t(\log c_{1t} + \alpha \log c_{2t}) + \sum_{t=0}^\infty\lambda_t(\text{long BC}) + \sum_{t=0}^\infty\mu_t(M_t - p_tc_{1t}).$$
+\begin{align*}
+\mathcal{L}(c_{1t}(s^t), c_{2t}(s^t), M_t(s^t), B_t(s^t), \lambda_t(s^t), \mu_t(s^t)) &= \sum_{t=0}^\infty \beta^t(\log c_{1t}(s^t) + \alpha \log c_{2t}(s^t)) \\&+ \sum_{t=0}^\infty\lambda_t(s^t)(\text{long BC})\\& + \sum_{t=0}^\infty\mu_t(s^t)(M_t(s^t) - p_t(s^t)c_{1t}(s^t)).
+\end{align*}
+
 The corresponding FOCs are then:
 \begin{align*}
-[c_{1t}]&: \frac{\beta^t}{c_{1t}} - \lambda_{t} \hat{p}_t - \mu_{t}\hat{p}_t = 0,\\
-[c_{2t}]&: \frac{\alpha \beta^t}{c_{2t}} - \lambda_{t} \hat{p}_t = 0,\\
-[M_t]&: \lambda_{t+1} - \lambda_{t} + \mu_{t+1} = 0,\\
-[B_t]&:  \lambda_{t+1}\hat{R}_{t+1} - \lambda_{t} = 0.
+[c_{1t}(s^t)]&: \frac{\beta^t}{c_{1t}(s^t)} - \lambda_{t}(s^t) \hat{p}_t(s^t) - \mu_{t}(s^t)\hat{p}_t(s^t) = 0,\\
+[c_{2t}(s^t)]&: \frac{\alpha \beta^t}{c_{2t}(s^t)} - \lambda_{t}(s^t) \hat{p}_t(s^t) = 0,\\
+[M_t(s^t)]&:-\lambda_t(s^t) + \sum_{s^{t+1}|s^t} \lambda_{t+1}(s^{t+1}) - \mu_t(s^t) = 0,\\
+[B_t(s^t)]&:  \lambda_t(s^t) = R_t(s^t)\sum_{s^{t+1}|s^t} \lambda_{t+1}(s^{t+1}).
 \end{align*} 
-If the cash-in-advance constraint is not binding, then we know that $\mu_{t} = 0$ for all $t\geq 0$. From the first FOC, this gives us that $\lambda_{t+1} = \lambda_{t}$ which further implies that $R_{t+1} = R = 1$. This, however, is a contradiction with the government policy that $R > 1$.
+If the cash-in-advance constraint is not binding, then we know that $\mu_{t}(s^t) = 0$ for all $t\geq 0$ and $s^t$. From the third FOC, this gives us that $\lambda_t(s^t) = \sum_{s^{t+1}|s^t} \lambda_{t+1}(s^{t+1})$ which further implies (from the fourth FOC) that $R_{t+1} = R = 1$. This, however, is a contradiction with the government policy that $R > 1$.
 
-Now let's handle the case that the money in advance constraint is indeed binding, specifically that $M_t = p_tc_{1t}$. Using this, we can rewrite the first FOC as $$\beta^t - \lambda_{t} M_t - \mu_{t}M_t = 0 \implies M_t = \frac{\beta^t}{\lambda_{t} + \mu_{t}}, \,\lambda_t + \mu_t = \frac{\beta^t}{M_t}.$$ Using the third FOC, we then get that $$\lambda_{t+1} - \lambda_{t} + \mu_{t+1} = 0 \implies \lambda_t = \frac{\beta^{t+1}}{M_{t+1}} \implies \beta_{t+1} = \lambda_t p_t c_{1t}.$$
-Next from the second FOC, we get $$\beta^t = \frac{\lambda_t p_t c_{2t}}{\alpha}.$$
-Dividing these two expressions we get that $$\beta = \frac{\alpha c_{1t}}{c_{2t}} \implies c_{2t} = \frac{\alpha}{ \beta } c_{1t}.$$ To get consumption, we can finally plug this into the market clearing for goods. 
-$$c_{1t} + c_{2t} = y \implies c_{1t}(1 + \alpha / \beta) = y \implies \boxed{c_{1t} = \frac{\beta}{\alpha + \beta}y,\, c_{2t} = \frac{\alpha}{\alpha + \beta}y.}$$
+Now let's handle the case that the money in advance constraint is indeed binding, specifically that $M_t(s^t) = p_t(s^t)c_{1t}(s^t)$. Using this, we can rewrite the first FOC as $$\beta^t - \lambda_{t}(s^t) M_t(s^t) - \mu_{t}(s^t)M_t(s^t) = 0 \implies \,\lambda_t(s^t) + \mu_t(s^t) = \frac{\beta^t}{M_t(s^t)}.$$ Using the third FOC, we then get that \begin{align*}-\lambda_{t}(s^t) + \sum_{s^{t+1}|s^t}\lambda_{t+1}(s^{t+1}) - \mu_{t}(s^t) = 0 &\implies \sum_{s^{t+1}|s^t}\lambda_{t+1}(s^{t+1}) = \frac{\beta^{t}}{M_{t}(s^t)}\\ &\implies \beta^{t} = \sum_{s^{t+1}|s^t}\lambda_{t+1}(s^{t+1}) p_t(s^t) c_{1t}(s^t).\end{align*}
+Next from the second FOC, we get $$\beta^t = \frac{\lambda_t(s^t) p_t(s^t) c_{2t}(s^t)}{\alpha}.$$
+Dividing these two expressions we get that $$1 = \frac{\alpha \sum_{s^{t+1}|s^t}\lambda _{t+1}(s^{t+1})c_{1t}(s^t)}{\lambda_t(s^t) c_{2t}(s^t)} \implies c_{2t}(s^t) = \frac{\alpha}{R} c_{1t}(s^t).$$ To get consumption, we can finally plug this into the market clearing for goods. 
+$$c_{1t}(s^t)\left(1 + \frac{\alpha}{R}\right) = y_t(s^t) \implies \boxed{c_{1t}(s^t) = \frac{R}{\alpha +  R}y_t(s^t),\, c_{2t}(s^t) = \frac{\alpha}{\alpha + R}y_t(s^t).}$$
 Next, to pin down prices, we know from the last FOC that 
 \begin{align*}
-R &= \frac{\lambda_t}{\lambda_{t+1}},\\
-R &= \frac{\beta^{t+1}}{p_tc_{1t}}\frac{p_{t+1}c_{1t+1}}{\beta^{t+2}},\\
-\beta R &= \frac{p_{t+1}}{p_t},\\
+R &= \frac{\lambda_{t}(s^t)}{\sum_{s^{t+1|s^t}}\lambda_{t+1}(s^{t+1})},\\
+R &= \frac{p_t(s^t)c_{1t}(s^t)}{\beta^t},\\
+\beta R &=\frac{p_{t}(s^t)y_{t}(s^t)}{ \sum_{s^{t-1}}p_{t-1}(s^{t-1})y_{t-1}(s^{t-1})},\\
 \beta R p_t &= p_{t+1}.
-\end{align*} Setting $p_0 = 1$ as the numeraire, we get that prices are $$\boxed{p_t = (\beta R)^t.}$$ Money holdings follows very clearly $$\boxed{M_t^g = M_t = \frac{R^t\beta^{t+1}y}{\alpha + \beta}.}$$
+\end{align*} Setting $p_0 = 1$ as the numeraire, we get that prices are $$\boxed{p_t = (\beta R)^t.}$$ Money holdings follows very clearly $$\boxed{M_t^g = M_t = .}$$
 Finally, we can't really pin down $B_t$ and $T_t$ (we don't have enough equations to do so) other than noting that $T_t = B_{t+1} - RB_t$ and $B_t^g = B_t$.
 \end{solution}
     \item Compare stationary equilibrium outcomes and welfare for two economies with different constant interest rates, but are otherwise identical.
 \begin{solution}
-Note that the equilibrium consumption allocations don't depend on the interest rate. This means that welfare will be equal across both economies. What does change, however, are the price levels and money holdings, both of which increase at the same rate as $R$ increases and decrease at the same rate when $R$ decreases.
+Welfare in this economy is simply the 
 \end{solution}
 \end{enumerate}
 

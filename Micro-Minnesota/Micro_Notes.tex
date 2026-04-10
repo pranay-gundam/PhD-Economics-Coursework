@@ -170,6 +170,12 @@ From here we continue
 \Longleftrightarrow 1&> \frac{\beta\left[\ln(\beta\ln(U_{t+2}(\bar{c}^{t+2}) + 1) + w +1) - \ln(\beta\ln(U_{t+2}(\hat{c}^{t+2}) + 1) + y +1)\right]}{w - y},\\
 \Longleftrightarrow 1&> \frac{\beta\left[\ln(w +A) - \ln(y +A)\right]}{w - y},
 \end{align*}where $A = \beta\ln(U_{t+2}(\bar{c}^{t+2}) + 1) + 1 = \beta\ln(U_{t+2}(\hat{c}^{t+2}) + 1) + 1$. From here, using mean value theorem, we can write $$\frac{\beta\left[\ln(w +A) - \ln(y +A)\right]}{w - y} < \frac{\beta}{w + A} \leq \beta < 1.$$ Since we used double implications the whole way, we have shown that $$U_t(\hat{c}^t) > U_t(\bar{c}^t)$$ and indeed this family of utility functions exhibits preference for early consumption.
+
+One note is that instead of using the mean value theorem, we can use the property that $\ln(1 + x) < x$ for all $x >0$. Specifically, we can write $B = \beta\ln(U_{t+2}(\bar{c}^{t+2}) + 1)$, which we know is greater than $0$, and then define $C_w =  \beta\ln(U_{t+2}(\bar{c}^{t+2}) + 1) + w$ and $C_y = \beta\ln(U_{t+2}(\bar{c}^{t+2}) + 1) + y$. This let's us write both of the expressions
+\begin{align*}
+\ln(1 + C_w) < C_w &\implies \beta\ln(1 + C_w) < C_w\\
+\ln(1 + C_y) < C_y &\implies \beta\ln(1 + C_y) < C_y
+\end{align*}Subtracting these two expressions gives $$w - y > \beta[\ln(1 + C_w) - \ln(1 + C_y)],$$ which is exactly the expression we needed to prove above.
 \end{solution}
     \item Derive the marginal rate of intertemporal substitution between consumption at dates $t+1$ and $t$, and demonstrate that it is strictly less than 1 for every consumption plan.
 \begin{solution}
@@ -270,16 +276,17 @@ We can get the whole set of equilibria by shifting the numeraire.
 \end{solution}
     \item Find the set of competitive equilibria if Amy initially owns the grapes and Barney owns the firms?
 \begin{solution}
-A simple trap that people may fall into is conclude that Amy consumes all of her endowment of grapes simply because she prefers only grapes and has no reason to sell her endowment. This is not how competitive equilibrium works! The agents in the economy don't know that no one else has no endowment of grapes or any of their characteristics. Agents only interact with prices and the wealth generation from the value that prices imbues on their endowment. So even if this may end up being the case, the reason is not because Amy knows specific information about other people and refuses to share her endowment.
+A simple trap that people may fall into is conclude that Amy consumes all of her endowment of grapes simply because she prefers only grapes and has no reason to sell her endowment. This is not how competitive equilibrium works! The agents in the economy don't know that no one else has no endowment of grapes or any of their characteristics. Agents only interact with prices and the wealth generation from the value that prices imbues on their endowment. So even if this may end up being the case, the reason is not because Amy knows specific information about other people and refuses to share her endowment. 
 
-Note first that the firm's problem is the exact same as before. Now, we know that Barney get's the profits and consumes only wine, this means that he consumes $ 2\frac{p_w}{p_g}$ units of wine. For Amy, she sells her entire endowment of grapes at price $p_g$ and uses it to buy only grapes, which means that she consumes $p_g/p_g = 1$ units of grapes.
+In this case, we actually get, however, that \textbf{there is no competitive equilibrium}.
+
+To show this, note first that the firm's problem is the exact same as before. Now, we know that Barney get's the profits and consumes only wine, this means that he consumes $ 2\frac{p_w}{p_g}$ units of wine. For Amy, she sells her entire endowment of grapes at price $p_g$ and uses it to buy only grapes, which means that she consumes $p_g/p_g = 1$ units of grapes.
 
 To pin down prices, consider the market clearing condition for grapes
 \begin{align*}
 1 + 2\frac{p_w^2}{p_g^2} &= 1,\\
 \frac{p_w^2}{p_g^2} &= 0.
-\end{align*} Setting a numeraire of $p_g = 1$ we get that $p_w = 1$. Putting everything together, we can finally classify the competitive equilibrium as $$\boxed{Z_A = (0,1),\,Z_B = (0, 0),\, H_1 = H_2 = (0, 0),\, p_g = 1,\, p_w = 0.}$$
-We can get the whole set of equilibria by shifting the numeraire.
+\end{align*} Setting a numeraire of $p_g = 1$ we get that the only possible value for the price of wine is $p_w = 0$. This, however, is not possible because a price of $0$ for wine would entail that Barney would buy an infinite amount of wine while firms are producing no wine (given that Amy consumes all of the grapes). This violates the market clearing for wine. As such, there is no possible competitive equilibrium in this market.
 \end{solution}
 \end{enumerate}
 
@@ -308,6 +315,7 @@ B & 0,0 & 1,5 \\
 \begin{enumerate}
   \item[(1)] Write the game in extensive form.
 \begin{solution}
+
 \end{solution}
   \item[(2)] Write the game in normal form.
 \begin{solution}
