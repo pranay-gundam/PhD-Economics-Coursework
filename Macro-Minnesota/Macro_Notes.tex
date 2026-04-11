@@ -404,12 +404,12 @@ Assume real debt holdings are bounded below by a large negative number.
 \begin{enumerate}[label = (\alph*)]
     \item Define a competitive equilibrium. In particular, be precise about what allocations depend on.
 \begin{solution}
-A competitive equilibrium in this economy is a collection of household allocations $\{\hat{c}_{1t}(s^t), \hat{c}_{2t}(s^t), \hat{M}_t(s^t), \hat{B}_t(s^t)\}_{t,s^t}$, government allocations $\{\hat{M}_t^g(s^t), \hat{B}_t^g(s^t), \hat{T}_t(s^t)\}_{t, s^t}$, and prices $\{\hat{p}_t(s^t), \hat{R}_t(s^t)\}_{t, s^t}$ such that:
+A competitive equilibrium in this economy (assuming complete markets) is a collection of household allocations $\{\hat{c}_{1t}(s^t), \hat{c}_{2t}(s^t), \hat{M}_t(s^t), \hat{B}_t(s^t)\}_{t,s^t}$, government allocations $\{\hat{M}_t^g(s^t), \hat{B}_t^g(s^t), \hat{T}_t(s^t)\}_{t, s^t}$, and prices $\{\hat{p}_t(s^t), \hat{R}_t(s^t)\}_{t, s^t}$ such that:
 \begin{itemize}
 \item \underline{Household Maximization:} Given prices, endowment $y$, initial money holdings $\bar{M}_0(s^0)$, initial bond holdings $\bar{B}_0(s^0)$, government transfers, and probabilities of state the household allocations solve the maximization problem
 \begin{align*}
 &\max_{c_{1t}(s^t), c_{2t}(s^t), M_t(s^t), B_t(s^t)} \sum_{t=0}^\infty\sum_{s^t}\beta^t(\log c_{1t}(s^t) + \alpha \log c_{2t}(s^t))\\
-s.t. \quad &(1)\quad M_t(s^t) + B_t(s^t) = (M_{t-1}(s^{t-1}) - \hat{p}_{t-1}(s^{t-1})c_{1t-1}(s^{t-1})) \\- &\hat{p}_{t-1}(s^{t-1})c_{2t-1}(s^{t-1}) + \hat{p}_{t-1}(s^{t-1})y_{t-1}(s^{t-1})\\ + &\hat{R}_{t-1}(s^{t-1})B_{t-1}(s^{t-1}) + \hat{T}_{t-1}(s^{t-1}) ,\\
+s.t. \quad &(1)\quad M_{t+1}(s^{t+1}) + B_{t+1}(s^{t+1}) = (M_{t}(s^{t}) - \hat{p}_{t}(s^{t})c_{1t}(s^{t})) \\- &\hat{p}_{t}(s^{t})c_{2t}(s^{t}) + \hat{p}_{t}(s^{t})y_{t}(s^{t})\\ + &\hat{R}_{t}(s^{t})B_{t}(s^{t}) + \hat{T}_{t}(s^{t}) ,\\
 &(2)\quad \hat{p}_t(s^t) c_{1t}(s^t) \leq M_t(s^t),\\
 &(3)\quad c_{1t}(s^t), c_{2t}(s^t), M_t(s^t) \geq 0,\\
 &(4)\quad B_t(s^t) \geq -B.
@@ -435,27 +435,37 @@ The corresponding FOCs are then:
 \begin{align*}
 [c_{1t}(s^t)]&: \frac{\beta^t}{c_{1t}(s^t)} - \lambda_{t}(s^t) \hat{p}_t(s^t) - \mu_{t}(s^t)\hat{p}_t(s^t) = 0,\\
 [c_{2t}(s^t)]&: \frac{\alpha \beta^t}{c_{2t}(s^t)} - \lambda_{t}(s^t) \hat{p}_t(s^t) = 0,\\
-[M_t(s^t)]&:-\lambda_t(s^t) + \sum_{s^{t+1}|s^t} \lambda_{t+1}(s^{t+1}) - \mu_t(s^t) = 0,\\
-[B_t(s^t)]&:  \lambda_t(s^t) = R_t(s^t)\sum_{s^{t+1}|s^t} \lambda_{t+1}(s^{t+1}).
+[M_{t+1}(s_{t+1},s^t)]&:-\lambda_t(s^t) +  \lambda_{t+1}(s_{t+1},s^t) + \mu_{t+1}(s_{t+1},s^t) = 0,\\
+[B_{t+1}(s_{t+1},s^t)]&:  -\lambda_t(s^t) + R_{t+1}(s_{t+1},s^t)\lambda_{t+1}(s_{t+1},s^t) = 0.
 \end{align*} 
-If the cash-in-advance constraint is not binding, then we know that $\mu_{t}(s^t) = 0$ for all $t\geq 0$ and $s^t$. From the third FOC, this gives us that $\lambda_t(s^t) = \sum_{s^{t+1}|s^t} \lambda_{t+1}(s^{t+1})$ which further implies (from the fourth FOC) that $R_{t+1} = R = 1$. This, however, is a contradiction with the government policy that $R > 1$.
+If the cash-in-advance constraint is not binding, then we know that $\mu_{t+1}(s_{t+1},s^t) = 0$ for all $t\geq 0$ and $(s_{t+1},s^t)$. From the third FOC, this gives us that $\lambda_t(s^t) = \lambda_{t+1}(s_{t+1},s^t)$ which further implies (from the fourth FOC) that $R_{t+1}(s_{t+1},s^t) = R = 1$. This, however, is a contradiction with the government policy that $R > 1$.
 
-Now let's handle the case that the money in advance constraint is indeed binding, specifically that $M_t(s^t) = p_t(s^t)c_{1t}(s^t)$. Using this, we can rewrite the first FOC as $$\beta^t - \lambda_{t}(s^t) M_t(s^t) - \mu_{t}(s^t)M_t(s^t) = 0 \implies \,\lambda_t(s^t) + \mu_t(s^t) = \frac{\beta^t}{M_t(s^t)}.$$ Using the third FOC, we then get that \begin{align*}-\lambda_{t}(s^t) + \sum_{s^{t+1}|s^t}\lambda_{t+1}(s^{t+1}) - \mu_{t}(s^t) = 0 &\implies \sum_{s^{t+1}|s^t}\lambda_{t+1}(s^{t+1}) = \frac{\beta^{t}}{M_{t}(s^t)}\\ &\implies \beta^{t} = \sum_{s^{t+1}|s^t}\lambda_{t+1}(s^{t+1}) p_t(s^t) c_{1t}(s^t).\end{align*}
+Now let's handle the case in which the money in advance constraint is indeed binding, specifically that $M_t(s^t) = p_t(s^t)c_{1t}(s^t)$. Using this, we can rewrite the first FOC as $$\beta^t - \lambda_{t}(s^t) M_t(s^t) - \mu_{t}(s^t)M_t(s^t) = 0 \implies \,\lambda_t(s^t) + \mu_t(s^t) = \frac{\beta^t}{M_t(s^t)}.$$ 
+Using the third FOC, we then get that \begin{align*}-\lambda_t(s^t) +  \lambda_{t+1}(s_{t+1},s^t) + \mu_{t+1}(s_{t+1},s^t) = 0 &\implies \lambda_{t}(s^{t}) = \frac{\beta^{t+1}}{M_{t+1}(s_{t+1},s^t)},\\ 
+&\implies \beta^{t} = \lambda_{t-1}(s^{t-1}) p_t(s_{t},s^{t-1}) c_{1t}(s_{t},s^{t-1}).\end{align*}
 Next from the second FOC, we get $$\beta^t = \frac{\lambda_t(s^t) p_t(s^t) c_{2t}(s^t)}{\alpha}.$$
-Dividing these two expressions we get that $$1 = \frac{\alpha \sum_{s^{t+1}|s^t}\lambda _{t+1}(s^{t+1})c_{1t}(s^t)}{\lambda_t(s^t) c_{2t}(s^t)} \implies c_{2t}(s^t) = \frac{\alpha}{R} c_{1t}(s^t).$$ To get consumption, we can finally plug this into the market clearing for goods. 
-$$c_{1t}(s^t)\left(1 + \frac{\alpha}{R}\right) = y_t(s^t) \implies \boxed{c_{1t}(s^t) = \frac{R}{\alpha +  R}y_t(s^t),\, c_{2t}(s^t) = \frac{\alpha}{\alpha + R}y_t(s^t).}$$
+Dividing these two expressions we get that $$1 = \frac{\alpha \lambda_{t-1}(s^{t-1})c_{1t}(s_t, s^{t-1}}{\lambda_t(s_t, s^{t-1})c_{2t}(s_t, s^{t-1})} \implies c_{2t}(s^t) = \alpha R c_{1t}(s^t).$$ To get consumption, we can finally plug this into the market clearing for goods. 
+$$c_{1t}(s^t)\left(1 + \alpha R\right) = y_t(s^t) \implies \boxed{c_{1t}(s^t) = \frac{1}{1 + \alpha R}y_t(s^t),\, c_{2t}(s^t) = \frac{\alpha R}{1 + \alpha R}y_t(s^t).}$$
 Next, to pin down prices, we know from the last FOC that 
 \begin{align*}
-R &= \frac{\lambda_{t}(s^t)}{\sum_{s^{t+1|s^t}}\lambda_{t+1}(s^{t+1})},\\
-R &= \frac{p_t(s^t)c_{1t}(s^t)}{\beta^t},\\
-\beta R &=\frac{p_{t}(s^t)y_{t}(s^t)}{ \sum_{s^{t-1}}p_{t-1}(s^{t-1})y_{t-1}(s^{t-1})},\\
-\beta R p_t &= p_{t+1}.
-\end{align*} Setting $p_0 = 1$ as the numeraire, we get that prices are $$\boxed{p_t = (\beta R)^t.}$$ Money holdings follows very clearly $$\boxed{M_t^g = M_t = .}$$
-Finally, we can't really pin down $B_t$ and $T_t$ (we don't have enough equations to do so) other than noting that $T_t = B_{t+1} - RB_t$ and $B_t^g = B_t$.
+R &= \frac{\lambda_{t}(s^t)}{\lambda_{t+1}(s_{t+1}, s^t)},\\
+R &= \frac{\alpha \beta^t}{p_t(s^t)c_{2t}(s^t)}\frac{p_{t+1}(s_{t+1},s^t)c_{2t+1}(s_{t+1}, s^t)}{\alpha \beta^{t+1}},\\
+\beta R &= \frac{p_{t+1}(s_{t+1},s^t) y_{t+1}(s_{t+1}, s^t)}{p_t(s^t)y_{t}(s^t)},\\
+p_{t}(s_{t},s^{t-1}) &= \beta R p_{t-1}(s^{t-1})\frac{y_{t-1}(s^{t-1})}{y_{t}(s_{t}, s^{t-1})}.
+\end{align*} Now finally, setting $p_0(s_0) = 1$ as the numeraire, we get that prices are $$\boxed{p_t(s^t) = p_t(s_{t},s^{t-1}) = (\beta R)^t\prod_{s=0}^{\tau-1}\frac{y_{\tau}(s^\tau)}{y_{\tau+1}(s_{\tau+1}, s^\tau)}.}$$ Money holdings follows very clearly $$\boxed{M_t^g(s^{t}) = M_t(s^{t}) = p_t(s^{t})c_{1t}(s^t).}$$
+Finally, we can't really pin down $B_t(s^{t})$ and $T_t(s^{t})$ (we don't have enough equations to do so) other than noting that $T_t(s^t) = B_{t+1}(s_{t+1}, s^t) - RB_t(s^t)$ and $B_t^g(s^t) = B_t(s^t)$.
+
+Keep in mind, everything I have done above assumes complete markets for bonds and money holdings!
 \end{solution}
     \item Compare stationary equilibrium outcomes and welfare for two economies with different constant interest rates, but are otherwise identical.
 \begin{solution}
-Welfare in this economy is simply the 
+Welfare in this economy is simply the sum 
+\begin{align*}
+\sum_{t=0}^\infty&\sum_{s^t}\beta^t(\log c_{1t}(s^t) + \alpha \log c_{2t}(s^t))\\
+&= \sum_{t=0}^\infty\sum_{s^t}\beta^t\left(\log\left(\frac{y_t(s^t)}{1 + \alpha R}\right) + \alpha \log c_{2t}\left(\frac{\alpha R y_t(s^t)}{1 + \alpha R}\right)\right)\\
+ &= \sum_{t=0}^\infty\sum_{s^t}\beta^t\left[\alpha\log(\alpha R) - (1 + \alpha)\log(1 + \alpha R) + (1 + \alpha)\log(y_s(s^t))\right].
+\end{align*}
+Since both $\alpha < 1 + \alpha$ and $\log(\alpha R) < \log(1 + \alpha R)$ we can say that increases in $R$ decreases welfare. For prices, we can see clearly than an increase in $R$ also increases prices and similarly for money holdings.
 \end{solution}
 \end{enumerate}
 
