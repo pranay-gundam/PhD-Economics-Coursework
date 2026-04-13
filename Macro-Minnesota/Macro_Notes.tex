@@ -223,7 +223,7 @@ We will see why more clearly in the Chari section and conditions that ensure tha
 \end{itemize}
 
 \subsection{Exercises}
-Go back to each section and make clear which questions they should refer to corresponding to each section!
+Note for myself: Go back to each section and make clear which questions they should refer to corresponding to each section!
 
 \subsubsection{Prelim: Spring 2025}
 Consider an economy with a representative consumer with the utility function
@@ -524,6 +524,16 @@ We will discuss the competitive equilibrium of this incomplete markets economy.
       c(z, A) = \frac{zA}{\psi}.
     \]
  \begin{solution}
+First, we know that since firms operate in a competitve environment, it must be that wages are equal to marginal returns to labor. Specifically, we know that $w = Y_n = A_t$. With this in mind, we can then write the following bellman equation 
+%\begin{align*}
+%V(z, A, a) &= \max_{c, n, a'}\left{\log(c) - \psi n + \beta \mathbb{E}[V(z',A', a')]\right}\\
+%s.t. & c + a' = Ra + Azn.
+%\end{align*}
+The budget constraint allows us to remove $n$ which let's us rewrite
+%\begin{align*}
+%V(z, A, a) &= \max_{c, n, a'}\left{\log(c) - \frac{\psi}{Az} \left(c + a' - Ra\right) + \beta %\mathbb{E}[V(z',A', a')]\right}\\
+%s.t.\quad & c + a' = Ra + Azn.
+%\end{align*}
 \end{solution}
   \item The equilibrium interest rate $R_t$ is stochastic, but only a
     function of the realized aggregate productivity level $A$. Find $R(A)$.
