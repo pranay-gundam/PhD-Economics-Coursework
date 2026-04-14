@@ -98,21 +98,101 @@ Consider a function $f:X\times T \to R$ and the corresponding function $$\phi(t)
 \end{theorem}
 
 \subsection{Uncertainty and Utility}
-state-separable utility representation
+Now we start discussing the interplay between preferences / utility functions and risk. Before that, there are a handful of key definitions to consider.
+\begin{definition}[State Separable Utility Representation]
+We say that a preference $\succeq$ has a state-separable utility representation, if there exist utility functions $v_s:\mathbb{R}_+ \to \mathbb{R}$ for all $s$, such that $$c \succeq \Longleftrightarrow \sum_{s = 1}^S v_s(c_s) \geq \sum_{s=1}^S v_s(c_s'),$$ for every $c,c'\in \mathbb{R}_+^S.$
+\end{definition}
 
-expected utility representation
+\begin{definition}[Expected Utility Representation]
+We say that $\succeq$ has an expected utility representation with respect to probabilities $\{\pi_s\}$, if there exists a function $v:\mathbb{R}_+ \to \mathbb{R}$ such that $$c\succeq c' \Longleftrightarrow \sum_{s=1}^S\pi_sv(c_s) \geq \sum_{s=1}^S \pi_s v(c_s'),$$ for every $c,c'\in \mathbb{R}_+^S$. We call the function $v$ in this case as the \underline{von Neumann-Morgenstern (or Bersnoulli) utility}
+\end{definition}
 
-ICC
+I'm not going to cover proofs here that won't be incredibly focused on during the prelims. One important theorem to consider, however, is the existence of a state separable utility representation.
+\begin{definition}[Axiom of Irrelevance of Common Consequences]
+Take any $c\in \mathbb{R}_+^S$ and $y\in \mathbb{R}$ and write $$c_{-s}y = (c_1,c_2,\ldots, y, c_{s+1}, c_{s+2}, \ldots, c_S).$$ That it is, $c_{-s}y$ is the vector $c$ that has replaced $c_s$ with $y$. A preference relation satisfies the ICC axiom if for all $c,d\in \mathbb{R}_+^S$ and any $y,w\in \mathbb{R}_+$ the following condition holds $$c_{-s}y\succeq d_{-s}y \Longleftrightarrow c_{-s}w \succeq d_{-s}w.$$
+\end{definition}
 
-riskiness
+\begin{theorem}[Theorem 16.1]
+If $S \geq 3$ and the preference relation $\succeq$ is strictly increasing and continuous. Then $\succeq$ has a state-separable utility representation iff it satisfies the ICC axiom.
+\end{theorem}
 
-ellsberg paradox
+Now consider probabilities of states $\{\pi_s\}$such that $\pi_s > 0$ for each $s$. Additionally, we denote $E(c) = \sum_s \pi_s c_s$ as the expected value of $c = (c_1, \ldots c_S)$ and $\mathbf{E}(c) = (E(c), \ldots, E(c))$ as corresponding risk-free consumption plan.
+\begin{definition}[Risk Aversion]
+We say that preference relation $\succeq$ is risk averse with respect to $\{\pi_s\}$, if $$\mathbf{E}(c) \succeq c$$ for every $c$.
+\end{definition}
+\begin{theorem}[Theorem 16.2]
+If $S \geq 3$ and the preference relation $\succeq$ is strictly increasing and continuous. Then $\succeq$ satisfies the ICC Axiom and is risk averse with respect to probabilities $\{\pi_s\}$ if and only if it has a concave expected utility representation with respect to $\{\pi_s\}$.
+\end{theorem}
+\begin{definition}[Ellsberg Paradox]
+An urn has 90 balls of which 30 are red and the rest are blue and yellow.
+Exact numbers of blue balls and yellow balls are not known. Consider bets of
+\$1 on a ball of a certain color (or colors) drawn from the urn. Denote bets
+by $1_R$, $1_B$, $1_{R \vee Y}$, etc. Typical preferences over bets are
+\[
+    1_R \succ 1_B, \qquad 1_{B \vee Y} \succ 1_{R \vee Y}
+\]
+This pattern of preferences is incompatible with expected utility: it cannot be
+that $\pi(R) > \pi(B)$ and $\pi(B \vee Y) > \pi(R \vee Y)$, because
+$\pi(B \vee Y) = \pi(B) + \pi(Y)$ holds for any probability measure $\pi$.
+ \end{definition}
 
-lotteries and risk aversion
+\begin{definition}[Multiple-Prior Expected Utility] 
+An alternative to expected utility and one that can explain the Ellsberg
+paradox is the \textbf{multiple-prior expected utility.} It takes the form
+\begin{equation}
+    \min_{P \in \mathcal{P}}\, E_P[v(c)], \tag{\textit{mpeu}}
+\end{equation}
+where $v : R_+ \to R$ is the von Neumann--Morgenstern utility (with no date-0
+consumption) and $\mathcal{P}$ is a convex and closed set of probability
+measures on $\mathcal{S}$.
+ 
+The set of probability measures $\mathcal{P}$ reflects the agent's
+\textbf{ambiguous beliefs}.
+\end{definition}
+Next, let's try to tie together probabilities and preferences directly. Let $Z  = \{z_1, \ldots, z_K\}$ be a finite set of outcomes. A \textbf{lottery} is a probability distribution on $Z$. It is an assignment of probabilities $\{p_i\}_{i=1}^K$ where $p_i$ is the probability of winning outcome $z_i$. Agents can have pereferences over lotteries and 
+\begin{definition}[Expected Utility Representation]
+Preference relation $\succeq$ on the set of lotteries $\mathcal{L}$ has an expected utility representation if there exists a function $v:Z\to \mathbb{R}$ such that $$L\succeq L'\Longleftrightarrow \sum_{i=1}^Kp_iv(z_i) \geq \sum_{i=1}^Kp_i'v(z_i).$$
+\end{definition}
+\begin{definition}[Definition 18.1]
+$\tilde{z}$ \underline{first-order stochastically dominates} $\tilde{y}$ if
+\begin{equation}
+    F_z(t) \leq F_y(t), \qquad \forall t \in [a, b].
+\end{equation}
+\end{definition}
+ 
+\begin{theorem}[Theorem 18.2]
+$\tilde{z}$ \underline{first-order stochastically dominates} $\tilde{y}$ \textit{if and only if}
+\[
+    E[v(\tilde{z})] \geq E[v(\tilde{y})]
+\]
+\textit{for \underline{every} nondecreasing continuous $v$.}
+\end{theorem}
+That is, $\tilde{z}$ FSD $\tilde{y}$ if and only if every expected-utility
+maximizing agent with nondecreasing utility prefers $\tilde{z}$ to $\tilde{y}$.
+ 
+ 
+\begin{definition}[Definition 18.4]
+$\tilde{z}$ \underline{second-order stochastically dominates} $\tilde{y}$ if
+\begin{equation}
+    \int_a^w F_z(t)\,dt \leq \int_a^w F_y(t)\,dt, \qquad \forall w \in [a, b].
+\end{equation}
+\end{definition}
+If $\tilde{z}$ SSD $\tilde{y}$, then $E(\tilde{z}) \geq E(\tilde{y})$. Also, if $\tilde{z}$ FSD
+$\tilde{y}$, then $\tilde{z}$ SSD $\tilde{y}$.
+ 
+\begin{theorem}[Theorem 18.5]
+$\tilde{z}$ \underline{second-order stochastically dominates} $\tilde{y}$
+\textit{if and only if}
+\[
+    E[v(\tilde{z})] \geq E[v(\tilde{y})]
+\]
+\textit{for \underline{every} nondecreasing concave continuous $v$.}
+\end{theorem}
+That is, $\tilde{z}$ SSD $\tilde{y}$ if and only if every agent with risk
+averse nondecreasing expected utility prefers $\tilde{z}$ to $\tilde{y}$. If $\tilde{z}$ SSD $\tilde{y}$ and $\tilde{z}$ and $\tilde{y}$ have the same
+expectation $E(\tilde{z}) = E(\tilde{y})$, then we say that $\tilde{y}$ is
+\textbf{more risky} than $\tilde{z}$.
 
-stochastic dominance
-
-optimal portfolios (dont need a section but definitely need some problems worked out)
 
 \subsection{Recursive Utility}
 
@@ -127,6 +207,8 @@ social welfare function definition
 arrow theorem
 
 \subsection{Exercises}
+Need to include some optimal portfolio problems!
+
 \subsubsection{Prelim: Spring 2025}
 Consider a family of utility functions $\{U_t\}_{t=0}^{\infty}$ defined on the set $\ell_+^{\infty}$ of bounded, positive consumption plans of a single good over infinite time horizon without uncertainty.
 
