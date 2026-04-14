@@ -525,26 +525,42 @@ We will discuss the competitive equilibrium of this incomplete markets economy.
     \]
  \begin{solution}
 First, we know that since firms operate in a competitve environment, it must be that wages are equal to marginal returns to labor. Specifically, we know that $w = Y_n = A_t$. With this in mind, we can then write the following bellman equation 
-%\begin{align*}
-%V(z, A, a) &= \max_{c, n, a'}\left{\log(c) - \psi n + \beta \mathbb{E}[V(z',A', a')]\right}\\
-%s.t. & c + a' = Ra + Azn.
-%\end{align*}
+\begin{align*}
+V(z, A, a) &= \max_{c, n, a'}\left\{\log(c) - \psi n + \beta \mathbb{E}[V(z',A', a')]\right\}\\
+s.t. \quad & c + a' = Ra + Azn.
+\end{align*}
 The budget constraint allows us to remove $n$ which let's us rewrite
-%\begin{align*}
-%V(z, A, a) &= \max_{c, n, a'}\left{\log(c) - \frac{\psi}{Az} \left(c + a' - Ra\right) + \beta %\mathbb{E}[V(z',A', a')]\right}\\
-%s.t.\quad & c + a' = Ra + Azn.
-%\end{align*}
+\begin{align*}
+V(z, A, a) &= \max_{c, a'}\left\{\log(c) - \frac{\psi}{Az} \left(c + a' - Ra\right) + \beta \mathbb{E}[V(z',A', a')]\right\}
+\end{align*} Now, let's take a look at the first order condition for $c$. We get
+$$\frac{1}{c} - \frac{\psi}{Az} = 0 \implies c(z,A) = \frac{zA}{\psi}.$$
 \end{solution}
   \item The equilibrium interest rate $R_t$ is stochastic, but only a
     function of the realized aggregate productivity level $A$. Find $R(A)$.
     \textbf{Hint:} \textit{Use that households with the lowest $z$, $z_L$, are
     always borrowing constrained.}
   \begin{solution}
+Let's first derive the Euler equation. Starting with the envelope condition with respect to assets and then plugging this into the FOC with respect to $a'$, we can write.
+\begin{align*}
+V_a(z', A', a') &= \frac{\psi R}{Az},\\
+\implies \frac{\psi}{Az}&= \beta \mathbb{E}[V_a(z', A', a')],\\
+\implies \frac{\psi}{Az}&= \beta \mathbb{E}\left[\frac{\psi R'}{A'z'}\right],\\
+\implies \frac{1}{Az}&= \beta \mathbb{E}\left[\frac{R'}{A'z'}\right],\\
+\implies \frac{1}{R'} &= \beta Az\mathbb{E}\left[\frac{1}{A'z'}\right],\\
+\implies \frac{1}{R'} &= \beta Az\left(\frac{\pi_z\pi_A}{A_Hz_H} + \frac{\pi_z(1-\pi_A)}{A_Lz_H} + \frac{(1-\pi_z)\pi_A}{A_Hz_L} + \frac{(1-\pi_z)(1-\pi_A)}{A_Lz_L}\right).
+\end{align*}
+We have now boiled down $R$ as an expression of $z$ and $A$ (note also that I have conjectured that $R$ time invariant which I will later confirm). Then, using the hint, we know that households that have been hit with $z_L$ are borrowing constrained and therefore may not necessarily have a binding Euler condition (given that they may want to borrow more). On the other hand, individuals who have been hit with the high productivity shock are guaranteed to have a binding Euler condition (no matter their previous asset holdings) by the asset market clearing condition. As such, we can then continue to write
+\begin{align*}
+\frac{1}{R'} &= \beta Az\left(\frac{\pi_z\pi_A}{A_Hz_H} + \frac{\pi_z(1-\pi_A)}{A_Lz_H} + \frac{(1-\pi_z)\pi_A}{A_Hz_L} + \frac{(1-\pi_z)(1-\pi_A)}{A_Lz_L}\right),\\
+\implies \frac{1}{R'} &= \beta Az_H\left(\frac{\pi_z\pi_A}{A_Hz_H} + \frac{\pi_z(1-\pi_A)}{A_Lz_H} + \frac{(1-\pi_z)\pi_A}{A_Hz_L} + \frac{(1-\pi_z)(1-\pi_A)}{A_Lz_L}\right),\\
+\implies R' &= \frac{1}{\beta A z_H}\left(\frac{\pi_z\pi_A}{A_Hz_H} + \frac{\pi_z(1-\pi_A)}{A_Lz_H} + \frac{(1-\pi_z)\pi_A}{A_Hz_L} + \frac{(1-\pi_z)(1-\pi_A)}{A_Lz_L}\right)^{-1}
+\end{align*} Since this expression is independent of time period, we can write $$\boxed{R(A) = \frac{1}{\beta A z_H}\left(\frac{\pi_z\pi_A}{A_Hz_H} + \frac{\pi_z(1-\pi_A)}{A_Lz_H} + \frac{(1-\pi_z)\pi_A}{A_Hz_L} + \frac{(1-\pi_z)(1-\pi_A)}{A_Lz_L}\right)^{-1}.}$$
 \end{solution}
   \item Let's introduce a government that issues a constant amount of bonds
     $B > 0$ in every period and uses lump-sum transfers/taxes to balance its
     budget. What happens to the equilibrium interest rate after this policy?
   \begin{solution}
+In this case, we now know that the 
 \end{solution}
   \item Under what conditions is such a policy certain to deliver a Pareto
     improvement to all households? How does your answer here differ from the
@@ -638,6 +654,11 @@ A \textbf{steady state solution} is, however, something that we can think about 
 \subsection{The Uzawa two-sector economy}
 
 \subsection{Capital Accumulation and Adjustment Costs}
+
+\subsection{Vintage Capital}
+
+\subsection{Search and Matching}
+Consider a model with 
 
 \subsection{Exercises}
 

@@ -135,6 +135,7 @@ This pattern of preferences is incompatible with expected utility: it cannot be
 that $\pi(R) > \pi(B)$ and $\pi(B \vee Y) > \pi(R \vee Y)$, because
 $\pi(B \vee Y) = \pi(B) + \pi(Y)$ holds for any probability measure $\pi$.
  \end{definition}
+The intuition here is that there are various situations where common characteristics like transitivity and separability for preferences over lotteries fail because humans have preferences that tend to be risk averse. As such, in an attempt to write more consistent utility representations, we employ the use of something like below.
 
 \begin{definition}[Multiple-Prior Expected Utility] 
 An alternative to expected utility and one that can explain the Ellsberg
@@ -196,20 +197,75 @@ expectation $E(\tilde{z}) = E(\tilde{y})$, then we say that $\tilde{y}$ is
 
 \subsection{Recursive Utility}
 
-definition of recursive family of utility functions, and corresponding properties of them
+This section usually corresponds to one specific type of prelim problem (\ref{Prelim: Spring 2025}): we are asked to define families of recursive utility functions, define dynamic consistency and then show a handful of properties of a family of recursive utility functions that can be represented with some aggregator funciton. 
 
-epstein zin weil functions
+To start at the beginning, however, consider one of the most common representation of utility. The discounted utility function
+$$\sum_{t=0}^\infty \beta^t u(c_t).$$ From here, we can define
+\begin{definition}[Continuation Utility Function]
+A function which assigns utility for every consumption plan starting at date-$t$, denoted by $c^t = (c_t, c_{t+1}, \ldots)$, for every $t\geq 1$. Specifically, it is $$U_t(c^t) = \sum_{\tau = t}^\infty \beta^{\tau - t}u(c_\tau).$$
+\end{definition}
+There are several properties of continuation functions and collections of continuation functions that are worth discussing.
+\begin{definition}[Dynamic Consistency]
+A family of continuation functions is dynamically consistent if for every $t$, we have that for every $c,d\in \mathbb{R}_+^\infty$ such that $c_\tau = d_\tau$ for $\tau < t$ $$U_0(c) \geq U_0(d) \Longleftrightarrow U_t(c^t) \geq U_t(d^t).$$
+\end{definition}
 
+\begin{definition}[Recursive Utility and Stationarity]
+More generally, a family of utility functions $\{U_t\}$ is recursive if $$U_t(c^t) = G(u(c_t), U_{t+1}(c^{t+1}))$$for every $c$ and $t$ and some aggregator function $G:\mathbb{R}^2 \to \mathbb{R}$ and in-period utility function $u:\mathbb{R}_+\to \mathbb{R}$
+
+A recursive family of utility functions is stationary if $U_t = U$ for every $t$. That is $$U(c^t) = G(u(c_t), U(c^{t+1})).$$
+\end{definition}
+
+\begin{definition}[Preference for Early Consumption]
+A recursive family of utility functions $\{U_t\}$ exhibits preference for early consumption if for every $c\in C$, $w,v\in \mathbb{R}_+$ such that $w>v$, and every $t$, it is the case that $$U_t((c_1, \ldots, c_{t-1}, w, v, c_{t+2}, \ldots)) > U_t((c_1, \ldots, c_{t-1}, v, w, c_{t+2}, \ldots)).$$
+\end{definition}
+Werner also talks a little about recursive utility under uncertainty, but in my experience, this has never showed up on either a HW, Midterm, Final, or Prelim problem. The concept is generally, not all that different.
+
+Now we must also define a finite set of possible sets at any given time $S$. The product set $S^\infty$ represents the set of all possible sequences of these states over infinite time. Also consider some probability measure $\Pi$ over $S^\infty$. 
+\begin{definition}[Discounted Expected Utility]
+As discussed above, it is a function which assigns utility for every consumption plan starting at date-$t$, denoted by $c^t = (c_t, c_{t+1}, \ldots)$, for every $t\geq 1$. Specifically, it is $$U_t(c^t) = \sum_{\tau = t}^\infty \beta^{\tau - t}\mathbb{E}_t[u(c_\tau)].$$
+\end{definition}
+
+\begin{definition}[State Dependent Recursive Utility and Stationarity]
+A state dependent utility function $U:S\times C\to \mathbb{R}$ is stationary recursive if it satisfies $$U(s_t, c^t(s^t)) = F(c_t(s^t), \mu_{s_t}(U(c^{t+1}))), \quad \forall s_t, t$$for every $c\in C$, where $F:\mathbb{R}_+\times \mathbb{R}\to \mathbb{R}$ is the aggregator and $\mu_s:\mathbb{R}^S \to \mathbb{R}$ is the state dependent certianty equivalent.
+\end{definition}
+
+Although it is quite unlikely that there will be a question related to Epstein-Zin-Weil preferences. This is quite relevant for a lot of work that is being done in macro. 
+\begin{definition}[Epstein-Zin-Weil]
+A recursive utility satisfying $$U_t(c^t) = \left(c_t^\alpha + \beta[\mathbb{E}_t(U_{t+1}(c^{t+1}))^{1 - \rho}]^{\alpha / (1 - \rho)}\right)^{1/\alpha}$$ for $\alpha =\neq 0$ and $\rho \neq 1$.
+\end{definition}
 \subsection{Social Choice}
 
-social welfare function definition
+This section is very tame for Werner relative to everything else. There are rarely any questions regarding it. Consider a world with
+\begin{itemize}
+\item $X$, a set of social alternatives
 
-arrow theorem
+\item $N$, a set of individuals ($N = \{1,2,\ldots, n\}$).
 
+\item $\succeq_i\in \mathcal{R}$, a preference relation of individual $i$ on $X$ and $\mathcal{R}$ is the set of all such preference relations. Let $\mathcal{P}$ denote the subset of $\mathcal{R}$ such that there are no indifferences.
+\end{itemize}
+With these objects in hand, we can then define
+\begin{definition}[Social Welfare Function]
+A function $F\mathcal{P}^n\to \mathcal{R}$ that assigns a (social) preference relationto every profile of individual preferences. Specifically, we denote this as $$\succeq_F \equiv F(\succ_1, \ldots, \succ_n).$$
+\end{definition}
+
+Arrow's theorem is one of the groundbreaking results in economics that everyone is familiar with. We will look at the proof more in depth in the Rahman section, but there is a quick statement of it. First consider the following two qualities that a social welfare function $F$ may have
+\begin{itemize}
+\item (Pareto) For every $x,y\in X$ and every profile $(\succ_1, \ldots, \succ_n)$, if $x\succ_i y$ for all $i$, then $x\succ_F y$.
+
+\item (Independence of Irrelevant Alternatives, IIA) For every $x,y\in X$ and every pair of profiles $(\succ_1, \ldots, \succ_n)$ and $(\succ_1', \ldots, \succ_n')$, it holds
+\begin{center}
+if $x \succ_i y$ iff $x\succ_i' y$ for every $i$, then $x\succeq_F$ iff $x\succeq_F' y.$
+\end{center}
+\end{itemize}
+\begin{theorem}[Arrow's Theorem]
+If there are at least three alternative (i.e. $|X| \geq 3$) and the social welfare function $F$ is both Pareto and satisfies IIA, then $F$ is dictatorial.
+
+That is, there exists some $i^*$ such that if $x\succ_{i^*} y$ then $x\succ_F y$ for every $x,y\in X$ and every profile $(\succ_1, \ldots, \succ_n)$.
+\end{theorem}
 \subsection{Exercises}
 Need to include some optimal portfolio problems!
 
-\subsubsection{Prelim: Spring 2025}
+\subsubsection{Prelim: Spring 2025}\label{Prelim: Spring 2025}
 Consider a family of utility functions $\{U_t\}_{t=0}^{\infty}$ defined on the set $\ell_+^{\infty}$ of bounded, positive consumption plans of a single good over infinite time horizon without uncertainty.
 
 \begin{enumerate}[label = (\alph*)]
