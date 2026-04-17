@@ -346,6 +346,109 @@ $$\hat{w}_t = F_w(\hat{k}_t, 1).$$
 \end{solution}
 \end{enumerate}
 
+\subsubsection{Prelim: Spring 2023 (Infinitely lived consumers with leisure and dynamic programming)}
+Consider an economy in which the representative consumer lives forever. There
+is a good in each period that can be consumed or saved as capital as well as
+labor. The consumer's utility function is
+\[
+    \sum_{t=0}^{\infty} \beta^t u(c_t, x_t).
+\]
+The consumer is endowed with 1 unit of labor in each period, some of which can
+be consumed as leisure, $x_t$, and some of which is supplied as labor,
+$\ell_t$. The consumer is also endowed with $\bar{k}_0$ units of capital in
+period 0. Feasible allocations satisfy
+\[
+    c_t + k_{t+1} - (1-\delta)k_t \leq f(k_t, \ell_t).
+\]
+ 
+\begin{enumerate}
+    \item[(a)] Formulate the problem of maximizing the representative consumer's
+        utility subject to feasibility conditions as a dynamic programming
+        problem. Write down the appropriate Bellman's equation. Make appropriate
+        assumptions on the parameters $\beta$ and $\delta$ and on the functions
+        $u$ and $f$ that guarantee a solution to Bellman's equation. Cite any
+        results that you need, but do not prove anything.
+    \begin{solution}
+ 
+    \end{solution}
+ 
+    \item[(b)] Define a sequential markets equilibrium for this economy. Suppose
+        that you have solved the dynamic programming problem in part (a). Explain
+        carefully how to calculate the sequential markets equilibrium.
+    \begin{solution}
+ 
+    \end{solution}
+ 
+    \item[(c)] Define an Arrow--Debreu equilibrium for this economy. Suppose
+        that you have solved the dynamic programming problem in part (a). Explain
+        carefully how to calculate the Arrow--Debreu equilibrium.
+    \begin{solution}
+ 
+    \end{solution}
+ 
+    \item[(d)] Suppose now that there are equal amounts of two types of consumers
+        in the economy. The two types of consumers have the same discount factor
+        $\beta$. They have different utility functions in each period,
+        $u_1(c, x)$ and $u_2(c, x)$, different endowments of labor in each
+        period, $\bar{\ell}^1$ and $\bar{\ell}^2$, and different initial
+        endowments of capital, $\bar{k}_0^1$ and $\bar{k}_0^2$. Define a
+        sequential markets equilibrium.
+    \begin{solution}
+ 
+    \end{solution}
+ 
+    \item[(e)] Does the equilibrium allocation for the economy in part (d) solve
+        a dynamic programming problem like that in part (a)? Carefully explain
+        why or why not. If it does solve such a problem, write down the
+        appropriate Bellman's equation.
+    \begin{solution}
+ 
+    \end{solution}
+\end{enumerate}
+
+\subsubsection{Prelim: Fall 2024 (Pareto efficiency in an overlapping generations economy)}
+Consider an overlapping generations economy in which there is one good in each
+period and each generation, except the initial one, lives for two periods. The
+representative consumer in generation $t$, $t = 1, 2, \ldots$, has the utility
+function
+\[
+    \log c_t^t + c_{t+1}^t
+\]
+and the endowment $(w_t^t, w_{t+1}^t) = (2, 2)$. [Notice that the utility
+function is not $\log c_t^t + \log c_{t+1}^t$.]  The representative consumer
+in generation 0 lives only in period 1, has utility function $\log c_1^0$, and
+has the endowment $w_1^0 = 2$. There is no fiat money.
+ 
+\begin{enumerate}
+    \item[(a)] Define an Arrow--Debreu equilibrium for this economy. Calculate
+        the unique Arrow--Debreu equilibrium.
+    \begin{solution}
+ 
+    \end{solution}
+ 
+    \item[(b)] Define a sequential markets equilibrium for this economy.
+        Calculate the unique sequential markets equilibrium.
+    \begin{solution}
+ 
+    \end{solution}
+ 
+    \item[(c)] Define a Pareto efficient allocation. Either prove that the
+        equilibrium allocation in part (a) is Pareto efficient or prove that it
+        is not.
+    \begin{solution}
+ 
+    \end{solution}
+ 
+    \item[(d)] Suppose now that there is a storage technology available in every
+        period $t$, $t = 1, 2, \ldots$, that transforms one unit of the good in
+        period $t$ into $\gamma > 0$ units of the good in period $t+1$. Define
+        a sequential markets equilibrium for this economy. Under what conditions
+        on $\gamma$ will the storage technology be used in equilibrium?
+    \begin{solution}
+ 
+    \end{solution}
+\end{enumerate}
+
 
 \section{ECON 8106 (Chari)}
 
@@ -370,7 +473,7 @@ There is a very specific set of questions that Chari tends to pull from for the 
 \item Sustainable Commitment
 \end{itemize}
 
-\subsubsection{Prelim: Spring 2025}
+\subsubsection{Prelim: Spring 2025 (Inflation and Welfare)}
 
 Consider a stochastic cash credit goods economy. in which households have
 preferences over deterministic sequences of the form
@@ -469,6 +572,64 @@ Since both $\alpha < 1 + \alpha$ and $\log(\alpha R) < \log(1 + \alpha R)$ we ca
 \end{solution}
 \end{enumerate}
 
+\subsubsection{Prelim: Fall 2025 (A Cash-Credit Goods Model with Private Money)}
+Consider a cash-credit goods model in which households have preferences of the
+form $\sum_{t=0}^{\infty} \beta^t (\log c_{1t} + \phi \log c_{2t})$, where
+$c_{1t}$ and $c_{2t}$ denote consumption of cash and credit goods respectively,
+$\phi$ is a parameter, and $0 < \beta < 1$ is the discount factor. Households
+supply labor inelastically. The resource constraint is given by
+\[
+    c_{1t} + c_{2t} + k_{t+1} = k_t^\alpha + (1 - \delta)k_t
+\]
+where $k_t$ denotes the capital stock, the capital share parameter $\alpha$ and
+the depreciation rate $\delta$ are both positive and less than 1.
+ 
+It is convenient to let $q_t$ denote the price of money (or the inverse of the
+price level). The representative household's budget constraint is given by
+\[
+    q_t M_{t+1} + c_{1t} + c_{2t} + k_{t+1}
+    \leq q_t M_t + R_{kt} k_t + w_t l_t + q_t T_t
+\]
+where $M_t$ denotes cash balances, $R_{kt}$ denotes the return to capital and
+$T_t$ denotes lump sum transfers of cash by the government. The household can
+use fraction $\theta$ of its capital stock to purchase cash goods. The cash in
+advance constraint is
+\[
+    c_{1t} \leq q_t M_t + \theta k_t.
+\]
+ 
+\begin{enumerate}
+    \item[(a)] Define a competitive equilibrium.
+    \begin{solution}
+ 
+    \end{solution}
+ 
+    \item[(b)] Assume that the aggregate stock of money grows at a constant rate,
+        $\pi$. Characterize the steady state.
+    \begin{solution}
+ 
+    \end{solution}
+ 
+    \item[(c)] Show that if $\pi$ is above a critical threshold, the economy has
+        a nonmonetary steady state in which the price of money is zero.
+    \begin{solution}
+ 
+    \end{solution}
+ 
+    \item[(d)] Show that below the critical threshold, comparing steady states,
+        per capita output is higher if the growth rate of money is higher.
+    \begin{solution}
+ 
+    \end{solution}
+ 
+    \item[(e)] Do your results in part (d) imply that the Friedman Rule is not
+        optimal in this economy?
+    \begin{solution}
+ 
+    \end{solution}
+\end{enumerate}
+ 
+
 \section{ECON 8107 (Amador)}
 
 \subsection{Hugget Model}
@@ -549,24 +710,105 @@ V_a(z', A', a') &= \frac{\psi R}{Az},\\
 \implies \frac{1}{R'} &= \beta Az\mathbb{E}\left[\frac{1}{A'z'}\right],\\
 \implies \frac{1}{R'} &= \beta Az\left(\frac{\pi_z\pi_A}{A_Hz_H} + \frac{\pi_z(1-\pi_A)}{A_Lz_H} + \frac{(1-\pi_z)\pi_A}{A_Hz_L} + \frac{(1-\pi_z)(1-\pi_A)}{A_Lz_L}\right).
 \end{align*}
-We have now boiled down $R$ as an expression of $z$ and $A$ (note also that I have conjectured that $R$ time invariant which I will later confirm). Then, using the hint, we know that households that have been hit with $z_L$ are borrowing constrained and therefore may not necessarily have a binding Euler condition (given that they may want to borrow more). On the other hand, individuals who have been hit with the high productivity shock are guaranteed to have a binding Euler condition (no matter their previous asset holdings) by the asset market clearing condition. As such, we can then continue to write
+We have now boiled down $R$ as an expression of $z$ and $A$ (note also that I have conjectured that $R$ is time invariant which I will later confirm). Then, using the hint, we know that households that have been hit with $z_L$ are borrowing constrained and therefore may not necessarily have a binding Euler condition (given that they may want to borrow more). On the other hand, individuals who have been hit with the high productivity shock are guaranteed to have a binding Euler condition (no matter their previous asset holdings) by the asset market clearing condition. As such, we can then continue to write
 \begin{align*}
 \frac{1}{R'} &= \beta Az\left(\frac{\pi_z\pi_A}{A_Hz_H} + \frac{\pi_z(1-\pi_A)}{A_Lz_H} + \frac{(1-\pi_z)\pi_A}{A_Hz_L} + \frac{(1-\pi_z)(1-\pi_A)}{A_Lz_L}\right),\\
 \implies \frac{1}{R'} &= \beta Az_H\left(\frac{\pi_z\pi_A}{A_Hz_H} + \frac{\pi_z(1-\pi_A)}{A_Lz_H} + \frac{(1-\pi_z)\pi_A}{A_Hz_L} + \frac{(1-\pi_z)(1-\pi_A)}{A_Lz_L}\right),\\
-\implies R' &= \frac{1}{\beta A z_H}\left(\frac{\pi_z\pi_A}{A_Hz_H} + \frac{\pi_z(1-\pi_A)}{A_Lz_H} + \frac{(1-\pi_z)\pi_A}{A_Hz_L} + \frac{(1-\pi_z)(1-\pi_A)}{A_Lz_L}\right)^{-1}
-\end{align*} Since this expression is independent of time period, we can write $$\boxed{R(A) = \frac{1}{\beta A z_H}\left(\frac{\pi_z\pi_A}{A_Hz_H} + \frac{\pi_z(1-\pi_A)}{A_Lz_H} + \frac{(1-\pi_z)\pi_A}{A_Hz_L} + \frac{(1-\pi_z)(1-\pi_A)}{A_Lz_L}\right)^{-1}.}$$
+\implies R' &= \frac{1}{\beta A z_H}\left(\frac{\pi_z\pi_A}{A_Hz_H} + \frac{\pi_z(1-\pi_A)}{A_Lz_H} + \frac{(1-\pi_z)\pi_A}{A_Hz_L} + \frac{(1-\pi_z)(1-\pi_A)}{A_Lz_L}\right)^{-1}.
+\end{align*} Since this expression is independent of time period (which confirms the conjecture), we can write  $$\boxed{R(A) = \frac{1}{\beta A z_H}\left(\frac{\pi_z\pi_A}{A_Hz_H} + \frac{\pi_z(1-\pi_A)}{A_Lz_H} + \frac{(1-\pi_z)\pi_A}{A_Hz_L} + \frac{(1-\pi_z)(1-\pi_A)}{A_Lz_L}\right)^{-1}.}$$
 \end{solution}
   \item Let's introduce a government that issues a constant amount of bonds
     $B > 0$ in every period and uses lump-sum transfers/taxes to balance its
     budget. What happens to the equilibrium interest rate after this policy?
   \begin{solution}
-In this case, we now know that the 
+The \textbf{equilibrium interest rate would stay the same}. To show this, we can look to see what changes and what stays the same.
+\begin{itemize}
+\item \underline{Changes - BC and Assets Market Clearing:} Now households are faced with two types of savings mehcanisms and also are hit with a transfer/tax. Specifically their budget constraint now becomes (we know that the rate of return for asset holdings and government bonds must be the same by no arbitrage conditions) $$c + a' + b' = R_{t-1}a + R_{t-1}b + A_tzn + T_t,$$where the government budget constraint is now instead $$B = R_{t-1}B + T_t.$$ Next, the asset's market clearing is $$B = \sum_{z, a} b'(z,a) + a'(z,a).$$ These conditions, however, don't enter the euler condition and therefore will not have an effect on the value of $R$.
+\item \underline{Same - Euler Condition:} We derived this in a manner that was independent of asset holdings. Specifically we know that since both assets $a'$ and $b'$ earn the same return, their handling in the first order conditions and envelope condition are the same and we will still get an expression for $R$ that is solely dependent on $A$.
+\end{itemize}
 \end{solution}
-  \item Under what conditions is such a policy certain to deliver a Pareto
-    improvement to all households? How does your answer here differ from the
-    case with no aggregate risk? Explain your answers.
+  \item Under what conditions is such a policy certain to deliver a Pareto improvement to all households? How does your answer here differ from the case with no aggregate risk? Explain your answers.
  \begin{solution}
+We know that $B > 0$ implies that these government bonds are a savings mechanism for households, rather than a borrowing mechanism. Additionally, we know from the government budget constraint that $$B = RB + T_t \implies T_t = (1 - R)B.$$
+If $R > 1$ then $T_t < 0$ and if $R < 1$ then $T_t > 0$. This is important since we know that there are some households that are borrowing constraint. A positive transfer would guaranteed lessen the number of borrowing constrained individuals since their in-period income increases whereas a negative transfer would cause more people to become borrowing constrained. More and less people being borrowing constraint is important for welfare because it implies that a given household is not optimally consumed according to their preferences. As such, this government bond policy would certainly deliver a pareto improvement if $\pmb{R < 1}$.
+
+Since this is an incomplete markets model, risk incentivizes precautionary savings and the interest rate reflects this fact. We know that removing the aggregate risk from this economy would reduce overall risk and decrease the need for precationary savings, thereby increasing $R$ and making it less likely that $R<1$ holds. Removing aggregate risk makes it \textbf{less likely that the government policy is a pareto improvement}.
 \end{solution}
+\end{enumerate}
+
+\subsubsection{Prelim: Fall 2025 (Incomplete Markets, Labor Supply, and Aggregate Risk)}
+This question is based on the 2025 8108 final and the May prelim. There is a
+mass one of households. The household's discount factor is $\beta \in (0,1)$
+and their period utility function is given by
+\[
+    u(c, n) = \log(c) - \psi n
+\]
+where $c$ is consumption, $n$ is labor supply, and $\psi > 0$.
+ 
+A household supplies $zn$ units of effective labor to the market at a wage
+$w_t$ and where $z$ is stochastic. It can take one of two values: $z_H$ and
+$z_L$, with $z_H > z_L > 0$. The probability of being in state $z_H$ is
+$\pi_z$ and the probability of being in state $z_L$ is $1 - \pi_z$. The
+realization is idiosyncratic, independent across households and time.
+Households also have access to a one-period risk-free uncontingent asset that
+pays a gross interest rate $R_t$. A household faces the following budget
+constraint:
+\[
+    c + a' = R_{t-1} a + w_t z n,
+\]
+where $a$ are assets, and has the following (ad-hoc) borrowing constraint
+$a' \geq -\phi$, where $\phi > 0$. In what follows we allow the household's
+choice of $n$ to be in $(-\infty, \infty)$.
+ 
+Firms operate in a competitive environment and have a linear production
+function to produce the final consumption good:
+\[
+    Y = A_t N
+\]
+where $N$ are the \emph{total effective units of labor} and $A_t$ is
+\underline{aggregate productivity}. The aggregate productivity $A_t$ is
+realized at the beginning of period $t$, taking value $A_H$ with probability
+$\pi_A$ and $A_L$ with probability $1 - \pi_A$, with $A_H > A_L > 0$. This
+realization is iid.
+ 
+We will discuss the competitive equilibrium of this incomplete markets economy.
+In such an equilibrium, the consumption of a household with $z$ units of labor
+when aggregate productivity is $A$ is $c(z, A) = zA/\psi$.
+ 
+\begin{enumerate}
+    \item[(a)] Why is this an incomplete markets economy?
+    \begin{solution}
+ 
+    \end{solution}
+ 
+    \item[(b)] Show that the equilibrium interest rate $R_t = R(A_t)$ where the
+        function $R$ is given by:
+        \[
+            R(A) = \frac{1}{\beta}\left(
+                \frac{1}{
+                    \displaystyle
+                    \pi_A \frac{A}{A_H}
+                    \!\left(\pi_z \frac{z_H}{z_H} + (1-\pi_z)\frac{z_H}{z_L}\right)
+                    + (1-\pi_A) \frac{A}{A_L}
+                    \!\left(\pi_z \frac{z_H}{z_H} + (1-\pi_z)\frac{z_H}{z_L}\right)
+                }
+            \right).
+        \]
+ 
+        \noindent\textit{Hint: Use that the household with the lowest $z$,
+        $z_L$, is borrowing constrained, and thus the Euler equation of the
+        household with the highest $z$ must hold.}
+    \begin{solution}
+ 
+    \end{solution}
+ 
+    \item[(c)] Suppose that $R(A) < 1$ for all $A \in \{A_L, A_H\}$. Suppose
+        that a government issues a constant level of debt $B$ financed by lump
+        sum taxes/transfers. This policy generates a \textit{Pareto improvement}
+        over the initial equilibrium. Explain why.
+    \begin{solution}
+ 
+    \end{solution}
 \end{enumerate}
 
 \section{ECON 8108 (Luttmer)}
@@ -781,6 +1023,13 @@ price of capital.
 \begin{enumerate}[label = (\alph*)]
   \item Give the conditions for a competitive equilibrium. Briefly explain.
 \begin{solution}
+Since these are complete markets and all agents have perfect information, we know that the competitive equilibrium allocation is equivalent to solving the planner's problem and we can back out the prices later.
+\begin{align*}
+\max_{C_t, K_t, L_t}&\quad  \int_0^\infty e^{-\rho t} U(C_t)\,dt\\
+s.t.\quad (1)&\quad C_t = F(K_t, L_t),\\
+(2)&\quad DK_t = -\delta K_t + G(K_t, \mathcal{L} - L_t) + \mathcal{E},\\
+(3)&\quad 0 \leq L_t \leq \mathcal{L}, \, C_t \geq 0
+\end{align*}
 \end{solution}
   \item Show that in a steady state, the steady state capital stock
     $K_t = K$ must satisfy

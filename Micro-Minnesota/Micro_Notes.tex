@@ -197,7 +197,7 @@ expectation $E(\tilde{z}) = E(\tilde{y})$, then we say that $\tilde{y}$ is
 
 \subsection{Recursive Utility}
 
-This section usually corresponds to one specific type of prelim problem (\ref{Prelim: Spring 2025}): we are asked to define families of recursive utility functions, define dynamic consistency and then show a handful of properties of a family of recursive utility functions that can be represented with some aggregator funciton. 
+This section usually corresponds to one specific type of prelim problem (\ref{Werner Prelim: Spring 2025}): we are asked to define families of recursive utility functions, define dynamic consistency and then show a handful of properties of a family of recursive utility functions that can be represented with some aggregator funciton. 
 
 To start at the beginning, however, consider one of the most common representation of utility. The discounted utility function
 $$\sum_{t=0}^\infty \beta^t u(c_t).$$ From here, we can define
@@ -265,7 +265,7 @@ That is, there exists some $i^*$ such that if $x\succ_{i^*} y$ then $x\succ_F y$
 \subsection{Exercises}
 Need to include some optimal portfolio problems!
 
-\subsubsection{Prelim: Spring 2025}\label{Prelim: Spring 2025}
+\subsubsection{Prelim: Spring 2025}\label{Werner Prelim: Spring 2025}
 Consider a family of utility functions $\{U_t\}_{t=0}^{\infty}$ defined on the set $\ell_+^{\infty}$ of bounded, positive consumption plans of a single good over infinite time horizon without uncertainty.
 
 \begin{enumerate}[label = (\alph*)]
@@ -335,29 +335,158 @@ MRS_{t+1,t} &= \frac{\partial U_t(c^t)/\partial c_{t+1}}{\partial U_t(c^t)/\part
 
 
 \section{ECON 8102 (Phelan)}
-Phelan's class is very good for grounding intuition about competitive equilibrium. We don't cover as many topics as in the later mini's, which gives one a lot of time to really understand what's going on.
+Phelan's class is very good for grounding intuition about competitive equilibrium. We don't cover as many topics as in the later mini's, which gives one a lot of time to really understand what's going on. Additionally, he doesn't publish any official set of notes, so there are likely going to be some holes.
 
 \subsection{Economy Primitives}
 
-Preference characteristics
+Before we dive into the meat of the content of this course, we need to start with some basic primitives. I'll set up two types of economies as contextual environments and then dive into specifics about everything.\\
 
-Consumption sets, production sets, utility possibilities frontier, better than sets
+\noindent \textbf{Pure Endowment Economies:} Economy in which there exists only households who are bestowed an endowment of resources by some unseen power. There are
+\begin{itemize}
+\item A set of agents, $\mathcal{I} = \{1,\ldots, I\}$ for some $I \in \mathbb{N}$.
+\item A set of goods/commodities, $\mathcal{M} = \{1,\ldots, M\}$ for some $M\in \mathbb{M}$.
+\item Each agent $i$ has a consumption set $C_i\subseteq \mathbb{R}^m$ which indicates the possible set of bundles that agent $i$ can consume.
+\item Endowments of each good for each agent, $e = \{\{e_{i,m}\}_{m\in \mathcal{M}}\}_{i\in \mathcal{I}}$, $e_{i,m} \geq 0$.
+\item Allocation: consumption allocations for agents, $c = \{\{c_{i,m}\}_{m\in \mathcal{M}}\}_{i\in \mathcal{I}}$, $c_{i,m}\in \mathbb{R}$.
+\end{itemize}
+
+\noindent \textbf{Production Economies:} Economy similar to above but there are now also firms who are able to produce consumption goods as well.
+\begin{itemize}
+\item A set of agents, $\mathcal{I} = \{1,\ldots, I\}$ for some $I \in \mathbb{N}$.
+\item A set of firms, $\mathcal{H} = \{1, \ldots, H\}$ for some $H\in \mathbb{N}$.
+\item A set of goods/commodities, $\mathcal{M} = \{1,\ldots, M\}$ for some $M\in \mathbb{M}$.
+\item Each agent $i$ has a consumption set $C_i\subseteq \mathbb{R}^m$ which indicates the possible set of bundles that agent $i$ can consume.
+\item Each firm $i$ has a production set $Y_h\subseteq \mathbb{R}^m$ which indicates the possible set of bundles that firm $h$ can produce.
+\item Ownerships of person $i$ in firm $h$: $\theta_{i,h}\in [0,1]$ for all $i,h$.
+\item Endowments of each good for each agent, $e = \{\{e_{i,m}\}_{m\in \mathcal{M}}\}_{i\in \mathcal{I}}$, $e_{i,m} \geq 0$.
+\item Allocation: tuple of consumption allocations and firm production plans, $$(c, y) = \left(\{\{c_{i,m}\}_{m\in \mathcal{M}}\}_{i\in \mathcal{I}}, \{\{y_{h,m}\}_{m\in \mathcal{M}}\}_{h\in \mathcal{H}}\right)$$ for $c_{i,m}\in \mathbb{R}$, $y_{h,m}\in \mathbb{R}$.
+\end{itemize}
+
+With the setups above in mind, here are a couple of definitions that will likely come up in problems.
+\begin{definition}[Utility Possibilities Set]
+The set of attainable vectors of utility levels. That is $$U = \left\{\left\{u_i(c_i)\right\}_{i\in \mathcal{I}}:, c_i\in C_i,\,\sum_i c_{i,m} \leq \sum_i e_{i,m}, \forall m\right\}.$$
+\end{definition}
+\begin{definition}[Utility Possibilities Frontier]
+Let $U$ be the utility possibilities set. The UPF is the set $$\left\{\left\{u_i(c_i)\right\}_{i\in \mathcal{I}}\in U:\, \nexists(u_1', u_2')\in U\quad s.t.\quad u_i' > u_i, \forall i\right\}.$$
+\end{definition}
+\begin{definition}[Better than Sets]
+The Better than Set, $B(c)$, for a given consumption bundle $c$ is the set of all consumption bundles that an agent prefers. [I NEED TO CHECK OVER THIS BECAUSE PHELAN ASKS FOR SOMETHING DIFFERENT IN THE HWS]
+\end{definition}
+
+Finally, we say that a specific allocation is \textbf{feasible} if the total amount of a specific good consumed across all agents is less than the sum of the endowment of that good across every agent (and production of that good across all firms). To put this in more specific terms, for endowment economies, an allocation $c$, given endowments $e$ is feasible if $c_i\in C_i$ for all $i\in \mathcal{I}$ and for all $m\in \mathcal{M}$ $$\sum_{i\in \mathcal{I}} c_{i,m} \leq \sum_i e_{i,m}.$$For production economies, an allocation $(c,y)$, given endowments $e$ is feasible if  if $c_i\in C_i$ for all $i\in \mathcal{I}$, $y_h\in Y_h$ for all $h\in \mathcal{H}$, and for all $m\in \mathcal{M}$ $$\sum_{i\in \mathcal{I}} c_{i,m} \leq \sum_i e_{i,m} + \sum_{h\in \mathcal{H}} y_{h,m}.$$
 
 \subsection{Efficiency}
+You should not be surprised that we are once again talking about Pareto efficiency. It is, however, very straightforward in the Phelan barebones world. 
+\begin{definition}[Pareto Dominating Allocation]
+An allocation $(c,y)$ pareto dominates another allocation $(\hat{c}, \hat{y})$ if 
+\begin{itemize}
+\item $c_i \succeq_i \hat{c}_i$ for all $i$
+\item $c_j \succ_j \hat{c}_j$ for at least one $j$ 
+\end{itemize}
+\end{definition}
 
-General definition of pareto efficiency
+\begin{definition}[Pareto Efficient]
+An allocation is pareto efficient if it is feasible and there is no alternative feasible allocation that pareto dominates it.
+\end{definition}
 
-Negishi problem, Arrow's problem
+There two important problems that allow us to think about reaching efficient allocations from the perspective of a social planner. Both may or may not lead to the same outcomes. I will let the exercises below speak more to exporing the depth behind each of these problems and just define it here for now.
+
+\begin{definition}[Arrow / Planner's Problem (for pure endowment economies)]
+The arrow / planner's problem for agent $i$, given $\bar{u}_j$ for all $j\in \mathcal{M}$ such that $j\neq i$, is the following maximization problem.
+\begin{align*}
+\max_{c_i\in C_i}&\quad U_i(c_i)\\
+s.t.\quad (1)&\quad \sum_{i\in \mathcal{I}}c_{i,m} \leq  \sum_{i\in \mathcal{I}}e_{i,m} ,\\
+(2)&\quad U_j(c_j) \geq \bar{u}_j,\, \forall j\neq i.
+\end{align*}
+\end{definition}
+
+\begin{definition}[Arrow / Planner's Problem (for production economies)]
+The arrow / planner's problem for agent $i$, given $\bar{u}_j$ for all $j\in \mathcal{M}$ such that $j\neq i$, is the following maximization problem.
+\begin{align*}
+\max_{c_i\in C_i}&\quad U_i(c_i)\\
+s.t.\quad (1)&\quad \sum_{i\in \mathcal{I}}c_{i,m} \leq  \sum_{i\in \mathcal{I}}e_{i,m} + \sum_{h\in \mathcal{H}} y_{h,m},\,\forall m\in \mathcal{M},\\
+(2)&\quad U_j(c_j) \geq \bar{u}_j,\, \forall j\neq i.
+\end{align*}
+\end{definition}
+
+\begin{definition}[Negishi / Social Planner's Problem (for pure endowment economies)]
+The negishi / social planner's problem, given weights $\lambda_i$ for all $i\in \mathcal{I}$ is the following maximization problem
+\begin{align*}
+\max_{c\in C}&\quad \sum_{i\in \mathcal{I}} \lambda_iU_i(c_i)\\
+s.t.\quad & \sum_{i\in \mathcal{I}}c_{i,m} \leq  \sum_{i\in \mathcal{I}}e_{i,m},\,\forall m\in \mathcal{M}.
+\end{align*}
+\end{definition}
+
+\begin{definition}[Negishi / Social Planner's Problem (for production economies)]
+The negishi / social planner's problem, given weights $\lambda_i$ for all $i\in \mathcal{I}$ is the following maximization problem
+\begin{align*}
+\max_{c\in C}&\quad \sum_{i\in \mathcal{I}} \lambda_iU_i(c_i)\\
+s.t.\quad & \sum_{i\in \mathcal{I}}c_{i,m} \leq  \sum_{i\in \mathcal{I}}e_{i,m} + \sum_{h\in \mathcal{H}} y_{h,m},\,\forall m\in \mathcal{M}.
+\end{align*}
+\end{definition}
+
 
 \subsection{Equilibrium Concepts}
-What does an equilibrium mean?
+My biggest takeaway from this class was thinking more deeply about what an equilibrium or solving an economy means. I personally come from a macro background and very much just accepted the fact that a competive equilibrium is nothing more than a set of objects that satisfy another set of conditions. It just so happens to be the generally agreed upon solution concept but there are many more types of solution concepts that we could define.
 
-Jungle equilibria, Competitive equilibria, production definitions
+For example, consider a simple pure endowment economy. One equilibrium concept that we could define is an autarky equilibrium where every agent consumes their endowment and prices are set such that no trade occurs. This too can be considered an equilibrium, we just tend to focus on competitive equilibrium. One other equilibrium concept that Phelan talks a lot about though is what he calls Jungle Equilibrium. It is not likely to show up in a prelim problem, but it is still an interesting concept to think about.
 
-\subsection{Introducing Randomness}
+\begin{definition}[Jungle Equilibrium]
+Fix some ordering of agents from weakest to strongest. Specifically, an ordering $S$ where $i\,S\,j$ means agent $i$ is stronger than agent $j$ where if $i\,S\,j$ then not $j\,S\,i$. An allocation such that no agent can assemble a more preferred bundle by combining his own bundle either with a bundle that is held by one of the agents weaker than him or with the bundle that is freely available. Formally, it is a consumption allocation $c = \{\{c_{i,m}\}_{i\in \mathcal{I}}\}_{m\in \mathcal{M}}$ such that
+\begin{itemize}
+\item $c_i\in C_i$, for all $i\in \mathcal{I}$.
+\item $\sum_i c_{i,m} \leq e_m$, for all $m\in \mathcal{M}$.
+\item For all $i,j\in \mathcal{I}$ such that $i\,S\,j$. We have that  $c_i \succeq_i \hat{c}_i$ for all $\hat{c}_i\in C_i$ such that $\hat{c}_{i,m} \leq c_{i,m} + c_{j,m}$ for all $m\in M$.
+\end{itemize}
+\end{definition}
+Beyond this, the focus of the class was on exploring competitive equilibria and some basic important concepts (such as interpreting goods in different time periods as inherently different goods, or seeing how ownership plays with preferences (\ref{Phelan Prelim: Spring 2025})) that each of the exercises below will address.
+\begin{definition}[Competitive Equilibrium (for pure endowment economies)]
+Consider a pure endowment economy. A competitive equilibrium is a collection of allocations and prices $(c,p)$ such that
+\begin{itemize}
+\item $p\in \mathbb{R}_+^M$.
+\item (Feasibility) $c_i\in C_i$ for all $i$.
+\item (Feasibility - Market Clearing) $\sum_{i\in \mathcal{I}}c_{i,m} \leq \sum_{i\in \mathcal{I}}e_m$ for all $m\in \mathcal{M}$.
+\item (Feasibility - Budget Constraint)  $\sum_{m\in \mathcal{M}} p_m c_{i,m} \leq \sum_{m\in \mathcal{M}} p_m e_{i,m}$ for all $i\in \mathcal{I}$.
+\item (Optimality) For any $i\in \mathcal{I}$, if $\hat{c}_i \succ c_i$ then $\sum_{m\in \mathcal{M}} p_m \hat{c}_{i,m} > \sum_{m\in \mathcal{M}} p_m e_{i,m}$
+\end{itemize}
+\end{definition}
+
+\begin{definition}[Competitive Equilibrium (for production economies)]
+Consider a production economy. A competitive equilibrium is a collection of consumption allocations, firm production plans, and prices $(c,y,p)$ such that
+\begin{itemize}
+\item $p\in \mathbb{R}_+^M$.
+\item (Feasibility) $c_i\in C_i$ for all $i$.
+\item (Feasibility) $y_h\in Y_h$ for all $h$.
+\item (Feasibility - Market Clearing) $\sum_{i\in \mathcal{I}}c_{i,m} \leq \sum_{h\in \mathcal{H}}y_h + \sum_{i\in \mathcal{I}}e_m$ for all $m\in \mathcal{M}$.
+\item (Feasibility - Budget Constraint)  $\sum_{m\in \mathcal{M}} p_m c_{i,m} \leq \sum_{m\in \mathcal{M}} p_m e_{i,m} + \sum_{h\in \mathcal{H}} \theta_{i,h}\sum_{m\in \mathcal{M}}p_my_{h,m}$ for all $i\in \mathcal{I}$.
+\item (Optimality - Household) For any $i\in \mathcal{I}$, if $\hat{c}_i \succ c_i$ then $\sum_{m\in \mathcal{M}} p_m \hat{c}_{i,m} > \sum_{m\in \mathcal{M}} p_m e_{i,m} +  \sum_{h\in \mathcal{H}} \theta_{i,h}\sum_{m\in \mathcal{M}}p_my_{h,m}$.
+\item (Optimality - Firm) If $\hat{y}_h$ is such that $\sum_{m\in \mathcal{M}} p_m\hat{y}_{h,m} < \sum_{m\in \mathcal{M}} p_m y_{h,m}$, then $\hat{y}_h \notin Y_h$.
+\end{itemize}
+\end{definition}
+
+
+As a final note, a decent chunk of Phelan's class was dedicated to proving the welfare theorems for the two different types of economies listed above. I'm just going to list them for now since he doesn't usually ask for proofs.
+\begin{theorem}[First Welfare Theorem (for pure endowment economies)]
+Let preferences be locally non-satiatable for every agent. If $(p,c)$ is a competitive equilibrium, then $c$ is pareto efficient.
+\end{theorem}
+
+\begin{theorem}[Second Welfare Theorem (for pure endowment economies)]
+Let preferences be continous, convex, and strongly monotone for every agent. If $c$ is pareto efficient (where $c >> 0$), then there exists some $e, p$ such that $(p,c)$ is a competitive equilibrium.
+\end{theorem}
+
+\begin{theorem}[First Welfare Theorem (for production economies)]
+Let preferences be locally non-satiatable for every agent. If $(p,c,y)$ is a competitive equilibrium, then $(c,y)$ is pareto efficient.
+\end{theorem}
+
+\begin{theorem}[Second Welfare Theorem (for production economies)]
+Let preferences be continous, convex, and strongly monotone for every agent. If $(c,y)$ is pareto efficient (where $c >> 0$), then there exists some $e,\theta, p$ such that $(p,c,y)$ is a competitive equilibrium.
+\end{theorem}
+
+\subsection{Introducing Uncertainty}
+As I have pointed out in this section so far. We can interpret uncertainty (and time periods for that matter) as similar to adding different types of goods. It is actually not all that different. For example, a banana in a world in which a coin has flipped heads is different than a banana in a world in which a coin has flipped tails are different goods. The math doesn't care that these are qualitatively different states as long as we know that they are treated differently. I'm not going to formalize everything and just hope that it shows up in some of the exercises below.
 
 \subsection{Exercises}
-\subsubsection{Prelim: Spring 2025}
+\subsubsection{Prelim: Spring 2025}\label{Phelan Prelim: Spring 2025}
 Consider an economy with 2 goods, grapes and wine, and two agents, Amy and Barney. Initially, there exists 1 grape. There exist two firms which can turn grapes into wine according to the production function $w = 2\sqrt{g}$, where $g$ is the quantity of grapes put into the production function, and $w$ is the amount of wine produced. Amy only likes grapes. Barney only likes wine. Each prefer more to less and each has an ability to consume any non-negative quantity of either good.
 
 \begin{enumerate}[label = (\alph*)]
@@ -453,7 +582,11 @@ B & 0,0 & 1,5 \\
 \begin{enumerate}
   \item[(1)] Write the game in extensive form.
 \begin{solution}
-
+Let's clearly state each of the objects of an extensive form game
+\begin{itemize}
+\item Players $I = \{1,2\}$
+\item 
+\end{itemize}
 \end{solution}
   \item[(2)] Write the game in normal form.
 \begin{solution}
