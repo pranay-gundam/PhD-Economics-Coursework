@@ -629,6 +629,67 @@ advance constraint is
     \end{solution}
 \end{enumerate}
  
+\subsubsection{Prelim: Fall 2024 (Search and Unemployment)}
+Consider the behavior of a worker who seeks to maximize the expected present
+discounted value of utility given by
+\[
+    \sum \beta^t u(c_t).
+\]
+The discount factor is $\beta \in (0,1)$. In this economy, jobs are destroyed
+at rate $1 - \theta$, and the worker becomes unemployed. If an individual is
+unemployed he/she receives $b > 0$ units of consumption (unemployment
+compensation) if he/she has been unemployed for at most $n - 1$ periods. From
+the $n$th period on, an unemployed worker receives $b = 0$. Suppose first that
+the worker cannot borrow or lend. The worker receives wage draws from a fixed
+distribution $F(w)$.
+ 
+\begin{enumerate}
+    \item Consider the situation of an unemployed worker who is in his/her $n$th
+        period of unemployment (that is, he/she is not collecting unemployment
+        benefits). Argue that the optimal strategy is of the reservation wage
+        variety, and display a formula for the reservation wage. Denote this
+        reservation wage by $w^*(0)$.
+    \begin{solution}
+ 
+    \end{solution}
+ 
+    \item Consider next the situation of an unemployed worker who is in his/her
+        $(n-1)$th period of unemployment (that is, this is the last period that
+        the worker will collect unemployment compensation). Let the reservation
+        wage of such a worker be $w^*(1)$. Show that $w^*(1) > w^*(0)$ (if you
+        cannot prove it, a serious argument will receive partial credit).
+    \begin{solution}
+ 
+    \end{solution}
+ 
+    \item What does the result from (b) say about the probability of leaving
+        unemployment as a function of the duration of the unemployment spell?
+    \begin{solution}
+ 
+    \end{solution}
+ 
+    \item Let $w^*(2)$ be the reservation wage of a worker who can collect
+        unemployment compensation for two periods before his/her eligibility
+        expires. Show that $w^*(2) > w^*(1)$.
+    \begin{solution}
+ 
+    \end{solution}
+ 
+    \item Use an induction argument to show that $w^*(T) > w^*(T-1)$ for all
+        $T < n$.
+    \begin{solution}
+ 
+    \end{solution}
+ 
+    \item Suppose now that the worker can save (but not borrow) at an exogenous
+        interest rate $R$. Set up the dynamic programming problem of the worker.
+        Assume the worker starts with $A_0$ units of assets and is unemployed.
+        Show (for extra credit) that a worker with larger assets has a higher
+        reservation wage.
+    \begin{solution}
+ 
+    \end{solution}
+\end{enumerate}
 
 \section{ECON 8107 (Amador)}
 
@@ -874,7 +935,7 @@ D\lambda_t &= \lambda_t(\rho + \delta - Df(K_t)).
 
 If you have done some Partial Differential Equations before then you know that a solution to the system above is not some simple concept of neat expressions for $K_t$ and $\lambda_t$ but rather a dynamic object in itself that we often try to represent using things such as phase diagrams. 
 
-The idea is that given an initial condition of capital $K_0$ and $\lambda_0$ (which we can recover from the envelope condition $\lambda_0 = DV(K_0)$ an interpret as the shadow price of capital) we trace out the curve of $K_t$ and $\lambda_t$ depending on the direction of $DK_t$ and $D\lambda_t$ which changes as $K_t$ and $\lambda_t$ evolves. This traced out curve is the solution and we can use phase diagrams to help build out this curve.
+The idea is that given an initial condition of capital $K_0$ and $\lambda_0$ (which we can recover from the envelope condition $\lambda_0 = DV(K_0)$ an interpret as the shadow price of capital) we trace out the curve of $K_t$ and $\lambda_t$ depending on the direction of $DK_t$ and $D\lambda_t$ which changes as $K_t$ and $\lambda_t$ evolves. This traced out curve is the solution and we can use phase diagrams to help build out this curve (\ref{fig:BasicCassKoop}).
 
 A \textbf{steady state solution} is, however, something that we can think about and back out easily. We know that a steady state implies that the equilibrium allocations don't change over time. As such, by definition, we can very directly claim that a steady state implies that $DK_t = 0, \,D\lambda_t = 0$ and we get the new system
 \begin{align*}
@@ -885,13 +946,85 @@ A \textbf{steady state solution} is, however, something that we can think about 
 \begin{figure}[h]
 \centering
 \includegraphics[width=0.7\textwidth]{images/Kass-Koopmans Basic Phase Diagram.png}
-\caption{The phase diagram for $(K_t, \lambda_t)$}
+\caption{The phase diagram for $(K_t, \lambda_t)$.}
 \label{fig:BasicCassKoop}
 \end{figure}
-
+One alternate simple solution class that we can think about is the \textbf{golden rule}. That is, choosing a capital stock such that change in capital is offset by depreciation. Specifically, picking some $K_G$ such that $$Df(K_G) = \delta \Longleftrightarrow K_G = [Df]^{-1}(\delta).$$ Since $\rho > 0$ and $Df$ is a decreasing function, we know that the steady state level of capital that we described in the system of equations above must be smaller than the golden rule capital. As such, we know that this steady state level of capital is not optimal.
+\subsubsection{Irreversible Investment}
+Before we dive into competitive eqiulibrium, let's consider the same version of the model above but also require that capital investment decisions must be non-negative. Specifically, preferences are the same but the budget constraints now change to
+\begin{align*}
+C_t + X_t &\leq f(K_t),\\
+DK_t &\leq -\delta K_t + X_t,\\
+C_t, K_t, X_t &\geq 0.
+\end{align*} Starting from the beginning, let's write the lagrangian $$\mathcal{L}(C_t, X_t, \mu_t, \lambda_t) = \int_0^\infty e^{-\rho t}U(C_t)\,dt + \int_0^\infty e^{-\rho t}\lambda_t(f(K_t) - X_t - C_t) + \int_0^\infty e^{-\rho t} \mu_t(X_t - \delta K_t - DK_t).$$ Once again, since we don't like to work with $DK_t$, let's do integration by parts.
+\begin{align*}
+\int_0^\infty e^{-\rho t} \mu_t DK_t\,dt &= e^{-\rho T} \mu_T K_T \Big|_{T=0}^\infty - \int_0^\infty e^{-\rho t}K_t(D\mu_t -\rho \mu_t)\,dt,\\
+&= \lim_{T\to \infty}e^{-\rho T} \mu_T K_T  - \mu_0K_0 - \int_0^\infty e^{-\rho t}K_t(D\mu_t -\rho \mu_t)\,dt.
+\end{align*}Using this, we can then rewrite the lagrangian as 
+\begin{align*}
+\mathcal{L}(C_t, X_t, \mu_t, \lambda_t) &= -\lim_{T\to \infty}e^{-\rho T} \mu_T K_T  + \mu_0K_0 + \int_0^\infty e^{-\rho t}\left[U(C_t) + \lambda_t(f(K_t) - X_t - C_t)\right. \\
+&\left. + \mu_t(X_t - \delta K_t) + K_t(D\mu_t - \rho \mu_t)\right]\,dt.\end{align*}
+Again, with the tranversality condition, we can rewrite $$\mathcal{L}(C_t, X_t, \mu_t, \lambda_t) = \mu_0K_0 + \int_0^\infty e^{-\rho t}\left[U(C_t) + \lambda_t(f(K_t) - X_t - C_t) + \mu_t(X_t - \delta K_t) + K_t(D\mu_t - \rho \mu_t)\right]\,dt.$$ Assuming that the non-negativity conditions don't apply and the utility function satisfies the inada conditions (implying that the other constraints bind as well), we can write the following FOCs
+\begin{align*}
+[C_t]&: e^{-\rho t}[U'(C_t) - \lambda] = 0 \implies U'(C_t) = \lambda_t,\\
+[K_t]&: e^{-\rho t}[\lambda_t f'(K_t) - \mu_t \delta + D\mu_t - \rho \mu_t] = 0\implies \lambda_t Df(K_t) = \mu_t(\delta + \rho) - D\mu_t.\\
+\end{align*}
+Again, we plug in the first FOC into the second FOC and also write down the condensed household budget constraint to get the following system of equations
+\begin{align*}
+D\mu_t &= \mu_t(\delta + \rho) - DU(C_t) Df(K_t),\\
+DK_t &= f(k_t) - C_t - \delta K_t.
+\end{align*}This along with the transversality condition, an initial value for $K_0$, and the following conditions classifies the phase diagram (\ref{fig:IrreversibleCassKoop}) and any equilibria:
+\begin{align*}
+DU(C_t) &\geq \mu_t,\\
+f(K_t)&\geq C_t,\\
+(DU(C_t) - \mu_t)(f(K_t) - C_t) &= 0.
+\end{align*}
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.7\textwidth]{images/Kass-Koopmans Irreversible Phase Diagram.png}
+\caption{The phase diagram for $(K_t, \mu_t)$ with irreversible investment.}
+\label{fig:IrreversibleCassKoop}
+\end{figure}
 \subsubsection{Competitive Equilibrium}
+So far, we have looked at this economy from a social planner's perspective without prices. Let's now try to add firms and prices. 
+\subsubsection{Producers}
+I will preface, I feel like Erzo's treatment of the intermediate and final good producing firms does not seem very intuitively parallel to the discrete time versions that we have learned about in Chari. The Erzo firm is actually a quite simpler beast with simpler technology, but I think it is the skipping straight to final and intermediate good producers instead of first having them as one block and the reason for doing so that is tripping me up. I'll go really slow.
+
+The \textbf{final good producer} takes a homogenous intermediate good $g$ as an input and linearly transforms this into either capital, $x$, or the final consumption good $c$. Let $q_t$ be the price of capital, $p_t$ be the price of the intermediate good, and normalize the price of the consumption good to $1$. This setup yields the following maximization problem
+$$\max_{c,x,g}\{c + q_tx - p_tg\}\quad s.t.\quad g = c + x.$$Which we can more simply just write as $$\max_{c,x}\{c + q_tx - p_t(c+x)\}.$$We know that there can't be unbounded profits, which means that we must have $p_t \geq 1$ and $p_t \geq q_t$ because otherwise we could just buy infinite amount of the intermediate good and produce an infinite amount of either capital or the consumption good. As such, we can clearly state $$p_t = \max\{1, q_t\}.$$Now consider, if $q_t >1$ then $p_t = q_t$ and the final goods producer would have no incentive to produce any consumption good. Since, from the inada conditions, we know that there cannot be an equilibrium with 0 final good consumption, it must be then that an equilibrium has $p_t = 1 \geq q_t$ where there is zero capital production if $q_t < 1$ for the same argument as just stated but visa-versa.
+
+The \textbf{intermediate good producer} takes in capital and labor as an input and produces the homogenous intermediate good. Given wages $w_t$, define $$v_t = \max_{l}\{F(1,t) - w_t l\}.$$ Since we know $p_t = 1$ and given that capital input here is is non-zero which implies that $q_t = 1$, we can claim that $v_t$ represents the income earned by an intermediate firm who owns one unit of capital. We know that the aggregate labor supply is $1$ and the aggregate capital stock is $K_t$ so taking the first order condition for the expression above, we get $$D_2F(K_t, 1) = w_t.$$ Then, because $F$ has constant returns to scale, we can claim that $v_t = D_1F(K_t, 1) = Df(K_t)$ and therefore $$w_t = f(K_t) - Df(K)K_t.$$
+
+This final good producer may seem quite trivial but the reason of defining one is because of the irreversible investment. Specifically, in these sorts of models with constant returns to scale, the price of capital $q_t$ can be less than $1$ unit of the consumption good. This leads to arbitrage scenarios because one can scale production of the consumption good linearly for less than the cost of the consumption good. This would lead to some equilibrium where all resources would be funneled into investment and yield no consumption. There needs to be a mechanism that stops capital prices from being less than one.
+
+\subsubsection{Consumers}
+Preferences are, of course, the same as in planner's problem but the budget constraint does change. Now, the consumer earns labor income $w_t$, consumes $C_t$, and can borrow or lend at interest rate $r_t$ for assets $A_t$. Assets evolve according to $$DA_t = r_tA_t + w_t - C_t.$$ Erzo doesn't write this derivation out explicitly but I tend to get confused if every step is not spelled out, so we can then rewrite the asset evolution expression as
+\begin{align*}
+DA_t &= r_tA_t + w_t - C_t,\\
+DA_t - r_tA_t &=  w_t - C_t,\\
+\left(-\int_0^t r_u\,du\right)\left[DA_t - r_tA_t\right] &=  \left(-\int_0^t r_u\,du\right)\left[w_t - C_t\right],\\
+\left(-\int_0^t r_u\,du\right)DA_t - \left(-\int_0^t r_u\,du\right)r_tA_t &=  \left(-\int_0^t r_u\,du\right)\left[w_t - C_t\right],\\
+D\left[\exp\left(-\int_0^tr_u\,du\right)A_t\right] &=  \left(-\int_0^t r_u\,du\right)\left[w_t - C_t\right]. 
+\end{align*}Integrating this differential equation from $t$ to $T > t$ we then get 
+\begin{align*}
+\int_t^T D\left[\exp\left(-\int_0^sr_u\,du\right)A_s\right] \,ds&=  \int_t^T\exp\left(-\int_0^s r_u\,du\right)\left[w_s - C_s\right]\,ds,\\
+\exp\left(-\int_0^T r_u\,du\right)A_T -  \exp\left(-\int_0^0 r_u\,du\right)A_t &= \int_t^T\exp\left(-\int_0^s r_u\,du\right)\left[w_s - C_s\right]\,ds,\\
+\int_t^T\exp\left(-\int_0^s r_u\,du\right) C_s\,ds + \exp\left(-\int_0^T r_u\,du\right)A_T &= A_t + \int_t^T\exp\left(-\int_0^s r_u\,du\right) w_s \,ds.
+\end{align*}Then express everything relative to time $t$ consumption, as opposed to time $0$ consumption, we get
+$$\int_t^T\exp\left(-\int_t^s r_u\,du\right) C_s\,ds + \exp\left(-\int_t^T r_u\,du\right)A_T = A_t + \int_t^T\exp\left(-\int_t^s r_u\,du\right) w_s \,ds.$$
+This gives us a map between a consumer's asset level $A_t$ and their consumption choices from $t$ to $T$, $\{C_s\}_{s\in [t,T]}$, into $A_T$. We are getting there slowly, but we have an expression to tell us how consumption plans and current asset holsings can give us future asset holdings. We can also use this expression to classify the borrowing constraint, as $T\to \infty$ $$\lim\inf_{T\to \infty} \exp\left(-\int_t^Trs\,ds\right)A_T\geq 0.$$ Define wealth (aka current assets plus the present value of future income flows) as $$W_t = A_t + \int_t^\infty \exp\left(-\int_t^s r_u\,du\right)w_s\,ds$$ and we can then claim from the long expression above that $$\int_t^\infty \exp\left(-\int_t^s r_u\,du\right)C_s\,ds \leq W_t.$$Qualitatively, this is not too crazy, our time $t$ consumption plans are limited by our time $t$ wealth. But... we have gotten our consumer budget constraint now! Here is the consumer's problem so far
+\begin{align*}
+\max_{C_t}&\quad \int_0^\infty e^{-\rho t}U(C_t)\\
+s.t. &\quad \int_0^\infty \exp\left(-\int_0^s r_u\,du\right)C_s\,ds \leq W_0.
+\end{align*} with the corresponding lagrangian $$\mathcal{L}(C_t, \lambda_0) = \int_0^\infty e^{-\rho t}U(C_t) + \lambda_0\left[W_0 - \int_0^\infty \exp\left(-\int_0^s r_u\,du\right)C_s\,ds\right].$$Finally we can write the following FOC (wrt to consumption $$e^{-\rho t}DU(C_t) = \lambda_0\exp\left(-\int_0^tr_s\,ds\right).$$
+Differentiating this will give us our euler condition $r_t = \rho + \theta(C_t)DC_t/C_t$. Next, FINALLY! We can solve for consumption $$C_t = [DU]^{-1}\left(e^{\rho t}\lambda_0\exp\left(-\int_0^tr_s\,ds\right)\right).$$ Which let's us plug $C_t$ back into the budget constraint $$\int_0^\infty \exp\left(-\int_0^s r_u\,du\right)C_s\,ds \leq W_0$$ to solve for $\lambda_0$ and plug this back in to fully pin down consumption.
+
+\subsubsection{Putting everything together - Equilibrium}
+Let's work on prices. From the consumer's side, we know that the rate of return on assets is $r_t$ and on the firm's side we know a unit of capital generates factor income equal to $v_t$. Also capital depreciates at a rate $\delta$ which implies a value loss of $\delta q_t$ per unit of time. This gives us the asset pricing equation
+$$r_tq_t = v_t + Dq_t - \delta q_t.$$ There are some derivations that I don't quite understand yet but we ultimately get $v_t = r_t + \delta$. I'll come back to this later. Also something else that I will come back to later is the derivation for the expression that will let us compute the trajectory of capital holdings, $\{K_s\}_{s > t}$, $$A_t + \int_t^\infty \exp\left(-\int_t^r r)u\,du\right)w_s\,ds = \int_t^\infty \exp\left(-\int_t^s r_u\,du\right)(f(K_s) - X_s)\,ds.$$Otherwise, combining a lot of the work above, we get $$r_t = \rho - \frac{D\lambda_t}{\lambda_t},\quad q_t = \frac{\mu_t}{\lambda_t},\quad v_t = Df(K_t),\quad w_t = f(K_t) - Df(K_t)K_t.$$
 
 \subsection{Hamiltonians}
+So far, we have done optimization via writing down the lagrangian and then considering the first order conditions. There is another 
 
 \subsection{The Uzawa two-sector economy}
 
@@ -899,7 +1032,7 @@ A \textbf{steady state solution} is, however, something that we can think about 
 
 \subsection{Vintage Capital}
 
-\subsection{Search and Matching}
+\subsection{Unemployment, Search, and Matching}
 Consider a model with 
 
 \subsection{Exercises}

@@ -333,6 +333,58 @@ MRS_{t+1,t} &= \frac{\partial U_t(c^t)/\partial c_{t+1}}{\partial U_t(c^t)/\part
 \end{solution}
 \end{enumerate}
 
+\subsubsection{Prelim: Fall 2024}\label{Werner Prelim: Fall 2024}
+There are two assets: a risk-free asset with return $r_f$ and a risky asset
+with return $\tilde{r}$. Returns are per-dollar returns, meaning they represent
+the total return for one dollar invested. The agent has an expected utility
+function with von Neumann (or Bernoulli) utility index
+\[
+    v(x) = -(\alpha - x)^2,
+\]
+for $\alpha > 0$, and initial wealth $w > 0$. Assume that $\alpha > wr_f$.
+Negative investment (i.e., short selling) is allowed for both assets.
+ 
+\begin{enumerate}
+    \item[(a)] Find the optimal investment in the risky asset as a function of
+        the expected return and the variance of the return on the risky asset,
+        the risk-free return, and the agent's wealth.
+    \begin{solution}
+ 
+    \end{solution}
+\end{enumerate}
+ 
+\noindent Consider the following comparative statics exercise. The return $\tilde{r}$ is
+changed to a more risky return $\tilde{r}'$. The expected return of $\tilde{r}'$
+is the same as of $\tilde{r}$, that is, $E(\tilde{r}') = E(\tilde{r})$.
+ 
+\begin{enumerate}
+    \item[(b)] Prove that $\mathrm{var}(\tilde{r}') \geq \mathrm{var}(\tilde{r})$,
+        where $\mathrm{var}$ denotes the variance.
+    \begin{solution}
+ 
+    \end{solution}
+ 
+    \item[(c)] Suppose that $E(\tilde{r}) > r_f$. Show that the optimal
+        investment in the risky asset with more risky return $\tilde{r}'$ is
+        smaller than the optimal investment with less risky return $\tilde{r}$,
+        all else unchanged.
+    \begin{solution}
+ 
+    \end{solution}
+\end{enumerate}
+ 
+\noindent Suppose that the return $\tilde{r}$ second-order stochastically dominates
+$\tilde{r}'$ rather than being more risky. In this case, do not assume that the
+expected returns are equal.
+ 
+\begin{enumerate}
+    \item[(d)] Does the argument from part (c), which shows that the optimal
+        investment with return $\tilde{r}'$ is smaller than the optimal
+        investment with $\tilde{r}$, still hold? Explain why or why not.
+    \begin{solution}
+ 
+    \end{solution}
+\end{enumerate}
 
 \section{ECON 8102 (Phelan)}
 Phelan's class is very good for grounding intuition about competitive equilibrium. We don't cover as many topics as in the later mini's, which gives one a lot of time to really understand what's going on. Additionally, he doesn't publish any official set of notes, so there are likely going to be some holes.
@@ -582,28 +634,175 @@ B & 0,0 & 1,5 \\
 \begin{enumerate}
   \item[(1)] Write the game in extensive form.
 \begin{solution}
-Let's clearly state each of the objects of an extensive form game
-\begin{itemize}
-\item Players $I = \{1,2\}$
-\item 
-\end{itemize}
+This is the game in extensive form:
+ 
+\begin{center}
+\begin{tikzpicture}[font=\small, scale=1.0]
+  % Root: P1
+  \node[draw, circle, inner sep=2pt, fill=black] (root) at (0,0) {};
+  \node[above=2pt] at (root) {$P_1$};
+ 
+  % Out branch → (2,2)
+  \coordinate (out) at (-3,-2);
+  \draw (root) -- (out) node[midway, above left] {$Out$};
+  \node[below] at (out) {$(2,2)$};
+ 
+  % In branch → P1 node
+  \node[draw, circle, inner sep=2pt, fill=black] (p1in) at (3,-2) {};
+  \node[above right=2pt] at (p1in) {$P_1$};
+  \draw (root) -- (p1in) node[midway, above right] {$In$};
+ 
+  % T and B branches from P1in
+  \node[draw, circle, inner sep=2pt, fill=black] (p2T) at (1.5,-4) {};
+  \node[above left=2pt] at (p2T) {$P_2$};
+  \draw (p1in) -- (p2T) node[midway, left] {$T$};
+ 
+  \node[draw, circle, inner sep=2pt, fill=black] (p2B) at (4.5,-4) {};
+  \node[above right=2pt] at (p2B) {$P_2$};
+  \draw (p1in) -- (p2B) node[midway, right] {$B$};
+ 
+  % Information set (P2 moves simultaneously)
+  \draw[dashed] (p2T) -- (p2B);
+ 
+  % Terminal nodes from p2T
+  \draw (p2T) -- (0.5,-6) node[below] {$(5,1)$} node[midway, left] {$L$};
+  \draw (p2T) -- (2.5,-6) node[below] {$(0,0)$} node[midway, right] {$R$};
+ 
+  % Terminal nodes from p2B
+  \draw (p2B) -- (3.5,-6) node[below] {$(0,0)$} node[midway, left] {$L$};
+  \draw (p2B) -- (5.5,-6) node[below] {$(1,5)$} node[midway, right] {$R$};
+\end{tikzpicture}
+\end{center}
 \end{solution}
   \item[(2)] Write the game in normal form.
 \begin{solution}
+This is the game in normal form. Player 1's strategies are $\{OT, OB, IT, IB\}$
+(e.g.\ $OT$ means ``play $Out$, and play $T$ if $In$ is reached'') and Player
+2's strategies are $\{L, R\}$:
+ 
+\begin{center}
+\begin{tabular}{r|cc}
+\toprule
+        & $L$     & $R$     \\
+\midrule
+$OT$    & $(2,2)$ & $(2,2)$ \\
+$OB$    & $(2,2)$ & $(2,2)$ \\
+$IT$    & $(5,1)$ & $(0,0)$ \\
+$IB$    & $(0,0)$ & $(1,5)$ \\
+\bottomrule
+\end{tabular}
+\end{center}
 \end{solution}
   \item[(3)] Find all the Nash equilibria of the game.
 \begin{solution}
+Looking at the normal form game, the Nash equilibria are
+\[
+    \boxed{\{(OT, R),\; (OB, R),\; (IT, L)\}.}
+\]
+ 
+\begin{center}
+\begin{tabular}{r|cc}
+\toprule
+        & $L$     & $R$     \\
+\midrule
+$OT$    & $2,\mathbf{2}$   & $\mathbf{2,2}$   \\
+$OB$    & $2,\mathbf{2}$   & $\mathbf{2,2}$   \\
+$IT$    & $\mathbf{5,1}$   & $0,0$   \\
+$IB$    & $0,0$   & $1,\mathbf{5}$   \\
+\bottomrule
+\end{tabular}
+\end{center}
 \end{solution}
   \item[(4)] Find all the subgame perfect equilibria of the game.
 \begin{solution}
+There are two subgames: the entire game itself, and the subgame that occurs if
+Player 1 chooses $In$. We already know the Nash Equilibria of the entire game,
+so let us consider the $In$ subgame:
+ 
+\begin{center}
+\begin{tabular}{r|cc}
+\toprule
+  & $L$   & $R$   \\
+\midrule
+$T$ & $5,1$ & $0,0$ \\
+$B$ & $0,0$ & $1,5$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+ 
+The Nash equilibria of the subgame are $\{(T,L),\, (B,R)\}$. Matching these
+with the Nash Equilibria of the full game above, the subgame perfect equilibria
+of the game are
+\[
+    \boxed{\{(IT, L),\; (OB, R)\}.}
+\]
 \end{solution}
   \item[(5)] Find the game resulting from iterated elimination of strictly
     dominated strategies.
 \begin{solution}
+Writing down the normal form game and crossing out strategies that are strictly
+dominated:
+ 
+\begin{center}
+\begin{tabular}{r|cc}
+\toprule
+              & $L$     & $R$     \\
+\midrule
+$OT$          & $2,2$   & $2,2$   \\
+$OB$          & $2,2$   & $2,2$   \\
+$IT$          & $5,1$   & $0,0$   \\
+\sout{$IB$}   & \sout{$0,0$} & \sout{$1,5$} \\
+\bottomrule
+\end{tabular}
+\end{center}
+ 
+$IB$ is strictly dominated by $OT$ (Player 1 always receives 2 from $OT$
+versus at most 1 from $IB$). No further strict dominations exist, so the
+resulting game is:
+ 
+\begin{center}
+\begin{tabular}{r|cc}
+\toprule
+    & $L$   & $R$   \\
+\midrule
+$OT$ & $2,2$ & $2,2$ \\
+$OB$ & $2,2$ & $2,2$ \\
+$IT$ & $5,1$ & $0,0$ \\
+\bottomrule
+\end{tabular}
+\end{center}
 \end{solution}
   \item[(6)] Find the games resulting from iterated elimination of weakly
     dominated strategies.
 \begin{solution}
+We proceed in the following steps:
+ 
+\begin{enumerate}
+  \item[(1)] $IT$ strictly dominates $IB$.
+  \item[(2)] $L$ weakly dominates $R$ (for Player 2).
+  \item[(3)] $IT$ strictly dominates $OT$ and $OB$.
+\end{enumerate}
+ 
+\begin{center}
+\begin{tabular}{r|cc}
+\toprule
+             & $L$               & \sout{$R$}        \\
+\midrule
+\sout{$OT$}  & \sout{$2,2$}      & \sout{$2,2$}      \\
+\sout{$OB$}  & \sout{$2,2$}      & \sout{$2,2$}      \\
+$IT$         & $5,1$             & \sout{$0,0$}      \\
+\sout{$IB$}  & \sout{$0,0$}      & \sout{$1,5$}      \\
+\bottomrule
+\end{tabular}
+\end{center}
+ 
+The resulting game is:
+\[
+\begin{array}{r|c}
+ & L \\ \hline
+IT & 5,1
+\end{array}
+\]
 \end{solution}
   \item[(7)] Suppose that in a pre-play communication players have agreed to
     play the following strategy profile: ``Player 1 plays $Out$. Player 2 will
@@ -614,6 +813,16 @@ Let's clearly state each of the objects of an extensive form game
     choose? What does the iterated elimination of weakly dominated strategies
     suggest?
  \begin{solution}
+Player 2 knows that by sticking to the agreed strategy, Player 1 would receive
+2 units of utility. This means that Player 2 knows Player 1 would only deviate
+if they are intending to obtain more than 2 units of utility. As such, Player 2
+assumes that Player 1 will play $IT$, and in order to obtain more than 0 units
+of utility, Player 2 will play $L$.
+ 
+Iterated elimination of weakly dominated strategies also suggests the outcome
+\[
+    \boxed{(IT, L).}
+\]
 \end{solution}
   \item[(8)] Consider the game with two players in which player 1 moves first
     and chooses an action in the set $\{Out, IT, IB\}$. If this player chooses
@@ -622,6 +831,132 @@ Let's clearly state each of the objects of an extensive form game
     payoffs are as in the game $G$ with $IT$ and $IB$ replacing $T$ and $B$
     respectively. Answer points 1--7.
 \begin{solution}
+\textbf{(1)} Here is the extensive form game:
+ 
+\begin{center}
+\begin{tikzpicture}[font=\small, scale=1.0]
+  % Root: P1
+  \node[draw, circle, inner sep=2pt, fill=black] (root) at (0,0) {};
+  \node[above=2pt] at (root) {$P_1$};
+ 
+  % Out branch
+  \coordinate (out) at (-4,-2);
+  \draw (root) -- (out) node[midway, above left] {$Out$};
+  \node[below] at (out) {$(2,2)$};
+ 
+  % IT branch
+  \node[draw, circle, inner sep=2pt, fill=black] (p2it) at (0,-2) {};
+  \node[above=2pt] at (p2it) {$P_2$};
+  \draw (root) -- (p2it) node[midway, left] {$IT$};
+ 
+  % IB branch
+  \node[draw, circle, inner sep=2pt, fill=black] (p2ib) at (4,-2) {};
+  \node[above=2pt] at (p2ib) {$P_2$};
+  \draw (root) -- (p2ib) node[midway, right] {$IB$};
+ 
+  % Terminal nodes from IT branch
+  \draw (p2it) -- (-1,-4) node[below] {$(5,1)$} node[midway, left] {$L^1$};
+  \draw (p2it) -- (1,-4)  node[below] {$(0,0)$} node[midway, right] {$R^1$};
+ 
+  % Terminal nodes from IB branch
+  \draw (p2ib) -- (3,-4) node[below] {$(0,0)$} node[midway, left] {$L^2$};
+  \draw (p2ib) -- (5,-4) node[below] {$(1,5)$} node[midway, right] {$R^2$};
+\end{tikzpicture}
+\end{center}
+ 
+\textbf{(2)} Here is the normal form game. Player 2 now has four strategies
+$\{L^1L^2,\, R^1L^2,\, L^1R^2,\, R^1R^2\}$, where the superscript denotes
+the action in the $IT$ branch (${}^1$) and the $IB$ branch (${}^2$):
+ 
+\begin{center}
+\begin{tabular}{r|cccc}
+\toprule
+        & $L^1L^2$ & $R^1L^2$ & $L^1R^2$ & $R^1R^2$ \\
+\midrule
+$OUT$   & $(2,2)$  & $(2,2)$  & $(2,2)$  & $(2,2)$  \\
+$IT$    & $(5,1)$  & $(0,0)$  & $(5,1)$  & $(0,0)$  \\
+$IB$    & $(0,0)$  & $(0,0)$  & $(1,5)$  & $(1,5)$  \\
+\bottomrule
+\end{tabular}
+\end{center}
+ 
+\textbf{(3)} Starting from the normal form, the Nash equilibria are:
+\[
+    \bigl\{(IT,\, L^1L^2),\;(OUT,\, R^1L^2),\;(IT,\, L^1R^2),\;(OUT,\, R^1R^2)\bigr\}.
+\]
+ 
+\begin{center}
+\begin{tabular}{r|cccc}
+\toprule
+        & $L^1L^2$        & $R^1L^2$        & $L^1R^2$        & $R^1R^2$        \\
+\midrule
+$OUT$   & $2,\mathbf{2}$           & $\mathbf{2,2}$  & $2,\mathbf{2}$           & $\mathbf{2,2}$  \\
+$IT$    & $\mathbf{5,1}$  & $0,0$           & $\mathbf{5,1}$  & $0,0$           \\
+$IB$    & $0,0$           & $0,0$           & $1,\mathbf{5}$           & $1,\mathbf{5}$           \\
+\bottomrule
+\end{tabular}
+\end{center}
+ 
+\textbf{(4)} There are three subgames: the entire game, the $IT$ subgame, and
+the $IB$ subgame. In the $IT$ subgame, $L^1$ is an equilibrium (Player 2 gets
+$1 > 0$). In the $IB$ subgame, $R^2$ is an equilibrium (Player 2 gets $5 >
+0$). Matching these with the Nash equilibria of the full game above, the SPE
+is:
+\[
+    \boxed{(IT,\; L^1,\; R^2).}
+\]
+ 
+\textbf{(5)} We use iterated elimination of strictly dominated strategies.
+$OUT$ strictly dominates $IB$ (Player 1 always receives 2 from $OUT$ versus
+at most 1 from $IB$). No further strict dominations remain.
+ 
+\begin{center}
+\begin{tabular}{r|cccc}
+\toprule
+             & $L^1L^2$ & $R^1L^2$ & $L^1R^2$ & $R^1R^2$ \\
+\midrule
+$OUT$        & $2,2$    & $2,2$    & $2,2$    & $2,2$    \\
+$IT$         & $5,1$    & $0,0$    & $5,1$    & $0,0$    \\
+\sout{$IB$}  & \sout{$0,0$} & \sout{$0,0$} & \sout{$1,5$} & \sout{$1,5$} \\
+\bottomrule
+\end{tabular}
+\end{center}
+ 
+\textbf{(6)} We use iterated elimination of weakly dominated strategies:
+ 
+\begin{itemize}
+  \item $OUT$ strictly dominates $IB$ $\Rightarrow$ eliminate $IB$.
+  \item $L^1L^2$ weakly dominates $R^1L^2$ (for Player 2) $\Rightarrow$
+    eliminate $R^1L^2$.
+  \item $L^1L^2$ weakly dominates $R^1R^2$ (for Player 2) $\Rightarrow$
+    eliminate $R^1R^2$.
+  \item $IT$ strictly dominates $OUT$ $\Rightarrow$ eliminate $OUT$.
+\end{itemize}
+ 
+\begin{center}
+\begin{tabular}{r|cccc}
+\toprule
+             & $L^1L^2$ & \sout{$R^1L^2$}   & $L^1R^2$ & \sout{$R^1R^2$}   \\
+\midrule
+\sout{$OUT$} & \sout{$2,2$} & \sout{$2,2$} & \sout{$2,2$} & \sout{$2,2$} \\
+$IT$         & $5,1$    & \sout{$0,0$}      & $5,1$    & \sout{$0,0$}      \\
+\sout{$IB$}  & \sout{$0,0$} & \sout{$0,0$} & \sout{$1,5$} & \sout{$1,5$} \\
+\bottomrule
+\end{tabular}
+\end{center}
+ 
+The resulting game after elimination is:
+\[
+\begin{array}{r|cc}
+ & L^1L^2 & L^1R^2 \\ \hline
+IT & 5,1 & 5,1
+\end{array}
+\]
+ 
+\textbf{(7)} Again, we know that if Player 1 is deviating from $OUT$, they are
+trying to obtain more than 2 units of utility and will be choosing $IT$ (since
+$IB$ gives at most 1). As such, Player 2 will then choose $L^1$, giving
+either $(L^1, L^2)$ or $(L^1, R^2)$.
 \end{solution}
 \end{enumerate}
 
