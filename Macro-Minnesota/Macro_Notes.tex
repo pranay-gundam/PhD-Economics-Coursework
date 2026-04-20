@@ -629,7 +629,7 @@ advance constraint is
     \end{solution}
 \end{enumerate}
  
-\subsubsection{Prelim: Fall 2024 (Search and Unemployment)}
+\subsubsection{Prelim: Spring 2024 (Search and Unemployment)}
 Consider the behavior of a worker who seeks to maximize the expected present
 discounted value of utility given by
 \[
@@ -650,45 +650,91 @@ distribution $F(w)$.
         variety, and display a formula for the reservation wage. Denote this
         reservation wage by $w^*(0)$.
     \begin{solution}
+ 	We can write out a bellman equation to describe this unemployed worker's optimization problem, $$V_{unemp}(w, 0) = \max\left\{\beta \mathbb{E}\left[V_{unemp}(w',0)\right], V_{emp}(w)\right\}.$$ Here $V_{emp}(w)$ represents the value of worker who is employed at wage $w$, which we can represent as 
+\begin{align*}
+V_{emp}(w) &= w + \beta \left[\theta V_{emp}(w) + (1 - \theta)\mathbb{E}\left[V_{unemp}(w', n)\right]\right],\\
+\implies V_{emp}(w) &= \frac{1}{1 - \beta \theta}\left[w + \beta (1 -\theta)\mathbb{E}[V_{unemp}(w',n)]\right].
+\end{align*} In $V_{unemp}(w,0)$, we know that the left hand term in the expression is a constant and the write hand side is linear in $w$. As such, by intermediate value theorem, we know there must exist some $w^*(0)$ such that  $$\beta \mathbb{E}\left[V_{unemp}(w',0)\right] = V_{emp}(w^*(0)),$$ such that if $w > w^*(0)$ then the worker accepts the wage offer and if $w < w^*(0)$ then the worker declines the offer. To more explicitly define $w^*(0)$, we can write
+\begin{align*}
+\frac{1}{1 - \beta \theta}\left[w^*(0) + \beta (1 -\theta)\mathbb{E}[V_{unemp}(w',n)]\right] &= \beta \mathbb{E}\left[V_{unemp}(w',0)\right],\\
+\implies  w^*(0) + \beta (1 -\theta)\mathbb{E}[V_{unemp}(w',n)] &= \beta(1 - \beta \theta) \mathbb{E}\left[V_{unemp}(w',0)\right].
+\end{align*}This gives us the expression $$\boxed{w^*(0) = \beta(1 - \beta \theta) \mathbb{E}\left[V_{unemp}(w',0)\right] - \beta (1 -\theta)\mathbb{E}[V_{unemp}(w',n)].}$$
+ \end{solution}
  
-    \end{solution}
- 
-    \item Consider next the situation of an unemployed worker who is in his/her
+ \item Consider next the situation of an unemployed worker who is in his/her
         $(n-1)$th period of unemployment (that is, this is the last period that
         the worker will collect unemployment compensation). Let the reservation
         wage of such a worker be $w^*(1)$. Show that $w^*(1) > w^*(0)$ (if you
         cannot prove it, a serious argument will receive partial credit).
-    \begin{solution}
+ \begin{solution}
+ We can once again write out the bellman equation that represents the problem that this worker faces,
+$$V_{unemp}(w, 1) = \max\left\{b + \beta\mathbb{E}[V_{unemp}(w', 0),V_{emp}(w) ]\right\},$$ where $V_{emp}(w)$ is as written above. Once again, we can write 
+\begin{align*}
+b + \beta\mathbb{E}[V_{unemp}(w', 0) &= V_{emp}(w^*(1)),\\
+\implies b + \beta \mathbb{E}\left[V_{unemp}(w',0)\right] &= \frac{1}{1 - \beta \theta}\left[w^*(1) + \beta (1 -\theta)\mathbb{E}[V_{unemp}(w',n)]\right],\\
+\implies w^*(1) + \beta (1 -\theta)\mathbb{E}[V_{unemp}(w',n)] &= (1 - \beta \theta) \left[b + \beta \mathbb{E}\left[V_{unemp}(w',0)\right]\right].\\
+\end{align*}This finally gives us $$w^*(1) = (1 - \beta \theta) \left[b + \beta \mathbb{E}\left[V_{unemp}(w',0)\right]\right] - \beta (1 -\theta)\mathbb{E}[V_{unemp}(w',n)].$$ From our expression of $w^*(0)$, however, we can also write $$w^*(1) = (1 - \beta \theta)b + w^*(0).$$Since $b > 0$ and $1 - \beta\theta > 0$ we can claim that $w^*(1) > w^*(0)$. 
+ \end{solution}
  
-    \end{solution}
+ \item What does the result from (b) say about the probability of leaving
+ unemployment as a function of the duration of the unemployment spell?
+ \begin{solution}
+ It suggests that the probability of \textbf{leaving unemployment increases as the duration of the unemployment spell increases}. We will show later that $w^*(T) > w^*(T-1)$ for all $T < n$. We know that the strategy of the worker boils down to accepting any wage below the reservation wage. Since we know the cdf $F(\cdot)$, we can claim that the probability than an unemployment spell ends is the probability $1 - F(w^*)$. As such 
+\begin{align*}
+w^*(T) &> w^*(T-1),\\
+ \implies F(w^*(T)) &> F(w^*(T-1)),\\
+ \implies 1- F(w^*(T)) &< 1 - F(w^*(T-1)).
+\end{align*}
+ \end{solution}
  
-    \item What does the result from (b) say about the probability of leaving
-        unemployment as a function of the duration of the unemployment spell?
-    \begin{solution}
+ \item Let $w^*(2)$ be the reservation wage of a worker who can collect
+ unemployment compensation for two periods before his/her eligibility
+ expires. Show that $w^*(2) > w^*(1)$.
+ \begin{solution}
+ We can follow a similar train of logic as we did in previous parts. First let's calculate $w^*(2)$ and then go from there
+\begin{align*}
+b + \beta\mathbb{E}[V_{unemp}(w', 1)] &= V_{emp}(w^*(2)),\\
+\implies \frac{1}{1 - \beta \theta}\left[w^*(2) + \beta (1 -\theta)\mathbb{E}[V_{unemp}(w',n)]\right] &= b + \beta \mathbb{E}\left[V_{unemp}(w',1)\right],\\
+\implies (1 - \beta \theta) \left[b + \beta \mathbb{E}\left[V_{unemp}(w',1)\right]\right] &= w^*(2) + \beta (1 -\theta)\mathbb{E}[V_{unemp}(w',n)].
+\end{align*} From there we can then write
+\begin{align*}
+w^*(2) &= (1 - \beta \theta) \left[b + \beta \mathbb{E}\left[V_{unemp}(w',1)\right]\right] - \beta (1 -\theta)\mathbb{E}[V_{unemp}(w',n)].
+\end{align*}We can clearly see the similarities in the formulation between $w^*(2)$ and $w^*(1)$ and as such, proving $w^*(2) > w^*(1)$ boils down (after doing some algebra) to proving $\mathbb{E}[V_{unemp}(w',1)] > \mathbb{E}[V_{unemp}(w',0)]$. Furthermore we know that $V_{unemp}(w,1) > V_{unemp}(w,0)$ for any $w$ would imply $\mathbb{E}[V_{unemp}(w',1)] > \mathbb{E}[V_{unemp}(w',0)]$. As such, pick any arbitrary $w$ in the domain of possible $w$. There are then four cases
+\begin{itemize}
+\item \underline{Case 1:} If $V_{unemp}(w, 1) = V_{emp}(w)$ and $V_{unemp}(w, 0) = V_{emp}(w)$ then $V_{unemp}(w, 1) = V_{unemp}(w, 0)$
+\item \underline{Case 2:} If $V_{unemp}(w, 1) = V_{emp}(w)$ and $V_{unemp}(w, 0) = \beta \mathbb{E}[V_{unemp}(w', 0)]$ then $$V_{unemp}(w,1) = V_{emp}(w) \geq b +  \beta \mathbb{E}[V_{unemp}(w', 0)] > \beta \mathbb{E}[V_{unemp}(w', 0)].$$
+\item \underline{Case 3:} If $V_{unemp}(w,1) =  b +  \beta \mathbb{E}[V_{unemp}(w', 0)]$ and $V_{unemp}(w, 0) = \beta \mathbb{E}[V_{unemp}(w', 0)]$ then very simply $$V_{unemp}(w,1) = b +  \beta \mathbb{E}[V_{unemp}(w', 0)] > \beta \mathbb{E}[V_{unemp}(w', 0)].$$
+\item \underline{Case 4:} If $V_{unemp}(w,1) =  b +  \beta \mathbb{E}[V_{unemp}(w', 0)]$ and $V_{unemp}(w, 0) = V_{emp}(w)$ then again very simply  $$V_{unemp}(w,1) = b +  \beta \mathbb{E}[V_{unemp}(w', 0)] >  V_{emp}(w) = V_{unemp}(w, 0).$$
+\end{itemize}
+For proper distributions $F(\cdot)$, we know that the measure of $w$'s that lie in cases 2,3, and 4 are non-zero and as such we can conclude that $$V_{unemp}(w,1) > V_{unemp}(w,0) \implies w^*(2) > w^*(1).$$
+ \end{solution}
  
-    \end{solution}
+ \item Use an induction argument to show that $w^*(T) > w^*(T-1)$ for all
+ $T \leq n$.
+ \begin{solution}
+ Let's do a proof by induction
+\begin{itemize}
+\item \underline{Base Case:} Let $n = 1$, we have shown above that $w^*(1) > w^*(0)$.
+\item  \underline{Induction Hypothesis:} Assume that for any $k < n$ we have that $w^*(k) > w^*(k-1)$ we want to show that $w^*(k+1) > w^*(k)$.
+\item \underline{Induction Step:} Pick any arbitrary $k < n$. As evidenced in the previous problem, we know that $$w^*(k+1) = (1 - \beta \theta) \left[b + \beta \mathbb{E}\left[V_{unemp}(w',k)\right]\right] - \beta (1 -\theta)\mathbb{E}[V_{unemp}(w',n)].$$As such, proving $w^*(k+1) > w^*(k)$ is equivalent to proving that $\mathbb{E}\left[V_{unemp}(w',k)\right] > \mathbb{E}\left[V_{unemp}(w',k-1)\right]$. Fix any arbitrary $w$ in the domain. Again, there are three cases
+\begin{itemize}
+\item \underline{Case 1:} If $V_{unemp}(w, k) = V_{emp}(w)$ and $V_{unemp}(w, k-1) = V_{emp}(w)$ then $V_{unemp}(w, k) = V_{unemp}(w, k-1)$
+\item \underline{Case 2:} If $V_{unemp}(w, k) = V_{emp}(w)$ and $V_{unemp}(w, k-1) =b +  \beta \mathbb{E}[V_{unemp}(w', k-2)]$ then $$V_{unemp}(w,k) = V_{emp}(w) \geq b +  \beta \mathbb{E}[V_{unemp}(w', k-2)] > V_{unemp}(w, k-1).$$
+\item \underline{Case 3:} If $V_{unemp}(w,k) =  b +  \beta \mathbb{E}[V_{unemp}(w', k-1)]$ and $V_{unemp}(w, k-1) =b + \beta \mathbb{E}[V_{unemp}(w', k-2)]$. From the induction hypothesis we know that $w^*(k) > w^*(k-1)$ which also implies $$\mathbb{E}[V_{unemp}(w', k-1)] > \mathbb{E}[V_{unemp}(w', k-2)].$$ This concludes this case.
+\item \underline{Case 4:} If $V_{unemp}(w,k) =  b +  \beta \mathbb{E}[V_{unemp}(w', k-1)]$ and $V_{unemp}(w, k-1) = V_{emp}(w)$ then again very simply  $$V_{unemp}(w,k) = b +  \beta \mathbb{E}[V_{unemp}(w', k-1)] >  V_{emp}(w) = V_{unemp}(w, k-1).$$
+\end{itemize}
+For proper distributions $F(\cdot)$, we know that the measure of $w$'s that lie in cases 2,3, and 4 are non-zero and as such we can conclude that $$V_{unemp}(w,k) > V_{unemp}(w,k-1) \implies w^*(k+1) > w^*(k).$$
+\end{itemize}Thus concludes the proof.
+ \end{solution}
  
-    \item Let $w^*(2)$ be the reservation wage of a worker who can collect
-        unemployment compensation for two periods before his/her eligibility
-        expires. Show that $w^*(2) > w^*(1)$.
-    \begin{solution}
- 
-    \end{solution}
- 
-    \item Use an induction argument to show that $w^*(T) > w^*(T-1)$ for all
-        $T < n$.
-    \begin{solution}
- 
-    \end{solution}
- 
-    \item Suppose now that the worker can save (but not borrow) at an exogenous
-        interest rate $R$. Set up the dynamic programming problem of the worker.
-        Assume the worker starts with $A_0$ units of assets and is unemployed.
-        Show (for extra credit) that a worker with larger assets has a higher
-        reservation wage.
-    \begin{solution}
- 
-    \end{solution}
+ \item Suppose now that the worker can save (but not borrow) at an exogenous
+ interest rate $R$. Set up the dynamic programming problem of the worker.
+ Assume the worker starts with $A_0$ units of assets and is unemployed.
+ Show (for extra credit) that a worker with larger assets has a higher
+ reservation wage.
+ \begin{solution}
+ The new dynamic programming problem of an unemployed worker, who has $1 \leq k \leq n$ many periods of unemployment benefits left, $a$ many assets is now, and faces a wage draw $w$ is $$V_{unemp}(w,a,k) = \max_{a'\geq 0}\left\{b + (a'-a) + \beta \mathbb{E}[V_{unemp}(w',Ra',k-1)], V_{emp}(w, a)\right\},$$ with$$V_{unemp}(w,a,0) = \max_{a'\geq 0}\left\{(a'-a) + \beta \mathbb{E}[V_{unemp}(w',Ra',k-1)], V_{emp}(w, a)\right\},$$ and $$V_{emp}(w, a) = \max_{a'\geq 0}\left\{w + (a' - a) + \beta\left[\theta V_{emp}(w, Ra') + (1 - \theta) \mathbb{E}[V_{unemp}(w',Ra',n)]\right]\right\}.$$
+ \end{solution}
 \end{enumerate}
 
 \section{ECON 8107 (Amador)}
@@ -790,10 +836,10 @@ The \textbf{equilibrium interest rate would stay the same}. To show this, we can
 \end{solution}
   \item Under what conditions is such a policy certain to deliver a Pareto improvement to all households? How does your answer here differ from the case with no aggregate risk? Explain your answers.
  \begin{solution}
-We know that $B > 0$ implies that these government bonds are a savings mechanism for households, rather than a borrowing mechanism. Additionally, we know from the government budget constraint that $$B = RB + T_t \implies T_t = (1 - R)B.$$
-If $R > 1$ then $T_t < 0$ and if $R < 1$ then $T_t > 0$. This is important since we know that there are some households that are borrowing constraint. A positive transfer would guaranteed lessen the number of borrowing constrained individuals since their in-period income increases whereas a negative transfer would cause more people to become borrowing constrained. More and less people being borrowing constraint is important for welfare because it implies that a given household is not optimally consumed according to their preferences. As such, this government bond policy would certainly deliver a pareto improvement if $\pmb{R < 1}$.
+We know that $B > 0$ implies that these government bonds are a savings mechanism for households, rather than a borrowing mechanism. Additionally, we know from the government budget constraint that $$B = R(A)B + T_t \implies T_t = (1 - R(A))B.$$
+If $R(A) > 1$ then $T_t < 0$ and if $R(A) < 1$ then $T_t > 0$. This is important since we know that there are some households that are borrowing constraint. A positive transfer would guaranteed lessen the number of borrowing constrained individuals since their in-period income increases whereas a negative transfer would cause more people to become borrowing constrained. More and less people being borrowing constraint is important for welfare because it implies that a given household is not optimally consumed according to their preferences. As such, this government bond policy would certainly deliver a pareto improvement if $\pmb{R(A) < 1}$ for all $A\in \{A_H, A_L\}$.
 
-Since this is an incomplete markets model, risk incentivizes precautionary savings and the interest rate reflects this fact. We know that removing the aggregate risk from this economy would reduce overall risk and decrease the need for precationary savings, thereby increasing $R$ and making it less likely that $R<1$ holds. Removing aggregate risk makes it \textbf{less likely that the government policy is a pareto improvement}.
+Since this is an incomplete markets model, risk incentivizes precautionary savings and the interest rate reflects this fact. We know that removing the aggregate risk from this economy would reduce overall risk and decrease the need for precationary savings, thereby increasing $R(A)$ and making it less likely that $R(A)<1$ holds. Removing aggregate risk makes it \textbf{less likely that the government policy is a pareto improvement}.
 \end{solution}
 \end{enumerate}
 
@@ -839,7 +885,7 @@ when aggregate productivity is $A$ is $c(z, A) = zA/\psi$.
 \begin{enumerate}
     \item[(a)] Why is this an incomplete markets economy?
     \begin{solution}
- 
+ This is an incomplete markets economy simply because although there are different potential realizations (multiple states) across aggregate and idiosyncratic utility, the household can only trade bonds that are uncontingent of these realizations.
     \end{solution}
  
     \item[(b)] Show that the equilibrium interest rate $R_t = R(A_t)$ where the
@@ -860,7 +906,30 @@ when aggregate productivity is $A$ is $c(z, A) = zA/\psi$.
         $z_L$, is borrowing constrained, and thus the Euler equation of the
         household with the highest $z$ must hold.}
     \begin{solution}
- 
+ 	Let's first derive the Euler equation. Starting with the envelope condition with respect to assets and then plugging this into the FOC with respect to $a'$, we can write.
+\begin{align*}
+V_a(z', A', a') &= \frac{\psi R}{Az},\\
+\implies \frac{\psi}{Az}&= \beta \mathbb{E}[V_a(z', A', a')],\\
+\implies \frac{\psi}{Az}&= \beta \mathbb{E}\left[\frac{\psi R'}{A'z'}\right],\\
+\implies \frac{1}{Az}&= \beta \mathbb{E}\left[\frac{R'}{A'z'}\right],\\
+\implies \frac{1}{R'} &= \beta Az\mathbb{E}\left[\frac{1}{A'z'}\right],\\
+\implies \frac{1}{R'} &= \beta Az\left(\frac{\pi_z\pi_A}{A_Hz_H} + \frac{\pi_z(1-\pi_A)}{A_Lz_H} + \frac{(1-\pi_z)\pi_A}{A_Hz_L} + \frac{(1-\pi_z)(1-\pi_A)}{A_Lz_L}\right).
+\end{align*}
+We have now boiled down $R$ as an expression of $z$ and $A$ (note also that I have conjectured that $R$ is time invariant which I will later confirm). Then, using the hint, we know that households that have been hit with $z_L$ are borrowing constrained and therefore may not necessarily have a binding Euler condition (given that they may want to borrow more). On the other hand, individuals who have been hit with the high productivity shock are guaranteed to have a binding Euler condition (no matter their previous asset holdings) by the asset market clearing condition. As such, we can then continue to write
+\begin{align*}
+\frac{1}{R'} &= \beta Az\left(\frac{\pi_z\pi_A}{A_Hz_H} + \frac{\pi_z(1-\pi_A)}{A_Lz_H} + \frac{(1-\pi_z)\pi_A}{A_Hz_L} + \frac{(1-\pi_z)(1-\pi_A)}{A_Lz_L}\right),\\
+\implies \frac{1}{R'} &= \beta Az_H\left(\frac{\pi_z\pi_A}{A_Hz_H} + \frac{\pi_z(1-\pi_A)}{A_Lz_H} + \frac{(1-\pi_z)\pi_A}{A_Hz_L} + \frac{(1-\pi_z)(1-\pi_A)}{A_Lz_L}\right),\\
+\implies R' &= \frac{1}{\beta A z_H}\left(\frac{\pi_z\pi_A}{A_Hz_H} + \frac{\pi_z(1-\pi_A)}{A_Lz_H} + \frac{(1-\pi_z)\pi_A}{A_Hz_L} + \frac{(1-\pi_z)(1-\pi_A)}{A_Lz_L}\right)^{-1},\\
+\implies R' &= \frac{1}{\beta A z_H}\left(\frac{\pi_A}{A_H}\left(\frac{\pi_z}{z_H} + \frac{1-\pi_z}{z_L}\right) + \frac{1 - \pi_A}{A_L}\left(\frac{\pi_z}{z_H} + \frac{1-\pi_z}{z_L}\right)\right)^{-1},\\
+\end{align*} Since this expression is independent of time period (which confirms the conjecture), we can distribute the $A$ and $z_H$ to write  $$\boxed{R(A) = \frac{1}{\beta}\left(
+                \frac{1}{
+                    \displaystyle
+                    \pi_A \frac{A}{A_H}
+                    \!\left(\pi_z \frac{z_H}{z_H} + (1-\pi_z)\frac{z_H}{z_L}\right)
+                    + (1-\pi_A) \frac{A}{A_L}
+                    \!\left(\pi_z \frac{z_H}{z_H} + (1-\pi_z)\frac{z_H}{z_L}\right)
+                }
+            \right).}$$
     \end{solution}
  
     \item[(c)] Suppose that $R(A) < 1$ for all $A \in \{A_L, A_H\}$. Suppose
@@ -868,7 +937,14 @@ when aggregate productivity is $A$ is $c(z, A) = zA/\psi$.
         sum taxes/transfers. This policy generates a \textit{Pareto improvement}
         over the initial equilibrium. Explain why.
     \begin{solution}
- 
+We know that the bonds are constant over time and also that, conditioned on $A$, the interest rate is time invariant. The resulting government budget constriant is $$B = R(A)B + T \implies (1 - R(A))B = T.$$ Since $R(A) < 1$, we know that $1 - R(A)$ is positive. As such, there are then three cases.
+\begin{itemize}
+\item \underline{$B = 0$:} The trivial case, nothing changes.
+
+\item \underline{$B > 0$:} If bonds are positive, then transfers will also be positive. This pulls some people away from the borrowing constraint and is a pareto improvement.
+
+\item \underline{$B < 0$:} This is not a pareto improvement for the opposite reasoning as above. As such the policy is only a pareto improvement when $B> 0$.
+\end{itemize}
     \end{solution}
 \end{enumerate}
 

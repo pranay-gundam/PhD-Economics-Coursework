@@ -263,7 +263,7 @@ If there are at least three alternative (i.e. $|X| \geq 3$) and the social welfa
 That is, there exists some $i^*$ such that if $x\succ_{i^*} y$ then $x\succ_F y$ for every $x,y\in X$ and every profile $(\succ_1, \ldots, \succ_n)$.
 \end{theorem}
 \subsection{Exercises}
-Need to include some optimal portfolio problems!
+I didn't cover optimal portfolio questions in the content above but refer to problems (\ref{Werner Prelim: Fall 2024}) for content on them.
 
 \subsubsection{Prelim: Spring 2025}\label{Werner Prelim: Spring 2025}
 Consider a family of utility functions $\{U_t\}_{t=0}^{\infty}$ defined on the set $\ell_+^{\infty}$ of bounded, positive consumption plans of a single good over infinite time horizon without uncertainty.
@@ -349,8 +349,18 @@ Negative investment (i.e., short selling) is allowed for both assets.
         the expected return and the variance of the return on the risky asset,
         the risk-free return, and the agent's wealth.
     \begin{solution}
- 
-    \end{solution}
+ Given wealth $w > 0$, the agent experiences the following maximization problem
+$$\max_{w_r}\quad \mathbb{E}\left[v(r_f(w - w_r) + \tilde{r}w_r)\right].$$ Here is the corresponding first order condition
+\begin{align*}
+\mathbb{E}\left[\tilde{r} v'(r_f(w - w_r) + \tilde{r}w_r)\right] &= 0,\\
+\mathbb{E}\left[\tilde{r} (-2)(\alpha -r_f(w - w_r) - \tilde{r}w_r )\right] &= 0,\\
+\mathbb{E}\left[\tilde{r} \alpha -\tilde{r}r_f(w - w_r) - \tilde{r}^2w_r )\right] &= 0,\\
+\mathbb{E}[\tilde{r} \alpha] -\mathbb{E}[\tilde{r}r_f(w - w_r)] - \mathbb{E}[\tilde{r}^2w_r] &= 0,\\
+\alpha\mathbb{E}[\tilde{r}] -r_f(w - w_r)\mathbb{E}[\tilde{r}] - w_r\mathbb{E}[\tilde{r}^2] &= 0,\\
+w_r(\mathbb{E}[\tilde{r}] - \mathbb{E}[\tilde{r}^2]) &= \mathbb{E}[\tilde{r}](wr_f - \alpha),\\
+w_r &= \frac{\mathbb{E}[\tilde{r}](wr_f - \alpha)}{\mathbb{E}[\tilde{r}] - \mathbb{E}[\tilde{r}^2]}.
+\end{align*}Finally, we can write $$\boxed{w_r = \frac{\mathbb{E}[\tilde{r}](\alpha - wr_f)}{Var(\tilde{r}) + (\mathbb{E}[\tilde{r}])^2 - \mathbb{E}[\tilde{r}]}.}$$
+\end{solution}
 \end{enumerate}
  
 \noindent Consider the following comparative statics exercise. The return $\tilde{r}$ is
@@ -361,7 +371,15 @@ is the same as of $\tilde{r}$, that is, $E(\tilde{r}') = E(\tilde{r})$.
     \item[(b)] Prove that $\mathrm{var}(\tilde{r}') \geq \mathrm{var}(\tilde{r})$,
         where $\mathrm{var}$ denotes the variance.
     \begin{solution}
- 
+ Formally, from the definition of a riskier asset, we know that $$\mathbb{E}[v(\tilde{r}')] \geq \mathbb{E}[v(\tilde{r})].$$ Let's go from here then
+\begin{align*}
+\mathbb{E}[v(\tilde{r}')] &\leq \mathbb{E}[v(\tilde{r})],\\
+\mathbb{E}[-(\alpha - \tilde{r}')^2] &\leq \mathbb{E}[-(\alpha - \tilde{r})^2],\\
+\mathbb{E}[(\alpha - \tilde{r}')^2] &\geq \mathbb{E}[(\alpha - \tilde{r})^2],\\
+\mathbb{E}[(\tilde{r}' - \mathbb{E}[\tilde{r}])^2] &\geq \mathbb{E}[(\tilde{r} - \mathbb{E}[\tilde{r}])^2],\\
+\mathbb{E}[(\tilde{r}' - \mathbb{E}[\tilde{r}'])^2] &\geq \mathbb{E}[(\tilde{r} - \mathbb{E}[\tilde{r}])^2],\\
+Var(\tilde{r}') &\geq Var(\tilde{r}).
+\end{align*}
     \end{solution}
  
     \item[(c)] Suppose that $E(\tilde{r}) > r_f$. Show that the optimal
@@ -369,7 +387,16 @@ is the same as of $\tilde{r}$, that is, $E(\tilde{r}') = E(\tilde{r})$.
         smaller than the optimal investment with less risky return $\tilde{r}$,
         all else unchanged.
     \begin{solution}
- 
+ 	We know from part (a) that the optimal investments in the less risky and more risky asset are respectively $$w_r = \frac{\mathbb{E}[\tilde{r}](\alpha - wr_f)}{Var(\tilde{r}) + (\mathbb{E}[\tilde{r}])^2 - \mathbb{E}[\tilde{r}]}, \quad w_{r'} = \frac{\mathbb{E}[\tilde{r}'](\alpha - wr_f)}{Var(\tilde{r}') + (\mathbb{E}[\tilde{r}'])^2 - \mathbb{E}[\tilde{r}']}.$$To make the comparison, consider the sequence of double implications
+\begin{align*}
+w_r &\geq w_{r'},\\
+\frac{\mathbb{E}[\tilde{r}](\alpha - wr_f)}{Var(\tilde{r}) + (\mathbb{E}[\tilde{r}])^2 - \mathbb{E}[\tilde{r}]} &\geq \frac{\mathbb{E}[\tilde{r}'](\alpha - wr_f)}{Var(\tilde{r}') + (\mathbb{E}[\tilde{r}'])^2 - \mathbb{E}[\tilde{r}']},\\
+\frac{\mathbb{E}[\tilde{r}](\alpha - wr_f)}{Var(\tilde{r}) + (\mathbb{E}[\tilde{r}])^2 - \mathbb{E}[\tilde{r}]} &\geq \frac{\mathbb{E}[\tilde{r}](\alpha - wr_f)}{Var(\tilde{r}') + (\mathbb{E}[\tilde{r}])^2 - \mathbb{E}[\tilde{r}]},\\
+\frac{1}{Var(\tilde{r}) + (\mathbb{E}[\tilde{r}])^2 - \mathbb{E}[\tilde{r}]} &\geq \frac{1}{Var(\tilde{r}') + (\mathbb{E}[\tilde{r}])^2 - \mathbb{E}[\tilde{r}]},\\
+Var(\tilde{r}) + (\mathbb{E}[\tilde{r}])^2 - \mathbb{E}[\tilde{r}] &\leq Var(\tilde{r}') + (\mathbb{E}[\tilde{r}])^2 - \mathbb{E}[\tilde{r}],\\
+Var(\tilde{r})  &\leq Var(\tilde{r}').
+\end{align*}
+Since the last line is true (as we showed in part (c)), it must be the case that $w_{r'} < w_{r'}$.
     \end{solution}
 \end{enumerate}
  
@@ -382,7 +409,7 @@ expected returns are equal.
         investment with return $\tilde{r}'$ is smaller than the optimal
         investment with $\tilde{r}$, still hold? Explain why or why not.
     \begin{solution}
- 
+ In this case the argument does not hold. It could be the case that the $\tilde{r}$ second-order stochastically dominates $\tilde{r}'$ but the expected return $\mathbb{E}[\tilde{r}']$ is so much higher than the expected return from the risk-less asset $\mathbb{E}[\tilde{r}]$ that it overcomes the agent's aversion to risk.
     \end{solution}
 \end{enumerate}
 
