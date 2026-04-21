@@ -737,6 +737,136 @@ For proper distributions $F(\cdot)$, we know that the measure of $w$'s that lie 
  \end{solution}
 \end{enumerate}
 
+\subsubsection{Prelim: Fall 2024 (Mobility, Unemployment, and Equilibrium)}
+Consider an infinite-horizon economy with a continuum of islands. At the
+beginning of each period, each island receives a shock $z$ which takes on a
+finite set of values. The shock is identically, independently distributed
+across islands, and follows a Markov process with transition probabilities
+$\pi(z', z)$. In each island, competitive firms operate a technology. Let
+$f(x, z)$ denote the marginal product of labor on an island with workforce $x$
+and current shock $z$. Assume that $f$ is strictly decreasing in $x$ and
+strictly increasing in $z$, and that $f(0, z)$ is strictly positive. Also
+assume that there is some $\bar{x}$ such that $f(\bar{x}, z) = 0$ for all $z$.
+Workers are risk neutral and have preferences given by
+\[
+    \sum_{t=0}^{\infty} \beta^t c_t.
+\]
+ 
+At the beginning of each period, after observing the realization of $z$ on all
+the islands, workers in an island indexed by, say, $x, z$, can choose either
+to continue working in that island, receiving a wage of $f(x, z)$, or move. If
+they choose to move, they receive a wage of 0 in the current period, and can
+move to any island of their choice at the beginning of the next period, after
+observing the shocks $z'$ in all islands.
+ 
+Your main task is to define a stationary competitive equilibrium. To do so,
+conjecture that there are three types of islands in this economy.
+ 
+\begin{enumerate}
+    \item One type of island has a positive flow of immigrants into it in the
+        current period. Also all current workers stay. The wage must be the same
+        in all these islands. Why? Let $\theta$ denote this wage.
+ 
+    \item In the second type of island, all current workers stay and no workers
+        arrive. Why might this happen?
+ 
+    \item The third type of island has some or all current workers leave and no
+        immigrants arrive.
+\end{enumerate}
+ 
+\noindent With this conjecture, what is the Bellman equation of workers in the three
+types of islands? Write a common Bellman equation for all workers.
+ \begin{solution}
+ 
+\end{solution}
+\noindent Define a stationary competitive equilibrium. The key object here is a
+distribution. A distribution over what objects?
+ \begin{solution}
+ 
+\end{solution}
+\noindent Sketch how you might prove that such an equilibrium exists.
+ \begin{solution}
+ 
+\end{solution}
+
+\subsubsection{Prelim: Fall 2023 (The New Classical Phillips Curve)}
+Consider an infinite-horizon economy cash in advance economy. In each period
+the economy is affected by a shock $s$ which takes on a finite set of values,
+and is i.i.d.\ over time. Consumers have preferences over the single final
+consumption good, $c_t$, in each period given by
+\[
+    E\sum_{t=0}^{\infty} \beta^t \log c_t
+\]
+and supply one unit of labor inelastically. The final consumption good is an
+aggregate of intermediate goods $c_{it}$ given by
+\begin{equation}
+    c_t = \left[\int_0^1 c_{it}^{\theta; 1/\theta}\right].
+\end{equation}
+The technology for each intermediate good is given by
+\begin{equation}
+    c_{it} = l_{it},
+\end{equation}
+where $l_{it}$ is the amount of labor allocated to intermediate good $i$ in
+period $t$. Competitive retail firms use (1) to produce the final good using
+as inputs the intermediate goods. Intermediate goods firms are monopolists of
+their particular good. A fraction $\alpha$ of intermediate goods is produced by
+\textit{sticky price} firms which must set prices for their good in period $t$
+before the current shock $s_t$ is realized. These firms are required to meet
+all the demand at their posted prices. These prices are sticky only for one
+period at a time. The remaining $1 - \alpha$ of intermediate goods firms set
+prices after the shock is realized.
+ 
+Consumers face a cash in advance constraint of the form
+\begin{equation}
+    P_t c_t \leq M_t + T_t
+\end{equation}
+where $M_t$ denotes the amount of money brought into period $t$ and $T_t$
+denotes lump sum transfers by the government. Consumers have budget constraints
+of the form
+\[
+    P_t c_t + M_{t+1} \leq W_t l_t + M_t + T_t + \Pi_t
+\]
+where $P_t$ is the nominal price of the final consumption good, $W_t$ is the
+wage rate, and $\Pi_t$ is profits from intermediate goods prices.
+ 
+The growth rate of the money supply depends on the shock $s$ and is given by
+an increasing function $\mu(s)$.
+ 
+\begin{enumerate}
+    \item Define a \textit{recursive equilibrium} for this economy. Specifically,
+        this is an equilibrium in which the continuation equilibrium for any
+        history depends only on the current shock $s$.
+     \begin{solution}
+ 
+    \end{solution}
+    \item To do so, set up the Bellman equation for consumers. What are the
+        state variables for each consumer? What are the state variables for the
+        economy as a whole? Set up the problems for the three types of firms.
+        What are the market clearing conditions?
+    \begin{solution}
+ 
+    \end{solution}
+ 
+    \item Consider a version of this economy with no shocks. Characterize the
+        equilibrium.
+    \begin{solution}
+ 
+    \end{solution}
+ 
+    \item Now suppose there is a shock only in period 1. Characterize the
+        equilibrium for this economy. (You may assume the equilibrium is as in
+        part 3 from period 1 onwards.)
+    \begin{solution}
+ 
+    \end{solution}
+ 
+    \item (Extra Credit.) Characterize the equilibrium with i.i.d.\ shocks in
+        each period.
+    \begin{solution}
+ 
+    \end{solution}
+\end{enumerate}
+
 \section{ECON 8107 (Amador)}
 
 \subsection{Hugget Model}
@@ -945,6 +1075,220 @@ We know that the bonds are constant over time and also that, conditioned on $A$,
 
 \item \underline{$B < 0$:} This is not a pareto improvement for the opposite reasoning as above. As such the policy is only a pareto improvement when $B> 0$.
 \end{itemize}
+    \end{solution}
+\end{enumerate}
+
+\subsubsection{Final: Spring 2025 (Aiyagari economy with a storage technology)}
+Consider a standard Aiyagari economy. There is a continuum of mass one of
+households with utility $u(c)$ (strictly increasing, strictly concave) and
+discount factor $\beta \in (0,1)$. Each household receives an idiosyncratic
+labor productivity shock $z \in S = \{z_1, z_2, \ldots, z_N\}$, with all
+$z_i > 0$, which follows a Markov chain with transition matrix $\Pi$ that has
+full support (all entries strictly positive). Shocks are independent across
+households and the law of large numbers applies.
+ 
+A representative firm operates a neoclassical production function $F(K, L)$
+with constant returns to scale, where $K$ is capital and $L = \bar{z}$ is
+aggregate effective labor (constant in the stationary equilibrium). Capital
+depreciates at rate $\delta \in (0,1)$. Competitive factor prices are:
+\[
+    R(K) = F_K(K, L) + 1 - \delta, \qquad w(K) = F_L(K, L).
+\]
+Households can save in capital ($a' \geq 0$) but cannot borrow. The
+household's budget constraint is:
+\[
+    c + a' = Ra + wz, \qquad a' \geq 0,\; c \geq 0.
+\]
+ 
+% ----------------------------------------------------------
+\noindent{\large\textbf{Part I: The standard economy.}}
+% ----------------------------------------------------------
+ 
+Denote the stationary equilibrium of this economy by $(R^\circ, w^\circ,
+K^\circ)$. \fbox{\textbf{Assume that $R^\circ < 1$.}}
+ 
+\begin{enumerate}
+    \item[(a)] Write down the Bellman equation for a household in the stationary
+        equilibrium. What are the state and choice variables?
+    \begin{solution}
+ 
+    \end{solution}
+ 
+    \item[(b)] Is the borrowing constraint $a' \geq 0$ an ad-hoc or a natural
+        borrowing limit? Explain.
+    \begin{solution}
+ 
+    \end{solution}
+ 
+    \item[(c)] Briefly explain why $R^\circ < 1$ is possible in the Aiyagari
+        model but not in the representative-agent neoclassical model.
+    \begin{solution}
+ 
+    \end{solution}
+ 
+    \item[(d)] Use the Aiyagari diagram (assets $A$ on the $x$-axis, gross
+        interest rate $R$ on the $y$-axis) to illustrate the stationary
+        equilibrium with $R^\circ < 1$. Label the asset supply curve $A(R)$ and
+        the capital demand curve $K(R)$.
+    \begin{solution}
+ 
+    \end{solution}
+\end{enumerate}
+ 
+% ----------------------------------------------------------
+\noindent{\large\textbf{Part II: Introducing storage.}}
+% ----------------------------------------------------------
+ 
+Suppose households now gain access to a \textbf{storage technology}: one unit
+of the consumption good stored today yields one unit tomorrow. That is, storage
+pays a gross return of 1. Storage is available in perfectly elastic supply
+(households can store any non-negative amount).
+ 
+Let $k$ denote a household's holdings of capital and $s$ its holdings of
+storage. The budget constraint becomes:
+\[
+    c + k' + s' = Rk + s + wz,
+\]
+with $k' \geq 0$, $s' \geq 0$, and $c \geq 0$. Neither asset can be held in
+negative amounts.
+ 
+\begin{enumerate}
+    \item[(e)] Write down the Bellman equation for a household with access to
+        both capital and storage.
+    \begin{solution}
+ 
+    \end{solution}
+ 
+    \item[(f)] Define a stationary equilibrium for this economy. Be precise about
+        the market clearing conditions.
+    \begin{solution}
+ 
+    \end{solution}
+ 
+    \item[(g)] Show that when $R > 1$, no household holds storage in equilibrium
+        (i.e., $s' = 0$ for all). When $R = 1$, argue that households are
+        indifferent between capital and storage, so only the \textit{total}
+        saving $a' = k' + s'$ matters.
+    \begin{solution}
+ 
+    \end{solution}
+ 
+    \item[(h)] Argue that in any equilibrium, $R \geq 1$. What would happen if
+        $R < 1$?
+    \begin{solution}
+ 
+    \end{solution}
+ 
+    \item[(i)] Let $A(R, w)$ denote the total asset supply (capital plus storage)
+        as a function of the gross return $R$ and wage $w$. In the standard
+        Aiyagari diagram, $w$ is determined by $R$ through the factor price
+        frontier: given $R$, capital $K$ is determined by $R = F_K(K, L) + 1 -
+        \delta$, and the wage is $w(R) = F_L(K, L)$. Write $A(R) \equiv A(R,
+        w(R))$.
+ 
+        Show how the storage technology modifies the capital supply curve in
+        this diagram. In particular, explain why the modified curve has the
+        following shape (with $K$ on the horizontal axis and $R$ on the
+        vertical):
+        \begin{enumerate}
+            \item[(i)] a \textit{flat} segment at $R = 1$ running from $K = 0$
+                to $K = A(1)$, and
+            \item[(ii)] the standard upward-sloping $A(R)$ for $R > 1$ (to the
+                right of $K = A(1)$).
+        \end{enumerate}
+ 
+        Draw the modified diagram, add the capital demand curve $K(R)$, and
+        identify the new equilibrium. Where on the supply curve does the
+        equilibrium occur given $R^\circ < 1$?
+    \begin{solution}
+ 
+    \end{solution}
+ 
+    \item[(j)] How does the introduction of storage affect the equilibrium
+        capital stock and wages compared to the original economy (where $R^\circ
+        < 1$)? What happens to the excess savings that would have driven $R$
+        below 1?
+    \begin{solution}
+ 
+    \end{solution}
+ 
+    \item[(k)] How does the new steady-state capital stock compare to the golden
+        rule level?
+ 
+        \textit{Hint:} The golden rule capital stock $K_{\mathrm{gold}}$ is
+        defined by $F_K(K_{\mathrm{gold}}, L) = \delta$.
+    \begin{solution}
+ 
+    \end{solution}
+\end{enumerate}
+ 
+% ----------------------------------------------------------
+\noindent{\large\textbf{Part III: Welfare and policy.}}
+% ----------------------------------------------------------
+ 
+We now consider the welfare and policy implications of the arrival of the
+storage technology.
+ 
+\begin{enumerate}
+    \item[(l)] Would introducing the storage technology generate a Pareto
+        improvement relative to the original $R^\circ < 1$ equilibrium? Discuss.
+        \textit{Hint:} Think of the wage.
+    \begin{solution}
+ 
+    \end{solution}
+ 
+    \item[(m)] Consider a policy where the government, upon the arrival of the
+        storage technology:
+        \begin{enumerate}
+            \item[(i)] taxes both capital returns and storage returns so the
+                household faces a common after-tax gross return $R' = R^\circ$,
+            \item[(ii)] lets capital fall to a new level $K' < K^\circ$,
+            \item[(iii)] uses a wage subsidy to maintain the effective wage at
+                $w^\circ$.
+        \end{enumerate}
+ 
+        Argue that the government's net revenues from the three instruments take
+        the form:
+        \begin{align*}
+            \text{Capital tax revenue}  &= \bigl[R(K_t) - R^\circ\bigr] K_t, \\
+            \text{Storage tax revenue}  &= (1 - R^\circ)\, S_t, \\
+            \text{Wage subsidy cost}    &= \bigl[w^\circ - w(K_t)\bigr] L,
+        \end{align*}
+        where $K_t$ is the capital stock and $S_t$ is aggregate storage at date
+        $t$.
+ 
+        Using the firm's first-order conditions, compute each of these three
+        quantities separately for $t = 0$ and for $t > 0$ (the new steady
+        state). For $t > 0$, first argue how much storage $S$ the economy holds.
+ 
+        \textit{Note:} Because capital is a \textbf{predetermined variable},
+        treat $t = 0$ and $t > 0$ separately. At $t = 0$ the capital stock is
+        still $K^\circ$; only from $t = 1$ onward does capital equal $K'$.
+ 
+        \textit{Hint:} At $t = 0$: what is $K_0$? How much storage $S_0$ is
+        there? For $t > 0$: why are total household savings still $K^\circ$, and
+        what does that imply for $S = K^\circ - K'$?
+    \begin{solution}
+ 
+    \end{solution}
+ 
+    \item[(n)] \textbf{[Diamond-style policy: fiscal surplus.]}
+ 
+        Using the revenues and costs from (m), write the government's net fiscal
+        surplus at $t > 0$. Show that it simplifies to
+        \[
+            \text{Surplus} = \bigl[F(K', L) - \delta K'\bigr]
+            - \bigl[F(K^\circ, L) - \delta K^\circ\bigr],
+        \]
+        and argue that this is \textit{positive} for any $K' \in [K_{\mathrm{gold}},
+        K^\circ)$.
+ 
+        \textit{Hint:} Use the CRS identity $F(K, L) = F_K(K, L)\, K +
+        F_L(K, L)\, L$ to simplify.
+ 
+        Explain why this policy can lead to a Pareto improvement.
+    \begin{solution}
+ 
     \end{solution}
 \end{enumerate}
 
