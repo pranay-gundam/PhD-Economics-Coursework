@@ -30,7 +30,7 @@ There are two main types of economic modeling strategies that we need to talk ab
 In the AD representation, households are able to trade in futures contacts for some single consumption good at time zero (before the economy gets up and running) and there is no other specific mechanism to save the consumption good. The also are often able to trade futures contracts for bonds and capital as well depending on the model. We are often asked to describte the structure of such a market and the official wording is below:
 
 \begin{definition}{[Arrow Debreu Market Structure]}
-With an Arrow-Debreu markets structure futures, markets for goods are open in period $0$ . Consumers trade futures contracts among themselves. If there are 
+With an Arrow-Debreu markets structure futures, markets for goods are open in period $0$ . Consumers trade futures contracts among themselves.
 \end{definition}
 
 In the SM representation, households are able to trade one-period-ahead futures contracts for a consumption good in each time period.
@@ -1097,10 +1097,49 @@ Differentiating this will give us our euler condition $r_t = \rho + \theta(C_t)D
 
 \subsubsection{Putting everything together - Equilibrium}
 Let's work on prices. From the consumer's side, we know that the rate of return on assets is $r_t$ and on the firm's side we know a unit of capital generates factor income equal to $v_t$. Also capital depreciates at a rate $\delta$ which implies a value loss of $\delta q_t$ per unit of time. This gives us the asset pricing equation
-$$r_tq_t = v_t + Dq_t - \delta q_t.$$ There are some derivations that I don't quite understand yet but we ultimately get $v_t = r_t + \delta$. I'll come back to this later. Also something else that I will come back to later is the derivation for the expression that will let us compute the trajectory of capital holdings, $\{K_s\}_{s > t}$, $$A_t + \int_t^\infty \exp\left(-\int_t^r r)u\,du\right)w_s\,ds = \int_t^\infty \exp\left(-\int_t^s r_u\,du\right)(f(K_s) - X_s)\,ds.$$Otherwise, combining a lot of the work above, we get $$r_t = \rho - \frac{D\lambda_t}{\lambda_t},\quad q_t = \frac{\mu_t}{\lambda_t},\quad v_t = Df(K_t),\quad w_t = f(K_t) - Df(K_t)K_t.$$
+$$r_tq_t = v_t + Dq_t - \delta q_t.$$ There are some derivations that I don't quite understand yet but we ultimately get $v_t = r_t + \delta$. I'll come back to this later. Also something else that I will come back to later is the derivation for the expression that will let us compute the trajectory of capital holdings, $\{K_s\}_{s > t}$, $$A_t + \int_t^\infty \exp\left(-\int_t^s r_u\,du\right)w_s\,ds = \int_t^\infty \exp\left(-\int_t^s r_u\,du\right)(f(K_s) - X_s)\,ds.$$Otherwise, combining a lot of the work above, we get $$r_t = \rho - \frac{D\lambda_t}{\lambda_t},\quad q_t = \frac{\mu_t}{\lambda_t},\quad v_t = Df(K_t),\quad w_t = f(K_t) - Df(K_t)K_t.$$
 
 \subsection{Hamiltonians}
-So far, we have done optimization via writing down the lagrangian and then considering the first order conditions. There is another 
+So far, we have done optimization via writing down the lagrangian and then considering the first order conditions. Hamiltonians offer a more direct means of getting to a system of ODEs that give us our solution. It was incredibly groundbreaking for me when I came to the realization of what was going on. It is a set of UNIVERSAL ODEs (as long as the consumer problem can be written in a specific form that I will get to) where to get the final system, all we need to do is look at our formulation of the maximization problem and create this hamiltonian equation that I will get to and voila, we are done. One proof to show that it works needed and then you can go all willy-nilly with it. If you don't get why this is so cool and useful right now (I didn't either until I talked to Claude a lot about why it was cool and useful), then hopefully you will at the end of this.
+
+I'm going to add some context here that I think is woefully missing from Erzo's notes. Let's start with a simple Cass-Koopmans type model that we dealt with in the section above. The social planner solves the problem (given some initial level of capital $K_0$)
+\begin{align*}
+\max_{C_t, X_t, L_t, K_t}&\quad \int_0^\infty e^{-\rho t} u(C_t, L_t)\,dt\\
+s.t.\quad (1)&\quad C_t + X_t \leq F(K_t, L_t),\\
+(2)&\quad DK_t = X_t - \delta K_t,\\
+(3)&\quad C_t \geq 0,\, 0 \leq L_t \leq 1.
+\end{align*} Define $U(K, X) = \max_{C,L}\left\{u(C_t, L_t)\,:\,C + X\leq F(K, L)\right\}$ and note how we can write the equivalent social planner problem 
+\begin{align*}
+\max_{K_t, X_t}&\quad \int_0^\infty e^{-\rho t}U(K_t, X_t)\,dt\\
+s.t.&\quad DK_t = X_t - \delta K_t.
+\end{align*} The following work we will do works for any problem that can be written in the form above such that $U$ is concave, increasing in $K$, and decreasing in $X$. Define $e^{-\rho t} q_t$ as the shadow price of captial (and the lagrange multiplier for the constraint on the motion of capital). The corresponding lagrangian is then
+$$\mathcal{L}(K_t, X_t, q_t) = \int_0^\infty e^{-\rho t} \left[U(K_t, X_t) + q_t(X_t - \delta K_t - DK_t)\right]\,dt.$$ Once again, let's do integration by parts on $DK_t$.
+\begin{align*}
+\int_0^\infty e^{-\rho t} q_t DK_t &= e^{-\rho t}q_t K_t\Big|_{t = 0}^\infty - \int_0^\infty e^{-\rho t}K_t(Dq_t - \rho q_t)\,dt,\\
+&= \lim_{T\to \infty} e^{-\rho T} q_T K_T - q_0K_0 - \int_0^\infty e^{-\rho t}K_t(Dq_t - \rho q_t)\,dt.
+\end{align*} With this, we can rewrite the lagrangian as $$\mathcal{L}(K_t, X_t, q_t) = \int_0^\infty e^{-\rho t} \left[U(K_t, X_t) + q_t(X_t - \delta K_t) + K_t(Dq_t - \rho q_t)\right]\,dt + q_0K_0 - \lim_{T\to \infty}e^{-\rho T} q_T K_T.$$ From here, define the \textbf{Hamiltonian} $$H(K, q) = \max_{X}\{U(K, X) + q(X - \delta K)\}.$$ Just for some basic intuition, this construction is simply the utility represented as a function of investment decisions $X$ and capital holdings $K$ plus the value (given that $q$ is the shadow price of capital) of the flow of capital (aka the value of the change of capital). Using this, we can reformulate the lagrangian as $$\mathcal{L}(K_t, q_t) = \int_0^\infty e^{-\rho t} \left[H(K_t, q_t) + K_t(Dq_t - \rho q_t)\right]\,dt + q_0K_0 - \lim_{T\to \infty}e^{-\rho T} q_T K_T.$$ This yields the following first order condition
+\begin{align*}
+[K_t]&:\quad H_1(K_t, q_t) + (Dq_t - \rho q_t) = 0 \implies Dq_t = \rho q_t - DH_1(K_t, q_t).
+\end{align*} Then from the envelope condition for $H$ with respect to $q$, we get that $$DH_2(K, q) = X - \delta K = DK_t.$$Using these two statements, we can get to the following system of differential equations 
+\begin{align*}
+Dq_t &= \rho q_t - DH_1(K_t, q_t),\\
+DK_t &= DH_2(K_t, q_t).
+\end{align*} And we are done! This system defines the solution to the social planner's problem. $H$ will of course change depending on $U$ and $u$ but we will cover some examples in the exercises section to solidify this concretely.
+
+The crazy part is that we were very general with this derivation. Any model where the planning problem can be writen as \begin{align*}
+\max_{K_t, X_t}&\quad \int_0^\infty e^{-\rho t}U(K_t, X_t)\,dt\\
+s.t.&\quad DK_t = X_t - \delta K_t.
+\end{align*} yields the corresponding solution system of differential equations above.
+
+\subsubsection{From Hamiltonians to Competitive Equilibrium}
+There is a lot more than Luttmer talks about in his notes such as the slopes of the resulting differential equations, what more we can milk from the hamiltonians with the Jacobians, and identifying the stable manifold. You can refer to Erzo's notes for that information but I did want to touch up on how to move from the social planners problem that we just spent some time on towards competitive equilibrium as the Hamilonian method makes this easy as well. Critically, the lagrange multiplier $q_t$ is the shadow price of capital (remember back to Kehoe where we studied how the lagrange multipliers of the social planners problem correspond to the prices in competitive equilibrium). Next, the system of ODEs above gives us solutions for $K_t$ and $q_t$. The rest of the equilibrium prices and allocations will of course depend on the specific problem and what else is going on beyond the household's problem but consider the Cass-Koopman's model. We can recover everything else from just knowing $K_t$ and $q_t$.
+\begin{itemize}
+\item $\mathbf{X_t}$, we can recover from the hamiltonian FOC as the solution to $DU_2(K_t, X_t) + q_t = 0$.
+\item $\mathbf{L_t}$ and $\mathbf{C_t}$, since we already know $X_t$ and $K_t$, we can recover these from the inner maximization problem of $U(K, X) = \max_{C,L}\left\{u(C_t, L_t)\,:\,C + X\leq F(K, L)\right\}$.
+\item $\mathbf{w_t} = f(K_t) - Df(K_t)K_t$, this is from the firm's problem.
+\item $\mathbf{v_t} = Df(K_t)$, this is also from the firm's problem.
+\item $\mathbf{r_t} = \frac{v_t - \delta q_t + Dq_t}{q_t}$, this comes from the identities that we derived in the Cass-Koopman's section.
+\end{itemize}
 
 \subsection{The Uzawa two-sector economy}
 
