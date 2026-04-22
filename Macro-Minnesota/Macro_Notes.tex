@@ -1507,7 +1507,15 @@ DK_t &=  -\delta K_t + X_t.
 \end{align*}Where both $G$ and $F$ exhibit constant returns to scale and all $K_{c,t}, K_{k,t}, L_{c,t}, L_{k,t}$ are non-negative. A normal one sector economy would have $F = G$ but differentiating the production functions creates these two consumption and capital sectors. There are some more assumptions placed on $F$ and $G$ and their relationship but you can refer to the notes for that, I'll try to stick to the intuition and deriving the intuition.
 
 \subsubsection{The competitive equilibrium environment}
-There are prices: $v_t$ factor price of capital services, $w_t$ factor price of labor services, $p_t$ output price of consumption, $q_t$ output price of capital, and $r_t$ discount bond prices.
+There are prices: $v_t$ factor price of capital services, $w_t$ factor price of labor services, $p_t$ output price of consumption, $q_t$ output price of capital, and $r_t$ discount bond prices. On the production side, since there are constant returns to scale and it is competitive markets, the firms choose capital and labor to minimize costs (and also make 0 profits). Their profit functions looks like
+\begin{align*}
+p_tF(k,l) - v_t k - w_t l\leq 0,
+p_tG(k,l) - v_t k - w_t l\leq 0.
+\end{align*} Which lead to the following set of firm problems
+\begin{align*}
+\min_{k,l}\{v_t k + w_tl\,:\,F(k,l) \geq 1\} \geq p_t,\\
+\min_{k,l}\{v_t k + w_tl\,:\,G(k,l) \geq 1\} \geq q_t
+\end{align*}
 
 
 \subsubsection{Writing down the hamiltonian}
