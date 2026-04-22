@@ -777,7 +777,15 @@ conjecture that there are three types of islands in this economy.
 \noindent With this conjecture, what is the Bellman equation of workers in the three
 types of islands? Write a common Bellman equation for all workers.
  \begin{solution}
- 
+ Let's carefully go through each of the cases
+\begin{enumerate}
+\item[(IA)] In this situation, the wage in the island $(x,z)$ is high enough such that it is higher than the value of leaving and seaching. Crirically the wage $\theta$ must be equal in all such islands because if there is some island with wage $\theta'$ then no one would choose to go to any island with wage $\theta$ and these islands would be of type B instead of type A.
+\item[(IB)] In this situation, the wage in the island $(x,z)$ is high enough such that it is higher than the value of leaving and seaching but not high enough such people in other islands would do the same. The wage in this island is high but not high enough that others would forgo a period of wages in their own island to come over.
+\item[(IC)] In this situation the wage in island $(x, z)$ is low enough such that the value of leaving the island, forgoing one time period of wage, and searching for another island is higher than staying in the island and accepting the wage. In theory, it is possible for the wage to be lower than the search value but we will note that in equilibrium it must be that the wage is exaclty the value of searching (which is something that comes from the fact that $f(x, z)$ is strictly decreasing as $x$ increases and visa-versa).
+\end{enumerate}
+Since islands of Type A all have the same wage, we know that the value of searching for such an island must be equal for a household in any state $(x, z)$. Also note that the wage in a given island must equal the marginal product of labor on that same island. Given $\theta$, the corresponding bellman equation that all workers solve is
+$$V(x,z) = \max\left\{f(x,z) + \beta\sum_{z'}\pi(z', z)V(x',z'), V(x_\theta, z_\theta)\right\}$$ where $x_\theta, z_\theta$ are any state such that $\theta  = f(x_\theta, z_\theta)$.
+
 \end{solution}
 \noindent Define a stationary competitive equilibrium. The key object here is a
 distribution. A distribution over what objects?
@@ -1486,6 +1494,23 @@ There is a lot more than Luttmer talks about in his notes such as the slopes of 
 \end{itemize}
 
 \subsection{The Uzawa two-sector economy}
+Alright now let's consider a type of economy where the factors of production have a bit more nuance to them. Qualitatively, this will be a scenario where we can split our capital and labor resources into capital/labor used to generate more capital and capital/labor used to generate the consumption good. In other words, we can freely transfer production between consumption and capital; there is different technology that produces either of them.
+
+I'll first set up the model and corresponding dynamics from the social planner's perspective, then look at the competitive equilibrium problem (the formulation of what is going on with the firms is what is interesting), and then talk about relevant steady states. To begin the household has the following \textbf{preferences}.
+$$\mathcal{U}(C) = \int_0^\infty e^{-\rho t}U(C_t)\,dt,$$ where $\rho > 0$ and $U(\cdot)$ is strictly increasing and concave. They also are given initial capital $K_0 > 0$ and a fixed supply of labor over time $L > 0$. Here is the \textbf{technology} for producing consumption and capital paths,
+\begin{align*}
+K_{c,t} + K_{k,t} &= K_t,\\
+L_{c,t} + L_{k,t} &= L_t,\\
+C_t &\leq F(K_{c,t}, L_{c,t}),\\
+X_t &\leq G(K_{k,t}, L_{k,t}),\\
+DK_t &=  -\delta K_t + X_t.
+\end{align*}Where both $G$ and $F$ exhibit constant returns to scale and all $K_{c,t}, K_{k,t}, L_{c,t}, L_{k,t}$ are non-negative. A normal one sector economy would have $F = G$ but differentiating the production functions creates these two consumption and capital sectors. There are some more assumptions placed on $F$ and $G$ and their relationship but you can refer to the notes for that, I'll try to stick to the intuition and deriving the intuition.
+
+\subsubsection{The competitive equilibrium environment}
+There are prices: $v_t$ factor price of capital services, $w_t$ factor price of labor services, $p_t$ output price of consumption, $q_t$ output price of capital, and $r_t$ discount bond prices.
+
+
+\subsubsection{Writing down the hamiltonian}
 
 \subsection{Capital Accumulation and Adjustment Costs}
 
@@ -1493,6 +1518,17 @@ There is a lot more than Luttmer talks about in his notes such as the slopes of 
 
 \subsection{Unemployment, Search, and Matching}
 Consider a model with 
+
+\subsection{Perpetual Youth}
+This model has a gounding in demographics where the key idea is trying to capture the birth and death of consumers. Specifically, there is a unit measure of consumers, new consumers are born at a rate of $\theta$ and also consumers also die randomly at a rate of $\theta$ (hence the name perpetual youth because one's mortality is independent of age). One way to interpret this is an OLG with some different structure placed on when consumers are born and die.
+
+Let's consider the discrete case, compute some probabilities, and then take some limits to identify the continuous case parallel. Let $\Delta$ be a time interval, and let the probability that a consumer survives one time period be $1 - \theta \Delta$. We know then that the probability that a consumer survives to age (or equivalently, the fraction of a cohort that survives to age) $n\Delta$ is $$PR[N > n] = (1 - \theta \Delta)^n.$$ Now let $a = n\Delta$ represent the total amount of time and we can write $a / \Delta = n$, $$PR[N > a/\Delta] = \left(1 - \theta\Delta\right)^{a/\Delta}.$$ Let's shoot $\Delta$ (aka the duration of the time period) down to $0$ to get the continuous time equivalents of what we have done so far
+\begin{align*}
+\lim_{\Delta \to 0}\left(1 - \theta\frac{a}{a/\Delta}\right)^{a/\Delta} &= \lim_{\Delta \to 0}\left(1 - \theta\frac{a}{a/\Delta}\right)^{a/\Delta},\\
+&= \lim{x\to \infty} \left(1 - \frac{\theta a}{x}\right)^x,\\
+&= e^{-\theta a}.
+\end{align*} This also gives us that the average life span in a stationary population is $\frac{1}{\theta}$ and distribution of life spans being exponential with density $\theta e^{-\theta a}$. Now let's get to the economics. Consumer preferences are as follows
+$$\mathcal{U}(C) = \int_0^\infty \theta e^{-\theta t}\left(\int_0^t e^{-\rho a} U(C_a)\,da\right)\,dt.$$We can interpret this as the expected utility.
 
 \subsection{Exercises}
 
