@@ -637,7 +637,7 @@ To pin down prices, consider the market clearing condition for grapes
 \end{enumerate}
 
 \section{ECON 8103 (Rustichini)}
-
+This is the mini that I struggled with the most.
 
 
 \subsection{Exercises}
@@ -988,5 +988,78 @@ either $(L^1, L^2)$ or $(L^1, R^2)$.
 \end{enumerate}
 
 \section{ECON 8104 (Rahman)}
+Personally, I feel like this mini is all over the place. There's a lot to learn and I frankly got lost a lot, similar to the last mini. To preface, there are five main categories that we discussed
+\begin{enumerate}
+\item Cooperative Theory
+\item Social Choice
+\item Mechanism Design
+\item Information Economics
+\item Dynamic games with and without information
+\end{enumerate}
+Once again, I won't go too in depth into any of the proofs but I will state theorems and definitions and try to add some color commentary for intuition. 
+
+\subsection{Cooperative Theory}
+\subsubsection{Two Person Bargaining Problem}
+\begin{definition}
+A \textbf{two person bargaining problem} is a pair $(F,v)$, for $F\subseteq \mathbb{R}^2$ is closed and convex, $v \subseteq \mathbb{R}^2$ such that $$F_v = \{y\in \mathbb{R}^2\,:\, y \geq v\}\cap F \neq \emptyset$$ and bounded. $(F,v)$ is called \textbf{essential} if $\exists y\in F$ such that $y >> v$.
+\end{definition}
+The way to interpret this is a two person game where $F$ describes the set of all possible utilities $(u_1, u_2)\in F$ that agent 1 and agent 2 can get respectively by agreeing on some outcome through the game. $v$ is the utility pair that will occur if there is disagreement. This is pretty abstracted from specific mechanics of a game and goes straight to the end utilities. Now consider the map $\varphi(F,v) \to \mathbb{R}^2$ which maps the bargaining problem to some outcome utilities $(\varphi_1, \varphi_2)$, we call this the \textbf{bargaining solution}. There are a couple of axioms (characteristics of the bargaining problem and solution) that can help us pin down specific solutions
+\begin{enumerate}[label = (\roman*)]
+\item \textbf{Efficiency:} For $\varphi(F, v) \in F$ and all $x\in F$, if $x \geq \varphi(F, v)$ then $x = \varphi (F, v)$.
+\item \textbf{Individual Rationality:} $\varphi(F, v) \geq v$. Both people have to get at least $v$ from the solution because either one can always opt out and achieve $v$.
+\item \textbf{Scale Covariance:} For any $\lambda_1, \lambda_2 > 0$ and $\gamma_1, \gamma_2$. If $$G := \{(\lambda_1 x_1 + \gamma_1, \lambda_2x_2 + \gamma_2\,:\,(x_1, x_2)\in F\}$$and $$w:= (\lambda_1 v_1 + \gamma_1, \lambda_2 v_2 + \gamma_2),$$then $$\varphi(G, w) = (\lambda_1 \varphi_1(F,v) + \gamma_1, \lambda_2\varphi_2(F, v) + \gamma_2).$$
+\item \textbf{IIA:} For all closed and convex subsets $G \subseteq F$. If $\varphi(F, v) \in G$ then $\varphi(G,v) = \varphi(F, v)$.
+\item \textbf{Symmetry:} If $v_1 = v_2$ and $\{(x_2, x_1)\,:\,(x_1, x_2)\in F\} = F$ then $\varphi_1(F, v) = \varphi_2(F, v)$.
+\end{enumerate}
+\begin{theorem}
+There exists a unique $\varphi$ that satisfies axioms 1-5 and moreover it is the \textbf{Nash bargaining solution} $$\varphi(F, v) \in \arg\max_{x\in F,\,x\geq v}(x_1 - v_1)(x_2 - v_2).$$
+\end{theorem}
+\begin{example} Consider an environment where agent one is risk neutral and has uility function $u_1(x) = x$ and agent two is risk averse and has utility function $u_2(x) = \sqrt{x}$. Consider the $$F = \{(y_1, y_2)\geq 0:y_1 + y_2^2 \leq 1\}$$ and $v = (0,0)$.  We know that the pareto frontier here is  when $y_1 = 1 - y_2^2$ so using the theorem above, we need to maximize $$\arg\max_{y\in F, x\geq 0} y_1y_2 = \arg\max_{y_2\in F, x\geq 0} (1 - y_2^2)y_2.$$This then gives us $$\varphi(F, v) = \left(\frac{2}{3}, \frac{1}{\sqrt{3}}\right).$$
+Interestingly enough we can see that in bargaining situations like this, the risk-averse agent gets less utility in the Nash solution.
+\end{example}
+
+From our bargaining problem setup, there are two alternative solutions that we can consider as well
+\begin{enumerate}
+\item \textbf{Egalitarian solution:} Selects the pareto point $\varphi^E(F,v) = (x_1, x_2)$ from $(F, v)$ that is efficient and also $$x_1 - v_1 = x_2 - v_2.$$
+\item \textbf{Utilitarian solution:} Selects the pareto point $\varphi^U(F,v) = (x_1, x_2)$ from $(F,v)$ such that $$x_1 + x_2 = \max_{y\in F}y_1 + y_2$$
+\end{enumerate}
+\begin{example}
+Consider $v = 0$ and $F = \{(y_1, y_2)\geq 0\,:\, y_1 + 2y_2 \leq 20\}$. The utilitarian maximizes $y_1 + y_2$ on $F$ and we can see how in this case the result is $\varphi^U(F,v) = (20, 0)$ whereas in a nash bargaining situation as above, the result would be $\varphi(F,v) = (10, 5)$.
+\end{example}
+
+
+
+\subsubsection{Cooperative Games and the Core}
+
+\subsection{Social Choice}
+A significant portion of the class was dedicated to Arrow's theorem and Gibbard-Satterthwaite and their corresponding proofs. These are definitely important concepts, but the proofs themselves are unlikely to show up in any exam so I will abstain from diving in too deep.
+
+Consider the following environment. 
+\begin{itemize}
+\item Finite set of individuals $N = \{1, \ldots, N\}$.
+\item Finite set of alternatives $A$ such that $|A| > 3$.
+\item Each agent has compete and transitive preference $R_i$
+\end{itemize}
+\begin{definition}
+A \textbf{social welfare function} $f:\mathcal{R}^N \to \mathcal{R}$, where $\mathcal{R}$ are rational preferences on $A$, is a function that maps individual agent preferences to a social choice considering everyone's preferences. Here are some properties that a social welfare function could have.
+\begin{itemize}
+\item \textbf{Universality (UD)}: the domain is $\mathcal{R}^N$.
+\item \textbf{Unanimity}: If $a P_i b$ for all $i$, then $a Pb$.
+\item \textbf{Independence of Irrelevant Alternatives (IIA)}: If some $aR_i b$ 
+\end{itemize}
+\end{definition}
+\begin{theorem}[Arrow's Impossibility Theorem (1951)]
+If $|A| > 3$
+\end{theorem}
+
+\begin{definition}
+A \textbf{social choice function} on the otehr hand still represents something regarding the 
+\end{definition}
+\subsection{Mechanism Design}
+
+\subsection{Information Economics}
+
+\subsection{Dynamic Games}
+
 \subsection{Exercises}
 \end{document}
