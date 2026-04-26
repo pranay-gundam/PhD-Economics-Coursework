@@ -20,7 +20,7 @@
 \section{Introduction}
 
 
-This document serves as a collection of concepts covered in graduate level microeconomics. Specifically, the PhD Microeconomics sequence ECON 8101 (Werner), ECON 8102 (Phelan), ECON 8103 (Rustichini), and ECON 8104 (Rahman) at the University of Minnesota. If you ever encouter these notes and have questions or spot an error, be sure to reach out to \href{mailto:pranaygundam00@gmail.com}{me here}. Note that everything below is very personalized. I will officially state some theorems but the main goal of writing everything out is to cement my own intuition. Most everything will include statements to help intimidating things feel a bit more friendly.
+This document serves as a collection of concepts covered in graduate level microeconomics. Specifically, the PhD Microeconomics sequence ECON 8101 (Werner), ECON 8102 (Phelan), ECON 8103 (Rustichini), and ECON 8104 (Rahman) at the University of Minnesota. If you ever encouter these notes and have questions or spot an error, be sure to reach out to \href{mailto:pranaygundam00@gmail.com}{me here}. Note that everything below is very personalized. I will officially state some theorems but the main goal of writing everything out is to cement my own intuition. Most everything will include statements to help intimidating things feel a bit more friendly. Additionally, I speak a lot in the second person because these notes are written in a manner as to be read by myself in the past.
 
 \section{ECON 8101 (Werner)}
 
@@ -350,16 +350,16 @@ Negative investment (i.e., short selling) is allowed for both assets.
         the risk-free return, and the agent's wealth.
     \begin{solution}
  Given wealth $w > 0$, the agent experiences the following maximization problem
-$$\max_{w_r}\quad \mathbb{E}\left[v(r_f(w - w_r) + \tilde{r}w_r)\right].$$ Here is the corresponding first order condition
+$$\max_{w_r}\quad \mathbb{E}\left[v(r_f(w - w_r) + \tilde{r}w_r)\right],$$which we can equivalently write as $$\max_{w_r}\quad \mathbb{E}\left[v((r_f - \tilde{r})w_r + r_fw)\right].$$ Here is the corresponding first order condition
 \begin{align*}
-\mathbb{E}\left[\tilde{r} v'(r_f(w - w_r) + \tilde{r}w_r)\right] &= 0,\\
-\mathbb{E}\left[\tilde{r} (-2)(\alpha -r_f(w - w_r) - \tilde{r}w_r )\right] &= 0,\\
-\mathbb{E}\left[\tilde{r} \alpha -\tilde{r}r_f(w - w_r) - \tilde{r}^2w_r )\right] &= 0,\\
-\mathbb{E}[\tilde{r} \alpha] -\mathbb{E}[\tilde{r}r_f(w - w_r)] - \mathbb{E}[\tilde{r}^2w_r] &= 0,\\
-\alpha\mathbb{E}[\tilde{r}] -r_f(w - w_r)\mathbb{E}[\tilde{r}] - w_r\mathbb{E}[\tilde{r}^2] &= 0,\\
-w_r(\mathbb{E}[\tilde{r}] - \mathbb{E}[\tilde{r}^2]) &= \mathbb{E}[\tilde{r}](wr_f - \alpha),\\
-w_r &= \frac{\mathbb{E}[\tilde{r}](wr_f - \alpha)}{\mathbb{E}[\tilde{r}] - \mathbb{E}[\tilde{r}^2]}.
-\end{align*}Finally, we can write $$\boxed{w_r = \frac{\mathbb{E}[\tilde{r}](\alpha - wr_f)}{Var(\tilde{r}) + (\mathbb{E}[\tilde{r}])^2 - \mathbb{E}[\tilde{r}]}.}$$
+\mathbb{E}\left[(\tilde{r} - r_f) v'((\tilde{r} - r_f)w_r + r_fw)\right] &= 0,\\
+\mathbb{E}\left[(-2)(\tilde{r} - r_f)(\alpha - (\tilde{r} - r_f)w_r - r_fw)\right]&= 0,\\
+\mathbb{E}\left[(\tilde{r} - r_f)\alpha - (\tilde{r} - r_f)^2w_r - r_f(\tilde{r} - r_f)w\right]&= 0,\\
+\mathbb{E}[\tilde{r} - r_f]\alpha -\mathbb{E}[(\tilde{r} - r_f)^2]w_r-+ r_fw\mathbb{E}[\tilde{r} - r_f]&= 0,\\
+\frac{\mathbb{E}[\tilde{r} - r_f](\alpha - r_f w)}{\mathbb{E}[(\tilde{r} - r_f)^2]} &= w_r,\\
+\frac{\mathbb{E}[\tilde{r} - r_f](\alpha - r_f w)}{\mathbb{E}[\tilde{r}^2 - 2\tilde{r}r_f + r^2_f]} &= w_r,\\ 
+\frac{\mathbb{E}[\tilde{r} - r_f](\alpha - r_f w)}{Var(\tilde{r}) + (\mathbb{E}[\tilde{r}]^2 - 2r_f\mathbb{E}[\tilde{r}] + r_f^2} &= w_r.
+\end{align*}Finally, we can write $$\boxed{w_r = \frac{\mathbb{E}[\tilde{r} - r_f](\alpha - r_f w)}{Var(\tilde{r}) + \left(\mathbb{E}[\tilde{r} - r_f]\right)^2}.}$$
 \end{solution}
 \end{enumerate}
  
@@ -1090,8 +1090,87 @@ If $|A| \geq 3$, $f$ is onto, and SP with universal domain, then $f$ is dictator
 \subsection{Mechanism Design}
 I think this is the chonkiest section out of all of them. From my perfunctory glance of the prelim questions, it looks like this section is related to most of the prelim questions as well.
 
+\subsubsection{Vickery-Clarke-Groves (VGC) Mechanisms}
+Here is the \textbf{basic situation}. There is a group of agents who need to make a collective decision $q$ — for example whether to build a public good, or who should receive an object. Each agent $i$ has a private type $t_i$ that determines how they value different outcomes. The big "social designer" wants to implement a "good" outcome but faces the problem that types are private information — agents might lie about their preferences to manipulate the decision in their favor. Critically, agent's utilities are all quasi-linear which means that the marginal utility of money is one and there are no constraints and the amount of money. To recap, there are:
+\begin{itemize}
+\item Agents, $N = \{1, \ldots, n\}$.
+\item Set of non-money allocations and money payments, $$A := \left\{(p,q)\,:\,q\in Q, p_i\in \mathbb{R}\,\forall i\in N,\sum_{i}p_i \geq 0\right\}.$$
+\item Non-money allocations $q$.
+\item Money payments by $i$ to the designer $p_i$
+\item Utility functions $$u_i(p,q,t_i) = v_i(q, t_i) - p_i.$$
+\item Types $t_i\in T_i$ with $T = \Pi_{i=1}^nT_i$, and $t = (t_1, \ldots, t_n) = (t_i, t_{-i})$
+\end{itemize}
+The designer wants to implement the \textit{ex-post efficient outcome} --- the $q^*$ that maximizes total surplus:
+\begin{equation}
+    q^*(t) \in \arg\max_q \sum_i v_i(q, t_i)
+\end{equation}
+The question is whether the designer can get agents to truthfully reveal their types so that $q^*$ can actually be computed and implemented. 
+
+Just asking agents to report their types does not work. Suppose the decision is whether to build a public good that costs $c$. Agent $i$ knows that if they report a higher value, the good is more likely to be built. If they want the good built, they have an incentive to overreport. If they do not want it built, they have an incentive to underreport. Truthful revelation is not generally incentive compatible.
+
+Let's come back now to social choice functions, in this environment, a SCF takes on the form $$t \xrightarrow{f} (p_1(t), \ldots, p_n(t), q(t))$$ such that $\sum_i p_i(t) \geq 0$ for all $t \in T$.
+\begin{definition}[Ex-Post Efficient]
+$f$ is ex-post efficient (EPE) in non-money if $$\sum_{i = 1}^n v_i(q(t), t_i) \geq \sum_{i=1}^n v_i(q', t_i)\quad \forall t\in T, q'\in Q.$$
+\end{definition} 
+
+\begin{definition}[Strategy Proof]
+$f$ is SP if for all $(i, t_i, s_i, t_{-i})$, we have $$v_i(q(t_i, t_{-i}), t_i) - p_i(t_i, t_{-i}) \geq v_i(q(s_i, t_{-i}), t_i) - p_i(s_i, t_{-i}).$$
+\end{definition}
+
+\begin{theorem}[Groves, 1973]
+Let $f = (p, q^*)$ be an EPE social choice function. If $\forall i\in N$, there exists some $h_i$ such that: $$-p_i(t) = \sum_{j \neq i} v_j(q^*(t), t)j) - h_i(t_{-i}),\quad \forall t\in T$$ Then $f$ is strategy proof.
+\end{theorem}
+
+Groves' theorem says that the following transfer scheme makes truthful reporting a \textit{dominant strategy} --- meaning it is optimal for agent $i$ to report truthfully regardless of what everyone else reports:
+\begin{equation}
+    p_i(t) = h_i(t_{-i}) - \sum_{j \neq i} v_j(q^*(t), t_j)
+\end{equation}
+where $h_i$ is any function that depends only on other agents' reports $t_{-i}$, not on $i$'s own report. With Groves transfers, agent $i$'s total payoff from reporting $t_i'$ is:
+\begin{equation}
+    v_i(q^*(t_i', t_{-i}), t_i) + \sum_{j \neq i} v_j(q^*(t_i', t_{-i}), t_j) - h_i(t_{-i})
+\end{equation}
+The last term $h_i(t_{-i})$ does not depend on $i$'s report so it is irrelevant to $i$'s decision. The first two terms together are just:
+\begin{equation}
+    \sum_j v_j(q^*(t_i', t_{-i}), t_j)
+\end{equation}
+the \textit{total social surplus} given the outcome induced by $i$'s report. This is maximized when $q^*$ is the efficient outcome, which happens exactly when $i$ reports truthfully. So agent $i$ is effectively choosing the outcome to maximize total social surplus --- their private incentives are perfectly aligned with social efficiency. The Clarke mechanism is the most natural special case of Groves, where:
+\begin{equation}
+    h_i(t_{-i}) = \sum_{j \neq i} v_j(q^*_{-i}(t_{-i}), t_j)
+\end{equation}
+and $q^*_{-i}$ is the efficient outcome \textit{without agent $i$}. This gives transfers:
+\begin{equation}
+    p_i(t) = \sum_{j \neq i}\left[v_j(q^*_{-i}(t_{-i}), t_j) - v_j(q^*(t), t_j)\right]
+\end{equation}
+This is the \textit{externality agent $i$ imposes on everyone else} by participating. If agent $i$'s presence changes the decision --- pivoting the outcome from $q^*_{-i}$ to $q^*$ --- then $i$ pays for the harm they cause to others. If $i$'s presence does not change the decision, they pay nothing.
+
+The cleanest example is a single object auction where agent $i$ values the object at $t_i$. The efficient outcome is to give the object to the highest type. Without agent $i$, the object goes to the highest type among everyone else. With agent $i$ present, if $i$ wins, the outcome changes --- $i$ has pivoted the decision. The externality $i$ imposes is depriving the second highest bidder of the object, so $i$ pays the second highest value. This is exactly the \textit{Vickrey second price auction} --- you win by having the highest value but pay the second highest bid. Losers do not change the outcome so they pay nothing.
+
+The Clarke mechanism collects payments $p_i \geq 0$ from agents who are pivotal --- it runs a \textit{surplus}. This surplus cannot be returned to the agents without destroying incentive compatibility. So the mechanism generically \textit{fails budget balance}.
+
+The Green--Laffont / Holmstr\"{o}m theorem makes this precise --- there is \textit{no mechanism} that simultaneously achieves:
+\begin{itemize}
+    \item Dominant strategy incentive compatibility
+    \item Ex-post efficiency
+    \item Budget balance
+\end{itemize}
+The proof goes through Groves' theorem. Any DSIC and efficient mechanism must be a Groves scheme. Budget balance requires $\sum_i p_i = 0$, which means:
+\begin{equation}
+    \sum_i h_i(t_{-i}) = (n-1)W(t)
+\end{equation}
+where $W(t) = \sum_j v_j(q^*(t), t_j)$ is total surplus. The left side depends on $t$ only through $t_{-i}$ for each $i$, while the right side depends on all of $t$ through cross terms. One can show this equality is generically impossible --- the functions do not have the required separability structure.
+
+
+The VCG family of mechanisms gets self-interested agents to truthfully reveal private information by making each agent the residual claimant of total social surplus. The cost is that the budget cannot simultaneously be closed. This tradeoff between efficiency, incentive compatibility, and budget balance is one of the central impossibility results of mechanism design, and everything downstream --- Myerson auctions, Mussa--Rosen screening --- is grappling with variations of this same tension.
+
+
+\subsubsection{Optimal Auction Design}
+Here is the basic setup; a seller has a single object to sell. There are $n$ bidders, each with a private value $t_i$ for the object.
+
+\subsubsection{Monopolistic Screening}
+
 \subsection{Information Economics}
 This section will cover a selection of a handful of different types of problems that revolve around the idea of information.
+
 \subsubsection{Akerlof's Lemons}
 Consider an environment with a buyer and a seller in a car market. The seller has a car that could either be a new car or a lemon (old beat down car) which both cost $\overline{c}$ and $\underline{c}$ respectively. The buyer also assigns value $\overline{v}$ and $\underline{v}$ to the new car or lemon respectively. The seller knows what time of car they are trying to sell and therefore both $v$ and $c$, while the buyer does not know until they have finished buying the car.
 
