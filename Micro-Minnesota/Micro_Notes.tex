@@ -376,8 +376,10 @@ is the same as of $\tilde{r}$, that is, $E(\tilde{r}') = E(\tilde{r})$.
 \mathbb{E}[v(\tilde{r}')] &\leq \mathbb{E}[v(\tilde{r})],\\
 \mathbb{E}[-(\alpha - \tilde{r}')^2] &\leq \mathbb{E}[-(\alpha - \tilde{r})^2],\\
 \mathbb{E}[(\alpha - \tilde{r}')^2] &\geq \mathbb{E}[(\alpha - \tilde{r})^2],\\
-\mathbb{E}[(\tilde{r}' - \mathbb{E}[\tilde{r}])^2] &\geq \mathbb{E}[(\tilde{r} - \mathbb{E}[\tilde{r}])^2],\\
-\mathbb{E}[(\tilde{r}' - \mathbb{E}[\tilde{r}'])^2] &\geq \mathbb{E}[(\tilde{r} - \mathbb{E}[\tilde{r}])^2],\\
+\mathbb{E}[\alpha^2 - 2\alpha\tilde{r}'+ \tilde{r}'^2] &\geq \mathbb{E}[\alpha^2 - 2\alpha\tilde{r}+ \tilde{r}^2],\\
+\mathbb{E}[\tilde{r}'^2] &\geq \mathbb{E}[\tilde{r}^2],\\
+\mathbb{E}[\tilde{r}'^2] - (\mathbb{E}[\tilde{r'}])^2 &\geq \mathbb{E}[\tilde{r}^2] - (\mathbb{E}[\tilde{r'}])^2,\\
+\mathbb{E}[\tilde{r}'^2] - (\mathbb{E}[\tilde{r'}])^2 &\geq \mathbb{E}[\tilde{r}^2] - (\mathbb{E}[\tilde{r}])^2,\\
 Var(\tilde{r}') &\geq Var(\tilde{r}).
 \end{align*}
     \end{solution}
@@ -387,13 +389,12 @@ Var(\tilde{r}') &\geq Var(\tilde{r}).
         smaller than the optimal investment with less risky return $\tilde{r}$,
         all else unchanged.
     \begin{solution}
- 	We know from part (a) that the optimal investments in the less risky and more risky asset are respectively $$w_r = \frac{\mathbb{E}[\tilde{r}](\alpha - wr_f)}{Var(\tilde{r}) + (\mathbb{E}[\tilde{r}])^2 - \mathbb{E}[\tilde{r}]}, \quad w_{r'} = \frac{\mathbb{E}[\tilde{r}'](\alpha - wr_f)}{Var(\tilde{r}') + (\mathbb{E}[\tilde{r}'])^2 - \mathbb{E}[\tilde{r}']}.$$To make the comparison, consider the sequence of double implications
+ 	We know from part (a) that the optimal investments in the less risky and more risky asset are respectively $$w_r = \frac{\mathbb{E}[\tilde{r} - r_f](\alpha - r_f w)}{Var(\tilde{r}) + \left(\mathbb{E}[\tilde{r} - r_f]\right)^2}, \quad w_{r'} = \frac{\mathbb{E}[\tilde{r}' - r_f](\alpha - r_f w)}{Var(\tilde{r}') + \left(\mathbb{E}[\tilde{r}' - r_f]\right)^2}.$$To make the comparison, consider the sequence of double implications
 \begin{align*}
 w_r &\geq w_{r'},\\
-\frac{\mathbb{E}[\tilde{r}](\alpha - wr_f)}{Var(\tilde{r}) + (\mathbb{E}[\tilde{r}])^2 - \mathbb{E}[\tilde{r}]} &\geq \frac{\mathbb{E}[\tilde{r}'](\alpha - wr_f)}{Var(\tilde{r}') + (\mathbb{E}[\tilde{r}'])^2 - \mathbb{E}[\tilde{r}']},\\
-\frac{\mathbb{E}[\tilde{r}](\alpha - wr_f)}{Var(\tilde{r}) + (\mathbb{E}[\tilde{r}])^2 - \mathbb{E}[\tilde{r}]} &\geq \frac{\mathbb{E}[\tilde{r}](\alpha - wr_f)}{Var(\tilde{r}') + (\mathbb{E}[\tilde{r}])^2 - \mathbb{E}[\tilde{r}]},\\
-\frac{1}{Var(\tilde{r}) + (\mathbb{E}[\tilde{r}])^2 - \mathbb{E}[\tilde{r}]} &\geq \frac{1}{Var(\tilde{r}') + (\mathbb{E}[\tilde{r}])^2 - \mathbb{E}[\tilde{r}]},\\
-Var(\tilde{r}) + (\mathbb{E}[\tilde{r}])^2 - \mathbb{E}[\tilde{r}] &\leq Var(\tilde{r}') + (\mathbb{E}[\tilde{r}])^2 - \mathbb{E}[\tilde{r}],\\
+\frac{\mathbb{E}[\tilde{r} - r_f](\alpha - r_f w)}{Var(\tilde{r}) + \left(\mathbb{E}[\tilde{r} - r_f]\right)^2} &\geq \frac{\mathbb{E}[\tilde{r}' - r_f](\alpha - r_f w)}{Var(\tilde{r}') + \left(\mathbb{E}[\tilde{r}' - r_f]\right)^2},\\
+\frac{1}{Var(\tilde{r}) + \left(\mathbb{E}[\tilde{r} - r_f]\right)^2} &\geq \frac{1}{Var(\tilde{r}') + \left(\mathbb{E}[\tilde{r}' - r_f]\right)^2},\\
+Var(\tilde{r}) + \left(\mathbb{E}[\tilde{r} - r_f]\right)^2 &\leq Var(\tilde{r}') + \left(\mathbb{E}[\tilde{r}' - r_f]\right)^2,\\
 Var(\tilde{r})  &\leq Var(\tilde{r}').
 \end{align*}
 Since the last line is true (as we showed in part (c)), it must be the case that $w_{r'} < w_{r'}$.
@@ -1164,9 +1165,94 @@ The VCG family of mechanisms gets self-interested agents to truthfully reveal pr
 
 
 \subsubsection{Optimal Auction Design}
-Here is the basic setup; a seller has a single object to sell. There are $n$ bidders, each with a private value $t_i$ for the object.
+A seller has a single object to sell. There are $n$ bidders, each with a private value $t_i$ for the object drawn independently from some distribution $F_i$ with density $f_i$ on $[a_i, b_i]$. The seller wants to design an auction --- a rule for who gets the object and how much everyone pays --- to maximize expected revenue. The question is what the optimal such rule looks like. By the revelation principle, without loss of generality the seller can restrict attention to \textit{direct mechanisms} where each bidder simply reports their type $t_i$ and the mechanism maps reports to an allocation $q(t)$ and payments $p(t)$. A direct mechanism $(q,p)$ consists of:
+\begin{itemize}
+    \item $q_i(t)$ --- the probability bidder $i$ gets the object given reports $t$
+    \item $p_i(t)$ --- the payment bidder $i$ makes
+\end{itemize}
+The mechanism must satisfy two constraints for each bidder $i$. Define bidder $i$'s interim expected utility at type $t_i$ as:
+\begin{equation}
+    U_i(t_i) = E_{t_{-i}}\left[t_i q_i(t_i, t_{-i}) - p_i(t_i, t_{-i})\right]
+\end{equation}
+and the interim probability of winning as $Q_i(t_i) = E_{t_{-i}}[q_i(t_i, t_{-i})]$.
+
+\textbf{Incentive compatibility (IC):} each bidder prefers to report truthfully:
+\begin{equation}
+    U_i(t_i) \geq E_{t_{-i}}\left[t_i q_i(t_i', t_{-i}) - p_i(t_i', t_{-i})\right] \quad \forall t_i, t_i'
+\end{equation}
+
+\textbf{Individual rationality (IR):} each bidder prefers to participate:
+\begin{equation}
+    U_i(t_i) \geq 0 \quad \forall t_i
+\end{equation}
+Applying the envelope theorem to the IC constraint characterizes what incentive compatibility implies. IC requires two things. First, $Q_i$ must be \textit{nondecreasing} --- higher types must win more often. Second, the envelope condition pins down surplus:
+\begin{equation}
+    U_i(t_i) = U_i(a_i) + \int_{a_i}^{t_i} Q_i(s)\, ds
+\end{equation}
+So once the allocation rule $q$ and the lowest type's surplus $U_i(a_i)$ are known, everything else is determined. IR pins down $U_i(a_i) = 0$ at the optimum --- the lowest type gets zero surplus. Substituting the envelope condition into the revenue expression and integrating by parts gives:
+\begin{equation}
+    E[\text{revenue}] = \sum_i E\left[q_i(t) \cdot \psi_i(t_i)\right]
+\end{equation}
+where $\psi_i(t_i)$ is the \textit{virtual valuation}:
+\begin{equation}
+    \psi_i(t_i) = t_i - \frac{1 - F_i(t_i)}{f_i(t_i)}
+\end{equation}
+The virtual valuation has two components. The first term $t_i$ is the bidder's actual value. The second term $(1-F_i(t_i))/f_i(t_i)$ is the \textit{information rent} --- the surplus the seller must give up to type $t_i$ to prevent lower types from mimicking them. In the \textit{regular case} where $\psi_i$ is strictly increasing for each $i$, the revenue maximizing auction:
+\begin{itemize}
+    \item Gives the object to the bidder with the highest virtual valuation, provided $\max_i \psi_i(t_i) \geq 0$
+    \item Does not sell if all virtual valuations are negative
+    \item Charges each bidder according to the envelope formula
+\end{itemize}
+The reserve price emerges naturally --- do not sell to a bidder whose virtual valuation is negative, even if they are the highest bidder. This means the seller sometimes inefficiently withholds the object, which is the cost of revenue maximization. If $t_i \sim U[0,1]$ i.i.d., then $\psi(t) = 2t - 1$. Virtual valuation is nonnegative iff $t \geq 1/2$. The optimal auction is a \textit{second price auction with reserve price $r^* = 1/2$} --- give the object to the highest bidder provided they exceed the reserve, and charge them the maximum of the second highest bid and the reserve. With $n = 2$ bidders this generates expected revenue $5/12$ versus $1/3$ without a reserve. When bidders have different distributions $F_i$, their virtual valuation functions $\psi_i$ differ. The optimal auction gives the object to the bidder with the highest virtual valuation --- which need not be the bidder with the highest actual value. This generates a bias in favor of weaker bidders: a bidder from a distribution with lower values might have a higher virtual valuation and win even against a stronger bidder with a higher true value, because inducing competition among asymmetric bidders benefits the seller. When $\psi_i$ is not monotone --- the non-regular case --- the simple pointwise maximization breaks down because it would generate a non-monotone allocation rule, violating IC. Myerson's solution is \textit{ironing}: replace $\psi_i$ with its ironed version $\bar{\psi}_i$ by concavifying the integrated virtual valuation:
+\begin{equation}
+    H_i(t) = \int_{a_i}^{t} \psi_i(s) f_i(s)\, ds
+\end{equation}
+On intervals where $H_i$ is concavified, $\bar{\psi}_i$ is flat --- meaning the allocation is randomized uniformly over those types. This restores monotonicity of the allocation rule while preserving optimality. Any two IC mechanisms with the same allocation rule $q$ and the same lowest type surplus $U_i(a_i)$ yield the same expected revenue. In particular, first price and second price auctions with symmetric bidders generate identical expected revenue despite looking very different --- in the first price auction bidders shade their bids, but the shading exactly offsets the higher winning payment, leaving revenue unchanged.
 
 \subsubsection{Monopolistic Screening}
+
+A monopolist sells a good that comes in varying qualities $q$ to a population of consumers who differ in how much they value quality. Each consumer has a private type $\theta$ --- their willingness to pay for quality --- and the monopolist cannot observe $\theta$ directly. The monopolist designs a \textit{menu of contracts} $(q, T)$ --- quality-price pairs --- and lets consumers self-select into the contract intended for their type. Start with two types $\underline{\theta} < \bar{\theta}$ with probabilities $\underline{p}$ and $\bar{p}$. Consumer utility is:
+\begin{equation}
+    u(q, T; \theta) = \theta v(q) - T
+\end{equation}
+where $v$ is increasing and concave. The monopolist's cost of producing quality $q$ is $cq$. The monopolist maximizes profit subject to four constraints:
+\begin{align}
+    \underline{\theta} v(\underline{q}) - \underline{T} &\geq 0 \tag{IR$_{\underline{\theta}}$} \\
+    \bar{\theta} v(\bar{q}) - \bar{T} &\geq 0 \tag{IR$_{\bar{\theta}}$} \\
+    \underline{\theta} v(\underline{q}) - \underline{T} &\geq \underline{\theta} v(\bar{q}) - \bar{T} \tag{IC$_{\underline{\theta}}$} \\
+    \bar{\theta} v(\bar{q}) - \bar{T} &\geq \bar{\theta} v(\underline{q}) - \underline{T} \tag{IC$_{\bar{\theta}}$}
+\end{align}
+At the optimum:
+\begin{itemize}
+    \item \textbf{Low type's IR binds:} $\underline{T} = \underline{\theta} v(\underline{q})$. The monopolist extracts all surplus from the low type.
+    \item \textbf{High type's downward IC binds:} $\bar{\theta} v(\bar{q}) - \bar{T} = \bar{\theta} v(\underline{q}) - \underline{T}$. The high type is exactly indifferent between their contract and the low type's contract.
+    \item \textbf{High type's IR is slack:} the high type receives positive \textit{information rent} equal to $(\bar{\theta} - \underline{\theta})v(\underline{q}) \geq 0$.
+    \item \textbf{Low type's upward IC is slack:} the low type never wants to mimic the high type.
+\end{itemize}
+Substituting the binding constraints and optimizing yields:
+\begin{align}
+    \bar{\theta} v'(\bar{q}) &= c \tag{no distortion at top} \\
+    \underline{\theta} v'(\underline{q}) &= c + \frac{\bar{p}}{\underline{p}}(\bar{\theta} - \underline{\theta}) v'(\underline{q}) \tag{downward distortion at bottom}
+\end{align}
+The high type gets the efficient quantity. The low type gets less than the first best quantity --- the monopolist distorts quality downward to make the low type contract less attractive to the high type, thereby reducing the information rent paid to the high type. Sometimes it is optimal for the monopolist to exclude the low type entirely, setting $\underline{q} = 0$. This happens when the low type population is small relative to the high type population, so the monopolist finds it more profitable to focus entirely on extracting from the high type. With a continuum of types $\theta \sim F$ on $[\underline{\theta}, \bar{\theta}]$ with density $f$ and single crossing condition $\partial^2 v / \partial q \partial \theta > 0$, the IC constraint reduces to two conditions. First, $q(\theta)$ must be \textit{weakly increasing}. Second, the envelope condition:
+\begin{equation}
+    U'(\theta) = v_\theta(q(\theta), \theta)
+\end{equation}
+pins down the consumer's surplus path given the allocation rule. Substituting the envelope condition and integrating by parts transforms the monopolist's profit into a \textit{virtual surplus} maximization. The optimal quantity for each type solves:
+\begin{equation}
+    q^*(\theta) = \arg\max_q \left[v(q,\theta) - \frac{1-F(\theta)}{f(\theta)} v_\theta(q,\theta) - cq\right]
+\end{equation}
+The term $\frac{1-F(\theta)}{f(\theta)} v_\theta(q,\theta)$ is the \textit{information rent derivative} --- it captures the cost to the monopolist of giving type $\theta$ more quality, because all types above $\theta$ must also receive more surplus to maintain IC. At the highest type $\bar{\theta}$, the information rent term vanishes since $F(\bar{\theta}) = 1$:
+\begin{equation}
+    \frac{1 - F(\bar{\theta})}{f(\bar{\theta})} = 0
+\end{equation}
+So the virtual surplus condition collapses to the first best condition --- the top type always gets efficient quality regardless of the distribution or utility function. If the pointwise optimal $q^*(\theta)$ is not increasing, the solution requires \textit{ironing} --- replacing the virtual surplus with its concavified version on the non-monotone region. This corresponds to \textit{bunching}: a positive mass of types all receive the same quality level. Bunching is the screening analogue of Myerson's ironing and arises for similar reasons. The mathematical structure is identical to Myerson's optimal auction:
+\begin{itemize}
+    \item Both use the envelope theorem to reduce the IC constraint to a differential equation
+    \item Both use integration by parts to write the objective as a virtual surplus
+    \item Both feature no distortion at the top and downward distortion elsewhere
+\end{itemize}
+The difference is economic context --- Myerson allocates a fixed object across competing bidders, while Mussa--Rosen designs a quality-price menu for a single consumer with private willingness to pay.
 
 \subsection{Information Economics}
 This section will cover a selection of a handful of different types of problems that revolve around the idea of information.

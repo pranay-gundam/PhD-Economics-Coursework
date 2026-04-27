@@ -650,15 +650,16 @@ distribution $F(w)$.
         variety, and display a formula for the reservation wage. Denote this
         reservation wage by $w^*(0)$.
     \begin{solution}
- 	We can write out a bellman equation to describe this unemployed worker's optimization problem, $$V_{unemp}(w, 0) = \max\left\{\beta \mathbb{E}\left[V_{unemp}(w',0)\right], V_{emp}(w)\right\}.$$ Here $V_{emp}(w)$ represents the value of worker who is employed at wage $w$, which we can represent as 
+ 	We can write out a bellman equation to describe this unemployed worker's optimization problem, $$V_{unemp}(w, 0) = \max\left\{u(0) + \beta \mathbb{E}\left[V_{unemp}(w',0)\right], V_{emp}(w)\right\}.$$ Here $V_{emp}(w)$ represents the value of worker who is employed at wage $w$, which we can represent as 
 \begin{align*}
-V_{emp}(w) &= w + \beta \left[\theta V_{emp}(w) + (1 - \theta)\mathbb{E}\left[V_{unemp}(w', n)\right]\right],\\
-\implies V_{emp}(w) &= \frac{1}{1 - \beta \theta}\left[w + \beta (1 -\theta)\mathbb{E}[V_{unemp}(w',n)]\right].
-\end{align*} In $V_{unemp}(w,0)$, we know that the left hand term in the expression is a constant and the write hand side is linear in $w$. As such, by intermediate value theorem, we know there must exist some $w^*(0)$ such that  $$\beta \mathbb{E}\left[V_{unemp}(w',0)\right] = V_{emp}(w^*(0)),$$ such that if $w > w^*(0)$ then the worker accepts the wage offer and if $w < w^*(0)$ then the worker declines the offer. To more explicitly define $w^*(0)$, we can write
+V_{emp}(w) &= u(w) + \beta \left[\theta V_{emp}(w) + (1 - \theta)\mathbb{E}\left[V_{unemp}(w', n)\right]\right],\\
+\implies V_{emp}(w) &= \frac{1}{1 - \beta \theta}\left[u(w) + \beta (1 -\theta)\mathbb{E}[V_{unemp}(w',n)]\right].
+\end{align*} 
+In $V_{unemp}(w,0)$, we know that the left hand term in the expression is a constant and the right hand side is increasing $w$ (and also contains the LHS in the range of the RHS for proper distributions $F(\cdot)$). As such, by intermediate value theorem, we know there must exist some $w^*(0)$ such that  $$\beta \mathbb{E}\left[V_{unemp}(w',0)\right] = V_{emp}(w^*(0)),$$ such that if $w > w^*(0)$ then the worker accepts the wage offer and if $w < w^*(0)$ then the worker declines the offer. To more explicitly define $w^*(0)$, we can write
 \begin{align*}
-\frac{1}{1 - \beta \theta}\left[w^*(0) + \beta (1 -\theta)\mathbb{E}[V_{unemp}(w',n)]\right] &= \beta \mathbb{E}\left[V_{unemp}(w',0)\right],\\
-\implies  w^*(0) + \beta (1 -\theta)\mathbb{E}[V_{unemp}(w',n)] &= \beta(1 - \beta \theta) \mathbb{E}\left[V_{unemp}(w',0)\right].
-\end{align*}This gives us the expression $$\boxed{w^*(0) = \beta(1 - \beta \theta) \mathbb{E}\left[V_{unemp}(w',0)\right] - \beta (1 -\theta)\mathbb{E}[V_{unemp}(w',n)].}$$
+\frac{1}{1 - \beta \theta}\left[u(w^*(0)) + \beta (1 -\theta)\mathbb{E}[V_{unemp}(w',n)]\right] &= u(0) + \beta \mathbb{E}\left[V_{unemp}(w',0)\right],\\
+\implies  u(w^*(0)) + \beta (1 -\theta)\mathbb{E}[V_{unemp}(w',n)] &= (1 - \beta \theta) \left[u(0) + \beta\mathbb{E}\left[V_{unemp}(w',0)\right]\right].
+\end{align*}This gives us the expression $$\boxed{w^*(0) = u^{-1}\left((1 - \beta \theta) \left[u(0) + \beta\mathbb{E}\left[V_{unemp}(w',0)\right] - \beta (1 -\theta)\mathbb{E}[V_{unemp}(w',n)]\right]\right).}$$
  \end{solution}
  
  \item Consider next the situation of an unemployed worker who is in his/her
@@ -668,12 +669,13 @@ V_{emp}(w) &= w + \beta \left[\theta V_{emp}(w) + (1 - \theta)\mathbb{E}\left[V_
         cannot prove it, a serious argument will receive partial credit).
  \begin{solution}
  We can once again write out the bellman equation that represents the problem that this worker faces,
-$$V_{unemp}(w, 1) = \max\left\{b + \beta\mathbb{E}[V_{unemp}(w', 0),V_{emp}(w) ]\right\},$$ where $V_{emp}(w)$ is as written above. Once again, we can write 
+$$V_{unemp}(w, 1) = \max\left\{u(b) + \beta\mathbb{E}[V_{unemp}(w', 0),V_{emp}(w) ]\right\},$$ where $V_{emp}(w)$ is as written above. Once again, we can write 
 \begin{align*}
-b + \beta\mathbb{E}[V_{unemp}(w', 0) &= V_{emp}(w^*(1)),\\
-\implies b + \beta \mathbb{E}\left[V_{unemp}(w',0)\right] &= \frac{1}{1 - \beta \theta}\left[w^*(1) + \beta (1 -\theta)\mathbb{E}[V_{unemp}(w',n)]\right],\\
-\implies w^*(1) + \beta (1 -\theta)\mathbb{E}[V_{unemp}(w',n)] &= (1 - \beta \theta) \left[b + \beta \mathbb{E}\left[V_{unemp}(w',0)\right]\right].\\
-\end{align*}This finally gives us $$w^*(1) = (1 - \beta \theta) \left[b + \beta \mathbb{E}\left[V_{unemp}(w',0)\right]\right] - \beta (1 -\theta)\mathbb{E}[V_{unemp}(w',n)].$$ From our expression of $w^*(0)$, however, we can also write $$w^*(1) = (1 - \beta \theta)b + w^*(0).$$Since $b > 0$ and $1 - \beta\theta > 0$ we can claim that $w^*(1) > w^*(0)$. 
+u(b) + \beta\mathbb{E}[V_{unemp}(w', 0) &= V_{emp}(w^*(1)),\\
+ u(b) + \beta \mathbb{E}\left[V_{unemp}(w',0)\right] &= \frac{1}{1 - \beta \theta}\left[u(w^*(1)) + \beta (1 -\theta)\mathbb{E}[V_{unemp}(w',n)]\right],\\
+ u(w^*(1)) + \beta (1 -\theta)\mathbb{E}[V_{unemp}(w',n)] &= (1 - \beta \theta) \left[u(b) + \beta \mathbb{E}\left[V_{unemp}(w',0)\right]\right].
+\end{align*}This finally gives us $$w^*(1) = u^{-1}\left((1 - \beta \theta) \left[u(b) + \beta \mathbb{E}\left[V_{unemp}(w',0)\right]\right] - \beta (1 -\theta)\mathbb{E}[V_{unemp}(w',n)]\right).$$ Since $b > 0$, we know that $u(b) > u(0)$; since we know $u(\cdot)$ is strictly increasing, we know that $u^{-1}(\cdot)$ is also strictly increasing and therefore 
+$$w^*(1) > w^*(0).$$
  \end{solution}
  
  \item What does the result from (b) say about the probability of leaving
@@ -693,18 +695,18 @@ w^*(T) &> w^*(T-1),\\
  \begin{solution}
  We can follow a similar train of logic as we did in previous parts. First let's calculate $w^*(2)$ and then go from there
 \begin{align*}
-b + \beta\mathbb{E}[V_{unemp}(w', 1)] &= V_{emp}(w^*(2)),\\
-\implies \frac{1}{1 - \beta \theta}\left[w^*(2) + \beta (1 -\theta)\mathbb{E}[V_{unemp}(w',n)]\right] &= b + \beta \mathbb{E}\left[V_{unemp}(w',1)\right],\\
-\implies (1 - \beta \theta) \left[b + \beta \mathbb{E}\left[V_{unemp}(w',1)\right]\right] &= w^*(2) + \beta (1 -\theta)\mathbb{E}[V_{unemp}(w',n)].
+u(b) + \beta\mathbb{E}[V_{unemp}(w', 1)] &= V_{emp}(w^*(2)),\\
+ \frac{1}{1 - \beta \theta}\left[u(w^*(2)) + \beta (1 -\theta)\mathbb{E}[V_{unemp}(w',n)]\right] &= u(b) + \beta \mathbb{E}\left[V_{unemp}(w',1)\right],\\
+(1 - \beta \theta) \left[u(b) + \beta \mathbb{E}\left[V_{unemp}(w',1)\right]\right] &= u(w^*(2)) + \beta (1 -\theta)\mathbb{E}[V_{unemp}(w',n)].
 \end{align*} From there we can then write
 \begin{align*}
-w^*(2) &= (1 - \beta \theta) \left[b + \beta \mathbb{E}\left[V_{unemp}(w',1)\right]\right] - \beta (1 -\theta)\mathbb{E}[V_{unemp}(w',n)].
+w^*(2) &= u^{-1}\left((1 - \beta \theta) \left[u(b) + \beta \mathbb{E}\left[V_{unemp}(w',1)\right]\right] - \beta (1 -\theta)\mathbb{E}[V_{unemp}(w',n)]\right).
 \end{align*}We can clearly see the similarities in the formulation between $w^*(2)$ and $w^*(1)$ and as such, proving $w^*(2) > w^*(1)$ boils down (after doing some algebra) to proving $\mathbb{E}[V_{unemp}(w',1)] > \mathbb{E}[V_{unemp}(w',0)]$. Furthermore we know that $V_{unemp}(w,1) > V_{unemp}(w,0)$ for any $w$ would imply $\mathbb{E}[V_{unemp}(w',1)] > \mathbb{E}[V_{unemp}(w',0)]$. As such, pick any arbitrary $w$ in the domain of possible $w$. There are then four cases
 \begin{itemize}
 \item \underline{Case 1:} If $V_{unemp}(w, 1) = V_{emp}(w)$ and $V_{unemp}(w, 0) = V_{emp}(w)$ then $V_{unemp}(w, 1) = V_{unemp}(w, 0)$
-\item \underline{Case 2:} If $V_{unemp}(w, 1) = V_{emp}(w)$ and $V_{unemp}(w, 0) = \beta \mathbb{E}[V_{unemp}(w', 0)]$ then $$V_{unemp}(w,1) = V_{emp}(w) \geq b +  \beta \mathbb{E}[V_{unemp}(w', 0)] > \beta \mathbb{E}[V_{unemp}(w', 0)].$$
-\item \underline{Case 3:} If $V_{unemp}(w,1) =  b +  \beta \mathbb{E}[V_{unemp}(w', 0)]$ and $V_{unemp}(w, 0) = \beta \mathbb{E}[V_{unemp}(w', 0)]$ then very simply $$V_{unemp}(w,1) = b +  \beta \mathbb{E}[V_{unemp}(w', 0)] > \beta \mathbb{E}[V_{unemp}(w', 0)].$$
-\item \underline{Case 4:} If $V_{unemp}(w,1) =  b +  \beta \mathbb{E}[V_{unemp}(w', 0)]$ and $V_{unemp}(w, 0) = V_{emp}(w)$ then again very simply  $$V_{unemp}(w,1) = b +  \beta \mathbb{E}[V_{unemp}(w', 0)] >  V_{emp}(w) = V_{unemp}(w, 0).$$
+\item \underline{Case 2:} If $V_{unemp}(w, 1) = V_{emp}(w)$ and $V_{unemp}(w, 0) = u(0) + \beta \mathbb{E}[V_{unemp}(w', 0)]$ then $$V_{unemp}(w,1) = V_{emp}(w) \geq u(b) +  \beta \mathbb{E}[V_{unemp}(w', 0)] > u(0) + \beta \mathbb{E}[V_{unemp}(w', 0)].$$
+\item \underline{Case 3:} If $V_{unemp}(w,1) =  u(b) +  \beta \mathbb{E}[V_{unemp}(w', 0)]$ and $V_{unemp}(w, 0) = \beta \mathbb{E}[V_{unemp}(w', 0)]$ then very simply $$V_{unemp}(w,1) = u(b) +  \beta \mathbb{E}[V_{unemp}(w', 0)] > u(0) + \beta \mathbb{E}[V_{unemp}(w', 0)].$$
+\item \underline{Case 4:} If $V_{unemp}(w,1) =  u(b) +  \beta \mathbb{E}[V_{unemp}(w', 0)]$ and $V_{unemp}(w, 0) = V_{emp}(w)$ then again very simply  $$V_{unemp}(w,1) = u(b) +  \beta \mathbb{E}[V_{unemp}(w', 0)] >  V_{emp}(w) = V_{unemp}(w, 0).$$
 \end{itemize}
 For proper distributions $F(\cdot)$, we know that the measure of $w$'s that lie in cases 2,3, and 4 are non-zero and as such we can conclude that $$V_{unemp}(w,1) > V_{unemp}(w,0) \implies w^*(2) > w^*(1).$$
  \end{solution}
@@ -716,12 +718,12 @@ For proper distributions $F(\cdot)$, we know that the measure of $w$'s that lie 
 \begin{itemize}
 \item \underline{Base Case:} Let $n = 1$, we have shown above that $w^*(1) > w^*(0)$.
 \item  \underline{Induction Hypothesis:} Assume that for any $k < n$ we have that $w^*(k) > w^*(k-1)$ we want to show that $w^*(k+1) > w^*(k)$.
-\item \underline{Induction Step:} Pick any arbitrary $k < n$. As evidenced in the previous problem, we know that $$w^*(k+1) = (1 - \beta \theta) \left[b + \beta \mathbb{E}\left[V_{unemp}(w',k)\right]\right] - \beta (1 -\theta)\mathbb{E}[V_{unemp}(w',n)].$$As such, proving $w^*(k+1) > w^*(k)$ is equivalent to proving that $\mathbb{E}\left[V_{unemp}(w',k)\right] > \mathbb{E}\left[V_{unemp}(w',k-1)\right]$. Fix any arbitrary $w$ in the domain. Again, there are three cases
+\item \underline{Induction Step:} Pick any arbitrary $k < n$. As evidenced in the previous problem, we know that $$w^*(k+1) = (1 - \beta \theta) \left[u(b) + \beta \mathbb{E}\left[V_{unemp}(w',k)\right]\right] - \beta (1 -\theta)\mathbb{E}[V_{unemp}(w',n)].$$As such, proving $w^*(k+1) > w^*(k)$ is equivalent to proving that $\mathbb{E}\left[V_{unemp}(w',k)\right] > \mathbb{E}\left[V_{unemp}(w',k-1)\right]$. Fix any arbitrary $w$ in the domain. Again, there are three cases
 \begin{itemize}
 \item \underline{Case 1:} If $V_{unemp}(w, k) = V_{emp}(w)$ and $V_{unemp}(w, k-1) = V_{emp}(w)$ then $V_{unemp}(w, k) = V_{unemp}(w, k-1)$
-\item \underline{Case 2:} If $V_{unemp}(w, k) = V_{emp}(w)$ and $V_{unemp}(w, k-1) =b +  \beta \mathbb{E}[V_{unemp}(w', k-2)]$ then $$V_{unemp}(w,k) = V_{emp}(w) \geq b +  \beta \mathbb{E}[V_{unemp}(w', k-2)] > V_{unemp}(w, k-1).$$
-\item \underline{Case 3:} If $V_{unemp}(w,k) =  b +  \beta \mathbb{E}[V_{unemp}(w', k-1)]$ and $V_{unemp}(w, k-1) =b + \beta \mathbb{E}[V_{unemp}(w', k-2)]$. From the induction hypothesis we know that $w^*(k) > w^*(k-1)$ which also implies $$\mathbb{E}[V_{unemp}(w', k-1)] > \mathbb{E}[V_{unemp}(w', k-2)].$$ This concludes this case.
-\item \underline{Case 4:} If $V_{unemp}(w,k) =  b +  \beta \mathbb{E}[V_{unemp}(w', k-1)]$ and $V_{unemp}(w, k-1) = V_{emp}(w)$ then again very simply  $$V_{unemp}(w,k) = b +  \beta \mathbb{E}[V_{unemp}(w', k-1)] >  V_{emp}(w) = V_{unemp}(w, k-1).$$
+\item \underline{Case 2:} If $V_{unemp}(w, k) = V_{emp}(w)$ and $V_{unemp}(w, k-1) =u(b) +  \beta \mathbb{E}[V_{unemp}(w', k-2)]$ then $$V_{unemp}(w,k) = V_{emp}(w) \geq u(b) +  \beta \mathbb{E}[V_{unemp}(w', k-2)] > V_{unemp}(w, k-1).$$
+\item \underline{Case 3:} If $V_{unemp}(w,k) =  u(b) +  \beta \mathbb{E}[V_{unemp}(w', k-1)]$ and $V_{unemp}(w, k-1) =u(b) + \beta \mathbb{E}[V_{unemp}(w', k-2)]$. From the induction hypothesis we know that $w^*(k) > w^*(k-1)$ which also implies $$\mathbb{E}[V_{unemp}(w', k-1)] > \mathbb{E}[V_{unemp}(w', k-2)].$$ This concludes this case.
+\item \underline{Case 4:} If $V_{unemp}(w,k) =  u(b) +  \beta \mathbb{E}[V_{unemp}(w', k-1)]$ and $V_{unemp}(w, k-1) = V_{emp}(w)$ then again very simply  $$V_{unemp}(w,k) = u(b) +  \beta \mathbb{E}[V_{unemp}(w', k-1)] >  V_{emp}(w) = V_{unemp}(w, k-1).$$
 \end{itemize}
 For proper distributions $F(\cdot)$, we know that the measure of $w$'s that lie in cases 2,3, and 4 are non-zero and as such we can conclude that $$V_{unemp}(w,k) > V_{unemp}(w,k-1) \implies w^*(k+1) > w^*(k).$$
 \end{itemize}Thus concludes the proof.
@@ -733,7 +735,7 @@ For proper distributions $F(\cdot)$, we know that the measure of $w$'s that lie 
  Show (for extra credit) that a worker with larger assets has a higher
  reservation wage.
  \begin{solution}
- The new dynamic programming problem of an unemployed worker, who has $1 \leq k \leq n$ many periods of unemployment benefits left, $a$ many assets is now, and faces a wage draw $w$ is $$V_{unemp}(w,a,k) = \max_{a'\geq 0}\left\{b + (a'-a) + \beta \mathbb{E}[V_{unemp}(w',Ra',k-1)], V_{emp}(w, a)\right\},$$ with$$V_{unemp}(w,a,0) = \max_{a'\geq 0}\left\{(a'-a) + \beta \mathbb{E}[V_{unemp}(w',Ra',k-1)], V_{emp}(w, a)\right\},$$ and $$V_{emp}(w, a) = \max_{a'\geq 0}\left\{w + (a' - a) + \beta\left[\theta V_{emp}(w, Ra') + (1 - \theta) \mathbb{E}[V_{unemp}(w',Ra',n)]\right]\right\}.$$
+ The new dynamic programming problem of an unemployed worker, who has $1 \leq k \leq n$ many periods of unemployment benefits left, $a$ many assets is now, and faces a wage draw $w$ is $$V_{unemp}(w,a,k) = \max_{0\leq a'\leq b+a}\left\{u(b + a-a')) + \beta \mathbb{E}[V_{unemp}(w',Ra',k-1)], V_{emp}(w, a)\right\},$$ with$$V_{unemp}(w,a,0) = \max_{0 \leq a' \leq a}\left\{u(a-a') + \beta \mathbb{E}[V_{unemp}(w',Ra',k-1)], V_{emp}(w, a)\right\},$$ and $$V_{emp}(w, a) = \max_{0 \leq a' \leq a+w}\left\{u(w + a - a') + \beta\left[\theta V_{emp}(w, Ra') + (1 - \theta) \mathbb{E}[V_{unemp}(w',Ra',n)]\right]\right\}.$$
  \end{solution}
 \end{enumerate}
 
@@ -1509,17 +1511,33 @@ DK_t &=  -\delta K_t + X_t.
 \subsubsection{The competitive equilibrium environment}
 There are prices: $v_t$ factor price of capital services, $w_t$ factor price of labor services, $p_t$ output price of consumption, $q_t$ output price of capital, and $r_t$ discount bond prices. On the production side, since there are constant returns to scale and it is competitive markets, the firms choose capital and labor to minimize costs (and also make 0 profits). Their profit functions looks like
 \begin{align*}
-p_tF(k,l) - v_t k - w_t l\leq 0,
+p_tF(k,l) - v_t k - w_t l\leq 0,\\
 p_tG(k,l) - v_t k - w_t l\leq 0.
 \end{align*} Which lead to the following set of firm problems
 \begin{align*}
 \min_{k,l}\{v_t k + w_tl\,:\,F(k,l) \geq 1\} \geq p_t,\\
 \min_{k,l}\{v_t k + w_tl\,:\,G(k,l) \geq 1\} \geq q_t
 \end{align*}
-
+If we write $k_{c,t}$ and $k_{k,t}$as the cost-minimizing capital-labor ratios, the allocation of labor can be determined by $$\begin{bmatrix} k_{k, t} & k_{c,t} \\ 1 & 1 \end{bmatrix} \begin{bmatrix} L_{k,t} \\ L_{c,t} \end{bmatrix} = \begin{bmatrix} K\\ L \end{bmatrix}.$$ Consumption and investment are then $$C_t = F(k_{c,t}, 1)L_{c,t} > 0,\quad I_t = G(k_{k,t}, 1)L_{k,t} \geq 0.$$ Once again, the price of capital satisfies the asset pricing equations $$r_t q_t = v_t - \delta q_t + Dq_t,$$which jointly with the Euler condition implies $$D\mu_t = (\rho + \delta)\mu_t - \lambda_tv_t.$$As always, the capital stock evolves according to $$DK_t = -\delta K_t + G(k_{k,t}, 1)L_{k, t}.$$ Together they jointly describe how the state $(K_t, \mu_t)$ evolves.
 
 \subsubsection{Writing down the hamiltonian}
+The corresponding hamiltonian for this problem is $$H(K, \mu) = \max_{C,I}\left\{U(C) + \mu(I - \delta K)\right\},$$where $C$ and $I$ must satisfy the constraints $C \leq F(K_c, L_c)$, $I \leq G(K_k, L_k)$, $K_c + K_k \leq K$, and $L_c + L_k \leq L$. Critically, this formulation abstracts a little from basing the hamiltonian on specific values of $K_k, K_c, L_k, L_c$ but more so possible values of $K$ and $L$ that can be achieved by any combination of the sectoral specific counterparts. Since we know that $U(\cdot)$ satisfies the inada conditions, we can equivalently write  $$H(K, \mu) = \max_{K_c, L_c,I}\left\{U(F(K_c, L_c)) + \mu(I - \delta K)\right\}.$$ We know then that the system of differential equations that dictate the solution to this model are
+\begin{align*}
+D\mu_t &= \rho \mu_t - DH_1(K_t, \mu_t) = \rho \mu_t + \delta\mu_t - DU(C_t) D_1F(K_{c,t}, L_{c,t})),\\
+DK_t &= DH_2(K_t, \mu_t) = I_t - \delta K_t.
+\end{align*}Note the parallels between backing these back from the hamiltonian versus the the asset pricing above (it is just a matter of substituting $G(\cdot)$ and $F(\cdot)$ into the hamiltonian).
 
+The final thing that I wanted to talk about is backing out the sectoral capital and labor allocations. Let's start by discussing how to back them out in the case of the steady state $DK_t = 0$ and $D\mu_t = 0$. Using equality of the constraints and the system of equations above, we can then write 
+\begin{align*}
+0 &= DK,\\
+ &= DH_2(K, \mu),\\
+&= I_t - \delta K,\\
+&= I_t - \delta K,\\
+&= G(K_k, L_k) - \delta (K_k + L_k),\\
+0 &= D\mu,\\
+&= \rho \mu + \delta\mu -\lambda v
+\end{align*}
+For the golden rule, the conditions are slightly different $$\delta = D_1G(k_x, 1),\quad \frac{D_1G(k_x, 1)}{D_2G(k_x, 1)} = \frac{D_1 F(k_c, 1)}{D_2 F(k_c, 1)}$$
 \subsection{Capital Accumulation and Adjustment Costs}
 
 \subsection{Vintage Capital}
