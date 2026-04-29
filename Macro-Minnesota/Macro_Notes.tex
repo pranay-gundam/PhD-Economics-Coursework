@@ -1527,18 +1527,28 @@ D\mu_t &= \rho \mu_t - DH_1(K_t, \mu_t) = \rho \mu_t + \delta\mu_t - DU(C_t) D_1
 DK_t &= DH_2(K_t, \mu_t) = I_t - \delta K_t.
 \end{align*}Note the parallels between backing these back from the hamiltonian versus the the asset pricing above (it is just a matter of substituting $G(\cdot)$ and $F(\cdot)$ into the hamiltonian).
 
-The final thing that I wanted to talk about is backing out the sectoral capital and labor allocations. Let's start by discussing how to back them out in the case of the steady state $DK_t = 0$ and $D\mu_t = 0$. Using equality of the constraints and the system of equations above, we can then write 
-\begin{align*}
-0 &= DK,\\
- &= DH_2(K, \mu),\\
-&= I_t - \delta K,\\
-&= I_t - \delta K,\\
-&= G(K_k, L_k) - \delta (K_k + L_k),\\
-0 &= D\mu,\\
-&= \rho \mu + \delta\mu -\lambda v
-\end{align*} These two statements gives
-For the golden rule, the conditions are slightly different $$\delta = D_1G(k_x, 1),\quad \frac{D_1G(k_x, 1)}{D_2G(k_x, 1)} = \frac{D_1 F(k_c, 1)}{D_2 F(k_c, 1)}$$
+The final thing that I wanted to talk about is backing out the sectoral capital and labor allocations. In steady state $DK_t = 0$ and $D\mu_t = 0$. Using equality of the constraints and the system of equations above, we can write that this economy has a unique steady state, characterized by steady-state capital-labor ratios, $k_k^*$ and $k_c^*$ that are defined by, $$\delta + \rho = D_1G(k_x, 1),\quad \frac{D_1G(k_x, 1)}{D_2G(k_x, 1)} = \frac{D_1 F(k_c, 1)}{D_2 F(k_c, 1)}.$$
+For the golden rule, the conditions are slightly different $$\delta = D_1G(k_x, 1),\quad \frac{D_1G(k_x, 1)}{D_2G(k_x, 1)} = \frac{D_1 F(k_c, 1)}{D_2 F(k_c, 1)}.$$
+
 \subsection{Capital Accumulation and Adjustment Costs}
+To motivate why we would consider the models I will talk about soon, consider the general growth model in discrete time or the Cass-Koopmans that we have talked about in this Luttmer section. The model is constructed in a such a manner that investment today converts into capital tomorrow one-to-one. There are no frictions or delays in capital formulation. Reality is a bit different, simply investing in the construction of a building today does not mean that the building is added into our capital stock overnight. There are additional costs and things take time.
+
+The idea in this section is to model that by introducing an additional cost to investment flow. Specifically, we introduce function $A(K_t, L_t)$ that affects the resource constraint in the following manner by replacing $C_t + I_t \leq f(K_t, L_t)$ with $$C_t + A(K_t, I_t) \leq F(K_t, L),$$ where $$A(K_t, I_t) = a\left(\frac{I_t}{K_t}\right)L_t.$$Here $a(\cdot)$ is convex, which means that there are increasing returns to scale in $I_t/K_t$, or in other words, the resource cost increases at $I_t$ increases but get smaller as $K_t$ is large: capital heavy firms require fewer resource costs to raise investment. To pin everything down with a specific setup, let's consider the following model. Households have \textbf{preferences} $$\mathcal{U}(C) = \int_0^\infty e^{-\rho t} U(C_t)\,dt.$$ Labor is taken to be \textbf{inelastic} and equal to $L$. The \textbf{constraints for the social planner's} problem are \begin{align*}
+C_t + A(K_t, I_t) &\leq F(K_t, L),\\
+DK_t &\leq I_t - \delta K_t.
+\end{align*}
+As mentioned before $A(K_t, I_t) = a\left(I_t / K_t\right)K_t$ where $a(0) = 0$, $a(\cdot)$ is increasing and continuous, and $a(\cdot)$ is frequently taken to be quadratic. We can also see how we can recover the Cass-Koopman model if we let $a(\cdot)$ be linear (or better yet the identity. This is not the only way of modeling adjustment costs but is pretty popular. Alternatively, we could also equivalentely write the same formulation with the following constraints \begin{align*}
+C_t +X_t &\leq F(K_t, L),\\
+DK_t &\leq G(K_t, X_t) - \delta K_t,
+\end{align*} where $G(\cdot)$ is defined as $A(1, G(1, x)) = x$. That being said, let's look to solve the problem from the planners perspective. We can start with writing down the \textbf{hamiltonian}.
+$$\mathcal{H}(K, \mu) = \max_{C,I \geq 0}\{U(C) + \mu(I - \delta K)\,:\, C \leq F(K, L) - A(K,I)\}.$$The corresponding \textbf{first order conditions} for this hamiltonian (given that $\lambda$ is the lagrange multiplier for the resource constraint) are
+\begin{align*}
+[C]&:DU(C) - \lambda = 0,\\
+[I]&:\mu - \lambda D_2A(K, I) = 0
+\end{align*}The corresponding \textbf{envelope conditions} are
+\begin{align*}
+D_1\mathcal{H}(K, \mu) &= - \mu\delta + \lambda(D_1F(K, L))
+\end{align*} 
 
 \subsection{Vintage Capital}
 
