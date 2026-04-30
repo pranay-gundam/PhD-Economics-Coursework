@@ -1541,16 +1541,28 @@ As mentioned before $A(K_t, I_t) = a\left(I_t / K_t\right)K_t$ where $a(0) = 0$,
 C_t +X_t &\leq F(K_t, L),\\
 DK_t &\leq G(K_t, X_t) - \delta K_t,
 \end{align*} where $G(\cdot)$ is defined as $A(1, G(1, x)) = x$. That being said, let's look to solve the problem from the planners perspective. We can start with writing down the \textbf{hamiltonian}.
-$$\mathcal{H}(K, \mu) = \max_{C,I \geq 0}\{U(C) + \mu(I - \delta K)\,:\, C \leq F(K, L) - A(K,I)\}.$$The corresponding \textbf{first order conditions} for this hamiltonian (given that $\lambda$ is the lagrange multiplier for the resource constraint) are
+$$\mathcal{H}(K, \mu) = \max_{C,I \geq 0}\{U(C) + \mu(I - \delta K)\,:\, C \leq F(K, L) - A(K,I)\}.$$The corresponding \textbf{first order conditions} for this hamiltonian (given that $\lambda$ is the lagrange multiplier for the resource constraint, also assuming that investment is non-zero) are
 \begin{align*}
 [C]&:DU(C) - \lambda = 0,\\
 [I]&:\mu - \lambda D_2A(K, I) = 0
 \end{align*}The corresponding \textbf{envelope conditions} are
 \begin{align*}
-D_1\mathcal{H}(K, \mu) &= - \mu\delta + \lambda(D_1F(K, L))
-\end{align*} 
+D_1\mathcal{H}(K, \mu) &= - \mu\delta + \lambda(D_1F(K, L) - D_1A(K, I)),\\
+D_2\mathcal{H}(K, \mu) &= I - \delta K.
+\end{align*} Combining statements all together, we can write out the system of ODEs that classify the solution to this economy
+\begin{align*}
+D\mu_t &= \rho \mu_t - D_1\mathcal{H}(K, \mu) = \mu_t(\rho + \delta) - DU(C_t)(D_1F(K_t, L_t) - D_1A(K_t, I_t)),\\
+DK_t &= D_2\mathcal{H}(K_t, \mu_t) = I_t - \delta K_t.
+\end{align*} We can then also pin down consumption and investment from the resource constraint and FOC,
+\begin{align*}
+C_t + A(K_t, I_t) &= F(K_t, L),\\
+\mu_t &= DU(C_t)D_2A(K_t, I_t).
+\end{align*} Now, moving onto competitive equilibrium
+
+\subsubsection{Using Labor to Produce New Capital}
 
 \subsection{Vintage Capital}
+
 
 \subsection{Unemployment, Search, and Matching}
 Consider a model with 
@@ -1565,6 +1577,9 @@ Let's consider the discrete case, compute some probabilities, and then take some
 &= e^{-\theta a}.
 \end{align*} This also gives us that the average life span in a stationary population is $\frac{1}{\theta}$ and distribution of life spans being exponential with density $\theta e^{-\theta a}$. Now let's get to the economics. Consumer preferences are as follows
 $$\mathcal{U}(C) = \int_0^\infty \theta e^{-\theta t}\left(\int_0^t e^{-\rho a} U(C_a)\,da\right)\,dt.$$We can interpret this as the expected utility.
+
+\subsection{Fiscal Theory of the Price Level}
+
 
 \subsection{Exercises}
 
