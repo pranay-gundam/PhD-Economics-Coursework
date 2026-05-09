@@ -1121,19 +1121,34 @@ K^\circ)$. \fbox{\textbf{Assume that $R^\circ < 1$.}}
     \item[(a)] Write down the Bellman equation for a household in the stationary
         equilibrium. What are the state and choice variables?
     \begin{solution}
- 
+ The state variables are assets $a$ and the labor productivity shock $z$. The choice variable is future assets $a'$. Here is the corresponding bellman equation \begin{align*}
+V(a,z) = &\max_{a'}\left\{c(Ra + wz - a') + \beta \mathbb{E}[V(a',z')]\right\},\\
+s.t.\quad (1)&\quad Ra + wz - a' \geq 0,\\
+(2)&\quad a' \geq 0.
+\end{align*}
     \end{solution}
  
     \item[(b)] Is the borrowing constraint $a' \geq 0$ an ad-hoc or a natural
         borrowing limit? Explain.
     \begin{solution}
- 
+We know that we can calculate the natural borrowing constraint by looking at the consumer's budget constraint and thinking about a scenario in which they have taken on the maximum amount of debt and dedicate all their resources (labor income and future debt) to only repaying debt given that they have experienced the worse possible income shock. Specifically, we can write \begin{align*}
+c - \phi &= -R\phi + wz_{low},\\
+-\phi &= -R\phi + wz_{low},\\
+-\phi &= \frac{wz_{low}}{1 - R}.
+\end{align*}
+ Since we know that every possible income shock is strictly positive and $R^\circ < 1$, we can conclude that the expression above is also strictly positive. As such $a' \geq 0$ is an ad-hoc borrowing constraint.
     \end{solution}
  
     \item[(c)] Briefly explain why $R^\circ < 1$ is possible in the Aiyagari
         model but not in the representative-agent neoclassical model.
     \begin{solution}
- 
+In the representative-agent neoclassical growth model (assuming the same firm and consumer relationship where firms buy capital in entirety instead of renting it out from consumers as inticated by the factor prices above), consumers face the following euler condition $$u'(c_t) = \beta \mathbb{E}[u'(c_{t+1})(R_{t+1})].$$ In a stationary equilibrium, however, we can simplify this expression into
+\begin{align*}
+u'(c_t) &= \beta \mathbb{E}[u'(c_{t+1})(R_{t+1})],\\
+u'(c) &= \beta \mathbb{E}[u'(c)(R)],\\
+1 &= \beta (R),\\
+R &= \frac{1}{\beta} > 1.
+\end{align*}In the Aiyagari model on the other hand, consumers are faced with uninsurable risk in the form of ad-hoc borrowing constraints and idiosyncratic shocks without state contingent asset claims. This incentivizes precautionary savings more than in the neoclassical model and as such, consumers are more tolerant of a lower interest rate.
     \end{solution}
  
     \item[(d)] Use the Aiyagari diagram (assets $A$ on the $x$-axis, gross
@@ -1141,7 +1156,10 @@ K^\circ)$. \fbox{\textbf{Assume that $R^\circ < 1$.}}
         equilibrium with $R^\circ < 1$. Label the asset supply curve $A(R)$ and
         the capital demand curve $K(R)$.
     \begin{solution}
- 
+ Here is the figure
+\begin{center}
+\includegraphics[width = 8cm]{images/AmadorFinal2026QD.jpg}
+\end{center}
     \end{solution}
 \end{enumerate}
  
@@ -1166,13 +1184,27 @@ negative amounts.
     \item[(e)] Write down the Bellman equation for a household with access to
         both capital and storage.
     \begin{solution}
- 
+  The state variables are assets $a$, labor productivity shock $z$, and stored goods $s$. The choice variables are future assets $a'$ and future storage $s'$. Here is the corresponding bellman equation \begin{align*}
+V(a, s, z) = &\max_{a', s'}\left\{c(Ra + s + wz - a' - s') + \beta \mathbb{E}[V(a', s', z')]\right\},\\
+s.t.\quad (1)&\quad Ra + s + wz - a'  - s'\geq 0,\\
+(2)&\quad a' \geq 0,\\
+(3)&\quad s' \geq 0.
+\end{align*}
     \end{solution}
  
     \item[(f)] Define a stationary equilibrium for this economy. Be precise about
         the market clearing conditions.
     \begin{solution}
- 
+ A stationary equilibrium is a collection of a value function $V(a,s,z)$, policy functions $S(a,s,z)$ and $A(a,s,z)$, price $R$, and distribution $\lambda(a,s,z)$ such that
+\begin{itemize}
+\item The value function and policy functions $(V(\cdot), S(\cdot), A(\cdot))$ solve the household's problem given $R$.
+\item $\lambda(\cdot)$ is the stationary distribution implied by $S$, $A$, and transition matrix $\Pi$.
+\item The following markets clear
+\begin{align*}
+[Capital]&\quad, K = A(R) \equiv \sum_{a\in \mathcal{A}}\sum_{s\in \mathcal{S}}\sum_{z\in\mathcal{Z}}a * \lambda(a,s,z)\\
+[Goods]&\quad \sum_{a\in \mathcal{A}}\sum_{s\in \mathcal{S}}\sum_{z\in\mathcal{Z}}s * \lambda(a,s,z) + a*\lambda(a,s,z) +  = F(K, L) + (1 - \delta)K.
+\end{align*}
+\end{itemize}
     \end{solution}
  
     \item[(g)] Show that when $R > 1$, no household holds storage in equilibrium
@@ -1613,16 +1645,25 @@ $dW_t = (r_t W_t - C_t)dt$ together with $W_t \geq 0$ at all times.
 \item Explain why aggregate consumption services and the real interest rate must satisfy
 $r_t = \rho + DC_t/C_t$.
 \begin{solution}
-
+Let's write down the household's hamiltonian $$\mathcal{H}(W,\mu) = \max_{C, L}\left\{\ln(C) - J(L) + \mu(rW - C)\right\}.$$ Note here that the choice of $L$ does indeed intrinsically factor into $W$ but the question writes the household budget constraint differently. The corresponding FOC for consumption is $$\frac{1}{C_t} - \mu_t = 0 \implies \mu_t = \frac{1}{C_t} \implies D\mu_t = -\frac{DC_t}{C_t^2},$$and the resulting ODE for $\mu_t$ is $$D\mu_t = \rho\mu_t - r_t\mu_t.$$Combining these two expressions, we get
+\begin{align*}
+D\mu_t &= -\frac{DC_t}{C_t^2},\\
+\frac{D\mu_t}{\mu_t} &= -\frac{DC_t}{C_t},\\
+\frac{\rho\mu_t - r_t\mu_t}{\mu_t} &= -\frac{DC_t}{C_t},\\
+\rho -  r_t &= -\frac{DC_t}{C_t},\\
+r_t &= p + \frac{DC_t}{C_t}.
+\end{align*}
 \end{solution}
 \item There will be an asset pricing equation of the form $r_t q_t = v_t + Dq_t - \delta q_t$. What is $v_t$?
 What will be the wage $w_t$?
 \begin{solution}
-
+In general, $v_t$ is flow income earned by owning one unit of the durable good (which is capital in this case). There are two ways that capital is used, to produce the consumption good and to produce more capital. Specifically, we can write the flow value of capital to be $$v_t = A + \max_{l_t}\{q_tzl_t -w_tl_t\}.$$ For the latter maximization problem, the foc very clearly gives us that $$\boxed{w_t = q_tz.}$$ which then implies that $$\boxed{v_t = A.}$$
 \end{solution}
 \item Give the differential equation for $K_t$ and $q_t/C_t$ that must hold in any equilibrium. Construct the phase diagram for this differential equation.
 \begin{solution}
 
+
+I won't construct the phase diagram for now, but may come back to it later.
 \end{solution}
 \item Suppose the economy is in its steady state and there is an unforeseen permanent increase in $A$ at $t = 0$. Describe what happens to $\{K_t, q_t/C_t, C_t, L_t, w_t, q_t, r_t\}_{t \geq 0}$.
 \begin{solution}
@@ -1654,18 +1695,40 @@ and $W_t \geq 0$ for all $t \geq 0$, starting from $W_0 = W$ for some given $W >
 \]
 Compute $U(W)$.
 \begin{solution}
-First, let $\sigma = 1 - \frac{1}{\epsilon}$ and note that $0 < \sigma < 1$ which implies that $f(x) = x^{1/\sigma}$ is a monotone transformation of $x$ which means we can solve the maximization problem using $$U(W) = \max_{C_t\geq 0}\int_0^\infty \rho e^{-\rho t} C_t^\sigma\,dt.$$ With this, we can write out the lagrangian \begin{align*}
-\mathcal{L}(C_t, \lambda_t) &= \int_0^\infty \rho e^{-\rho t} C_t^\sigma\,dt + \int_0^\infty\lambda_te^{-\rho t}\left(rW_t - C_t - DW_t\right)\,dt,\\
-&= \int_0^\infty \rho e^{-\rho t} C_t^\sigma +\lambda_te^{-\rho t}\left(rW_t - C_t - DW_t \right)\,dt,\\
-&= \int_0^\infty e^{-\rho t}\left(\rho  C_t^\sigma +\lambda_t\left(rW_t - C_t - DW_t \right)\right)\,dt,\\
-&= \int_0^\infty e^{-\rho t}\left(\rho  C_t^\sigma +\lambda_t\left(rW_t - C_t\right)\right)\,dt - \int_0^\infty \lambda_t e^{-\rho t} DW_t\,dt.
-\end{align*}
-In order to get rid of the $DW_t$ term, we can do integration by parts
+We know that consumer preferences are $$U(W) = \max_{C_t \geq 0} \left( \int_0^{\infty} \rho e^{-\rho t} C_t^{1-1/\varepsilon} \, dt \right)^{1/(1-1/\varepsilon)}.$$Since $f(x) = x^{1/(1 - 1/\epsilon)}$ is a monotone transformation of $x$, we know that we can find the consumption maximizing allocation $\{C_t\}_{t \geq 0}$ by looking at the alternate problem $$\max_{C_t \geq 0} \int_0^{\infty} \rho e^{-\rho t} C_t^{1-1/\varepsilon} \, dt.$$
+
+Now with this in mind, let's write down the hamiltonian. We know the flow of consumer's wealth is $DW_t = rW_t - C_t$. Letting $\mu$ be the costate of wealth, we can write $$\mathcal{H}(W, \mu) = \max_{C}\left\{\rho C^{1 - 1/\epsilon} + \mu(rW - C)\right\}.$$ Taking the first order condition, we have $$[C_t]:\quad \rho (1 - 1/\epsilon) C_t^{-1/\epsilon} - \mu_t = 0 \implies C_t = \left(\frac{\mu_t}{\rho(1 - 1/\epsilon)}\right)^{-\epsilon}.$$The corresponding system of ODE's is 
 \begin{align*}
-\int_0^\infty\lambda_te^{-\rho t}DW_t\,dt &= \lambda_te^{-\rho t}W_t\Big|_{t=0}^\infty - \int_0^\infty W_t(D\lambda_te^{-\rho t} -\rho \lambda_te^{-\rho t})\,dt\\
-&= \lambda_te^{-\rho t}W_t\Big|_{t=0}^\infty - \int_0^\infty e^{-\rho t}W_t(D\lambda_t -\rho \lambda_t)\,dt\\
-&= -\lambda_0W_0 + \lim_{t\to \infty}\lambda_te^{-\rho t}W_t - \int_0^\infty e^{-\rho t}W_t(D\lambda_t -\rho \lambda_t)\,dt\\
-&= 
+DW_t &= rW_t - C_t,\\
+D\mu_t &= \rho \mu_t - \mu_t r \implies \mu^{-1} D\mu_t = \rho - r.
+\end{align*} Taking this system of equations, lets continue writing
+\begin{align*}
+DC_t &= D\left[\left(\frac{\mu_t}{\rho(1 - 1/\epsilon)}\right)^{-\epsilon}\right],\\
+&= D\left[\mu_t^{-\epsilon}\left(\rho(1 - 1/\epsilon)\right)^{\epsilon}\right],\\
+&= \left(\rho(1 - 1/\epsilon)\right)^{\epsilon} (D\mu_t)(-\epsilon) \mu_t^{-\epsilon - 1}.\\
+\frac{DC_t}{C_t} &= -\epsilon D\mu_t \mu_t^{-1},\\
+&= -\epsilon (\rho - r),\\
+&= \epsilon (r - \rho).
+\end{align*} This last expression is our euler equation for consumption. Since the right hand side is a constant, we know from the get go that $$C_t = C_0 e^{\epsilon(r - \rho)t}.$$ We still, however, need to pin down $C_0$. To do so, we can conjecture that $C_t = \alpha W_t$; that consumption is always a constant fraction of wealth. To confirm this conjecture, we jointly look at the budget constraint ODE and the transverality condition. Specifically we have that $$DW_t = rW_t - C_t = (r - \alpha) W_t \implies  W_t = W_0 e^{(r - \alpha)t}.$$ To confirm this conjecture, we need to spell out $\alpha$ and then put some constraints on it through the transversality condition. We know that consumption grows at a rate of $e^{\epsilon(r - \rho)t}$ and wealth grows at a rate of $e^{(r - \alpha)t}$, to make these elements mesh together well we need $$e^{(r - \alpha)t} = e^{\epsilon(r - \rho)t} \implies r - \alpha = \epsilon(r - \rho) \implies \alpha = r(1 - \epsilon) + \epsilon \rho.$$ Plugging this into the transversality condition, we get
+\begin{align*}
+\lim_{T\to \infty} e^{-\rho T} \mu_T W_T &= \lim_{T\to \infty} e^{-\rho T} \mu_T W_0 e^{(r - r(1 - \epsilon) - \epsilon\rho)T},\\
+&= \lim_{T\to \infty} e^{-\rho T} \mu_T W_0 e^{(r\epsilon - \epsilon\rho)T},\\
+&= \lim_{T\to \infty}  \mu_T W_0 e^{(r\epsilon - \epsilon\rho - \rho)T},\\
+&= \lim_{T\to \infty}  \mu_0 e^{(\rho - r)T} W_0 e^{(r\epsilon - \epsilon\rho - \rho)T},\\
+&= \lim_{T\to \infty}  \mu_0 W_0 e^{(r\epsilon - \epsilon\rho - r)T}.
+\end{align*} In order for this limit to equal zero, we need 
+\begin{align*}
+r\epsilon - \epsilon\rho - r &< 0,\\
+r - \rho - \frac{r}{\epsilon} &< 0,\\
+- r + \rho + \frac{r}{\epsilon} &> 0,\\
+\rho - \left(1 - \frac{1}{\epsilon}\right)r &> 0.
+\end{align*} As such, along as this condition holds (which is the condition in the problem), we know that our conjecture holds. With this confirmed, we can finally claim $$\boxed{C_t = (r(1 - \epsilon) + \epsilon \rho)We^{\epsilon(r - \rho)t}.}$$ Finally, to compute $U(W)$ we write
+\begin{align*}
+U(W) &=  \max_{C_t \geq 0} \left( \int_0^{\infty} \rho e^{-\rho t} C_t^{1-1/\varepsilon} \, dt \right)^{1/(1-1/\varepsilon)},\\
+&= \left(\int_0^\infty \rho e^{-\rho t} (r(1 - \epsilon) + \epsilon \rho)^{1 - 1/\epsilon}W^{1 - 1/\epsilon}e^{(\epsilon - 1)(r - \rho)t}\,dt\right)^{1 / (1 - 1/\epsilon)},\\
+&= (r(1 - \epsilon) + \epsilon \rho)W\left(\int_0^\infty \rho e^{-\rho t} e^{(\epsilon - 1)(r - \rho)t}\,dt\right)^{1 / (1 - 1/\epsilon)},\\
+&= (r(1 - \epsilon) + \epsilon \rho)W\left(\int_0^\infty \rho e^{(\epsilon(r - \rho) - r)t}\,dt\right)^{1 / (1 - 1/\epsilon)},\\
+&= \boxed{(r(1 - \epsilon) + \epsilon \rho)W\left(\frac{\rho}{r - \epsilon(r - \rho)}\right)^{1 / (1 - 1/\epsilon)}.}
 \end{align*}
 \end{solution}
 Now suppose labor income is $zL > 0$ and assets on hand evolve subject to
@@ -1676,15 +1739,746 @@ and $A_t \geq 0$ for all $t \geq 0$, starting from $A_0 = A$ for some given $A >
 
 \item  Suppose that $r \geq \rho > (1 - 1/\varepsilon)r$. What is the optimal consumption trajectory?
 \begin{solution}
-
+The difference now is that each period, the household now gets a fixed amount of wealth increases. 
+$$\mathcal{H}(A, \mu) = \max_{C}\left\{\rho C^{1 - 1/\epsilon} + \mu(rA  + zL- C)\right\}.$$
+Critically, note how the first order condition for $C_t$ and differential equation for $\mu_t$ stays the same. This means that we will eventually get to $$\frac{DC_t}{C_t} = \epsilon(r - \rho),$$which implies that $C_t = C_0 e^{-\epsilon(r - \rho)}$ and although $C_0$ may be different, the consumption trajectory is indeed the same.
 \end{solution}
 \item Suppose that $r < \rho$. Use the Lagrangian for this problem. Conjecture that there will be
 some optimal time $T \in (0, \infty)$ such that $A_t = 0$ if and only if $t \in [T, \infty)$. Find the equation
 that defines $T$ and show that it must have a solution in $(0, \infty)$.
 \begin{solution}
-
+Qualitatively, the idea is that if the rate of return on assets is less that the temporal preference discount factor then it is optimal behavior to consume all of the aggregate assets at some point in time. Specifically here, we have the same condition $$\frac{DC_t}{C_t} = \epsilon(r - \rho),$$ which combined with $r < \rho$ and $C_t \geq 0$ means that consumption is decreasing over time and the household would at some point want to borrow to fuel consumption. We are told, however, that $A_t \geq 0$ which means that households can't borrow which means that from the conjecture $A_t = 0$ at some point and at which point the household becomes hand-to-mouth and consumes exactly their labor income $C_t = zL$. Like the question suggests, lets write down the lagrangian $$\mathcal{L}(C_t, \lambda_t, A_t) = \max_{C_t, A_t} \int_0^\infty \rho e^{-\rho t}$$
 \end{solution}
 \end{enumerate}
+
+
+% ============================================================
+\subsubsection{An Euler Equation with Consumption Risk}
+% ============================================================
+
+Take some $\Delta \in \mathbb{R}_{++}$ and consider an economy with preferences
+over consumption sequences $\{C_{n\Delta}\}_{n=0}^{\infty}$ determined by
+\[
+    \mathcal{U}\!\left(\{C_{n\Delta}\}_{n=0}^{\infty}\right)
+    = \mathrm{E}_0\!\left[\sum_{n=0}^{\infty} e^{-\rho\Delta n}
+    \left(\frac{C_{n\Delta}^{1-1/\varepsilon}-1}{1-1/\varepsilon}\right)\right].
+\]
+Suppose the aggregate consumption process follows
+\[
+    C_{(n+1)\Delta} = C_{n\Delta}\, e^{\mu\Delta} \times
+    \begin{cases}
+        1, & \text{w.p. } 1 - \alpha\Delta \\
+        \delta, & \text{w.p. } \alpha\Delta
+    \end{cases}
+\]
+Markets are complete. What is the price $q_{n\Delta}$ at time $n\Delta$ of a
+one-period discount bond? Pick some time $t \in \mathbb{R}_{++}$ and calculate
+the limits
+\[
+    g_t = \lim_{\Delta\downarrow 0} \frac{1}{\Delta}
+    \mathrm{E}_{\lfloor t/\Delta\rfloor}
+    \!\left[\frac{C_{(\lfloor t/\Delta\rfloor+1)\Delta} -
+    C_{\lfloor t/\Delta\rfloor\Delta}}{C_{\lfloor t/\Delta\rfloor\Delta}}\right],
+    \qquad
+    r_t = \lim_{\Delta\downarrow 0} \frac{1 - q_{\lfloor t/\Delta\rfloor\Delta}}{\Delta}.
+\]
+Show that $r_t < \rho + g_t/\varepsilon$. The notation here is: $\lfloor x\rfloor$
+is the integer part (floor) of the real number $x$.
+
+\begin{solution}
+
+\end{solution}
+
+% ============================================================
+\subsubsection{The Log Utility Special Case}
+% ============================================================
+
+Consider a consumer with preferences over possibly stochastic consumption
+trajectories $\{C_t\}_{t\geq 0}$ determined by
+\[
+    \mathcal{U}(\{C_t\}_{t\geq 0})
+    = \exp\!\left(\mathrm{E}_0\!\left[\int_0^\infty \rho e^{-\rho t}\ln(C_t)\,dt\right]\right),
+\]
+where $\rho \in \mathbb{R}_{++}$.
+
+\medskip\noindent\textbf{4.1 \quad The Consumption-Savings Problem}\medskip
+
+This consumer has initial wealth $W_0 = W > 0$ and can accumulate wealth
+subject to $DW_t = rW_t - C_t$ and $W_t \geq 0$ for all $t \in [0,\infty)$.
+The consumer takes $r \in \mathbb{R}$ as given.
+
+\begin{enumerate}
+    \item[\textbf{a.}] Write down the Hamiltonian for log utility. Write $q_t$
+        for the co-state and find the differential equation for $[W_t, q_t]$.
+        What is the transversality condition?
+    \begin{solution}
+
+    \end{solution}
+
+    \item[\textbf{b.}] Solve the differential equation for $q_t W_t$. Use the
+        transversality condition to explain why $q_0 W_0 = 1$.
+    \begin{solution}
+
+    \end{solution}
+
+    \item[\textbf{c.}] Calculate $V(W) = \ln(\mathcal{U}(\{C_t\}_{t\geq 0}))$
+        for this consumer.
+    \begin{solution}
+
+    \end{solution}
+
+    \item[\textbf{d.}] Suppose the labor income of this consumer is $z_t L$,
+        where $z_t = z_0 e^{-\lambda t}$ and $\lambda \geq 0$. Assume $r +
+        \lambda > 0$. The initial assets of this consumer are $A_0 = A \geq 0$.
+        What is $W$? Describe how the trajectory of $A_t$ depends on the sign
+        of $r - \rho$.
+    \begin{solution}
+
+    \end{solution}
+\end{enumerate}
+
+\medskip\noindent\textbf{4.2 \quad A Poisson Shock}\medskip
+
+Suppose this consumer faces the stochastic consumption trajectory
+\[
+    \tilde{C}_t =
+    \begin{cases}
+        C_t  & t \in [0, \tau) \\
+        C_t' & t \in [\tau, \infty)
+    \end{cases}
+\]
+Here $\{C_t\}_{t\geq 0}$ and $\{C_t'\}_{t\geq 0}$ are deterministic
+consumption trajectories. And $\tau$ is a random time with a probability
+distribution $\Pr[\tau \geq T] = e^{-\lambda T}$, where $\lambda > 0$. Note
+that $S > T$ gives $\Pr[\tau \geq S \mid \tau \geq T] = e^{-\lambda(S-T)}$.
+Define $V_0$ and $\{U_T\}_{T\geq 0}$ by
+\[
+    \ln(V_0) = \mathrm{E}_0\!\left[\int_0^\infty \rho e^{-\rho t}\ln(\tilde{C}_t)\,dt\right],
+    \qquad
+    e^{-\rho T}\ln(U_T) = \int_T^\infty \rho e^{-\rho t}\ln(C_t')\,dt,
+    \quad T \in [0,\infty).
+\]
+Show that
+\[
+    \ln(V_0) = \int_0^\infty (\rho+\lambda)e^{-(\rho+\lambda)t}
+    \left(\frac{\rho}{\rho+\lambda}\times\ln(C_t)
+    + \frac{\lambda}{\rho+\lambda}\times\ln(U_t)\right)dt.
+\]
+Note the distinction between $V_0$ and $U_0$.
+
+\begin{solution}
+
+\end{solution}
+
+\medskip\noindent\textbf{4.3 \quad Actuarially Fair Insurance}\medskip
+
+Now suppose the labor income of this consumer is $\tilde{z}_t L$ and that
+$\{\tilde{z}_t\}_{t\geq 0}$ is a stochastic process defined by
+\[
+    \tilde{z}_t =
+    \begin{cases}
+        z & t \in [0, \tau) \\
+        0 & t \in [\tau, \infty),
+    \end{cases}
+\]
+where $\Pr[\tau \geq T] = e^{-\lambda T}$ and $\lambda > 0$. Assume $r \in
+\mathbb{R}$ and $r + \lambda \in \mathbb{R}_{++}$. Write $A_t$ for assets on
+hand. The consumer can trade subject to
+\[
+    DA_t = rA_t + zL - (C_t + \lambda G_t)
+\]
+for all $t \in [0, \tau)$. Here, $C_t$ is flow consumption and $\lambda G_t$
+is an insurance premium paid by the consumer. At $t = \tau$, assets on hand
+will jump to
+\[
+    A_\tau = A_{\tau^-} + G_{\tau^-}.
+\]
+Here, $A_{\tau^-}$ and $G_{\tau^-}$ are the left limits $A_{\tau^-} =
+\lim_{s\uparrow\tau} A_s$ and $G_{\tau^-} = \lim_{s\uparrow\tau} G_s$,
+respectively. In addition, there is a borrowing constraint that says that
+$A_t + zL/(r+\lambda) \geq 0$ for all $t \in [0,\tau)$ and $A_t \geq 0$ for
+all $t \in [\tau, \infty)$.
+
+\begin{enumerate}
+    \item[\textbf{a.}] Take for granted that the borrowing constraints will not
+        bind. Construct the Hamiltonian $\mathcal{H}(A, q)$ for this problem
+        and find the optimality conditions. In particular, what is the
+        transversality condition?
+    \begin{solution}
+
+    \end{solution}
+
+    \item[\textbf{b.}] Define $W_t = A_t + zL/(r+\lambda)$ for all $t \in
+        [0,\tau)$ and $W_t = A_t$ for all $t \in [\tau, \infty)$. Show that
+        the optimal decision rule for this consumer is $C_t = \rho W_t$ at all
+        times. What happens to $C_t$ between $\tau^-$ and $\tau$?
+    \begin{solution}
+
+    \end{solution}
+\end{enumerate}
+
+\medskip\noindent\textbf{4.4 \quad No Insurance}\medskip
+
+Consider the same labor income shock as before, but now suppose the consumer
+must trade subject to
+\[
+    DA_t = rA_t + zL - C_t
+\]
+for all $t \in [0,\tau)$ and
+\[
+    DA_t = rA_t - C_t
+\]
+for all $t \in [\tau, \infty)$, and $A_t \geq 0$ for all $t \in [0,\infty)$.
+
+\begin{enumerate}
+    \item[\textbf{a.}] Set up the Hamiltonian $\mathcal{H}(A, q)$ for the
+        problem faced by this consumer whenever $t < \tau$. What is the
+        resulting differential equation for $[A_t, q_t]$? What is the
+        transversality condition?
+    \begin{solution}
+
+    \end{solution}
+
+    \item[\textbf{b.}] Assume $r < \rho$. Show that there is a well-defined
+        steady state conditional on $t < \tau$. Show the phase diagrams for
+        $r < 0$ and for $r \in (0,\rho)$, taking for granted that the optimal
+        trajectory does in fact converge to the steady state. What happens to
+        consumption at $t = \tau$?
+    \begin{solution}
+
+    \end{solution}
+
+    \item[\textbf{c.}] More generally, find the differential equation for
+        $q_t A_t$, integrate it over the interval $[t, T]$, and use the
+        transversality condition to show that
+        \[
+            1 = q_t\!\left(A_t + \frac{1}{\pi_t}\int_t^\infty
+            e^{-(\rho+\lambda)(s-t)}\pi_s zL\,ds\right)
+        \]
+        for all $t \in [0,\infty)$ conditional on $t < \tau$, where $\pi_t$ is
+        the ``shadow date-0 price'' $\pi_t = e^{-(\rho+\lambda)t}q_t$. Conclude
+        that $C_t = \rho W_t$, where $W_t$ is ``shadow wealth''.
+    \begin{solution}
+
+    \end{solution}
+
+    \item[\textbf{d.}] Note that $q_t A_t \in (0,1)$. Explain why $Dq_t <
+        -(r-\rho)q_t$. Use this to show that
+        \[
+            0 < \frac{1}{q_t}\int_t^\infty e^{-(\rho+\lambda)(s-t)}q_s zL\,ds
+            < \int_t^\infty e^{-(r+\lambda)(s-t)}zL\,ds
+            = \frac{zL}{r+\lambda}
+        \]
+        as long as $r + \lambda > 0$.
+    \begin{solution}
+
+    \end{solution}
+
+    \item[\textbf{e.}] Assume that $r > \rho$. Combine your results for
+        \textbf{c} and \textbf{d} to show that $\lim_{t\to\infty} q_t A_t =
+        1$. What does this imply for $Dq_t/q_t$ and $DA_t/A_t$ as $t < \tau$
+        becomes large? Set up the phase diagram for the case $r \in (\rho,
+        \rho+\lambda)$ and make an informed guess about the optimal trajectory
+        for $[A_t, q_t]$.
+    \begin{solution}
+
+    \end{solution}
+\end{enumerate}
+
+% ============================================================
+\subsubsection{The AK Economy}
+% ============================================================
+
+Consider an economy with preferences
+\[
+    \mathcal{U}(C) = \left(\int_0^\infty e^{-\rho t} C_t^{1-1/\varepsilon}\,dt
+    \right)^{1/(1-1/\varepsilon)},
+\]
+where $\rho > 0$ and $\varepsilon \in (0,\infty)$. The technology for
+accumulating capital given by
+\[
+    DK_t = \mu K_t - C_t,
+\]
+starting from some positive $K_0$.
+
+\begin{enumerate}
+    \item[\textbf{a.}] Consider consumption trajectories of the form $C_t =
+        Ce^{gt}$, for some feasible $C$ and $g$. If $\varepsilon \in (0,1)$,
+        what do you have to assume about parameters to ensure that utility is
+        positive? If $\varepsilon \in (1,\infty)$, what do you have to assume
+        to ensure that utility is finite? What if $\varepsilon = 1$?
+    \begin{solution}
+
+    \end{solution}
+
+    Consider competitive equilibria for this economy, taking for granted that
+    it will not be an equilibrium to consume all of the capital stock in finite
+    time.
+
+    \item[\textbf{b.}] What is the Euler condition for consumers?
+    \begin{solution}
+
+    \end{solution}
+
+    \item[\textbf{c.}] What is the price of capital in units of consumption?
+        What is the real interest rate in this economy?
+    \begin{solution}
+
+    \end{solution}
+
+    \item[\textbf{d.}] Conjecture that $C_t/K_t > 0$ is constant and determine
+        a candidate equilibrium.
+    \begin{solution}
+
+    \end{solution}
+
+    \item[\textbf{e.}] What do you have to assume about parameters to ensure
+        that this equilibrium is well defined? What do you have to assume to
+        ensure that the economy grows over time?
+    \begin{solution}
+
+    \end{solution}
+\end{enumerate}
+
+% ============================================================
+\subsubsection{An AK Economy with a Fixed Factor}
+% ============================================================
+
+Consider an economy with preferences
+\[
+    u(C) = \int_0^\infty e^{-\rho t}\left(\frac{C_t^{1-1/\varepsilon}-1}{1-1/\varepsilon}\right)dt,
+\]
+and a technology for accumulating capital given by
+\[
+    DK_t = \mu K_t - X_t, \qquad C_t = X_t^{1-\alpha} L^\alpha, \qquad X_t \in [0,\infty),
+\]
+starting from some positive $K_0$. Observe that the production of consumption
+requires labor services and a flow $X_t$ of capital that depletes the capital
+stock.
+
+Assume the parameters are such that this economy has a well defined
+competitive equilibrium. Let $v_t$ and $w_t$ be the factor prices of capital
+and labor in the consumption sector. Let $q_t$ be the price of capital in
+units of consumption.
+
+\begin{enumerate}
+    \item[\textbf{a.}] What is the Euler equation for this economy?
+    \begin{solution}
+
+    \end{solution}
+
+    \item[\textbf{b.}] Given a wage $w_t$, what must $v_t$ be? What is the
+        relation between $v_t$ and $q_t$?
+    \begin{solution}
+
+    \end{solution}
+
+    \item[\textbf{c.}] Conjecture that there is an equilibrium with $X_t/K_t =
+        x > 0$. Construct the candidate equilibrium.
+    \begin{solution}
+
+    \end{solution}
+
+    \item[\textbf{d.}] What do you have to assume about parameters to ensure
+        that this equilibrium is well defined? What do you have to assume to
+        ensure that the economy grows over time?
+    \begin{solution}
+
+    \end{solution}
+
+    \item[\textbf{e.}] Suppose the technology is, instead, $DK_t = \mu \times
+        (K_t - H_t)$ and $C_t = H_t^{1-\alpha} L^\alpha$ with $H_t \in [0,
+        K_t]$. Show how you can translate the equilibrium constructed in
+        \textbf{a--d} into a candidate equilibrium for this economy by ignoring
+        the constraint $H_t \leq K_t$. Given an assumption on parameters that
+        ensures this constraint does not bind.
+    \begin{solution}
+
+    \end{solution}
+\end{enumerate}
+
+% ============================================================
+\subsubsection{An Exhaustible Resource}
+% ============================================================
+
+There is a representative consumer whose preferences over consumption
+trajectories $\{C_t\}_{t\geq 0}$ are given by
+\[
+    \mathcal{U}(C) = \left(\int_0^\infty e^{-\rho t}
+    C_t^{1-1/\varepsilon}\,dt\right)^{1/(1-1/\varepsilon)},
+\]
+where $\rho > 0$ and $\varepsilon \in (0,\infty)$. The aggregate supply of
+labor is $L > 0$. Output can be produced using capital, labor, and an
+exhaustible resource. The initial supply of capital is $K_0 > 0$ and the
+initial supply of the exhaustible resource is $A_0 > 0$. Output at time $t$
+is
+\[
+    Y_t = K_t^{1-\alpha-\beta}(Z_t L)^\alpha M_t^\beta,
+\]
+where $K_t$ is the capital stock at time $t$, $Z_t = Ze^{\theta t}$ is an
+exogenously determined productivity trajectory, and $M_t$ is a flow of
+materials that depletes the exhaustible resource. The factor share parameters
+$\alpha$, $\beta$, and $1-\alpha-\beta$ are all in $(0,1)$. The capital stock
+and the stock of the exhaustible resource evolve according to
+\begin{align*}
+    DK_t &= -\delta K_t + Y_t - C_t \\
+    DA_t &= -M_t
+\end{align*}
+and $K_t$ and $A_t$ are required to be positive at all times. Write $w_t$ and
+$u_t$ for the factor prices of labor and materials, respectively. The market
+value of the remaining stock $A_t$ of the exhaustible resource at time $t$ is
+$s_t A_t$. All these prices are in units of consumption. The risk-free rate is
+$r_t$, also in units of consumption.
+
+\begin{enumerate}
+    \item[\textbf{a.}] What is the Euler equation for this economy? Explain
+        why $u_t = s_t$. What is the relation between $s_t$ and $r_t$?
+    \begin{solution}
+
+    \end{solution}
+
+    Conjecture that the economy has a balanced growth path with an interest
+    rate $r_t = r$, consumption growing at some rate $g$, and the stock of the
+    exhaustible resource evolving according to $A_t = A_0 e^{-\lambda t}$, for
+    some $\lambda > 0$ to be determined.
+
+    \item[\textbf{b.}] Determine a candidate balanced growth path for this
+        economy.
+    \begin{solution}
+
+    \end{solution}
+
+    \item[\textbf{c.}] Give the parameter restrictions needed to ensure that
+        this candidate equilibrium is well defined. What is needed for
+        consumption to grow at a positive rate?
+    \begin{solution}
+
+    \end{solution}
+\end{enumerate}
+
+You should get pretty clean formulas that allow you to give interpretable
+answers in \textbf{c}.
+
+
+% ============================================================
+\subsubsection{An Interpretation of Cobb-Douglas}
+% ============================================================
+
+Consider an economy with a measure $K$ of machines and a measure $L$ of
+workers who each supply one unit of labor. Assume $K > L$. Machines are
+heterogeneous. The output that can be produced with a type-$z$ machine is
+\[
+    y = z \min\{l, 1\},
+\]
+where $l$ is the amount of labor employed with this machine. The distribution
+of types is $P(z)$. This distribution is continuous, with a support $[x,
+\infty)$ and a finite mean.
+
+Consider competitive equilibria. Write $v(z)$ for the price of a type-$z$
+machine and $w$ for the wage, both in units of output.
+
+\begin{enumerate}
+    \item[\textbf{a.}] Determine $v(z)$ and $w$, as well as aggregate output.
+    \begin{solution}
+
+    \end{solution}
+
+    \item[\textbf{b.}] Suppose you add a type-$z$ machine to this economy.
+        This is an infinitesimal change in the capital stock of this economy.
+        What is the infinitesimal change in aggregate output?
+    \begin{solution}
+
+    \end{solution}
+
+    \item[\textbf{c.}] Suppose you add a worker to this economy. This is an
+        infinitesimal change in the aggregate supply of labor of this economy.
+        What is the infinitesimal change in aggregate output?
+    \begin{solution}
+
+    \end{solution}
+
+    Now suppose that $P(z) = 1 - (z/x)^{-\theta}$, where $z \in [x, \infty)$
+    and $x > 0$.
+
+    \item[\textbf{d.}] Show that aggregate output is
+        \[
+            Y = \frac{x}{\alpha} \times K^{1-\alpha} L^\alpha
+        \]
+        where $\alpha \in (0,1)$. What is the interpretation of the marginal
+        product of $K$ in this economy?
+    \begin{solution}
+
+    \end{solution}
+\end{enumerate}
+
+% ============================================================
+\subsubsection{A Vintage Capital Economy}
+% ============================================================
+
+Consumer preferences are
+\[
+    \mathcal{U}(C) = \int_0^\infty e^{-\rho t}\ln(C_t)\,dt.
+\]
+Consumption is produced using an intermediate good. At time $t$, a flow $x
+\geq 0$ of the intermediate good produces a flow $c = e^{\theta t} x$ of
+consumption, where $\theta \geq 0$. The intermediate good can be produced
+using labor and machines of different vintages. Labor can also be used to
+produce new machines. The technology for producing the intermediate good at
+time $t$ with machines of a vintage $v \leq t$ is
+\[
+    x = Z(v, t-v)\min\!\left\{k,\, \frac{l}{B}\right\},
+\]
+where $k$ is the number of vintage-$v$ machines used, and $l$ is the amount
+of labor used. In this economy, the vintage of a machine is the date the
+machine is produced. The technology for producing machines is linear in labor.
+It takes $A$ units of labor to produce a unit flow of machines of the latest
+vintage. The function $Z(v, a)$ is given by
+\[
+    Z(v, a) = Ze^{\mu v - \Delta(a)}, \qquad v \in (-\infty, \infty),\quad
+    a \in [0, \infty)
+\]
+where $\Delta : \mathbb{R}_+ \to \mathbb{R}_+$ is a continuous and strictly
+increasing function that satisfies $\Delta(0) = 0$ and $\lim_{a\to\infty}
+\Delta(a) = \infty$. The parameter $\mu$ is strictly positive.
+
+Write $M_t$ for the flow of new machines and $X_t$ for the flow of the
+intermediate good produced at time $t$. Write $s_t$ for the price of the
+intermediate, $w_t$ for the wage, and $p_t(v)$ for the factor price and
+$q_t(v)$ for the price of a machine of vintage $v \in (-\infty, t]$, all at
+time $t$. These prices are in units of consumption.
+
+\begin{enumerate}
+    \item[\textbf{a.}] Show that this economy has a balanced growth path. Give
+        the steady state equilibrium conditions. What is the balanced growth
+        rate of consumption? Also, simplify the equilibrium conditions for the
+        special case of $\Delta(a) = \delta a$.
+    \begin{solution}
+
+    \end{solution}
+
+    \item[\textbf{b.}] Assume the economy is on a balanced growth path.
+        Suppose you can observe the trajectories of $C_t$, $w_t$, $s_t$, and
+        $\{p_t(v) : v \in (-\infty, t]\}$. Show how you can identify the
+        parameters of this economy, with the understanding that we will never
+        know the shape of $\Delta(\cdot)$ for machines that are obsolete.
+    \begin{solution}
+
+    \end{solution}
+
+    \item[\textbf{c.}] How does your answer change if you cannot observe the
+        trajectory of $s_t$?
+    \begin{solution}
+
+    \end{solution}
+\end{enumerate}
+
+% ============================================================
+\subsubsection{A Messed-Up Model of the Firm Size Distribution}
+% ============================================================
+
+Consumer preferences are
+\[
+    \mathcal{U}(C) = \int_0^\infty e^{-\rho t}\ln(C_t)\,dt
+\]
+for some $\rho > 0$. The aggregate supply of labor is inelastic and given by
+$\mathcal{L}$. Final output is produced by heterogeneous firms, using labor.
+
+A firm is a unit of capital, and the quality of that capital varies across
+firms. A firm $j$ with capital quality $z_{j,t}$ using $l_{j,t}$ units of
+labor produces $y_{j,t} = F(z_{j,t}, l_{j,t})$ units of final output. The
+quality of the capital of a firm of age $a \in [0,\infty)$ is $z_a =
+e^{\theta a}$, for some $\theta > 0$. Firms are destroyed randomly at a rate
+$\delta > 0$.
+
+Final output can be consumed and used to create new firms. A flow $X_t \geq 0$
+of final output generates a flow $\beta X_t$ of new firms, where $\beta$ is a
+positive parameter. In everything that follows assume that this economy has
+steady state and consider only steady state outcomes. Write $w$ for the wage
+and let $v = \max_{m\geq 0}\{F(1, m) - wm\}$ and write $l$ for the labor
+input that attains this maximum. At any given point in time, the price of a
+new firm is $q$. These prices are all in units of consumption. The risk-free
+interest rate in units of consumption is $r$. The measure of firms at time $t$
+is $N_t$.
+
+\begin{enumerate}
+    \item[\textbf{a.}] Outside a steady state, how does the measure $N_t$ of
+        firms evolve? What is the steady state measure of firms? What is the
+        age distribution of firms in that steady state?
+    \begin{solution}
+
+    \end{solution}
+
+    \item[\textbf{b.}] What is the distribution of capital quality in a steady
+        state? What is the average capital quality?
+    \begin{solution}
+
+    \end{solution}
+
+    \item[\textbf{c.}] What do you know about $q/v$? What does the technology
+        for creating new firms tell you about $q$ itself?
+    \begin{solution}
+
+    \end{solution}
+
+    \item[\textbf{d.}] Give the steady state equilibrium condition that pins
+        down $l$ in terms of $F$ and parameters. Construct the rest of the
+        steady state and be sure to verify that $X_t$ is less than final
+        output.
+    \begin{solution}
+
+    \end{solution}
+
+    So far, so good. But now suppose the technology for a firm with capital
+    quality $z_{j,t}$ is $y_{j,t} = F(z_{j,t}, B_t l_{j,t})$, where $B_t =
+    Be^{gt}$ for some parameters $B > 0$ and $g > 0$. And now assume $\theta
+    \in (0, \delta + g)$.
+
+    \item[\textbf{e.}] Construct the balanced growth path for this economy and
+        determine two firm size distributions: one for firm employment, and the
+        other for firm output.
+    \begin{solution}
+
+    \end{solution}
+\end{enumerate}
+
+% ============================================================
+\subsubsection{Long-Term Employment Contracts}
+% ============================================================
+
+There is a unit measure of consumer-workers whose preferences over consumption
+trajectories are
+\[
+    \mathcal{U} = \int_0^\infty e^{-\rho t} u(C_t)\,dt.
+\]
+Workers can be matched with a project or they can be unmatched. Unmatched
+workers produce a flow of $x > 0$ units of consumption. Matched workers
+produce a flow of $y > x$ units of consumption. While producing $x > 0$,
+unmatched workers can also use a flow $a_t \geq 0$ of output to search for a
+new project that will match their personal characteristics. The arrival time of
+such a project is random and exponentially distributed with mean $M(1, a_t)$.
+Here, $M : \mathbb{R}_+^2 \to \mathbb{R}_+$ is a strictly increasing
+production function that is continuous and homogeneous of degree 1. Assume
+$M(0,1) = 0$, $M(1,0) = 0$, and $\lim_{a\to 0} D_2 M(0,a) = \infty$. Once
+the worker has been matched with a new project, that worker must stay with the
+project or the project disappears. The project will also disappear randomly at
+a rate $\delta > 0$.
+
+Write $N_t$ for the measure of matched workers and let $A_t = (1-N_t)a_t$. So
+the technology for aggregate consumption is
+\[
+    C_t = (1 - N_t)x + N_t y - A_t.
+\]
+Markets are complete and the risk-free interest rate is $r_t$ in units of
+consumption. Write $U_t$ for the present value of all output produced now and
+into the indefinite future by a worker who is currently unmatched. Write $V_t$
+for the present value of all output produced now and into the indefinite future
+by a worker who is currently matched with a project.
+
+\begin{enumerate}
+    \item[\textbf{a.}] What is the differential equation for $N_t$?
+    \begin{solution}
+
+    \end{solution}
+
+    \item[\textbf{b.}] Give the asset pricing equations for $U_t$ and $V_t$.
+        What is the first-order condition for $a_t$? Construct the asset
+        pricing equation for $S_t = V_t - U_t$.
+    \begin{solution}
+
+    \end{solution}
+
+    \item[\textbf{c.}] Write $\lambda_t = Du(C_t)$ and use the Euler equation
+        to construct a differential equation for $s_t = \lambda_t S_t$.
+    \begin{solution}
+
+    \end{solution}
+
+    \item[\textbf{d.}] Show that this equilibrium solves the planner's problem
+        for a representative consumer.
+    \begin{solution}
+
+    \end{solution}
+
+    \item[\textbf{e.}] Can you think of a decentralization in which workers
+        work for employers who keep all the output produced and always pay a
+        going wage $w_t$, whether the worker is matched with a project or not?
+        Consider a setting in which firms can commit to long-term contracts that
+        take this form. Determine the equilibrium conditions for the wage $w_t$
+        and the value of a firm with a single matched worker employed under such
+        a contract.
+    \begin{solution}
+
+    \end{solution}
+\end{enumerate}
+
+% ============================================================
+\subsubsection{Permanent Primary Deficits}
+% ============================================================
+
+Consider the Blanchard [1985] economy as presented in class. In particular,
+take labor endowments at age $a$ to be $L_a = L_y e^{-\lambda a}$ where
+$\lambda > \rho$. Assume throughout that this economy has a no-bubble steady
+state with a real interest rate $r < 0$.
+
+Suppose there is a government that gives a flow of newly printed useless pieces
+of paper to newborn consumers. Suppose that it so happens that, in equilibrium,
+the time-$t$ prices $s_t$ of these useless pieces of paper are strictly
+positive. The government regulates the flow of transfers to newborn consumers
+so that the aggregate market value of this flow is $T \geq 0$ units of
+consumption. Consumers alive at $t = 0$ own a strictly positive supply $D_0 >
+0$ of useless pieces of paper. The aggregate supply at time $t$ is $D_t =
+s_t D_t$.
+
+\begin{enumerate}
+    \item[\textbf{a.}] Given a trajectory $\{s_t\}_{t\geq 0} \subset
+        \mathbb{R}_{++}$, how does $D_t$ evolve over time? Given real interest
+        rates $\{r_t\}_{t\geq 0}$, how does $B_t$ evolve over time? What do
+        you know about steady state real interest rates if there is a steady
+        state with $T > 0$?
+    \begin{solution}
+
+    \end{solution}
+
+    Write $W_{L,t}$ for the present value of the labor income of a newborn
+    consumer at time $t$. Write $W_{y,t}$ for the initial wealth of a newborn
+    consumer at time $t$.
+
+    \item[\textbf{b.}] Explain why $\theta(W_{y,t} - W_{L,t}) = T$.
+    \begin{solution}
+
+    \end{solution}
+
+    \item[\textbf{c.}] Assuming that there is a steady state in which the
+        government can transfer a flow $T \geq 0$ to newborn consumers, show
+        that the steady state conditions for $K > 0$, $B \geq 0$, and $W > 0$
+        are
+        \begin{align}
+            (\rho + \theta)W &= F(K, L) - \delta K, \\
+            (\lambda + \theta)(K + B) &= (\lambda + D_1 F(K,L) - (\rho +
+            \delta))\,W + T, \\
+            0 &= (D_1 F(K,L) - \delta)\,B + T.
+        \end{align}
+    \begin{solution}
+
+    \end{solution}
+
+    \item[\textbf{d.}] Given the assumption that the $T = 0$ version of this
+        economy has a no-bubble steady state with $r < 0$, show that the
+        economy also has a steady state for all $T > 0$ close enough to zero.
+    \begin{solution}
+
+    \end{solution}
+
+    \item[\textbf{e.}] What happens to $P_t = 1/s_t$ over time in a steady
+        state in which $T > 0$? What would your answer be if the government was
+        also paying a nominal rate of interest $i \in \mathbb{R}_{++}$ on
+        useless pieces of paper (by printing more of those pieces of paper)?
+    \begin{solution}
+
+    \end{solution}
+\end{enumerate}
+
+
 
 \subsubsection{Prelim: Spring 2024 (Firm Size Distributions)}
 Consider an economy with a representative household whose preferences over
@@ -1753,6 +2547,78 @@ capital is randomly destroyed.
     affect the mean of this distribution?
 \begin{solution}
 \end{solution}
+
+
+\subsubsection{Prelim: Spring 2021 (Growth with a Scale Effect)}
+
+There is a unit measure of consumers whose preferences over consumption flows
+$\{C_t\}_{t \geq 0}$ are determined by
+\[
+    \mathcal{U}(C) = \int_0^\infty e^{-\rho t} \ln(C_t)\, dt,
+\]
+where $\rho$ is positive. Consumption is a composite good,
+\[
+    C_t = \left(\int_0^{J_t} C_{j,t}^{1-1/\varepsilon}\, dj\right)^{1/(1-1/\varepsilon)},
+\]
+where $\varepsilon > 1$ and $J_t$ is the measure of differentiated commodities
+at time $t$. The initial value $J_0$ is given and positive.
+ 
+At any point in time, a consumer can choose to be either a worker or an
+entrepreneur. A consumer with ability vector $(x, y) \in \mathbb{R}_{++}^2$
+can supply a flow of $x$ units of labor as a worker, or create new blueprints
+randomly at an average rate $y \times J_t$ as an entrepreneur. The
+distribution of these abilities in the population is $\Psi$. This distribution
+has full support in $\mathbb{R}_{++}^2$, finite means, and a smooth density
+$\psi$. The owner of the blueprint for differentiated commodity $j$ can use
+labor to produce the commodity. The technology is linear with a unit
+productivity.
+ 
+Adopt the following notation. The price at time $t$ of differentiated commodity
+$j$ is $p_{j,t}$. The price index of all differentiated commodities at time $t$
+is $P_t$. These prices are in units of some arbitrary num\'{e}raire. The wage
+at time $t$ is $w_t$ in units of consumption. The time-$t$ profits that accrue
+to the owner of a typical blueprint are $v_t$, also in units of consumption.
+The price of a blueprint at time $t$ is $q_t$ in units of consumption. The
+real interest rate at time $t$ is $r_t$. Markets are complete and consumers
+face a standard present-value budget constraint.
+ 
+\begin{enumerate}[label = (\alph*)]
+    \item Determine $[w_t, l_t, v_t]$ in terms of $C_t$ and $J_t$,
+        where $l_t$ is the amount of labor used per blueprint to produce a
+        differentiated commodity. Also determine the real wage $w_t$.
+ 
+        Write $\mathcal{L}(s_t)$ for the supply of labor at time $t$, and
+        $J_t \mathcal{E}(s_t)$ for the aggregate flow of new blueprints created
+        at time $t$.
+    \begin{solution}
+ 
+    \end{solution}
+ 
+    \item What is the relative price $s_t$ that governs these
+        factor supplies and makes $\mathcal{L}(\cdot)$ a decreasing function and
+        $\mathcal{E}(\cdot)$ an increasing function? Express these factor
+        supplies in terms of $s_t$ and primitives of this economy.
+    \begin{solution}
+ 
+    \end{solution}
+ 
+    \item Describe the equilibrium conditions for this economy.
+    \begin{solution}
+ 
+    \end{solution}
+ 
+    \item What do these equilibrium conditions say about the
+        dynamics of $q_t J_t / C_t$?
+    \begin{solution}
+ 
+    \end{solution}
+ 
+    \item Determine the equilibrium of this economy. What happens
+        if consumers suddenly (and unforeseen) become more patient?
+    \begin{solution}
+ 
+    \end{solution}
+\end{enumerate}
 
 \end{enumerate}
 \end{document}
