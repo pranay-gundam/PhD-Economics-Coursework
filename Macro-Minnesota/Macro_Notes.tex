@@ -1184,10 +1184,10 @@ negative amounts.
     \item[(e)] Write down the Bellman equation for a household with access to
         both capital and storage.
     \begin{solution}
-  The state variables are assets $a$, labor productivity shock $z$, and stored goods $s$. The choice variables are future assets $a'$ and future storage $s'$. Here is the corresponding bellman equation \begin{align*}
-V(a, s, z) = &\max_{a', s'}\left\{c(Ra + s + wz - a' - s') + \beta \mathbb{E}[V(a', s', z')]\right\},\\
-s.t.\quad (1)&\quad Ra + s + wz - a'  - s'\geq 0,\\
-(2)&\quad a' \geq 0,\\
+  The state variables are capital $k$, labor productivity shock $z$, and stored goods $s$. The choice variables are future capital $k'$ and future storage $s'$. Here is the corresponding bellman equation \begin{align*}
+V(k, s, z) = &\max_{k', s'}\left\{c(Rk + s + wz - k' - s') + \beta \mathbb{E}[V(k', s', z')]\right\},\\
+s.t.\quad (1)&\quad Rk + s + wz - k'  - s'\geq 0,\\
+(2)&\quad k' \geq 0,\\
 (3)&\quad s' \geq 0.
 \end{align*}
     \end{solution}
@@ -1195,15 +1195,15 @@ s.t.\quad (1)&\quad Ra + s + wz - a'  - s'\geq 0,\\
     \item[(f)] Define a stationary equilibrium for this economy. Be precise about
         the market clearing conditions.
     \begin{solution}
- A stationary equilibrium is a collection of a value function $V(a,s,z)$, policy functions $S(a,s,z)$ and $A(a,s,z)$, price $R$, and distribution $\lambda(a,s,z)$ such that
+ A stationary equilibrium is a collection of a value function $V(k,s,z)$, policy functions $S(k,s,z)$ and $K(k,s,z)$, price $R$, and distribution $\lambda(k,s,z)$ such that
 \begin{itemize}
-\item The value function and policy functions $(V(\cdot), S(\cdot), A(\cdot))$ solve the household's problem given $R$.
+\item The value function and policy functions $(V(\cdot), S(\cdot), K(\cdot))$ solve the household's problem given $R$.
 \item $\lambda(\cdot)$ is the stationary distribution implied by $S$, $A$, and transition matrix $\Pi$.
-\item The following markets clear
+\item Given $R$, The following markets clear 
 \begin{align*}
-[Capital]&\quad, K = A(R) \equiv \sum_{a\in \mathcal{A}}\sum_{s\in \mathcal{S}}\sum_{z\in\mathcal{Z}}a * \lambda(a,s,z)\\
-[Goods]&\quad \sum_{a\in \mathcal{A}}\sum_{s\in \mathcal{S}}\sum_{z\in\mathcal{Z}}s * \lambda(a,s,z) + a*\lambda(a,s,z) +  = F(K, L) + (1 - \delta)K.
-\end{align*}
+[Capital]&\quad K = K(R) \equiv \sum_{(k,s,z)\in (\mathcal{K}, \mathcal{S}, \mathcal{Z})}k * \lambda(k,s,z),\\
+[Goods]&\quad \sum_{(k,s,z)\in (\mathcal{K}, \mathcal{S}, \mathcal{Z})} S* \lambda(k,s,z) + K*\lambda(k,s,z) + C= F(K, L) + (1 - \delta)K.
+\end{align*}Where $K = K(k,s,z)$, $S = S(k,s,z)$, and $C = Rk + s + wz - K - S$.
 \end{itemize}
     \end{solution}
  
@@ -1212,13 +1212,15 @@ s.t.\quad (1)&\quad Ra + s + wz - a'  - s'\geq 0,\\
         indifferent between capital and storage, so only the \textit{total}
         saving $a' = k' + s'$ matters.
     \begin{solution}
- 
+ When $R > 1$, households have the option between storing $b$ units of consumption in storage and getting $b$ units of consumption back in the next period or investing $b$ units of consumption into assets and then getting back $(1 + R)b > b$ units of consumption back in the next period. Since they get a strictly larger return from assets, they have no incentive to use storage technology.
+
+When $R = 1$, as seen above, they get the same return from both savings channels and therefore would be ambivalent between the two. From their perspective, they decide some aggregate amount of total savings and randomly distribute this across storage and assets and recieve in return the same level of savings back in the next period. 
     \end{solution}
  
     \item[(h)] Argue that in any equilibrium, $R \geq 1$. What would happen if
         $R < 1$?
     \begin{solution}
- 
+ 	If $R < 1$, then consumers would be incentivized to use only the storage facility for intertemporal savings since this offers a strictly higher return. This, however, is incompatible with equilibrium conditions because then aggregate capital used by firms would be $0$ and $$F(K, L) + (1 - \delta)K = F(0, L) + (1 - \delta)*0 = 0$$ which means that there would be no stock of goods that consumers would use for either consumption or saving; as such the Euler condition would then imply that $R$ is driven higher towards infinity but we have already claimed that $R < 1$, thus we have reached a contradiction.
     \end{solution}
  
     \item[(i)] Let $A(R, w)$ denote the total asset supply (capital plus storage)
@@ -1243,7 +1245,10 @@ s.t.\quad (1)&\quad Ra + s + wz - a'  - s'\geq 0,\\
         identify the new equilibrium. Where on the supply curve does the
         equilibrium occur given $R^\circ < 1$?
     \begin{solution}
- 
+ When we intorduce storage, the supply curve has a flate segment at $R=1$ from $K = 0$ to $K = A(1)$ because, as explained above, storage forces the equilibrium interest rate to be at least $1$ so that consumers are ambivalent between choosing capital or storage as their savings method. The supply curve then reverts back to the standard upwards sloping supply curve for $R > 1$ because now consumer's don't use the storage technology anymore and the consumer's problem is the same as in part I. Here is the figure
+\begin{center}
+\includegraphics[width = 7cm]{images/AmadorFinal2026QI.jpg}
+\end{center}
     \end{solution}
  
     \item[(j)] How does the introduction of storage affect the equilibrium
@@ -1251,7 +1256,7 @@ s.t.\quad (1)&\quad Ra + s + wz - a'  - s'\geq 0,\\
         < 1$)? What happens to the excess savings that would have driven $R$
         below 1?
     \begin{solution}
- 
+ As we can see in the diagram above, $K_{\mathrm{storage}}(R^\circ) < K_{\mathrm{vanilla}}(R^\circ)$ for $R^\circ < 1$. Since we know that $$w(K) = F_L(K,L)$$ and $F_L(K,L)$ is increasing in $K$ we can claim that the equilibrium wage decreases when storage is introduced: $$w(K_{\mathrm{storage}}(R^\circ)) = F_L(K_{\mathrm{storage}}(R^\circ),L) < F_L(K_{\mathrm{vanilla}}(R^\circ),L) = w(K_{\mathrm{vanilla}}(R^\circ)).$$Now, instead of $R^\circ < 1$ being driven by excess asset/capital savings, these excess savings are going into the storage technology.
     \end{solution}
  
     \item[(k)] How does the new steady-state capital stock compare to the golden
@@ -1260,7 +1265,13 @@ s.t.\quad (1)&\quad Ra + s + wz - a'  - s'\geq 0,\\
         \textit{Hint:} The golden rule capital stock $K_{\mathrm{gold}}$ is
         defined by $F_K(K_{\mathrm{gold}}, L) = \delta$.
     \begin{solution}
- 
+ The new steady-state capital stock is exactly the golden rule level. Specifically, we can start from the factor price equation
+\begin{align*}
+R(K) &= F_K(K,L) + 1 - \delta,\\
+1 &= F_K(K,L) + 1 - \delta,\\
+F_K(K,L) &= \delta = F_K(K_{\mathrm{gold}}, L),\\
+\implies K &= K_{\mathrm{gold}}.
+\end{align*}
     \end{solution}
 \end{enumerate}
  
@@ -1276,7 +1287,12 @@ storage technology.
         improvement relative to the original $R^\circ < 1$ equilibrium? Discuss.
         \textit{Hint:} Think of the wage.
     \begin{solution}
- 
+To be a pareto improvement, we must have that every consumer is weakly better off. Although it is not directly clear if households who have non-zero savings are better or worse off we know for sure that households who have zero assets are worse off in the world with storage. As explained in part j, we know that the wage decreases as storage is introduced, as such, effective income for household with zero savings satisfies
+\begin{align*}
+Ra + w_{\text{vanilla}}z &> Rk + s + w_{\text{storage}}z,\\
+\Leftrightarrow w_{\text{vanilla}}z &> w_{\text{storage}}z,\\
+\Leftrightarrow w_{\text{vanilla}} &> w_{\text{storage}}.
+\end{align*}Since at least one individual is worse off, we know that introducing the storage technology is not a Pareto improvement.
     \end{solution}
  
     \item[(m)] Consider a policy where the government, upon the arrival of the
@@ -1311,7 +1327,17 @@ storage technology.
         there? For $t > 0$: why are total household savings still $K^\circ$, and
         what does that imply for $S = K^\circ - K'$?
     \begin{solution}
- 
+ At $t = 0$, households face the same budget constraint that they did in previous periods when there was no storage technology and government policy since these states are remnants of household choices under a different model. As such, $K_0 = K^\circ$, $S_0 = 0$ and we can write that at $t = 0$,
+\begin{align*}
+            \text{Capital tax revenue}  &= \bigl[R(K_0) - R^\circ\bigr] K_0 = \bigl[R^\circ - R^\circ\bigr] K_0 = 0, \\
+            \text{Storage tax revenue}  &= (1 - R^\circ)\, S_0 = (1 - R^\circ) * 0 = 0, \\
+            \text{Wage subsidy cost}    &= \bigl[w^\circ - w(K_0)\bigr] L = \bigl[w^\circ - w^\circ\bigr] L = 0.
+        \end{align*}Now at $t > 0$, households have access to storage technology but the effective return rate they face between storage and capital holdings is still $R^\circ$ from the government policy. As such, they are indifferent between storage and capital holdings and are faced with a savings problem that is identical to before. Specifically, we have that $S + K' = K^\circ$. We can then write that for $t > 0$,
+\begin{align*}
+            \text{Capital tax revenue}  &= \bigl[R(K_t) - R^\circ\bigr] K_t = \bigl[R(K') - R^\circ\bigr] K' = \bigl[F_K(K', L) + 1 - \delta - R^\circ\bigr] K', \\
+            \text{Storage tax revenue}  &= (1 - R^\circ)\, S_t = (1 - R^\circ) (K^\circ - K'), \\
+            \text{Wage subsidy cost}    &= \bigl[w^\circ - w(K_t)\bigr] L = \bigl[w^\circ - F_L(K',L)\bigr] L.
+        \end{align*}
     \end{solution}
  
     \item[(n)] \textbf{[Diamond-style policy: fiscal surplus.]}
@@ -1330,7 +1356,14 @@ storage technology.
  
         Explain why this policy can lead to a Pareto improvement.
     \begin{solution}
- 
+ To write out the net fiscal surplus, we just have to sum all the terms up together.
+\begin{align*}
+\text{Surplus} & = \bigl[F_K(K', L) + 1 - \delta - R^\circ\bigr] K' + (1 - R^\circ) (K^\circ - K') - \bigl[w^\circ - F_L(K',L)\bigr] L,\\
+&= K'F_K(K',L) + K' - \delta K' - R^\circ K' + K^\circ - K' - R^\circ K^\circ + R^\circ K' - w^\circ L + LF_L(K',L),\\
+&= (K'F_K(K',L) + LF_L(K',L) - \delta K')  + K^\circ - R^\circ K^\circ  - w^\circ L ,\\
+&= [F(K',L) - \delta K']  - [(F_K(K^\circ, L) + 1 - \delta)K^\circ  + F(K^\circ, L) L - K^\circ]  ,\\
+&= [F(K',L) - \delta K']  - [F(K^\circ, L)- \delta K^\circ] .
+\end{align*}
     \end{solution}
 \end{enumerate}
 
