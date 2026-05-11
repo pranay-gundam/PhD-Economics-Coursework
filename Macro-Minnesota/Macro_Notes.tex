@@ -1363,7 +1363,11 @@ Ra + w_{\text{vanilla}}z &> Rk + s + w_{\text{storage}}z,\\
 &= (K'F_K(K',L) + LF_L(K',L) - \delta K')  + K^\circ - R^\circ K^\circ  - w^\circ L ,\\
 &= [F(K',L) - \delta K']  - [(F_K(K^\circ, L) + 1 - \delta)K^\circ  + F(K^\circ, L) L - K^\circ]  ,\\
 &= [F(K',L) - \delta K']  - [F(K^\circ, L)- \delta K^\circ] .
-\end{align*}
+\end{align*}Pick any $K'\in [K_{\mathrm{gold}}, K^\circ)$ we can write
+\begin{align*}
+\text{Surplus} & = [F(K',L) - \delta K']  - [F(K^\circ, L)- \delta K^\circ], \\
+& = [F(K',L) - F(K^\circ, L)] + \delta[K^\circ - K'] .
+\end{align*} From concavity of $F$, we know that $F'(K', L) < \delta$. Since $F$ is increasing in $K$ we know that $F(K',L) - F(K^\circ, L)$ is negative. We need to show that $$F(K^\circ, L) - F(K',L) < \delta[K^\circ - K'].$$ From properties of concave functions though we know that $$F(K^\circ, L) - F(K',L) <  F'(K', L)[K^\circ - K'] \leq \delta[K^\circ - K'].$$ As such, surplus is positive. This policy can lead to a pareto improvement because in this world, consumers experience the same wage and return on savings, but the government has a surplus of resources which they can then transfer back to consumer's which would generate a Pareto improvement because no individual faces a worse situation than before.
     \end{solution}
 \end{enumerate}
 
