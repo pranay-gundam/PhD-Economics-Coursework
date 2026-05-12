@@ -6,18 +6,19 @@ Most everything will be written in julia. All code will be written modular enoug
 
 ## Code structure and notes
 
-### Macro_I-NYU
+### Macro\_I-NYU
 
 Class code ECON-GA 1025, taught by Tom Sargent and Lars Ljungqvist in Fall 2023.
 
 ### Macro-Minnesota
 
-Class codes ECON 8105/8106, taught by Timothy Kehoe and Varadarajan Chari in Fall 2025. Will also soon contain content from class codes ECON 8107/8108 in Spring 2026.
+Class codes ECON 8105/8106, taught by Timothy Kehoe and Varadarajan Chari in Fall 2025. Class codes ECON 8107/8108, taught by Manuel Amador and Erzo Luttmer in Spring 2026.
 
 ### Micro-Minnesota
 
-Class codes ECON 8101/8102, taught by Jan Werner and Christopher Phelan in Fall 2025. Will also soon contain content from class codes ECON 8103/8104 in Spring 2026.
+Class codes ECON 8101/8102, taught by Jan Werner and Christopher Phelan in Fall 2025. Class codes ECON 8103/8104, taught by Aldo Rustichini and David Rahman in Spring 2026.
 
 ### Econometrics-Minnesota
 
 Class codes ECON 8205/8206, taught by Amil Petrin in Fall 2025.
+

@@ -582,7 +582,7 @@ An \textbf{allocation} is the collection $\{Z_A, Z_B, H_1, H_2\}$. An allocation
 \end{solution}
     \item Characterize the set of Pareto efficient allocations.
 \begin{solution}
-Since each consumer prefers only different goods and grapes necessarily must be used to produce wine we can classify the set of pareto efficient allocations as $$\boxed{\left\{(Z_A, Z_B, H_1, H_2)\,:\, g_B = 0,\, w_A = 0,\, g_A + g_1 + g_2 = 1,\, w_B = 2(\sqrt{g_1} + \sqrt{g_2})\right\}.}$$
+Since each consumer prefers only different goods and grapes necessarily must be used to produce wine we can classify the set of pareto efficient allocations as $$\boxed{\left\{(Z_A, Z_B, H_1, H_2)\,:\, g_B = 0,\, w_A = 0,\, g_1 = g_2,\, g_A + 2g_1 = 1,\, w_B = 4\sqrt{g_1})\right\}.}$$
 \end{solution}
     \item For general specifications of ownership of the initial grapes and the firms, define a competitive equilibrium. Will the allocation associated with any competitive equilibrium be efficient?
 \begin{solution}
@@ -638,14 +638,163 @@ To pin down prices, consider the market clearing condition for grapes
 \end{enumerate}
 
 \section{ECON 8103 (Rustichini)}
-This is the mini that I struggled with the most mostly because there is so much notation and pinning down intuition is very important as you go along or you will get very lost (as I did).
+This is the mini that I struggled with the most mostly because there is so much notation and pinning down intuition is very important as you go along or you will get very lost (as I did many a times).
 
+\subsection{Expected Utility Theory}
+Let's set up some primitive language to work with. 
+\begin{definition}[Lotteries]
+Let $C$ be some finite non-empty set of outcomes/consequences. A \textbf{simple lottery} over $C$ is a probability measure $$p\in \Delta(C) := \left\{p\,:\,C\to [0,1]\quad s.t.\quad \sum_{c\in C}p(c) = 1\right\}.$$
+For lotteries $p,q\in \Delta(C)$ and $\alpha \in [0,1]$, their \textbf{mixture} is $$\alpha p + (1 - \alpha) q \in \Delta(C),\quad (\alpha p + (1 - \alpha)q)(c) = \alpha p(c) + (1 - \alpha) q(c).$$ We denote $p\alpha q \equiv \alpha p + (1 - \alpha) q$, and the way we interpret this is that we are randomizing between $p$ and $q$ with probability $\alpha$ and $1 - \alpha$.
+\end{definition}
+Rahman spends a little bit of time going through utility and expected utility representations again. We have done this in previous classes so I'm not going to go through them again, but let's talk about how agents may think about preferences over lotteries. We can use the classic preference relation $\succeq$, and discuss some properties that lottery preferences will have
+\begin{enumerate}
+\item \textbf{Completeness:} For any two lotteries $p,q\in \Delta(C)$, either $p \succeq q$ or $q\succeq p$, or both.
+\item \textbf{Transitivity:} For all $p,q,r\in \Delta(C)$, if $p \succeq q$ and $q\succeq r$, then $p \succeq r$.
+\item \textbf{Continuity:} For $p \succ q \succ r$, there exists some $\alpha, \beta \in (0,1)$ such that $$\alpha p + (1 - \alpha) r \succeq q \succeq \beta p + (1 - \beta)r.$$ 
+\item \textbf{Independence:} For all $p,q,r$ and $\alpha \in (0,1)$: $$p\succeq q \Leftrightarrow \alpha p  + (1 - \alpha) r \succeq \alpha q + (1 - \alpha)r.$$
+\end{enumerate}
+Completeness and transitivity are both very intuitive. Stuff we have seen before. Continuity says that "no outcome is infinitely better than another"; in other words, we can always find some lottery that sits in between two lotteries in terms of preferences. Independence is trying to relate some sense of a preference where mixing with another arbitrary "background" lottery preserves the rankings. These properties help give way to the following theorems
+\begin{theorem}[vNM Existence]
+A preference relation $\succeq$ admits an expected utility representation (EUR) if and only if it satisfies all four of the axioms above.
+\end{theorem}
 
+\begin{theorem}[vNM Uniqueness]
+This EUR from above is unique up to positive affine transformations: if $u$ and $v$ both represent $\succeq$, then $u(c) = Av(c) + B$ for some $A > 0, B\in \mathbb{R}$. 
+\end{theorem}
 
+\subsection{Normal Form Games and Nash Equilibrium}
+With lotteries and utility representations in hand, let's start to set up the framework with which we will analyze games. 
+\begin{definition}[Finite Normal Form Game]
+A \textbf{finite normal form game} is a tuple $(I, (A^i)_{i\in I}, (u^i)_{i\in I})$ where 
+\begin{enumerate}
+\item $I = \{1,\ldots, n\}$ is a finite set of players.
+\item $A^i$ is a finite set of actions for player $i$. We also write $A = \prod_iA^i$ as the cardinal product of all the action sets for each player.
+\item $u_i:A \to \mathbb{R}$ is player i's payoff function. 
+\end{enumerate}
+In the game, players simultaneously choose actions without observing each other's choices.
+
+A \textbf{mixed strategy} for player $i$ is some $s^i \in \Delta(A^i)$ (a vector of probabilities). The expected payoff is then $$u^i(s) = \sum_{a\in A}Pr_s(a)u^i(a) = \sum_{a\in A} \left(\prod_{j\in I} s^j(a^j)\right)u^i(a).$$ A pure strategy on the other hand is one where there is 100\% certainty in one specific action. We can think of pure strategies as a special case of mixed strategies.
+\end{definition}
+
+Having defined games and strategies, we can start thinking about equilibria concepts. Nash equilibrium is something that we have definitely seen in many other classes before but this is formalizing it with respect to the formalization of normal games.
+\begin{definition}[Nash Equilibrium]
+The \textbf{best response correspondence} for player $i$ is $$BR^i(s^{-i}) = \left\{r^i\in S^i\,:\,u^i(r^i, s^{-i}) \geq u^i(t^i, s^{-i}) \forall t^i \in S^i\right\}.$$A profile $s^*$ is a \textbf{Nash Equilibrium} if $s^{*i}\in BR^i(s^{*-i})$ for every $i$. We can also write this as $s^* \in BR(s^*)$.
+\end{definition}
+
+\begin{theorem}[Nash Theorem]
+Every finite normal game has at least one Nash equilibrium.
+\end{theorem} This is a really cool result whose significance was lost on my when we were going through the proof in class. ANY GAME that we can represent as a finite normal form game is solved. This means \textit{chess} has an "optimal" solution, \textit{go} has an optimal solution, \textit{shogi} has an optimal solution. Even though figuring out the equilibrium is an entirely different story, this result blew my mind.
+
+\subsection{Dominance, Iterated Elimination, and Rationalizability}
+We talked about what Nash equilibrium is, now let's talk about ways to find it. Generally, to give a rough structure, we can look for dominated strategies, check for pure nash equilibria, and then check for mixed nash equilibria (if a player mixes between two strategies then they must be indifferent between playing either of those pure strategies). Before we get into specific strategies, let's go back to thinking about best responses.
+
+\begin{definition}[Beliefs]
+A \textbf{belief} of player $i$ over $A^{-i}$ is $\mu\in \Delta(A^{-i})$. Beliefs allow for correlation among opponents' actions. The expected payoff under belief $\mu$ is $$u^i(a^i, \mu) = \sum_{a^{-i}\in A^{-i}}\mu(a^{-i})u^i(a^i, a^{-i}).$$
+
+A mixed strategy $s^i$ is a best response to $\mu$ if and only if it assigns probability $1$ to the set of pure best responses: $$s^i(BR^i_{A^i}(\mu)) = 1.$$
+\end{definition}
+\noindent With this system of beliefs, we can get into dominance:
+\begin{itemize}
+\item $a^i$ \textbf{strictly dominates} $b^i$ (pure vs. pure) if $u^i(a^i, a^{-i}) > u^i(b^i, a^{-i})$ for all $a^{-i}\in A^{-i}$.
+
+\item $a^i$ \textbf{weakly dominates} $b^i$ (pure vs. pure) if $u^i(a^i, a^{-i}) \geq u^i(b^i, a^{-i})$ for all $a^{-i}\in A^{-i}$.
+
+\item $a^{-i}$ is \textbf{strictly dominated by a mixed strategy} if $\exists s^i \in \Delta(A^i)$ such that $u^i(s^i, a^{-i}) > u^i(a^i, a^{-i})$ for all $a^{-i}\in A^{-i}$.
+
+\item $a^{-i}$ is \textbf{weakly dominated by a mixed strategy} if $\exists s^i \in \Delta(A^i)$ such that $u^i(s^i, a^{-i}) \geq u^i(a^i, a^{-i})$ for all $a^{-i}\in A^{-i}$.
+
+\item $a^i$ is a \textbf{never best response (NBR)} if there is no belief $\mu \in \Delta(A^{-i})$ making it a best response.
+\end{itemize}
+
+One way we can use these classifications to arrive is the \textbf{iterated elimination of striclty dominated strategies (IESDS)}. The concept behind this is quite simple and will be exemplified in a lot of the problems at the end of this section, but it involves narrowing down the action set of each individual until only a few actions and a nash equilibrium is left. Put into specific notation, IESDS is a sequence of trimmed action sets $(C_t^i)_{i\in I, t = 0,1,\ldots}$ such that
+\begin{enumerate}
+\item $C_0^i = A^i$ for all $i$.
+\item $C_{t+1}^i \subseteq C_t^i$ for all $i,t$.
+\item If $c^i \in C_t^i \setminus C_{t+1}^i$ then there exists some $s^i \in \Delta(C_t^i)$ such that $$u^i(s^i, c^{-i}) > u^i(c^i, c^{-i}),\quad \forall c^{-i}\in C_t^{-i}.$$
+\end{enumerate}
+A process of IESDS is complete if it is not possible to continue with further elimination of strategies. Critically, two properties of the terminal set $C_T$ in this IESDS is that this outcome is both unique and Nash equilibrium always survives the elimination.
+
+We can also do iterated elimination of weakly dominated strategies (IEWDS) in a similar manner as above, but critically although nash equilibria still survive the elimination process, we are not guaranteed that the terminal set is unique. One other way that we can try to think  intuitively about this iterated dominance strategy is through beliefs. Specifically, the outcome of IESDS is a cet of actions that we consider to be "rationalizable", there exists some belief such that the actions inside this set weakly dominate the actions outside of this set.
+\begin{definition}[Rationalizability]
+A vector $(R^1, \ldots, R^n)$ with $R^i \subseteq A^i$ is \textbf{rationalizable} if for every $i$ and every $a^i\in R_i$, there exists a belief $\mu\in \Delta(R^{-i})$ such that $a^i$ is a best response $$u^i(a^i,\mu) \geq u^i(b^i,\mu)$$ for all $b^i\in A^i$.
+\end{definition}
+The main result here is that if $(C_T^i)$ is the outcome of a complete IESDS and $(R^i)$ the maximal rationalizable vector, then $R^i = C_T^i$ for all $i$.
+
+\subsection{Extensive Form Games}
+Normal form games are a specific game style where agents all determine their action simultaneously. There are also games, however, where action takes place sequentially and we will build some infratructure for that now. Keep in mind, however, that we can also combine the two, where some sequential interaction leads to a normal form game with simultaneous action, example \ref{Rustichini Prelim: Fall 2024} is one form of this.
+\begin{definition}[Extensive Form Game]
+An \textbf{Extensive Form Game} is a collection of
+\begin{itemize}
+\item A set of players $I = \{1, \ldots, n\}$.
+\item A set of nodes $\{\alpha, X, Z\}$, $\alpha$ represents the inital node, $X$ is the set of intermediate nodes, and $Z$ is the set of terminal nodes.
+\item Player utilities $u^i\,:\,Z\to \mathbb{R}$ for all $i\in I$.
+\item A partial order $\succ$ on the nodes that orders the nodes. It is irreflexive, transitive, and "tree-like".
+\item A partition $P = \{P_1, \ldots, P^n\}$ of $X$. Each set. $P^i$, in the partition describes the set of nodes at which player $i$ makes a move.
+\item For each $i\in I$, an information partition $U^i$ of $P^i$. An information set groups nodes that a player cannot distinguish when it is their turn to move. A pure strategy must prescribe the same action at every node in the same information set – you can’t condition on something you don’t observe. If player 2 acts without knowing player 1’s choice, all of player 1’s successors are in one information set for player 2.
+\item For each $i\in I$ and information set$u^i\in U^i$, a choice set $C_{u^i}$.
+\end{itemize}
+\end{definition}
+We have discussed the setup, now let's talk about the type of strategies that one can commit themselves to in this game setup. The notation is a bit confusing here but the intuition is very simple. It is just a game tree where one action by an individual can branch out to several other game states. There are generally three types of ways that we can represent actions
+\begin{itemize}
+\item \textbf{Pure Strategies} are $s^i:U^i\to \bigcup_u C_u$ is a complete contingent plan specifying an action at every information set of player $i$, \textit{including those never reach in equilibrium}. This part is trippy, here a complete action is a commitment to play a certain action if any specific information set is reached, it is not just a declaration of observed behavoir. 
+\item \textbf{Behavioral Strategies} are $\beta^i$ which specify an independent randomization at each information set. It says how likely we are to choose each of the actions available to the agent at each information set.
+\item \textbf{Mixed Strategies} simply just randomized over pure strategies. We can recover a behavioral strategy from mixed strategies and visa-versa as well.
+\end{itemize}
+
+\subsection{Backward Induction and Subgame Perfect Equilibrium}
+With a different class of games and strategy concepts, comes a different class of equilibriua concepts. 
+\begin{definition}[Perfect Information]
+An extensive form game has \textbf{perfect information} if every information set $I_j^i$ is a singleton. In other words, each node uniquely determines the history of play for each agent.
+\end{definition}
+On games of perfect information, we can do \textbf{backward induction} to solve for a nash equilibrium. There is a formal formulation of this in Aldo's notes, but I don't want to go through all that. Put simply, backward induction works recursively: at each decision node, the active player selects the action maximizing their continuation value. This yields a pure strategy profile and is the canonical solution for sequential games without information asymmetry.
+
+\begin{definition}[Subgame]
+A \textbf{subgame}, $\Gamma(x)$, of some extensive form game is the subtree rooted at node $x$ provided no information set is split: if an information set intersects the subtree, it is entirely contained within it.
+\end{definition}
+
+\begin{definition}[Subgame Perfect Equilibrium]
+A strategy profile $\beta$ is a \textbf{subgame perfect equilibrium} (SPE) if its restriction to every subgame $\Gamma(x)$ is a nash equilibrium of $\Gamma(x)$. Every finite Extensive Form Game has at least one SPE!
+\end{definition}
+
+\begin{theorem}[One-Stage Deviation Principle (OSDP)]
+A strategy profile is SPE if and only if no player can gain by deviating at a single information set while conforming to the equilibrium everywhere else.
+\end{theorem}
+
+\subsection{Beliefs, Sequential Rationality, and Perfect Bayseian Equilibrium}
+Although backwards induction and SPEs eliminate non-credible behavoirs in subgames, they don't say anything about behavior at information sets that don't initiate further subgames. Perfect Bayesian Equilibrium (PBE) addresses this by requiring players to hold explicit \textit{beliefs} about where they are in the game tree, and to act rationally given those beliefs. Before we talked about a perfect information world, but now we consider what happens in worlds without perfect information.
+
+\begin{definition}[Belief System]
+A \textbf{belief system} $\mu$ assigns a probability distribution $\mu(\cdot|I_j^i) \in \Delta(I_j^i)$ over nodes within each information set $I_j^i$
+
+An \textbf{assesment} is a pair $(\beta, \mu)$ of a behavioral strategy profile and a belief system.
+\end{definition}
+
+\begin{definition}[Perfect Bayesian Equilibrium]
+An assessment $(\beta, \mu)$ is a \textbf{Perfect Bayesian Equilibrium} (PBE) if:
+\begin{itemize}
+\item \underline{Sequential Rationality:} At every information set, $\beta$ maximizes each player's expected continuation payoff given $\mu$ and opponents' strategies.
+\item \underline{Bayesian Consistency:} At every on-path information set (reached with positive probability), beliefs satisfy Bayes' rule: $$\mu(x|I_j^i) = \frac{PR_\beta (x)}{\sum_{y\in I_j^i}PR_\beta(y)}.$$Off-path beliefs are unrestricted, subject only to sequential rationality.
+\end{itemize}
+\end{definition}
+The intuition here is that before we handled games where each agent knows exactly where they in the game at any given moment and so PBE adapts this by adding upon a set of beliefs that each agent may have and forces these beliefs to be consistent to count as a proper equilibrium. We can generally relate this to SPE as:
+\begin{itemize}
+\item Every SPE can be extended to a PBE (construct on-path beliefs via Bayes’ rule; choose arbitrary off-path beliefs).
+\item PBE can further refine SPE by restricting off-path beliefs.
+\item PBE is weaker than Sequential Equilibrium, which additionally requires beliefs to be consistent limits of fully-mixed strategy sequences.
+\end{itemize}
+
+\subsection{Correlated Equilibrium}
+Critically, nash equilibrium assumes that players randomize \textit{independently}. Correlated, on the other hand, allows players to condition on a jointly observed signal (e.g. some mediatior's recommendation, a classic example are streetlights in a game where cars meet at an intersection). To formalize this, let's consider the classic normal form game that we have defined in prior sections.
+
+\begin{definition}[Correlated Equilibrium]
+A distribution $\mu\in \Delta(A)$ is a \textbf{correlated equilibrium} (CE) if for every player $i$ and every recommendation action $a^i$ with $\mu_{A^i}(a^i) > 0$, following the recommendation is optimal: $$\sum_{a^{-i}\in A^{-i}}\mu(a^i, a^{-i})\left[u^i(a^i, a^{-i}) - u^i(b^i,a^{-i})\right] \geq 0,\quad forall b^i \in A^i.$$
+Equivalently: conditional on receiving recommendation $a^i$, player $i$ weakly prefers following it over any deviation $b^i$.
+\end{definition}
+In a NE, each player’s randomization is independent – your mix carries no information about opponents’ realizations. A correlated signal can carry conditional information: if I was told to Go, I know my partner was told to Stop. This conditional structure enables coordination that independent mixing cannot achieve.
 
 \subsection{Exercises}
 
-\subsubsection{Prelim: Fall 2024}
+\subsubsection{Prelim: Fall 2024}\label{Rustichini Prelim: Fall 2024}
 Consider the following game with two players. Player 1 moves first and chooses
 an action in the set $\{Out, In\}$. If he chooses $Out$ the game is over and
 the two players receive a utility of $(2,2)$, with the first component paid to
