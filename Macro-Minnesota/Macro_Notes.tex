@@ -369,7 +369,14 @@ period 0. Feasible allocations satisfy
         $u$ and $f$ that guarantee a solution to Bellman's equation. Cite any
         results that you need, but do not prove anything.
     \begin{solution}
- 
+ The corresponding bellman equation to a social planner's problem is
+\begin{align*}
+V(k) = \max_{k', l}&\left\{u(f(k, 1-l) + (1 - \delta)k - k', 1 - l) + \beta V(k')\right\}\\
+s.t.\quad (1)&\quad k' \geq 0,\\
+(2)&\quad 0 \leq l \leq 1,\\
+(3)&\quad f(k, 1-l) + (1 - \delta)k - k' \geq 0.
+\end{align*}
+To have a solution to the bellman's equation, we must have that $\beta \in (0,1)$, $\delta\in (0,1]$, $u$ is continuous and increasing
     \end{solution}
  
     \item[(b)] Define a sequential markets equilibrium for this economy. Suppose
@@ -423,20 +430,83 @@ has the endowment $w_1^0 = 2$. There is no fiat money.
     \item[(a)] Define an Arrow--Debreu equilibrium for this economy. Calculate
         the unique Arrow--Debreu equilibrium.
     \begin{solution}
- 
-    \end{solution}
+ An AD equilibrium for this economy is a collection of allocations $\left(\{\hat{c}_t^t, \hat{c}_{t+1}^t\}_{t=1}^\infty, \hat{c}_1^0\right)$ and prices $\{\hat{p}_t\}_{t=1}^\infty$ such that
+\begin{itemize}
+\item \underline{Initial Old Optimization:} Given price $\hat{p}_1$ and endowment $w_1^0$, the consumption allocations solve
+\begin{align*}
+\max_{c_1^0}&\quad \log(c_1^0)\\
+s.t\quad (1)&\quad c_1^0 \geq 0,\\
+(2)&\quad \hat{p}_1 c_1^0 \leq \hat{p}_1 w_1^0.
+\end{align*}
+
+\item \underline{General Consumer Optimization:} Given prices and endowment streams, the consumption allocations solve
+\begin{align*}
+\max_{c_t^t c_{t+1}^t}&\quad \log(c_t^t) + c_{t+1}^t\\
+s.t.\quad (1)&\quad \hat{p}_t c_t^t  + \hat{p}_{t+1} c_{t+1}^t \leq \hat{p}_t w_t^t  + \hat{p}_{t+1} w_{t+1}^t,\\
+(2)&\quad c_t^t, c_{t+1}^t \geq 0.
+\end{align*}
+
+\item \underline{Market Clearing:} Given endowments, the allocations also satisfy the following condition
+$$[Goods]\quad \hat{c}_t^t + \hat{c}_t^{t-1} = w_t^t + w_t^{t-1}.$$
+\end{itemize}
+
+Now to calculate this, let's first setup the lagrangian that some agent born at time period $t$ would solve.
+$$\mathcal{L}(c_t^t, c_{t+1}^t, \lambda^t, \mu^t) = \log(c_t^t) + c_{t+1}^t + \lambda^t(\hat{p}_t w_t^t  + \hat{p}_{t+1} w_{t+1}^t - \hat{p}_t c_t^t  - \hat{p}_{t+1} c_{t+1}^t) + \mu_t(c_{t+1}^t).$$
+    
+There are two important features to note straight off the bat. The first is that the utility function of the second period of the consumer's life does not satisfy the inada conditions which means what we are not guaranteed that this will be non-zero and so (since this was a constraint we imposed on the optimization problem) we need to include a lagrange multiplier for this constraint. 
+
+Second, since there is no fiat money introduced into this economy via the first initial old consumer, we know that they have no incentive to trade and will be hand to mouth which ensures that the next generation is also hand-to-mouth which cascades into every generation being hand-to-mouth. This then ensures that $c_{t+1}^t$ is non-zero and we don't need to worry about that lagrange multiplier. We already know that $$\boxed{\hat{c}_1^0 = 2,\, \hat{c}_t^t = 2,\, \hat{c}_{t+1}^t = 2,}$$let's work on pinning down prices from the optimality conditions.
+\begin{align*}
+[c_t^t]&:\quad \frac{1}{c_t^t} - \lambda^t\hat{p}_t = 0 \implies \lambda^t = \frac{1}{c_t^t\hat{p}_t}\\
+[c_{t+1}^t]&:\quad 1 - \lambda^t\hat{p}_{t+1} = 0 \implies \lambda = \frac{1}{\hat{p}_{t+1}}
+\end{align*} Combining these two expressions and plugging in the fact that we already know the value of consumption we get $$\hat{p}_{t+1} = 2\hat{p}_t.$$ Setting a numeraire of $\hat{p}_1 = 1$ we get that prices are $$\boxed{\hat{p}_t = 2^{t-1}.}$$
+\end{solution}
  
     \item[(b)] Define a sequential markets equilibrium for this economy.
         Calculate the unique sequential markets equilibrium.
     \begin{solution}
- 
+ An sequential markets equilibrium for this economy is a collection of allocations $\left(\{\hat{c}_t^t, \hat{c}_{t+1}^t, \hat{b}_{t+1}^t\}_{t=1}^\infty, \hat{c}_1^0\right)$ and prices $\{\hat{r}_t\}_{t=1}^\infty$ such that
+\begin{itemize}
+\item \underline{Initial Old Optimization:} Given price $\hat{r}_1$, endowment $w_1^0$, and initial bond holdings $b_1^0$, the consumption allocations solve
+\begin{align*}
+\max_{c_1^0}&\quad \log(c_1^0)\\
+s.t\quad (1)&\quad c_1^0 \geq 0,\\
+(2)&\quad c_1^0 \leq (1+\hat{r}_1)b_1^0 w_1^0.
+\end{align*}
+
+\item \underline{General Consumer Optimization:} Given prices and endowment streams, the consumption allocations solve
+\begin{align*}
+\max_{c_t^t c_{t+1}^t}&\quad \log(c_t^t) + c_{t+1}^t\\
+s.t.\quad (1)&\quad c_t^t  + b_{t+1}^t \leq w_t^t,\\
+(2)&\quad c_{t+1}^t  \leq (1+\hat{r}_{t+1})b_{t+1}^tw_{t+1}^t,\\
+(3)&\quad c_t^t, c_{t+1}^t \geq 0.
+\end{align*}
+
+\item \underline{Market Clearing:} Given endowments, the allocations also satisfy the following condition
+\begin{align*}
+[Goods]&\quad \hat{c}_t^t + \hat{c}_t^{t-1} = w_t^t + w_t^{t-1},\\
+[Bonds]&\quad \hat{b}_{t+1}^t = \hat{b}_{t}^{t-1}.
+\end{align*}
+\end{itemize}
+Now to calculate the equilibrium note the same set of logic that we underwent before. The problem setup implies that $b_1^0 = 0$ which means that everyone is a hand-to-mouth consumer. With this we know from the get go that $$\boxed{\hat{c}_1^0 = 2,\,\hat{c}_t^t = 2,\,\hat{c}_{t+1}^t,\,\hat{b}_{t+1}^t = 0.}$$Now let's back out prices, here are the first order conditions
+\begin{align*}
+[c_t^t]&:\quad \frac{1}{c_t^t} - \lambda_{t}^t = 0,\\
+[c_{t+1}^t]&:\quad 1 - \lambda_{t+1}^t = 0,\\
+[b_{t+1}^t]&:\quad -\lambda_{t}^t + (1+\hat{r}_{t+1})\lambda_{t+1} = 0
+\end{align*} Putting these three expressions together we get that $$\boxed{\hat{r}_t = -\frac{1}{2}.}$$
     \end{solution}
  
     \item[(c)] Define a Pareto efficient allocation. Either prove that the
         equilibrium allocation in part (a) is Pareto efficient or prove that it
         is not.
     \begin{solution}
- 
+ First, note that a \textit{feasible allocation} is any allocation $\left(\hat{c}_1^0, \{\hat{c}_t^t, \hat{c}_{t+1}^t\}_{t=1}^\infty\right)$ such that $$\hat{c}_t^t + \hat{c}_t^{t-1} = w_t^t + w_{t}^{t-1}.$$
+
+A Pareto efficient allocation is then any feasible allocation $\left(\hat{c}_1^0, \{\hat{c}_t^t, \hat{c}_{t+1}^t\}_{t=1}^\infty\right)$ such that there does not exist any other feasible allocation $\left(\bar{c}_1^0, \{\bar{c}_t^t, \bar{c}_{t+1}^t\}_{t=1}^\infty\right)$ where both of the statements below are true$$\forall t,\quad \log(\hat{c}_t^t) + \hat{c}_t^t \leq \log(\bar{c}_t^t) + \bar{c}_t^t\text{ and } \log(\hat{c}_1^0) \leq \log(\hat{c}_1^0),$$
+$$\exists t,\quad \quad \log(\hat{c}_t^t) + \hat{c}_t^t < \log(\bar{c}_t^t) + \bar{c}_t^t\text{ or } \log(\hat{c}_1^0) < \log(\hat{c}_1^0).$$
+
+The allocation in part (a) is not pareto efficient and to prove so we can find some other allocation that is pareto improving.
+
     \end{solution}
  
     \item[(d)] Suppose now that there is a storage technology available in every
@@ -453,11 +523,17 @@ has the endowment $w_1^0 = 2$. There is no fiat money.
 \section{ECON 8106 (Chari)}
 
 \subsection{Dynamic Programming (Deterministic and Stochastic)} 
+Dynamic programming is one of the fundamental tools that we use in macroeconomics. In my experience, getting the basic hang of it is not too hard at all but there is a sophisticated set of mathematical machinery that goes on in the background to ensure that it works. The Stokey, Lucas, Prescott textbook is basically all you need when it comes to building up the rigour behind dynamic programming. I will obviously not go through everything at the same level of depth as SLP, but I'll write down some key notes from the book.
+
+The two main themes, as with most solution concepts, is existence and uniqueness. We need to search for conditions such that the 
+
 
 \subsection{Recursive Competitive Equilibria}
 This is perhaps the concept that I have had the most trouble with in this class. Not because it encapsulates a particularly difficult concept, but more so because it is a lot to remember without the right intuition.
 
 \subsection{Cash-Credit-Good Models}
+All the models that we have discussed so far deals with buying and 
+
 
 \subsection{Sticky Prices}
 
@@ -810,7 +886,7 @@ consumption good, $c_t$, in each period given by
 and supply one unit of labor inelastically. The final consumption good is an
 aggregate of intermediate goods $c_{it}$ given by
 \begin{equation}
-    c_t = \left[\int_0^1 c_{it}^{\theta; 1/\theta}\right].
+    c_t = \left[\int_0^1 c_{it}^{\theta}\,di\right]^{1/\theta}.
 \end{equation}
 The technology for each intermediate good is given by
 \begin{equation}
@@ -847,14 +923,21 @@ an increasing function $\mu(s)$.
         this is an equilibrium in which the continuation equilibrium for any
         history depends only on the current shock $s$.
      \begin{solution}
- 
+ A recursive equilibrium for this economy is a collection of a value function $V(\cdot)$, policy function $C(\cdot)$, 
     \end{solution}
     \item To do so, set up the Bellman equation for consumers. What are the
         state variables for each consumer? What are the state variables for the
         economy as a whole? Set up the problems for the three types of firms.
         What are the market clearing conditions?
     \begin{solution}
- 
+ Consumers face the following bellman equation
+\begin{align*}
+V(M, s) = \max_{c, l, M'}&\left\{\log(c) + \beta \mathbb{E}[V(M', s')]\right\}\\
+s.t.\quad (1)&\quad P(M, s)C \leq M + T(M, s),\\
+(2)&\quad P(M,s) + M' \leq W(M,s)\cdot l + M + T(M,s) + \Pi(s),\\
+(3)&\quad c, M'\geq 0,\\
+(4)&\quad 0 \leq l \leq 1.
+\end{align*}
     \end{solution}
  
     \item Consider a version of this economy with no shocks. Characterize the
