@@ -376,14 +376,43 @@ s.t.\quad (1)&\quad k' \geq 0,\\
 (2)&\quad 0 \leq l \leq 1,\\
 (3)&\quad f(k, 1-l) + (1 - \delta)k - k' \geq 0.
 \end{align*}
-To have a solution to the bellman's equation, we must have that $\beta \in (0,1)$, $\delta\in (0,1]$, $u$ is continuous and increasing
+To have a solution to the bellman's equation, we must have that $\beta \in (0,1)$, $\delta\in (0,1]$, $u$ is continuous and increasing, and $f$ is also continuous and increasinf in both $k$ and $l$.
     \end{solution}
  
     \item[(b)] Define a sequential markets equilibrium for this economy. Suppose
         that you have solved the dynamic programming problem in part (a). Explain
         carefully how to calculate the sequential markets equilibrium.
     \begin{solution}
- 
+ A sequential markets equilibrium for this economy is a a collection of allocations $\{\hat{c}_t, \hat{b}_{t+1}, \hat{k}_{t+1}, \hat{\ell}_t\}_{t=0}^\infty$, firm allocations $\{\hat{k}_t^f, \hat{\ell}_t^f\}_{t=0}^\infty$, and prices $\{\hat{r}^b_t, \hat{r}^k_t, \hat{w}_t\}_{t=0}^\infty$ such that 
+\begin{itemize}
+\item \underline{Household Optimization:} Given prices and initial capital, $k_0$, and bonds, $b_0$, the household allocations solve
+\begin{align*}
+\max_{c_t, b_{t+1}, k_{t+1}, \ell_t}&\quad \sum_{t=0}^\infty \beta^t u(c_t, 1 - \ell_t)\\
+s.t.\quad (1)&\quad c_t + b_{t+1} + k_{t+1} \leq (1 + \hat{r}^b_t)b_{t+1} + (1 + \hat{r}^k_t - \delta)k_{t+1} + \hat{w}_t\ell_t,\\
+(2)&\quad c_t \geq 0,\, k_{t+1} \geq 0,\, 0 \leq \ell_t \leq 1.
+\end{align*}
+
+\item \underline{Firm Optimization:} Given prices, firms allocations minimize costs and make zero profits. Specifically the following factor price equations are satisfied
+\begin{align*}
+\hat{r}_t^k &= f_k\left(\hat{k}_t^f, \hat{\ell}_t^f\right),\\
+\hat{w}_t &= f_\ell\left(\hat{k}_t^f, \hat{\ell}_t^f\right).
+\end{align*}
+
+\item \underline{Market Clearing:} The firm and household allocations also satisfy the following conditions for all $t\geq 0$.
+\begin{align*}
+[Goods]&\quad \hat{c}_t + \hat{k}_{t+1} \leq f\left(\hat{k}_t^f, \hat{\ell}_t^f\right) + (1 - \delta)\hat{k}_t,\\
+[Capital]&\quad \hat{k}_t = \hat{k}_t^f,\\
+[Labor]&\quad \hat{\ell}_t = \hat{\ell}_t^f,\\
+[Bonds]&\quad \hat{b}_{t+1} = 0.
+\end{align*}
+\end{itemize}
+
+First, note that from the bonds market clearing condition, we know that $\hat{b}_{t} = 0$ for all $t\geq 1$. Next, we also know from the market clearing conditions that the firm allocations is the same as the household allocations. Now, if we suppose that we have already solved the social planner's dynamic programming problem, then we already know the set of equilibrium household allocations. All we need to do is back out prices which is very simple, we know from the firm's optimality conditions that 
+\begin{align*}
+\hat{r}_t^k &= f_k\left(\hat{k}_t^f, \hat{\ell}_t^f\right) = f_k\left(\hat{k}_t, \hat{\ell}_t\right),\\
+\hat{w}_t &= f_\ell\left(\hat{k}_t^f, \hat{\ell}_t^f\right) =  f_\ell\left(\hat{k}_t, \hat{\ell}_t\right).
+\end{align*}
+
     \end{solution}
  
     \item[(c)] Define an Arrow--Debreu equilibrium for this economy. Suppose
@@ -471,14 +500,14 @@ Second, since there is no fiat money introduced into this economy via the first 
 \begin{align*}
 \max_{c_1^0}&\quad \log(c_1^0)\\
 s.t\quad (1)&\quad c_1^0 \geq 0,\\
-(2)&\quad c_1^0 \leq (1+\hat{r}_1)b_1^0 w_1^0.
+(2)&\quad c_1^0 \leq (1+\hat{r}_1)b_1^0 + w_1^0.
 \end{align*}
 
 \item \underline{General Consumer Optimization:} Given prices and endowment streams, the consumption allocations solve
 \begin{align*}
-\max_{c_t^t c_{t+1}^t}&\quad \log(c_t^t) + c_{t+1}^t\\
+\max_{c_t^t, c_{t+1}^t, b_{t+1}^t}&\quad \log(c_t^t) + c_{t+1}^t\\
 s.t.\quad (1)&\quad c_t^t  + b_{t+1}^t \leq w_t^t,\\
-(2)&\quad c_{t+1}^t  \leq (1+\hat{r}_{t+1})b_{t+1}^tw_{t+1}^t,\\
+(2)&\quad c_{t+1}^t  \leq (1+\hat{r}_{t+1})b_{t+1}^t + w_{t+1}^t,\\
 (3)&\quad c_t^t, c_{t+1}^t \geq 0.
 \end{align*}
 
@@ -505,8 +534,19 @@ Now to calculate the equilibrium note the same set of logic that we underwent be
 A Pareto efficient allocation is then any feasible allocation $\left(\hat{c}_1^0, \{\hat{c}_t^t, \hat{c}_{t+1}^t\}_{t=1}^\infty\right)$ such that there does not exist any other feasible allocation $\left(\bar{c}_1^0, \{\bar{c}_t^t, \bar{c}_{t+1}^t\}_{t=1}^\infty\right)$ where both of the statements below are true$$\forall t,\quad \log(\hat{c}_t^t) + \hat{c}_t^t \leq \log(\bar{c}_t^t) + \bar{c}_t^t\text{ and } \log(\hat{c}_1^0) \leq \log(\hat{c}_1^0),$$
 $$\exists t,\quad \quad \log(\hat{c}_t^t) + \hat{c}_t^t < \log(\bar{c}_t^t) + \bar{c}_t^t\text{ or } \log(\hat{c}_1^0) < \log(\hat{c}_1^0).$$
 
-The allocation in part (a) is not pareto efficient and to prove so we can find some other allocation that is pareto improving.
-
+The allocation in part (a) is not pareto efficient and to prove so we can find some other allocation that is pareto improving. Specifically, consider the allocation $$\bar{c}_1^0 = 3,\, \bar{c}_t^t = 1,\, \bar{c}_{t+1}^t = 3.$$ This allocation is feasible because we know that for any $t\geq 1$ we have that $$\bar{c}_t^t + \bar{c}_{t}^{t-1} = 1 + 3 = 4 = w_t^t + w_{t}^{t-1}.$$Aditionally, consumers prefer this allocation because 
+\begin{align*}
+\log(\hat{c}_1^0) &< \log(\bar{c}_1^0)\\
+\Longleftrightarrow \log(2) &< \log(3)\\
+\Longleftrightarrow 2 &< 3.\\\\
+\log(\hat{c}_t^t) + \hat{c}_{t+1}^t &< \log(\bar{c}_t^t) + \bar{c}_{t+1}^t\\
+\Longleftrightarrow \log(2) + 2 &< \log(1) + 3\\
+\Longleftrightarrow \log(2) &< \log(1) + 1\\
+\Longleftrightarrow \log(2) - \log(1)&< 1\\
+\Longleftrightarrow \log(2) &< 1\\
+\Longleftrightarrow 2 &< e.
+\end{align*}
+Since both of the concluding statements are true, we know that the competitive equilibrium above is not pareto efficient.
     \end{solution}
  
     \item[(d)] Suppose now that there is a storage technology available in every
@@ -515,7 +555,30 @@ The allocation in part (a) is not pareto efficient and to prove so we can find s
         a sequential markets equilibrium for this economy. Under what conditions
         on $\gamma$ will the storage technology be used in equilibrium?
     \begin{solution}
- 
+ In this world, a sequential markets equilibrium is is a collection of allocations $\left(\{\hat{c}_t^t, \hat{c}_{t+1}^t, \hat{b}_{t+1}^t, \hat{s}_{t+1}^t\}_{t=1}^\infty, \hat{c}_1^0\right)$ and prices $\{\hat{r}_t\}_{t=1}^\infty$ such that
+\begin{itemize}
+\item \underline{Initial Old Optimization:} Given price $\hat{r}_1$, endowment $w_1^0$, initial bond holdings $b_1^0$, and initial storage holdings $s_1^0$ the consumption allocations solve
+\begin{align*}
+\max_{c_1^0}&\quad \log(c_1^0)\\
+s.t\quad (1)&\quad c_1^0 \geq 0,\\
+(2)&\quad c_1^0 \leq (1+\hat{r}_1)b_1^0 + w_1^0 + \gamma s_1^0.
+\end{align*}
+
+\item \underline{General Consumer Optimization:} Given prices and endowment streams, the consumption allocations solve
+\begin{align*}
+\max_{c_t^t, c_{t+1}^t, b_{t+1}^t, s_{t+1}^t}&\quad \log(c_t^t) + c_{t+1}^t\\
+s.t.\quad (1)&\quad c_t^t  + b_{t+1}^t + s_{t+1}^t\leq w_t^t,\\
+(2)&\quad c_{t+1}^t  \leq (1+\hat{r}_{t+1})b_{t+1}^t+ w_{t+1}^t + \gamma s_{t+1}^t,\\
+(3)&\quad c_t^t, c_{t+1}^t , s_{t+1}^t\geq 0.
+\end{align*}
+
+\item \underline{Market Clearing:} Given endowments, the allocations also satisfy the following condition
+\begin{align*}
+[Goods]&\quad \hat{c}_t^t + \hat{c}_t^{t-1} + \hat{s}_{t+1}^t + \hat{s}_{t}^{t-1} = w_t^t + w_t^{t-1},\\
+[Bonds]&\quad \hat{b}_{t+1}^t = \hat{b}_{t}^{t-1}.
+\end{align*}
+\end{itemize}
+The storage technology will be used at some point $t$ if $\gamma \geq 1 + \hat{r}_t$.
     \end{solution}
 \end{enumerate}
 
