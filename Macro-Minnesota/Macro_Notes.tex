@@ -225,7 +225,7 @@ We will see why more clearly in the Chari section and conditions that ensure tha
 \subsection{Exercises}
 Note for myself: Go back to each section and make clear which questions they should refer to corresponding to each section!
 
-\subsubsection{Prelim: Spring 2025}
+\subsubsection{Prelim: Spring 2025 (Arrow-Debreu Markets, Sequential Markets, Pareto Efficiency, Dynamic Programming)}
 Consider an economy with a representative consumer with the utility function
 \[
 \sum_{t=0}^{\infty} \beta^t \log c_t
@@ -371,19 +371,19 @@ period 0. Feasible allocations satisfy
     \begin{solution}
  The corresponding bellman equation to a social planner's problem is
 \begin{align*}
-V(k) = \max_{k', l}&\left\{u(f(k, 1-l) + (1 - \delta)k - k', 1 - l) + \beta V(k')\right\}\\
+V(k) = \max_{k', \ell}&\left\{u(f(k, 1-\ell) + (1 - \delta)k - k', 1 - \ell) + \beta V(k')\right\}\\
 s.t.\quad (1)&\quad k' \geq 0,\\
-(2)&\quad 0 \leq l \leq 1,\\
-(3)&\quad f(k, 1-l) + (1 - \delta)k - k' \geq 0.
+(2)&\quad 0 \leq \ell \leq 1,\\
+(3)&\quad f(k, 1-\ell) + (1 - \delta)k - k' \geq 0.
 \end{align*}
-To have a solution to the bellman's equation, we must have that $\beta \in (0,1)$, $\delta\in (0,1]$, $u$ is continuous and increasing, and $f$ is also continuous and increasinf in both $k$ and $l$.
+To have a solution to the bellman's equation, we must have that $\beta \in (0,1)$, $\delta\in (0,1]$, $u$ is continuous and strictly increasing, and $f$ is also continuous and strictly increasing in both $k$ and $l$. In addition, we also need that $f(0,\ell) = 0$ for any $\ell$ with an existence of some maximum sustainable capital $\bar{k} > 0$. These conditions satisfy Assumptions 4.3 and 4.4 in SLP with let's us use Theorem 4.6 in SLP to claim that there is a fixed point that is a solution to the Bellman's equation.
     \end{solution}
  
     \item[(b)] Define a sequential markets equilibrium for this economy. Suppose
         that you have solved the dynamic programming problem in part (a). Explain
         carefully how to calculate the sequential markets equilibrium.
     \begin{solution}
- A sequential markets equilibrium for this economy is a a collection of allocations $\{\hat{c}_t, \hat{b}_{t+1}, \hat{k}_{t+1}, \hat{\ell}_t\}_{t=0}^\infty$, firm allocations $\{\hat{k}_t^f, \hat{\ell}_t^f\}_{t=0}^\infty$, and prices $\{\hat{r}^b_t, \hat{r}^k_t, \hat{w}_t\}_{t=0}^\infty$ such that 
+ A sequential markets equilibrium for this economy is a collection of allocations $\{\hat{c}_t, \hat{b}_{t+1}, \hat{k}_{t+1}, \hat{\ell}_t\}_{t=0}^\infty$, firm allocations $\{\hat{k}_t^f, \hat{\ell}_t^f\}_{t=0}^\infty$, and prices $\{\hat{r}^b_t, \hat{r}^k_t, \hat{w}_t\}_{t=0}^\infty$ such that 
 \begin{itemize}
 \item \underline{Household Optimization:} Given prices and initial capital, $k_0$, and bonds, $b_0$, the household allocations solve
 \begin{align*}
@@ -398,7 +398,7 @@ s.t.\quad (1)&\quad c_t + b_{t+1} + k_{t+1} \leq (1 + \hat{r}^b_t)b_{t+1} + (1 +
 \hat{w}_t &= f_\ell\left(\hat{k}_t^f, \hat{\ell}_t^f\right).
 \end{align*}
 
-\item \underline{Market Clearing:} The firm and household allocations also satisfy the following conditions for all $t\geq 0$.
+\item \underline{Market Clearing:} Given the initial level of capital, the firm and household allocations also satisfy the following conditions for all $t\geq 0$.
 \begin{align*}
 [Goods]&\quad \hat{c}_t + \hat{k}_{t+1} \leq f\left(\hat{k}_t^f, \hat{\ell}_t^f\right) + (1 - \delta)\hat{k}_t,\\
 [Capital]&\quad \hat{k}_t = \hat{k}_t^f,\\
@@ -411,15 +411,38 @@ First, note that from the bonds market clearing condition, we know that $\hat{b}
 \begin{align*}
 \hat{r}_t^k &= f_k\left(\hat{k}_t^f, \hat{\ell}_t^f\right) = f_k\left(\hat{k}_t, \hat{\ell}_t\right),\\
 \hat{w}_t &= f_\ell\left(\hat{k}_t^f, \hat{\ell}_t^f\right) =  f_\ell\left(\hat{k}_t, \hat{\ell}_t\right).
-\end{align*}
-
+\end{align*} Finally, from no arbitrage condition (and also the FOCs) we know that $$1 + \hat{r}_t^b = 1 + \hat{r}_t^k - \delta \implies \hat{r}_t^b = \hat{r}_t^k - \delta.$$
     \end{solution}
  
     \item[(c)] Define an Arrow--Debreu equilibrium for this economy. Suppose
         that you have solved the dynamic programming problem in part (a). Explain
         carefully how to calculate the Arrow--Debreu equilibrium.
     \begin{solution}
- 
+ An AD equilibrium for this economy is a collection of household allocations $\{\hat{c}_t, \hat{k}_{t+1}, \hat{\ell}_t\}_{t=0}^\infty$, firm allocations $\{\hat{k}_t^f, \hat{\ell}_t^f\}_{t = 0}^\infty$, and prices $\{\hat{p}_t, \hat{r}_t^k, \hat{w}_t\}_{t=0}^\infty$ such that 
+\begin{itemize}
+\item \underline{Household Optimization:} Given prices and initial level of capital $k_0$, the household allocations solve 
+\begin{align*}
+\max_{c_t, k_{t+1}, \ell_t} &\quad \sum_{t=0}^\infty\beta^t u(c_t, 1 - \ell_t)\\
+s.t.\quad (1)&\quad \sum_{t = 0}^\infty\hat{p}_t (c_t + \hat{k}_{t+1}) \leq \sum_{t = 0}^\infty \hat{p}_t(1 - \delta) k_t + \hat{r}_t^k k_t + \hat{w}_t \ell_t,\\
+(2)&\quad c_t \geq 0, \,0 \leq \ell_t \leq 1,\, k_t \geq 0.
+\end{align*}
+\item  \underline{Firm Optimization:} Given prices, firm allocations minimize costs and make zero profits. Specifically the following factor price equations are satisfied
+\begin{align*}
+\frac{\hat{r}_t^k}{\hat{p}_t} &= f_k\left(\hat{k}_t^f, \hat{\ell}_t^f\right),\\
+\frac{\hat{\ell}_t}{\hat{p}_t} &= f_\ell\left(\hat{k}_t^f, \hat{\ell}_t^f\right).
+\end{align*}
+\item \underline{Market Clearing:} Given the initial capital allocations, the firm and household allocations also satisfy the following conditions for all $t\geq 0$.
+\begin{align*}
+[Goods]&\quad \hat{c}_t + \hat{k}_{t+1} \leq f\left(\hat{k}_t^f, \hat{\ell}_t^f\right) + (1 - \delta)\hat{k}_t,\\
+[Capital]&\quad \hat{k}_t = \hat{k}_t^f,\\
+[Labor]&\quad \hat{\ell}_t = \hat{\ell}_t^f.
+\end{align*}
+\end{itemize}
+Once again, from the market clearing conditions that the firm allocations is the same as the household allocations. Now, if we suppose that we have already solved the social planner's dynamic programming problem, then we already know the set of equilibrium household allocations. All we need to do is back out prices which is very simple, we know from the firm's optimality conditions that 
+\begin{align*}
+\frac{\hat{r}_t^k}{\hat{p}_t} &= f_k\left(\hat{k}_t^f, \hat{\ell}_t^f\right),\\
+\frac{\hat{\ell}_t}{\hat{p}_t} &= f_\ell\left(\hat{k}_t^f, \hat{\ell}_t^f\right).
+\end{align*} We know, however, from the first order condition for capital that $$-\hat{p}_t + \hat{p}_{t+1})(1 - \delta) + \hat{r}_{t+1}^k = 0 \implies \hat{r}_{t+1}^k = \hat{p}_t - \hat{p}_{t+1})(1 - \delta).$$ Combining this expression with the factor prices, we get that $$\frac{\hat{p}_{t-1}}{\hat{p}_t} - (1 - \delta) =f_k\left(\hat{k}_t^f, \hat{\ell}_t^f\right).$$ This is a law of motion for prices, we can set $\hat{p}_0 = 1$ as a numeraire and then determine an expression for $\hat{p}_t$ which we can plug back into the factor price to determine $\hat{r}_{t}^k$ and $\hat{w}_t$.
     \end{solution}
  
     \item[(d)] Suppose now that there are equal amounts of two types of consumers
@@ -430,7 +453,34 @@ First, note that from the bonds market clearing condition, we know that $\hat{b}
         endowments of capital, $\bar{k}_0^1$ and $\bar{k}_0^2$. Define a
         sequential markets equilibrium.
     \begin{solution}
- 
+ Here, since there is heterogeneity, a sequential markets equilibrium is a collection of household allocations $\{(\hat{c}_t^1, \hat{b}_{t+1}^1, \hat{k}_{t+1}^1, \hat{\ell}_t^1), (\hat{c}_t^2, \hat{b}_{t+1}^2, \hat{k}_{t+1}^2, \hat{\ell}_t^2)\}_{t=0}^\infty$, firm allocations $\{\hat{k}_t^f, \hat{\ell}_t^f\}_{t=0}^\infty$, and prices $\{\hat{r}^b_t, \hat{r}^k_t, \hat{w}_t\}_{t=0}^\infty$ such that 
+\begin{itemize}
+\item \underline{Household Optimization:} Given prices and initial capital, $(k_0^1, k_0^2)$, bonds, $(b_0^1, b_0^2)$, and labor endowments $(\bar{\ell}_1, \bar{\ell}_2)$ the household allocations solve both
+\begin{align*}
+\max_{c_t^1, b_{t+1}^1, k_{t+1}^1, \ell_t^1}&\quad \sum_{t=0}^\infty \beta^t u^1(c_t^1, 1 - \ell_t^1)\\
+s.t.\quad (1)&\quad c_t^1 + b_{t+1}^1 + k_{t+1}^1 \leq (1 + \hat{r}^b_t)b_{t+1}^1 + (1 + \hat{r}^k_t - \delta)k_{t+1}^1 + \hat{w}_t^1\ell_t,\\
+(2)&\quad c_t^1 \geq 0,\, k_{t+1}^1 \geq 0,\, 0 \leq \ell_t^1 \leq \bar{\ell}_1.
+\end{align*}
+and also
+\begin{align*}
+\max_{c_t^2, b_{t+1}^2, k_{t+1}^2, \ell_t^2}&\quad \sum_{t=0}^\infty \beta^t u_2(c_t^2, 1 - \ell_t^2)\\
+s.t.\quad (1)&\quad c_t^2 + b_{t+1}^2 + k_{t+1}^2 \leq (1 + \hat{r}^b_t)b_{t+1}^2 + (1 + \hat{r}^k_t - \delta)k_{t+1}^2 + \hat{w}_t^2\ell_t,\\
+(2)&\quad c_t^2 \geq 0,\, k_{t+1}^2 \geq 0,\, 0 \leq \ell_t^2 \leq \bar{\ell}_2.
+\end{align*}
+\item \underline{Firm Optimization:} Given prices, firms allocations minimize costs and make zero profits. Specifically the following factor price equations are satisfied
+\begin{align*}
+\hat{r}_t^k &= f_k\left(\hat{k}_t^f, \hat{\ell}_t^f\right),\\
+\hat{w}_t &= f_\ell\left(\hat{k}_t^f, \hat{\ell}_t^f\right).
+\end{align*}
+
+\item \underline{Market Clearing:} Given the initial level of capital, the firm and household allocations also satisfy the following conditions for all $t\geq 0$.
+\begin{align*}
+[Goods]&\quad \hat{c}_t^1 + \hat{c}_t^2 + \hat{k}_{t+1}^1 + \hat{k}_{t+1}^2 \leq f\left(\hat{k}_t^f, \hat{\ell}_t^f\right) + (1 - \delta)\hat{k}_t^1 + (1 - \delta)\hat{k}_t^2,\\
+[Capital]&\quad \hat{k}_t^1 + \hat{k}_t^2 = \hat{k}_t^f,\\
+[Labor]&\quad \hat{\ell}_t^1 + \hat{\ell}^2_t = \hat{\ell}_t^f,\\
+[Bonds]&\quad \hat{b}_{t+1}^1 + \hat{b}_{t+1}^2 = 0.
+\end{align*}
+\end{itemize}
     \end{solution}
  
     \item[(e)] Does the equilibrium allocation for the economy in part (d) solve
@@ -438,7 +488,14 @@ First, note that from the bonds market clearing condition, we know that $\hat{b}
         why or why not. If it does solve such a problem, write down the
         appropriate Bellman's equation.
     \begin{solution}
- 
+ It definitely does, we just need to reframe the social planner's problem. Assuming the social planner has pareto weights $\alpha_1$ and $\alpha_2$ the new bellman equation is
+\begin{align*}
+V(k_1, k_2) = \max_{c_1, c_2, k_1', k_2', \ell_1, \ell_2}&\max\left\{ \alpha_1 u_1(c_1, 1 - \ell_1) + \alpha_2 u_2 (c_2, 1 - \ell_2) + \beta V(k_1', k_2')\right\}\\
+s.t.\quad (1)&\quad c_1, c_2 , k_1', k_2', \ell_1, \ell_2 \geq 0,\\
+(2)&\quad \ell_1 \leq \bar{\ell}_1,\, \ell_2 \leq \bar{\ell}_2,\\
+(3)&\quad  c_1 + c_2 + k_1' + k_2' \leq f\left(k _1 + k_2, \ell_1 + \ell_2\right) + (1 - \delta)k_1 + (1 - \delta)k_2.
+\end{align*}
+
     \end{solution}
 \end{enumerate}
 
@@ -582,6 +639,231 @@ The storage technology will be used at some point $t$ if $\gamma \geq 1 + \hat{r
     \end{solution}
 \end{enumerate}
 
+\subsubsection{Prelim: Spring 2021 (Pareto Efficiency in Overlapping Generations Models)}
+Consider an overlapping generations economy in which there is one good in each
+period and each generation, except the initial one, lives for two periods. The
+representative consumer in generation $t$, $t = 1, 2, \ldots$, has the
+utility function
+\[
+    \log c_t^t + \log c_{t+1}^t
+\]
+and the endowment $(w_t^t, w_{t+1}^t) = (w_1, w_2)$. The representative
+consumer in generation 0 lives only in period 1, prefers more consumption to
+less, and has the endowment $w_1^0 = w_2$. There is no fiat money.
+ 
+\begin{enumerate}
+    \item[a.] Define an Arrow--Debreu equilibrium for this economy. Calculate
+        the unique Arrow--Debreu equilibrium. [You do not have to prove that
+        equilibrium is unique.]
+    \begin{solution}
+  An AD equilibrium for this economy is a collection of allocations $\left(\{\hat{c}_t^t, \hat{c}_{t+1}^t\}_{t=1}^\infty, \hat{c}_1^0\right)$ and prices $\{\hat{p}_t\}_{t=1}^\infty$ such that
+\begin{itemize}
+\item \underline{Initial Old Optimization:} Given price $\hat{p}_1$ and endowment $w_1^0$, the consumption allocations solve
+\begin{align*}
+\max_{c_1^0}&\quad \log(c_1^0)\\
+s.t\quad (1)&\quad c_1^0 \geq 0,\\
+(2)&\quad \hat{p}_1 c_1^0 \leq \hat{p}_1 w_1^0.
+\end{align*}
+
+\item \underline{General Consumer Optimization:} Given prices and endowment streams, the consumption allocations solve
+\begin{align*}
+\max_{c_t^t c_{t+1}^t}&\quad \log(c_t^t) + \log(c_{t+1}^t)\\
+s.t.\quad (1)&\quad \hat{p}_t c_t^t  + \hat{p}_{t+1} c_{t+1}^t \leq \hat{p}_t w_t^t  + \hat{p}_{t+1} w_{t+1}^t,\\
+(2)&\quad c_t^t, c_{t+1}^t \geq 0.
+\end{align*}
+
+\item \underline{Market Clearing:} Given endowments, the allocations also satisfy the following condition
+$$[Goods]\quad \hat{c}_t^t + \hat{c}_t^{t-1} = w_t^t + w_t^{t-1}.$$
+\end{itemize}
+
+Because there is no fiat money and the initial old has preferences that is strictly increasing in their consumption, we know that everyone will be hand-to-mouth in this economy. In other words, we know that the allocations will be $$\boxed{\hat{c}_1^0 = w_2, \, \hat{c}_t^t = w_1, \, \hat{c}_{t+1}^t = w_2.}$$Now let's recover prices using the first order conditions,
+\begin{align*}
+[c_t^t]&:\quad \frac{1}{c_t^t} - \lambda^t\hat{p}_t = 0,\\
+[c_{t+1}^t]&:\quad \frac{1}{c_{t+1}^t} - \lambda^t \hat{p}_{t+1} = 0.
+\end{align*} Putting together both of these conditions, we get that $c_t^t \hat{p}_t = c_{t+1}^t \hat{p}_{t+1}$. Since we already know the consumption allocations, we can set $\hat{p}_1 = 1$ as the numeraire and write $$\frac{\hat{p}_{t+1}}{\hat{p}_t} = \frac{w_1}{w_2} \implies \boxed{\hat{p}_t = \left(\frac{w_1}{w_2}\right)^{t-1}.}$$ 
+    \end{solution}
+ 
+    \item[b.] Define a sequential markets equilibrium for this economy. State a
+        proposition or propositions that relate the unique sequential markets
+        equilibrium to the unique Arrow--Debreu equilibrium. Calculate the
+        unique sequential markets equilibrium. [You do not have to prove that
+        equilibrium is unique.]
+    \begin{solution}
+  An sequential markets equilibrium for this economy is a collection of allocations $\left(\{\hat{c}_t^t, \hat{c}_{t+1}^t, \hat{b}_{t+1}^t\}_{t=1}^\infty, \hat{c}_1^0\right)$ and prices $\{\hat{r}_t\}_{t=1}^\infty$ such that
+\begin{itemize}
+\item \underline{Initial Old Optimization:} Given price $\hat{r}_1$, endowment $w_1^0$, and initial bond holdings $b_1^0$, the consumption allocations solve
+\begin{align*}
+\max_{c_1^0}&\quad \log(c_1^0)\\
+s.t\quad (1)&\quad c_1^0 \geq 0,\\
+(2)&\quad c_1^0 \leq (1+\hat{r}_1)b_1^0 + w_1^0.
+\end{align*}
+
+\item \underline{General Consumer Optimization:} Given prices and endowment streams, the consumption allocations solve
+\begin{align*}
+\max_{c_t^t, c_{t+1}^t, b_{t+1}^t}&\quad \log(c_t^t) + \log(c_{t+1}^t)\\
+s.t.\quad (1)&\quad c_t^t  + b_{t+1}^t \leq w_t^t,\\
+(2)&\quad c_{t+1}^t  \leq (1+\hat{r}_{t+1})b_{t+1}^t + w_{t+1}^t,\\
+(3)&\quad c_t^t, c_{t+1}^t \geq 0.
+\end{align*}
+
+\item \underline{Market Clearing:} Given endowments, the allocations also satisfy the following condition
+\begin{align*}
+[Goods]&\quad \hat{c}_t^t + \hat{c}_t^{t-1} = w_t^t + w_t^{t-1},\\
+[Bonds]&\quad \hat{b}_{t+1}^t = \hat{b}_{t}^{t-1}.
+\end{align*}
+\end{itemize}
+
+The equivalence between an AD equilibrium and a sequential markets equilibrium is as follows: consider we have the AD equilibrium of allocations $\left(\{\hat{c}_t^t, \hat{c}_{t+1}^t\}_{t=1}^\infty, \hat{c}_1^0\right)$ and prices $\{\hat{p}_t\}_{t=1}^\infty$. The corresponding sequential markets equilibrium of allocations $\left(\{\bar{c}_t^t, \bar{c}_{t+1}^t, \bar{b}_{t+1}^t\}_{t=1}^\infty, \bar{c}_1^0\right)$ and prices $\{\bar{r}_t\}_{t=1}^\infty$ is
+\begin{itemize}
+\item $\left(\{\bar{c}_t^t, \bar{c}_{t+1}^t\}_{t=1}^\infty, \bar{c}_1^0\right) = \left(\{\hat{c}_t^t, \hat{c}_{t+1}^t\}_{t=1}^\infty, \hat{c}_1^0\right)$
+
+\item $\hat{r}_t = \frac{}{} - 1$
+\end{itemize}
+    \end{solution}
+ 
+    \item[c.] Define a Pareto efficient allocation for this economy.
+    \begin{solution}
+ 
+    \end{solution}
+ 
+    \item[d.] Prove that the equilibrium allocation is Pareto efficient if $w_2
+        > w_1$.
+    \begin{solution}
+ 
+    \end{solution}
+ 
+    \item[e.] Prove that the equilibrium allocation is not Pareto efficient if
+        $w_2 < w_1$.
+    \begin{solution}
+ 
+    \end{solution}
+ 
+    \item[f.] Is the equilibrium allocation Pareto efficient if $w_2 = w_1$?
+        Explain your answer, but you do not need to prove anything.
+    \begin{solution}
+ Yes it is pareto efficient, we already know that the consumption allocations are hand-to-mouth which means that consumption in the first period of life is $w_1$ and consumption in the second period of life is $w_2$. Since the household has log utility in both periods and consumption is perfectly smooth, we know that the equilibrium allocation when $w_1 = w_2$ is indeed Pareto efficient.
+    \end{solution}
+\end{enumerate}
+
+\subsubsection{Prelim: Spring 2019 (Overlapping generations with production)}
+Consider an overlapping generations economy in which the representative
+consumer in generation $t$, $t = 1, 2, \ldots$, has preferences over the
+consumption of the single good in each of the two periods of her life given by
+the utility function
+\[
+    u(c_t^t, c_{t+1}^t) = \log c_t^t + \beta \log c_{t+1}^t.
+\]
+This consumer is endowed with quantities of labor $(\ell_t^t, \ell_{t+1}^t) =
+(\ell_1, \ell_2)$. In addition, there is a generation 0 whose representative
+consumer lives only in period 1 and has the utility function
+\[
+    u^0(c_1^0) = \log c_1^0,
+\]
+and the endowment of $\ell_1^0 = \ell_2$ units of labor and $k_1^0 =
+\bar{k}_1$ units of capital. This consumer also has an endowment of fiat money
+$m$, which can be positive, negative or zero.
+ 
+The production function is
+\[
+    f(k_t, \ell_t) = \theta k_t^\alpha \ell_t^{1-\alpha},
+\]
+and capital depreciates at the rate $\delta$ per period, $0 \leq \delta \leq
+1$.
+ 
+\begin{enumerate}
+    \item[a)] Define a sequential market equilibrium for this economy.
+    \begin{solution}
+ 
+    \end{solution}
+ 
+    \item[b)] Define an Arrow--Debreu equilibrium for this economy.
+    \begin{solution}
+ 
+    \end{solution}
+ 
+    \item[c)] State and prove two theorems that establish the essential
+        equivalence between a sequential market equilibrium and an
+        Arrow--Debreu equilibrium.
+    \begin{solution}
+ 
+    \end{solution}
+ 
+    \item[d)] Define a steady state for this economy. Write down an equation or
+        equations that characterize a steady state.
+    \begin{solution}
+ 
+    \end{solution}
+ 
+    \item[e)] Suppose now that consumers born in period 1 and afterwards live
+        for four, rather than two, periods. Specify a stationary environment
+        analogous to that above by specifying utility functions, endowments, and
+        a production technology. Define a sequential markets equilibrium for
+        this economy.
+    \begin{solution}
+ 
+    \end{solution}
+ 
+    \item[f)] Define a steady state for the economy in part e. Write down an
+        equation or equations that characterize a steady state.
+    \begin{solution}
+ 
+    \end{solution}
+\end{enumerate}
+
+\subsubsection{Prelim: Fall 2015 (Overlapping Generations)}
+Consider an overlapping generations economy in which there is one good in each
+period and each generation, except the initial one, lives for two periods. The
+representative consumer in generation $t$, $t = 1, 2, \ldots$, has the
+utility function
+\[
+    \log c_t^t + \log c_{t+1}^t
+\]
+and the endowment $(w_t^t, w_{t+1}^t) = (4, 2)$. The representative consumer
+in generation 0 lives only in period 1, prefers more consumption to less, and
+has the endowment $w_1^0 = 2$. There is no fiat money.
+ 
+\begin{enumerate}
+    \item[a)] Define an Arrow--Debreu equilibrium for this economy. Calculate
+        the unique Arrow--Debreu equilibrium.
+    \begin{solution}
+ 
+    \end{solution}
+ 
+    \item[b)] Define a sequential markets equilibrium for this economy.
+        Calculate the unique sequential markets equilibrium.
+    \begin{solution}
+ 
+    \end{solution}
+ 
+    \item[c)] Define a Pareto efficient allocation. Prove either that the
+        equilibrium allocation in part a is Pareto efficient or prove that it
+        is not.
+    \begin{solution}
+ 
+    \end{solution}
+ 
+    \item[d)] Suppose now that there is a continuum of measure 1 of two types
+        of consumers in each generation $t$, $t = 1, 2, \ldots$. Both types of
+        consumers have the utility function
+        \[
+            \log c_t^{it} + \log c_{t+1}^{it}, \quad i = 1, 2.
+        \]
+        Consumers of type 1 have the endowment $(w_t^{1t}, w_{t+1}^{1t}) =
+        (4, 2)$, while consumers of type 2 have the endowment $(w_t^{2t},
+        w_{t+1}^{2t}) = (1, 2)$. The two representative consumers in
+        generation 0 live only in period 1, prefer more to less, and have the
+        endowment $w_1^{i0} = 2$, $i = 1, 2$. There is no fiat money. Define
+        an Arrow--Debreu equilibrium for this economy.
+    \begin{solution}
+ 
+    \end{solution}
+ 
+    \item[d)] In the equilibrium allocation is $c_t^{1t} = 4$? Explain
+        carefully why or why not.
+    \begin{solution}
+ 
+    \end{solution}
+\end{enumerate}
 
 \section{ECON 8106 (Chari)}
 
@@ -740,31 +1022,218 @@ advance constraint is
 \begin{enumerate}
     \item[(a)] Define a competitive equilibrium.
     \begin{solution}
+A competitive equilibrium consists of:
+\begin{itemize}
+    \item a household allocation $z_H = \{(\hat{c}_{1t},\hat{c}_{2t},\hat{l}_t,
+        \hat{k}_{t+1},\hat{M}_{t+1})\}_{t=0}^\infty$,
+    \item a firm allocation $z_F = \{(\hat{k}_t^F, \hat{l}_t^F)\}_{t=0}^\infty$,
+    \item a government policy $z_G = \{(\hat{M}_t^g, \hat{T}_t^g)\}_{t=0}^\infty$,
+    \item prices $P = \{(\hat{w}_t, \hat{R}_{kt}, \hat{q}_t)\}_{t=0}^\infty$,
+\end{itemize}
+such that:
+\begin{itemize}
+    \item Given $P$, $M_0$, $k_0$, the household allocation
+        $z_H$ solves
+        \[
+            \max \sum_{t=0}^\infty \beta^t\bigl[\log(c_{1t}) + \phi\log(c_{2t})\bigr]
+        \]
+        subject to
+        \begin{align*}
+            c_{1t} + c_{2t} + q_t M_{t+1} + k_{t+1}
+            &\leq q_t M_t + R_{kt} k_t + w_t l_t + q_t T_t, \\
+            c_{1t} &\leq q_t M_t + \theta k_t, \\
+            c_{1t},\, c_{2t} &\geq 0, \quad 0 \leq l_t \leq 1.
+        \end{align*}
  
-    \end{solution}
+    \item Given $P$, the firm allocation $z_F$ satisfies the
+        firm's optimality conditions:
+        \[
+            R_{kt} = \alpha (k_t^F)^{\alpha-1}(l_t^F)^{1-\alpha} + (1-\delta),
+            \qquad
+            w_t = (1-\alpha)(k_t^F)^{\alpha}(l_t^F)^{-\alpha}.
+        \]
  
-    \item[(b)] Assume that the aggregate stock of money grows at a constant rate,
-        $\pi$. Characterize the steady state.
-    \begin{solution}
+    \item The government policy $z_G$ satisfies the
+        government's budget constraint:
+        \[
+            q_t M_{t+1}^g = q_t M_t^g + T_t^g.
+        \]
  
-    \end{solution}
+    \item All markets clear:
+        \[
+            c_{1t} + c_{2t} + k_{t+1}
+            = (k_t^F)^\alpha(l_t^F)^{1-\alpha} + (1-\delta)k_t^F,
+            \qquad
+            k_t^F = k_t, \quad l_t^F = l_t, \quad M_t^g = M_t.
+        \]
+\end{itemize}
+\end{solution}
  
-    \item[(c)] Show that if $\pi$ is above a critical threshold, the economy has
-        a nonmonetary steady state in which the price of money is zero.
-    \begin{solution}
+% ----------------------------------------------------------
+\item[(b)] Assume that the aggregate stock of money grows at a constant rate,
+    $\pi$. Characterize the steady state.
+\begin{solution}
  
-    \end{solution}
+\noindent\textbf{Labor supply.} Since labor does not enter preferences,
+households supply labor inelastically: $l_t = 1$ for all $t$.
  
-    \item[(d)] Show that below the critical threshold, comparing steady states,
-        per capita output is higher if the growth rate of money is higher.
-    \begin{solution}
+\medskip
+\noindent\textbf{First-order conditions.} Let $\lambda_t \geq 0$ be the
+multiplier on the budget constraint and $\mu_t \geq 0$ be the multiplier on
+the CIA constraint. The household FOCs are:
+\begin{align*}
+    [c_{1t}]:&\quad \frac{\beta^t}{c_{1t}} = \mu_t + \lambda_t, \\[4pt]
+    [c_{2t}]:&\quad \frac{\phi\beta^t}{c_{2t}} = \lambda_t, \\[4pt]
+    [k_{t+1}]:&\quad \lambda_t = R_{k,t+1}\lambda_{t+1} + \theta\mu_{t+1}, \\[4pt]
+    [M_{t+1}]:&\quad q_t\lambda_t = q_{t+1}\lambda_{t+1} + q_{t+1}\mu_{t+1}
+    \;\Rightarrow\; \frac{q_t}{q_{t+1}}\lambda_t = \lambda_{t+1} + \mu_{t+1}.
+\end{align*}
+The first two FOCs immediately give
+\[
+    \lambda_t = \frac{\phi\beta^t}{c_{2t}}, \qquad
+    \mu_t = \frac{\beta^t}{c_{1t}} - \frac{\phi\beta^t}{c_{2t}}.
+\]
  
-    \end{solution}
+\medskip
+\noindent\textbf{Money supply.} Since $M_t = (1+\pi)^t M_0$, we have
+$q_{t+1}/q_t = 1/(1+\pi)$, so the $[M_{t+1}]$ condition becomes
+\[
+    (1+\pi)\lambda_t = \lambda_{t+1} + \mu_{t+1}.
+\]
+ 
+\medskip
+\noindent\textbf{Steady-state ratio $c_1^*/c_2^*$.} In a steady state, all
+real quantities are constant. Substituting the expressions for $\lambda_t$ and
+$\mu_t$ into the $[M_{t+1}]$ condition:
+\[
+    (1+\pi)\frac{\phi\beta^t}{c_2^*}
+    = \frac{\phi\beta^{t+1}}{c_2^*}
+      + \beta^{t+1}\!\left(\frac{1}{c_1^*} - \frac{\phi}{c_2^*}\right)
+    = \frac{\beta^{t+1}}{c_1^*}.
+\]
+Cancelling $\beta^t$ and solving:
+\[
+    \boxed{\frac{c_1^*}{c_2^*} = \frac{\beta}{\phi(1+\pi)}.}
+\]
+ 
+\medskip
+\noindent\textbf{Steady-state return to capital $R_k^*$.} Substituting into
+the $[k_{t+1}]$ condition:
+\[
+    \frac{\phi\beta^t}{c_2^*}
+    = R_k^*\frac{\phi\beta^{t+1}}{c_2^*}
+      + \theta\beta^{t+1}\!\left(\frac{1}{c_1^*} - \frac{\phi}{c_2^*}\right).
+\]
+Dividing through by $\beta^t$ and substituting $1/c_1^* = \phi(1+\pi)/(\beta
+c_2^*)$:
+\[
+    \frac{\phi}{c_2^*}
+    = R_k^*\frac{\phi\beta}{c_2^*}
+      + \frac{\theta\phi}{c_2^*}\bigl(1+\pi - \beta\bigr).
+\]
+Dividing by $\phi/c_2^*$:
+\[
+    1 = R_k^*\beta + \theta(1+\pi-\beta),
+\]
+which gives
+\[
+    \boxed{R_k^* = \frac{1 - \theta(1+\pi-\beta)}{\beta}.}
+\]
+ 
+\medskip
+\noindent\textbf{Steady-state capital $k^*$.} From the firm's optimality
+condition with $l = 1$:
+\[
+    R_k^* = \alpha(k^*)^{\alpha-1} + (1-\delta)
+    \;\Rightarrow\;
+    \boxed{k^* = \left(\frac{R_k^* + \delta - 1}{\alpha}\right)^{\!\frac{1}{\alpha-1}}.}
+\]
+ 
+\medskip
+\noindent\textbf{Price of money.} The CIA constraint binds in equilibrium:
+$c_1^* = q_t M_t + \theta k^*$, so $q_t M_t = c_1^* - \theta k^*$ is
+constant. Since $M_t = (1+\pi)^t M_0$:
+\[
+    \boxed{q_t = \frac{q_0}{(1+\pi)^t},\quad \text{where } q_0 = \frac{c_1^* - \theta k^*}{M_0}.}
+\]
+ 
+\medskip
+\noindent\textbf{Consumption levels.} The resource constraint in steady state
+gives $c_1^* + c_2^* = (k^*)^\alpha - \delta k^*$. Using $c_2^* = c_1^*
+\phi(1+\pi)/\beta$:
+\begin{align*}
+    c_1^* &= \frac{\beta}{\beta + \phi(1+\pi)}\bigl[(k^*)^\alpha - \delta k^*\bigr], \\[4pt]
+    c_2^* &= \frac{\phi(1+\pi)}{\beta + \phi(1+\pi)}\bigl[(k^*)^\alpha - \delta k^*\bigr].
+\end{align*}
+ 
+\medskip
+\noindent\textbf{Wage.} $w^* = (1-\alpha)(k^*)^\alpha$.
+\end{solution}
+ 
+% ----------------------------------------------------------
+\item[(c)] Show that if $\pi$ is above a critical threshold, the economy has a
+    nonmonetary steady state in which the price of money is zero.
+\begin{solution}
+The monetary equilibrium requires $q_0 > 0$, i.e., $c_1^* > \theta k^*$. The
+economy has a nonmonetary steady state when $q_0 \leq 0$. Tracing through the
+equivalences:
+\begin{align*}
+    q_0 \leq 0
+    &\;\Leftrightarrow\; c_1^* - \theta k^* \leq 0 \\
+    &\;\Leftrightarrow\; \frac{\beta}{\beta+\phi(1+\pi)}\bigl[(k^*)^\alpha - \delta k^*\bigr]
+        \leq \theta k^* \\
+    &\;\Leftrightarrow\; \frac{\beta}{\beta+\phi(1+\pi)}\bigl[(k^*)^{\alpha-1} - \delta\bigr]
+        \leq \theta.
+\end{align*}
+Substituting $(k^*)^{\alpha-1} = (R_k^*+\delta-1)/\alpha$:
+\[
+    \frac{\beta}{\beta+\phi(1+\pi)}
+    \cdot\frac{R_k^*+\delta-1-\delta\alpha}{\alpha}
+    \leq \theta.
+\]
+Substituting $R_k^* = [1-\theta(1+\pi-\beta)]/\beta$ and rearranging:
+\[
+    1-\beta-\delta\beta(\alpha-1)
+    \leq \theta\bigl[\alpha(\beta+\phi(1+\pi)) + (1+\pi-\beta)\bigr].
+\]
+Collecting $(1+\pi)$ terms on the right:
+\[
+    1 - \beta - \beta(\alpha-1)\delta - \theta\beta(\alpha-1)
+    \leq \theta(1+\pi)(1+\alpha\phi),
+\]
+so the nonmonetary steady state exists when
+\[
+    1 + \pi \geq A \;\equiv\; 1 +
+    \frac{1-\beta-\beta(\alpha-1)(\delta+\theta)}{\theta(1+\alpha\phi)}.
+\]
+\end{solution}
+ 
+% ----------------------------------------------------------
+\item[(d)] Show that below the critical threshold, comparing steady states,
+    per capita output is higher if the growth rate of money is higher.
+\begin{solution}
+Suppose $A > 1+\pi^* > 1+\pi$ (both economies are in the monetary
+equilibrium region). Then:
+\[
+    R_k^{*\prime} = \frac{1-\theta(1+\pi^*-\beta)}{\beta}
+    < \frac{1-\theta(1+\pi-\beta)}{\beta} = R_k^*,
+\]
+since $\pi^* > \pi$. Because $\alpha - 1 < 0$, the function $x \mapsto
+(x/\alpha)^{1/(\alpha-1)}$ is decreasing in $x$, so:
+\[
+    k^{*\prime} = \left(\frac{R_k^{*\prime}+\delta-1}{\alpha}\right)^{\!\frac{1}{\alpha-1}}
+    > \left(\frac{R_k^*+\delta-1}{\alpha}\right)^{\!\frac{1}{\alpha-1}} = k^*.
+\]
+Hence per capita output $(k^{*\prime})^\alpha > (k^*)^\alpha$, so output is
+strictly increasing in $\pi$ throughout the monetary equilibrium region $1+\pi
+< A$. Note that both expressions for $k^{*\prime}$ and $k^*$ are well defined
+and positive since $A > 1+\pi^* > 1+\pi$ ensures $R_k^{*\prime}+\delta-1 > 0$.
+\end{solution}
  
     \item[(e)] Do your results in part (d) imply that the Friedman Rule is not
         optimal in this economy?
     \begin{solution}
- 
+ Friedman rule says that we should ensure certain value of $R_{kt}$ that maximizes a welfare, which is not just about an inflation rate. Thus, (d) does not necessarily imply that the Friedman Rule is not optimal in this economy.
     \end{solution}
 \end{enumerate}
  
