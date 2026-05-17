@@ -588,7 +588,7 @@ Now to calculate the equilibrium note the same set of logic that we underwent be
     \begin{solution}
  First, note that a \textit{feasible allocation} is any allocation $\left(\hat{c}_1^0, \{\hat{c}_t^t, \hat{c}_{t+1}^t\}_{t=1}^\infty\right)$ such that $$\hat{c}_t^t + \hat{c}_t^{t-1} = w_t^t + w_{t}^{t-1}.$$
 
-A Pareto efficient allocation is then any feasible allocation $\left(\hat{c}_1^0, \{\hat{c}_t^t, \hat{c}_{t+1}^t\}_{t=1}^\infty\right)$ such that there does not exist any other feasible allocation $\left(\bar{c}_1^0, \{\bar{c}_t^t, \bar{c}_{t+1}^t\}_{t=1}^\infty\right)$ where both of the statements below are true$$\forall t,\quad \log(\hat{c}_t^t) + \hat{c}_t^t \leq \log(\bar{c}_t^t) + \bar{c}_t^t\text{ and } \log(\hat{c}_1^0) \leq \log(\hat{c}_1^0),$$
+A \textit{Pareto efficient} allocation is then any feasible allocation $\left(\hat{c}_1^0, \{\hat{c}_t^t, \hat{c}_{t+1}^t\}_{t=1}^\infty\right)$ such that there does not exist any other feasible allocation $\left(\bar{c}_1^0, \{\bar{c}_t^t, \bar{c}_{t+1}^t\}_{t=1}^\infty\right)$ where both of the statements below are true$$\forall t,\quad \log(\hat{c}_t^t) + \hat{c}_t^t \leq \log(\bar{c}_t^t) + \bar{c}_t^t\text{ and } \log(\hat{c}_1^0) \leq \log(\hat{c}_1^0),$$
 $$\exists t,\quad \quad \log(\hat{c}_t^t) + \hat{c}_t^t < \log(\bar{c}_t^t) + \bar{c}_t^t\text{ or } \log(\hat{c}_1^0) < \log(\hat{c}_1^0).$$
 
 The allocation in part (a) is not pareto efficient and to prove so we can find some other allocation that is pareto improving. Specifically, consider the allocation $$\bar{c}_1^0 = 3,\, \bar{c}_t^t = 1,\, \bar{c}_{t+1}^t = 3.$$ This allocation is feasible because we know that for any $t\geq 1$ we have that $$\bar{c}_t^t + \bar{c}_{t}^{t-1} = 1 + 3 = 4 = w_t^t + w_{t}^{t-1}.$$Aditionally, consumers prefer this allocation because 
@@ -715,27 +715,153 @@ s.t.\quad (1)&\quad c_t^t  + b_{t+1}^t \leq w_t^t,\\
 
 The equivalence between an AD equilibrium and a sequential markets equilibrium is as follows: consider we have the AD equilibrium of allocations $\left(\{\hat{c}_t^t, \hat{c}_{t+1}^t\}_{t=1}^\infty, \hat{c}_1^0\right)$ and prices $\{\hat{p}_t\}_{t=1}^\infty$. The corresponding sequential markets equilibrium of allocations $\left(\{\bar{c}_t^t, \bar{c}_{t+1}^t, \bar{b}_{t+1}^t\}_{t=1}^\infty, \bar{c}_1^0\right)$ and prices $\{\bar{r}_t\}_{t=1}^\infty$ is
 \begin{itemize}
-\item $\left(\{\bar{c}_t^t, \bar{c}_{t+1}^t\}_{t=1}^\infty, \bar{c}_1^0\right) = \left(\{\hat{c}_t^t, \hat{c}_{t+1}^t\}_{t=1}^\infty, \hat{c}_1^0\right)$
+\item $\left(\{\bar{c}_t^t, \bar{c}_{t+1}^t\}_{t=1}^\infty, \bar{c}_1^0\right) = \left(\{\hat{c}_t^t, \hat{c}_{t+1}^t\}_{t=1}^\infty, \hat{c}_1^0\right)$.
 
-\item $\hat{r}_t = \frac{}{} - 1$
+\item $\bar{r}_t = \frac{\hat{p}_{t}}{\hat{p}+{t+1}} - 1$.
+
+\item $\bar{b}_{t+1} = w_t^t - \bar{c}_t^t$.
 \end{itemize}
     \end{solution}
  
     \item[c.] Define a Pareto efficient allocation for this economy.
     \begin{solution}
- 
+ First, note that a \textit{feasible allocation} is any allocation $\left(\hat{c}_1^0, \{\hat{c}_t^t, \hat{c}_{t+1}^t\}_{t=1}^\infty\right)$ such that $$\hat{c}_t^t + \hat{c}_t^{t-1} = w_t^t + w_{t}^{t-1}.$$
+
+A \textit{Pareto efficient} allocation is then any feasible allocation $\left(\hat{c}_1^0, \{\hat{c}_t^t, \hat{c}_{t+1}^t\}_{t=1}^\infty\right)$ such that there does not exist any other feasible allocation $\left(\bar{c}_1^0, \{\bar{c}_t^t, \bar{c}_{t+1}^t\}_{t=1}^\infty\right)$ where both of the statements below are true$$\forall t,\quad \log(\hat{c}_t^t) + \hat{c}_t^t \leq \log(\bar{c}_t^t) + \bar{c}_t^t\text{ and } \log(\hat{c}_1^0) \leq \log(\hat{c}_1^0),$$
+$$\exists t,\quad \quad \log(\hat{c}_t^t) + \hat{c}_t^t < \log(\bar{c}_t^t) + \bar{c}_t^t\text{ or } \log(\hat{c}_1^0) < \log(\hat{c}_1^0).$$
+
     \end{solution}
  
     \item[d.] Prove that the equilibrium allocation is Pareto efficient if $w_2
         > w_1$.
-    \begin{solution}
+    \begin{solution}Assume for the sake of contradiction that there exists another feasible allocation
+$\bar{e} = \bigl(\bar{c}_1^0,\, \{\bar{c}_t^t, \bar{c}_{t+1}^t\}_{t=1}^{\infty}\bigr)$
+that Pareto dominates $\hat{e} =  \bigl(\hat{c}_1^0,\, \{\hat{c}_t^t, \hat{c}_{t+1}^t\}_{t=1}^{\infty}\bigr)$.
+There are two cases to consider.
  
+\begin{enumerate}
+\item \underline{Claim 1:} If $\log \bar{c}_t^t + \log \bar{c}_{t+1}^t \geq \log \hat{c}_t^t + \log \hat{c}_{t+1}^t$, then
+\[
+  \hat{p}_t \bar{c}_t^t + \hat{p}_{t+1} \bar{c}_{t+1}^t
+  \;\geq\;
+  \hat{p}_t \hat{c}_t^t + \hat{p}_{t+1} \hat{c}_{t+1}^t
+  \;=\; \hat{p}_t w_1 + \hat{p}_{t+1} w_2.
+\]
+Similarly, $\log \bar{c}_1^0 \geq \log \hat{c}_1^0$ implies $\hat{p}_1 \bar{c}_1^0 \geq \hat{p}_1 \hat{c}_1^0 = \hat{p}_1 w_2$.
+ 
+\begin{proof}
+Suppose $\log \bar{c}_t^t + \log \bar{c}_{t+1}^t \geq \log \hat{c}_t^t + \log \hat{c}_{t+1}^t$ but, for contradiction,
+\[
+  \hat{p}_t \bar{c}_t^t + \hat{p}_{t+1} \bar{c}_{t+1}^t < \hat{p}_t w_1 + \hat{p}_{t+1} w_2.
+\]
+Then we can construct a new allocation.  Define
+\[
+  \bar{\bar{c}}_t^t
+  \;=\;
+  \bar{c}_t^t
+  \;+\;
+  \frac{\hat{p}_t w_1 + \hat{p}_{t+1} w_2 - \hat{p}_t \bar{c}_t^t - \hat{p}_{t+1}\bar{c}_{t+1}^t}{\hat{p}_t}
+  \;>\; \bar{c}_t^t,
+\]
+and set $\bar{\bar{c}}_{t+1}^t = \bar{c}_{t+1}^t$.  Then
+ 
+\begin{align*}
+  \log \bar{\bar{c}}_t^t + \log \bar{\bar{c}}_{t+1}^t
+  &> \log \bar{c}_t^t + \log \bar{c}_{t+1}^t \\
+  &\geq \log \hat{c}_t^t + \log \hat{c}_{t+1}^t,
+\end{align*}
+with budget constraint satisfied:
+\begin{align*}
+  \hat{p}_t \bar{\bar{c}}_t^t + \hat{p}_{t+1} \bar{\bar{c}}_{t+1}^t
+  &= \hat{p}_t \bar{c}_t^t
+    + \hat{p}_t w_1 + \hat{p}_{t+1} w_2
+    - \hat{p}_t \bar{c}_t^t
+    - \hat{p}_{t+1}\bar{c}_{t+1}^t
+    + \hat{p}_{t+1}\bar{c}_{t+1}^t \\
+  &= \hat{p}_t w_1 + \hat{p}_{t+1} w_2.
+\end{align*}
+But this contradicts $(\hat{c}_t^t, \hat{c}_{t+1}^t)$ being the solution to generation $t$'s maximization problem.
+\end{proof}
+ 
+\item \item \underline{Claim 2:} If $\log \bar{c}_t^t + \log \bar{c}_{t+1}^t > \log \hat{c}_t^t + \log \hat{c}_{t+1}^t$, then
+\[
+  \hat{p}_t \bar{c}_t^t + \hat{p}_{t+1} \bar{c}_{t+1}^t
+  \;\>\;
+  \hat{p}_t \hat{c}_t^t + \hat{p}_{t+1} \hat{c}_{t+1}^t
+  \;=\; \hat{p}_t w_1 + \hat{p}_{t+1} w_2.
+\]
+Similarly, $\log \bar{c}_1^0 > \log \hat{c}_1^0$ implies $\hat{p}_1 \bar{c}_1^0 > \hat{p}_1 \hat{c}_1^0 = \hat{p}_1 w_2$.
+
+This is a similar proof as above.
+\end{enumerate}
+ 
+Next, since $\bar{e}$ Pareto dominates $\hat{e}$, we know that
+ 
+\begin{itemize}
+  \item $\log \bar{c}_1^0 \geq \log \hat{c}_1^0$ and
+  \item $\log \bar{c}_t^t + \log \bar{c}_{t+1}^t \geq \log \hat{c}_t^t + \log \hat{c}_{t+1}^t$ for all $t \geq 1$,
+\end{itemize}
+with at least one strict inequality.  By the claims above, it must be that
+\[
+  \hat{p}_t \bar{c}_t^t + \hat{p}_{t+1} \bar{c}_{t+1}^t
+  \;\geq\; \hat{p}_t w_1 + \hat{p}_{t+1} w_2
+  \quad \forall\, t \geq 1,
+\]
+and $\hat{p}_1 \bar{c}_1^0 \geq \hat{p}_1 w_2$, with at least one strict inequality. Adding these budget constraints up over all $t \geq 1$:
+\[
+  \sum_{t=1}^{\infty} \hat{p}_t \bigl(\bar{c}_{t}^{t-1} + \bar{c}_t^t\bigr)
+  \;>\;
+  \sum_{t=1}^{\infty} \hat{p}_t (w_1 + w_2).
+\]
+Since $\hat{p}_t = (w_1/w_2)^{t-1}$ in the Arrow--Debreu equilibrium, we compute
+\[
+  \sum_{t=1}^{\infty} \hat{p}_t (w_1 + w_2)
+  = (w_1 + w_2)\sum_{t=1}^{\infty} \left(\frac{w_1}{w_2}\right)^{t-1}
+  = (w_1 + w_2)\cdot\frac{1}{1 - (w_1/w_2)^{-1}},
+\]
+which converges since $w_2 > w_1 \implies w_1/w_2 < 1$
+Thus,
+\[
+  \sum_{t=1}^{\infty} \hat{p}_t \bigl(\bar{c}_{t+1}^{t-1} + \bar{c}_t^t\bigr)
+  \;>\;
+  (w_1 + w_2)\cdot \frac{1}{1-(w_1/w_2)^{-1}}.
+  \tag{i}
+\]
+ 
+On the other hand, multiplying the feasibility condition in each period $t$,
+\[
+  \bar{c}_{t}^{t-1} + \bar{c}_t^t \;\leq\; w_2 + w_1,
+\]
+by $\hat{p}_t$ and summing:
+\[
+  \sum_{t=1}^{\infty} \hat{p}_t \bigl(\bar{c}_{t}^{t-1} + \bar{c}_t^t\bigr)
+  \;\leq\;
+  \sum_{t=1}^{\infty} \hat{p}_t (w_2 + w_1)
+  = (w_1 + w_2)\cdot \frac{1}{1 - (w_1/w_2)^{-1}}.
+  \tag{ii}
+\]
+ 
+Inequality (ii) contradicts (i).  Therefore no such Pareto-dominating allocation $\bar{e}$ exists, and the equilibrium allocation $\hat{e}$ is Pareto efficient.
     \end{solution}
  
     \item[e.] Prove that the equilibrium allocation is not Pareto efficient if
         $w_2 < w_1$.
     \begin{solution}
- 
+The hand-to-mouth equilibrium above is not Pareto efficient because we can find some other allocation that is pareto dominates it. Specifically, consider the allocation $$\left(\bar{c}_1^0, \{\bar{c}_t^t, \bar{c}_{t+1}^t\}_{t=1}^\infty\right) = \left(\frac{w_1 + w_2}{2}, \left\{\frac{w_1 + w_2}{2}, \frac{w_1 + w_2}{2}\right\}\right).$$ This was we have that, for the initial old household
+\begin{align*}
+\log(\hat{c}_1^0) &< \log(\bar{c}_1^0)\\
+\Longleftrightarrow w_2 &< \frac{w_1 + w_2}{2}\\
+\Longleftrightarrow w_2 &< w_1,
+\end{align*}
+and for the general household,
+\begin{align*}
+\log(\hat{c}_t^t) + \log(\hat{c}_{t+1}^t)&< \log(\bar{c}_t^t) + \log(\bar{c}_{t+1}^t)\\
+\Longleftrightarrow \log(w_1) + \log(w_2)&< \log((w_1 + w_2)/2) + \log((w_1 + w_2)/2)\\
+\Longleftrightarrow w_1w_2 &< \frac{w_1^2 + 2w_1w_2 + w_2^2}{4}\\
+\Longleftrightarrow 0 &< w_1^2 - 2w_1w_2 + w_2^2\\
+\Longleftrightarrow 0 &< (w_1 - w_2)^2\\
+\Longleftrightarrow w_1 &\neq w_2.
+\end{align*} As such, the equilibrium allocation is not pareto efficient.
     \end{solution}
  
     \item[f.] Is the equilibrium allocation Pareto efficient if $w_2 = w_1$?
@@ -874,10 +1000,29 @@ The two main themes, as with most solution concepts, is existence and uniqueness
 
 
 \subsection{Recursive Competitive Equilibria}
-This is perhaps the concept that I have had the most trouble with in this class. Not because it encapsulates a particularly difficult concept, but more so because it is a lot to remember without the right intuition.
+This is perhaps the concept that I have had the most trouble with in this class. Not because it encapsulates a particularly difficult concept, but more so because it is a lot to remember without the right intuition. The idea is, now that we can represent problems with respect to functional equations and using the tools of dynamic programming, what is a corresponding equilibrium concept. As is the case with equilibrium concepts that we have studied before, the definition changes based on how the economy is structured so I'll discuss three main types of models that Chari covers: the Neo-Classical Growth, heterogenous agents in a complete market setting, heterogenous agents in an incomplete markets setting. 
+
+First, let's remember the setup for the stochastic neoclassical growth model. The household faces the following \textbf{sequence problem} 
+\begin{align*}
+\max_{c_t(s^t), \ell_t(s^t), k_{t+1}(s^t)}& \quad \sum_{t=0}^\infty \sum_{s^t} \beta^t \pi(s^t) u(c_t(s^t), \ell_t(s^t))\\
+s.t.\quad (1)&\quad c_t(s^t) + k_{t+1}(s^t) \leq w_t(s^t)\ell_t(s^t) + r_s(s^t)k_t(s^{t-1}) + (1 - \delta)k_t(s^{t-1}),\quad \forall t, s^t,\\
+(2)&\quad c_t(s^t), k_{t+1}(s^t) \geq 0, \quad \forall t, s^t,\\
+(3)&\quad 0 \leq \ell_t(s^t) \leq 1 \quad \forall t, s^t.
+\end{align*}There is a firm with some production technology $F(\cdot)$ that exists in a competitive environment. As such, they minimize costs but also make zero profits which yields the two \textbf{factor price} expressions
+\begin{align*}
+r_t(s^t) &= F_K(K_t(s^t), L_t(s^t)),\\
+w_t(s^t) &= F_L(K_t(s^t), L_t(s^t)).
+\end{align*} This is the basic setup, let's impose a little more structure with respect to the stochasicity and write it up in a functional form so that we can build some intuition for the final RCE statement. Specifically, consider the states $s^t$ to follow a Markov process and the randomness appears in firm productivity $A(s^t)$. Specifically, we write the bellman equation that represents the 
+
+\begin{definition}[RCE for Neo-Classical Growth Model]
+
+\end{definition}
+
+\subsubsection{Stationary Competitive Equilibrium}
+
 
 \subsection{Cash-Credit-Good Models}
-All the models that we have discussed so far deals with buying and 
+All the models that we have discussed so far deals with buying and selling objects that priced with respect to the consumption good.
 
 
 \subsection{Sticky Prices}
@@ -889,7 +1034,7 @@ There is a very specific set of questions that Chari tends to pull from for the 
 \item Cash-Credit Goods Models (with and without Production)
 \item Recursive Competitive Equilibria
 \item Search and Unemployment Models
-\item Sticky Prices
+\item Sticky Price Models
 \item Island Economy Models
 \item Sustainable Commitment
 \end{itemize}
