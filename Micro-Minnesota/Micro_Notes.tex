@@ -414,6 +414,235 @@ expected returns are equal.
     \end{solution}
 \end{enumerate}
 
+
+\subsubsection{Prelim: Fall 2023}\label{Werner Prelim: Fall 2023}
+Consider a preference relation $\succeq$ on the set of non-negative contingent
+claims $R_+^S$ on a state-space with $S$ states of nature. Assume that
+$\succeq$ is continuous and strictly increasing (strongly monotone).
+ 
+\begin{enumerate}
+    \item[(a)] State a necessary and sufficient condition for $\succeq$ to have
+        a state-separable utility representation when $S \geq 3$.
+    \begin{solution}
+ If $S \geq 3$ and the preference relation is strictly increasing and continuous, then $\succeq$ has a state-separable utility representation iff it satisfies the ICC axiom. Specifically, for all $c,d\in \mathbb{R}^s_+$ and $y,w\in \mathbb{R}_+$, it is that $$c_{-s}y \succeq d_{-s}y  \Longleftrightarrow c_{-s}w \succeq d_{-s}w.$$
+    \end{solution}
+ 
+    \item[(b)] Prove that the condition you stated in (a) is indeed necessary.
+    \begin{solution}
+ Assume $\succeq$ has a state-separable utility representation. Now choose any $c,d\in \mathbb{R}_+^S$ and any $y, w\in \mathbb{R}_+$. We can write \begin{align*}
+c_{-s}y \succeq d_{-s}y &\text{ iff } c_{-s}w \succeq d_{-s}w,\\
+\Longleftrightarrow u(c_{-s}y) \geq u(d_{-s}y) &\text{ iff } u(c_{-s}w) \geq u(d_{-s}w),\\
+\Longleftrightarrow  v_s(y) + \sum_{i\neq s} v_i(c_i) \geq v_s(y) + \sum_{i\neq s} v_i(d_i) &\text{ iff }  v_s(w) + \sum_{i\neq s} v_i(c_i) \geq v_s(w) + \sum_{i\neq s} v_i(d_i),\\
+\Longleftrightarrow  \sum_{i\neq s} v_i(c_i) \geq \sum_{i\neq s} v_i(d_i) &\text{ iff } \sum_{i\neq s} v_i(c_i) \geq \sum_{i\neq s} v_i(d_i).
+\end{align*} Since this last statement is a tautology we have shown that the condition is indeed necessary.
+    \end{solution}
+ 
+    \item[(c)] Does the condition you stated in (a) remain necessary and
+        sufficient in the case of two states, i.e., $S = 2$? Justify your
+        answer.
+    \begin{solution}
+ It is no longer necessary and sufficient, consider the case where an agent has simple preferences where they prefer more consumption rather than less. There are two states and 
+    \end{solution}
+ 
+    \item[(d)] Describe the Ellsberg paradox with a single urn containing balls
+        of three colors: blue, yellow, and red. Show that the ``typical''
+        pattern of preferences among bets in the Ellsberg paradox violates the
+        condition for state-separable utility representation you stated in part
+        (a).
+    \begin{solution}
+ 
+    \end{solution}
+ 
+    \item[(e)] Suppose that preferences over bets in the Ellsberg paradox are
+        described by an $\alpha$-MaxMin utility function
+        \[
+            \alpha \min_{\pi \in \mathcal{P}} E_\pi[v(c)]
+            + (1-\alpha) \max_{\pi \in \mathcal{P}} E_\pi[v(c)],
+        \]
+        where $c \in R_+^3$ is a bet (such as, for example, $1_B$ for \$1
+        contingent on a blue ball drawn from the urn), $v : R_+ \to R$ is a
+        strictly increasing utility index, $\mathcal{P}$ is the set of priors
+        (i.e., probability vectors) given by
+        \[
+            \mathcal{P} = \bigl\{(\pi_R, \pi_B, \pi_Y) :
+            \pi_R = \tfrac{1}{3},\;
+            \pi_B + \pi_Y = \tfrac{2}{3},\;
+            \pi_B \geq 0,\; \pi_Y \geq 0\bigr\},
+        \]
+        and $0 \leq \alpha \leq 1$ is a parameter. [The fraction of red balls
+        in the urn is known to be $1/3$.]
+ 
+        For what values of the parameter $\alpha$ does this utility conform to
+        ``typical'' preferences among bets in the Ellsberg paradox?
+    \begin{solution}
+ 
+    \end{solution}
+\end{enumerate}
+
+
+\subsubsection{Prelim: Fall 2025}\label{Werner Prelim: Fall 2025}
+There are two assets: a risk-free asset with return $r_f$ and a risky asset
+with return $\tilde{r}$, which can take the value $r_f + \Delta$ with
+probability $\pi$ or $r_f - \Delta$ with probability $1 - \pi$, for $\Delta >
+0$ and $0 < \pi < 1$. Returns are per-dollar returns, meaning they represent
+the total return from investing one dollar. The agent has an expected utility
+function with von Neumann (or Bernoulli) utility index $v(x) = 2\sqrt{x}$, and
+initial wealth $w > 0$. Negative investment (i.e., short selling) is allowed
+in both assets.
+ 
+\begin{enumerate}
+    \item[(a)] Find the optimal investment in the risky asset as a function of
+        the probability $\pi$, the return parameter $\Delta$, the risk-free
+        return $r_f$, and the agent's wealth.
+    \begin{solution}
+ 
+ The consumer needs to choose how much of their total wealth to put
+    in each asset, subject to the total wealth constraint. Specifically they
+    maximize:
+\[
+    \max_{w_r,\, w_f} \mathbb{E}\!\left[v\bigl(\tilde{r}\cdot w_r
+    + r_f \cdot w_f\bigr)\right]
+    \;\Leftrightarrow\;
+    \max_{w_r} \mathbb{E}\!\left[v\bigl(\tilde{r}\cdot w_r
+    + r_f(w - w_r)\bigr)\right]
+    \quad\text{s.t.}\quad w_r + w_f = w.
+\]
+The first-order condition is:
+\[
+    \mathbb{E}\!\left[(\tilde{r} - r_f)\cdot
+    v'\!\bigl(\tilde{r}\cdot w_r + r_f(w-w_r)\bigr)\right] = 0.
+\]
+Substituting $\tilde{r} \in \{r_f + \Delta,\, r_f - \Delta\}$ with
+probabilities $\pi$ and $1-\pi$:
+\[
+    \pi(\Delta)\, v'(r_f w + \Delta w_r)
+    + (1-\pi)(-\Delta)\, v'(r_f w - \Delta w_r) = 0,
+\]
+which rearranges to
+\[
+    \frac{\pi}{1-\pi}
+    = \frac{v'(r_f w - \Delta w_r)}{v'(r_f w + \Delta w_r)}.
+\]
+Using $v'(x) = x^{-1/2}$:
+\[
+    \frac{\pi}{1-\pi}
+    = \frac{(r_f w - \Delta w_r)^{-1/2}}{(r_f w + \Delta w_r)^{-1/2}}
+    = \left(\frac{r_f w + \Delta w_r}{r_f w - \Delta w_r}\right)^{\!1/2}.
+\]
+Squaring both sides and letting $a = \left(\dfrac{\pi}{1-\pi}\right)^{\!2}$:
+\[
+    a = \frac{r_f w + \Delta w_r}{r_f w - \Delta w_r}.
+\]
+Solving for $w_r$:
+\[
+    a(r_f w - \Delta w_r) = r_f w + \Delta w_r
+    \;\Rightarrow\;
+    r_f w\,(a-1) = \Delta w_r(a+1),
+\]
+\[
+    \boxed{w_r = \frac{r_f w}{\Delta}\left(\frac{a-1}{a+1}\right),
+    \qquad a = \left(\frac{\pi}{1-\pi}\right)^{\!2}.}
+\]
+
+    \end{solution}
+\end{enumerate}
+ 
+Consider the following comparative statics exercise. The value of the return
+parameter $\Delta$ is increased from $\Delta$ to $\Delta'$, where $\Delta' >
+\Delta$, while the probability $\pi$ remains unchanged and all else is equal.
+Let $\tilde{r}'$ denote the return with $\Delta'$ and $\pi$. In parts (b) and
+(c), assume that $\pi > 1/2$.
+ 
+\begin{enumerate}
+    \item[(b)] Does the return $\tilde{r}'$ dominate return $\tilde{r}$ in the
+        sense of first- or second-order stochastic dominance? Justify your
+        answers.
+    \begin{solution}
+$\tilde{r}'$ does not first-order stochastically dominate $\tilde{r}$. This is because $$F_{\tilde{r}'}(r_f - \Delta') = 1 - \pi > 0 = F_{\tilde{r}}(r_f - \Delta'),$$ while also $$F_{\tilde{r}'}(r_f + \Delta) = 1 - \pi < 1 = F_{\tilde{r}}(r_f + \Delta).$$ On the other hand, $\tilde{r}$ does SOSD not $\tilde{r}'$ because
+\begin{align*}
+\int_{-\infty}^{r_f + \Delta'}F_{\tilde{r}}(t) \,dt = 2\Delta(1 - \pi) + (\Delta' - \Delta),\\
+ \int_{-\infty}^{r_f + \Delta'}F_{\tilde{r}'}(t) \,dt = 2\Delta(1 - \pi) + 2(1 - \pi)(\Delta' - \Delta).
+\end{align*} Where we also have
+\begin{align*}
+2\Delta(1 - \pi) + (\Delta' - \Delta) &> 2\Delta(1 - \pi) + 2(1 - \pi)(\Delta' - \Delta),\\
+\Longleftrightarrow (\Delta' - \Delta) &> 2(1 - \pi)(\Delta' - \Delta),\\
+\Longleftrightarrow \frac{1}{2} &> (1 - \pi),\\
+\Longleftrightarrow \pi &> \frac{1}{2}.
+\end{align*}
+    \end{solution}
+ 
+    \item[(c)] Is the optimal investment in the risky asset greater under
+        $\tilde{r}'$ than under $\tilde{r}$?
+    \begin{solution}
+ From part (a), $w_r = \frac{r_f w}{\Delta} \cdot \frac{a-1}{a+1}$ where $a =
+(\pi/(1-\pi))^2$. Since $\Delta$ is in the denominator and the only difference between $\tilde{r}'$ and $\tilde{r}$ is that $\Delta' > \Delta$, we can conclude that $$w_r = \frac{r_f w}{\Delta} \cdot \frac{a-1}{a+1} > \frac{r_f w}{\Delta'} \cdot \frac{a-1}{a+1} = w_{r'}.$$ The optimal investment decreases.
+    \end{solution}
+\end{enumerate}
+ 
+Consider the second comparative statics exercise. The probability $\pi$ of the
+high return is increased from $\pi$ to $\pi'$, where $\pi' > \pi$, while the
+parameter $\Delta$ remains unchanged and all else is equal. Let $\tilde{r}''$
+denote the return with $\Delta$ and $\pi'$.
+ 
+\begin{enumerate}
+    \item[(d)] Does the return $\tilde{r}''$ dominate return $\tilde{r}$ in the
+        sense of first- or second-order stochastic dominance? Justify your
+        answers.
+You are not asked to compare the investments under $\tilde{r}''$ and
+$\tilde{r}$.
+
+    \begin{solution}
+ For FOSD, 
+    \end{solution}
+\end{enumerate}
+ 
+
+\subsubsection{Prelim: Spring 2023}\label{Werner Prelim: Spring 2023}
+Consider two real-valued random variables $\tilde{y}$ and $\tilde{z}$ on some
+state space (i.e., probability space). Let $F_y$ and $F_z$ be their cumulative
+distribution functions, and $E(\tilde{z})$ and $E(\tilde{y})$ their expected
+values. You may assume that $\tilde{y}$ and $\tilde{z}$ take values in a
+finite interval, say $[a, b]$.
+ 
+\begin{enumerate}
+    \item[(1)] State a definition of $\tilde{z}$ first-order stochastically
+        dominating (FSD) $\tilde{y}$. State a definition of second-order
+        stochastic dominance (SSD). Your definitions should be stated in terms
+        of cumulative distribution functions $F_y$ and $F_z$.
+    \begin{solution}
+ $\tilde{z}$ FOSD $\tilde{y}$ if for all $t\in [a,b]$ (where $[a,b]$ is a domain that encompases both the support of $\tilde{z}$ and $\tilde{y}$) $$F_{\tilde{z}}(t) \leq F_{\tilde{y}}(t).$$ $\tilde{z}$ FOSD $\tilde{y}$ if for all $w\in [a,b]$ $$\int_a^w F_{\tilde{z}}(t)\,dt \leq \int_a^w F_{\tilde{y}}(t)\,dt.$$
+    \end{solution}
+ 
+    \item[(2)] State a definition of $\tilde{y}$ being more risky than
+        $\tilde{z}$. Give a brief justification for why it is a sensible
+        definition of more risky.
+    \begin{solution}
+ $\tilde{y}$ is more risky than $\tilde{z}$ if $\tilde{z}$ SOSD $\tilde{y}$ and $\mathbb{E}[\tilde{z}] = \mathbb{E}[\tilde{y}]$. This definition makes sense because first we want to compare the two random variables independent of expected return and SOSD relays  
+    \end{solution}
+\end{enumerate}
+ 
+Extend the definition of more risky to random variables that may have
+different expected values as follows: $\tilde{y}$ is more risky than $\tilde{z}$
+if and only if $\tilde{y} - E(\tilde{y})$ is more risky than $\tilde{z} -
+E(\tilde{z})$.
+ 
+\begin{enumerate}
+    \item[(3)] For random variables $\tilde{y}$ and $\tilde{z}$ that may have
+        different expected values, show that if $\tilde{y}$ is more risky than
+        $\tilde{z}$, then $\mathrm{var}(\tilde{y}) \geq \mathrm{var}(\tilde{z})$.
+    \begin{solution}
+ 
+    \end{solution}
+ 
+    \item[(4)] Show that $\lambda_1 \tilde{z}$ is more risky than $\lambda_2
+        \tilde{z}$ for every $\lambda_1 \geq \lambda_2 \geq 0$ and every
+        $\tilde{z}$. Note that $E(\tilde{z})$ may be different from 0,
+        positive or negative.
+    \begin{solution}
+ 
+    \end{solution}
+\end{enumerate}
+
 \section{ECON 8102 (Phelan)}
 Phelan's class is very good for grounding intuition about competitive equilibrium. We don't cover as many topics as in the later mini's, which gives one a lot of time to really understand what's going on. Additionally, he doesn't publish any official set of notes, so there are likely going to be some holes.
 
@@ -635,6 +864,112 @@ To pin down prices, consider the market clearing condition for grapes
 \frac{p_w^2}{p_g^2} &= 0.
 \end{align*} Setting a numeraire of $p_g = 1$ we get that the only possible value for the price of wine is $p_w = 0$. This, however, is not possible because a price of $0$ for wine would entail that Barney would buy an infinite amount of wine while firms are producing no wine (given that Amy consumes all of the grapes). This violates the market clearing for wine. As such, there is no possible competitive equilibrium in this market.
 \end{solution}
+\end{enumerate}
+
+\subsubsection{Prelim: Spring 2023}\label{Phelan Prelim: Spring 2023}
+Consider an economy populated by $N$ agents, $i \in \{1, \ldots, N\}$. With
+i.i.d.\ probability $1/2$, each agent is endowed with 0 potatoes, and with
+probability $1/2$, the agent is endowed with 2 potatoes. Each agent has
+identical preferences and cares about the expected value of $c_i$, where $c_i$
+is his consumption of potatoes. All agents have an unbounded ability to eat any
+non-negative amount of potatoes.
+ 
+\begin{enumerate}
+    \item[(1)] Define an allocation. When is such an allocation feasible?
+    \begin{solution}
+Let $S = \{0,1\}^N$ be the set of all possible combinations of endowment assignments to each agent. Here, each element $(s_1, \ldots, s_N) = s\in S$ is a vector of length $N$ where $s_i \in \{0,1\}$ is $0$ if agent $i$ recieves an endowment of 0 potatoes and it is $1$ if agent $i$ recieves and endowment of $2$ potatoes. With this, an allocation is the matrix $$c = \left\{\left\{c_i(s)\right\}_{i\in [N]}\right\}_{s\in S} \in \mathbb{R}^{N\times 2^N}_+,$$ where $c_i(s)$ represents the amount of potatoes that agent $i$ consumes in state $s$. 
+
+An allocation $c$ is feasible if for all $s\in S$ we have that $$\sum_{i\in [N]}c_i(s) \leq \sum_{i\in [N]}c_i(s).$$
+    \end{solution}
+ 
+    \item[(2)] Characterize the set of Pareto efficient allocations.
+    \begin{solution}
+ We know that each agent has unit expected preferences. Since their preferences are strictly increasing in consumption, we can say that the set of Pareto efficient allocations is $$PE = \left\{c \in \mathbb{R}^{N \times 2^N}\,:\,\forall s\in S\,\sum_{i\in [N]}c_i(s) = \sum_{i\in [N]}c_i(s)\right\}.$$
+    \end{solution}
+ 
+    \item[(3)] For the endowments specified above, characterize the \textbf{set}
+        of competitive equilibria. Is each equilibrium Pareto efficient?
+    \begin{solution}
+ Let's take a look at agent $i$'s maximization problem, for any $i\in [N]$. It is
+\begin{align*}
+\max_{c_i(s)}\quad &\sum_{s\in S} \pi(s) c_i(s)\\
+s.t.\quad (1)&\quad \sum_{s\in S}p(s) c_i(s) \leq \sum_{s\in S}p(s) e_i(s),\\
+(2)&\quad c_i(s) \geq 0.
+\end{align*} Takeing the first order condition, we get that $$\pi(s) - \lambda p(s) = 0 \implies p(s) = \frac{\lambda}{2^N}.$$In other words, prices are constant across all $s$, where $\lambda$ here is just some free variable. With this in mind, noting also that the consumer's prefereces are strictly increasing in $c_i(s)$, we can rewrite the consumer's budget constraint as $$\sum_{s\in S}c_i(s) = \sum_{s\in S} e_i(s) = 2^N.$$In addition, we also have the market clearing condition, for any $s\in S$, $$\sum_{i\in [N]}c_i(s) = \sum_{i\in [N]}e_i(s).$$ These two conditions classify the set of competitive equilibria, specifically, it is $$\boxed{\left\{(p, c) \in \mathbb{R}_+^{2^N}\times \mathbb{R}_+^{N\times 2^N}\,:\, p(s) = p(s') \,\forall s,s'\in S,\,\sum_{s\in S}c_i(s) = 2^N,\, \sum_{i\in [N]}c_i(s) = \sum_{i\in [N]}e_i(s)\right\}.}$$Each equilibrium is indeed Pareto Efficient as we can see that the constraint that defines the set of PE allocations is also a constraint of the competitive equilibria.
+    \end{solution}
+ 
+    \item[(4)] Suppose each person is a pessimist and believes the probability
+        of any particular person having an endowment of 2 potatoes is $1/10$
+        instead of the true probability, $1/2$, and cares about the expected
+        value of $c_i$ under these incorrect probabilities. What changes in
+        your answers above?
+    \begin{solution}
+An allocation is still defined in a similar manner because it is defined over all possible states rather than the individual probabilities of these states. Pareto efficiency changes on the other hand because although the characterization of feasibility stays the same, preferences do indeed change.
+
+ Now we lose one critical element of symmetry. Specifically, the probabilities $\pi(s)$ change and the foc no longer yields that prices are constant across all states. Now we have that 
+\begin{align*}
+\pi(s) - \lambda 
+\end{align*}
+    \end{solution}
+ 
+    \item[(5)] Finally, go back to agents having correct beliefs about
+        probabilities, but now care about the expected value of $c_i^2$. Redo
+        items 1 and 2 above.
+    \begin{solution}
+ Once again
+    \end{solution}
+\end{enumerate}
+
+\subsubsection{Prelim: Fall 2023}\label{Phelan Prelim: Fall 2023}
+Consider an economy with 2 agents ($i \in \{A, B\}$) and 2 dates ($t \in
+\{0, 1\}$). At date $t = 0$, agent $A$ receives an endowment of 1 of the
+single consumption good with probability $1/2$ and an endowment of 3 with
+probability $1/2$. At date $t = 1$, agent $A$ receives an endowment of 2 with
+certainty. At both dates $t = 0$ and $t = 1$, agent $B$ receives an endowment
+of 2 with certainty. There is no ability to store the good. Agent $A$ can eat
+any non-negative amount at any date and ranks consumption bundles according to
+the expected value of the non-discounted sum of the square root of his
+consumption level at each date. (That is, he cares about the expected value of
+$\sqrt{c_{A,0}} + \sqrt{c_{A,1}}$, where $c_{A,0}$ and $c_{A,1}$ are his
+consumption levels at each date.) Agent $B$ can eat any amount at any date,
+including negative amounts, and ranks consumption bundles according to the
+expected value of the non-discounted sum of his consumption level (as opposed
+to the square root of his consumption level) at each date.
+ 
+\begin{enumerate}
+    \item[(1)] What is an allocation in this world? What is a feasible
+        allocation?
+    \begin{solution}
+ 
+    \end{solution}
+ 
+    \item[(2)] Characterize the set of Pareto efficient allocations.
+    \begin{solution}
+ 
+    \end{solution}
+ 
+    \item[(3)] Define \textbf{a} Competitive Equilibrium for a \textit{general}
+        specification of endowments, and find \textbf{the} Competitive
+        Equilibrium for the \textit{particular} specification of endowments
+        specified above.
+    \begin{solution}
+ 
+    \end{solution}
+ 
+    \item[(4)] Suppose instead that agent $A$ has the endowment process
+        specified for agent $B$ above and agent $B$ has the endowment process
+        specified for agent $A$ above. Find the Competitive Equilibrium for
+        this new specification of endowments.
+    \begin{solution}
+ 
+    \end{solution}
+ 
+    \item[(5)] For the original endowment specification, suppose markets open
+        only \textit{after} it is known what agent $A$'s endowment is. Find
+        the competitive equilibrium.
+    \begin{solution}
+ 
+    \end{solution}
 \end{enumerate}
 
 \section{ECON 8103 (Rustichini)}
@@ -1139,6 +1474,127 @@ either $(L^1, L^2)$ or $(L^1, R^2)$.
 \end{solution}
 \end{enumerate}
 
+\subsubsection{Prelim: Spring 2025}\label{Rustichini Prelim: Spring 2025}
+\begin{enumerate}
+    \item[(1)] Define correlated strategies and correlated equilibria, and
+        write the set of linear inequalities that characterize a correlated
+        equilibrium.
+    \begin{solution}
+ 
+    \end{solution}
+ 
+    \item[(2)] Consider the Prisoner's Dilemma Game:
+        \begin{center}
+        \begin{tabular}{r|cc}
+                & $L$   & $R$   \\
+        \hline
+        $T$     & $2,2$ & $0,3$ \\
+        $B$     & $3,0$ & $1,1$
+        \end{tabular}
+        \end{center}
+        What is the set of correlated equilibria?
+    \begin{solution}
+ 
+    \end{solution}
+ 
+    \item[(3)] Consider the following game with 3 players. Player 3 chooses
+        the matrix. Player 1 chooses the row, and player 2 chooses the column.
+        There are two matrices, with the utility of player 1, 2, and 3 as
+        indicated. The first matrix is:
+        \begin{center}
+        \begin{tabular}{r|cc}
+                & $L$        & $M$       \\
+        \hline
+        $T$     & $1,0,0$    & $7,3,1$   \\
+        $B$     & $1,10,1$   & $4,2,0$
+        \end{tabular}
+        \end{center}
+        and the second is:
+        \begin{center}
+        \begin{tabular}{r|cc}
+                & $L$        & $R$       \\
+        \hline
+        $T$     & $2,4,5$    & $3,3,2$   \\
+        $B$     & $1,1,3$    & $4,2,1$
+        \end{tabular}
+        \end{center}
+    \begin{enumerate}
+        \item[(a)] Describe correlated strategies in this game.
+        \begin{solution}
+ 
+        \end{solution}
+ 
+        \item[(b)] Is the first matrix chosen with positive probability in a
+            correlated equilibrium?
+        \begin{solution}
+ 
+        \end{solution}
+ 
+        \item[(c)] Find pure strategy Nash equilibria.
+        \begin{solution}
+ 
+        \end{solution}
+ 
+        \item[(d)] Find mixed strategy Nash equilibria.
+        \begin{solution}
+ 
+        \end{solution}
+ 
+        \item[(e)] Find the correlated equilibria of the game.
+        \begin{solution}
+ 
+        \end{solution}
+    \end{enumerate}
+\end{enumerate}
+
+\subsubsection{Prelim: Fall 2025}\label{Rustichini Prelim: Fall 2025}
+Consider the following game. Let $\Theta \subseteq \mathbb{R}$ be a set of
+types of players. There is a probability distribution over types of players
+described by a measure $\mu$ on $\Theta$. You may assume if you prefer that
+the measure has a density.
+ 
+A production function $f : \Theta \to \mathbb{R}$ gives the total possible
+product $f(\theta)$ of player of type $\theta$. Each player has a unit of time
+that he can allocate to production, or alternatively to appropriating the
+product of others. For a choice of allocation $a \in [0,1]$, the total product
+of a player of type $\theta$ is $f(\theta)a$. The complementary amount
+allocated to appropriation gives a fraction $1 - a$ of the product of all the
+other players. The utility of a player is the total net product available to
+the player.
+ 
+\begin{enumerate}
+    \item[(1)] Define strategies and Nash equilibrium of this game.
+    \begin{solution}
+ 
+    \end{solution}
+ 
+    \item[(2)] Find conditions for the existence of a Nash equilibrium of this
+        game.
+    \begin{solution}
+ 
+    \end{solution}
+ 
+    \item[(3)] A Nash equilibrium is interior if the measure of players
+        choosing an interior allocation is strictly positive. Find conditions
+        for the existence of an interior Nash equilibrium.
+    \begin{solution}
+ 
+    \end{solution}
+ 
+    \item[(4)] Characterize the set of all Nash equilibria. Are some of these
+        equilibria not robust? Can you exclude them from the analysis by adding
+        some additional requirement?
+    \begin{solution}
+ 
+    \end{solution}
+ 
+    \item[(5)] Assume that $f$ is a power function, with exponent $\alpha$.
+        Compute the Nash equilibria of the game in this case.
+    \begin{solution}
+ 
+    \end{solution}
+\end{enumerate}
+
 \section{ECON 8104 (Rahman)}
 Personally, I feel like this mini is all over the place. There's a lot to learn and I frankly got lost a lot, similar to the last mini. To preface, there are five main categories that we discussed
 \begin{enumerate}
@@ -1533,4 +1989,139 @@ guarantees uniqueness; otherwise multiple cutoff equilibria emerge.
 
 
 \subsection{Exercises}
+
+\subsubsection{Prelim: Spring 2025}\label{Rahman Prelim: Spring 2025}
+Consider the seller of a single indivisible object who values it at 0 and a
+buyer whose outside option is 0. To the buyer, getting the object is worth
+$v_h$ with probability $\pi \in (0,1)$ and $v_\ell$ with probability $1 -
+\pi$, where $0 < v_\ell < v_h$; not getting it is worth 0. Buyer and seller
+can trade quasi-linear money, as usual, and the seller can design a selling
+mechanism as a take-it-or-leave-it offer. Recall (or assume) that the seller's
+optimal mechanism is a posted price.
+ 
+\begin{enumerate}
+    \item[(1)] What is the seller's optimal posted price as a function of $\pi$?
+    \begin{solution}
+ 
+    \end{solution}
+ 
+    \item[(2)] The buyer's ``prior'' surplus, $S(\pi)$, is defined as his
+        expected payoff from the optimal mechanism before learning his value.
+        How does this surplus depend on $\pi$? Draw a picture.
+    \begin{solution}
+ 
+    \end{solution}
+ 
+    \item[(3)] Suppose that the buyer can send to the seller a partially
+        informative signal about his valuation, subject to Bayes' rule. What is
+        the maximal prior surplus---call it $\tilde{S}(\pi)$---that the buyer
+        could obtain with the help of such a signal as a function of $\pi$?
+        What posterior beliefs would the buyer induce on the seller in this
+        case? What about deadweight losses?
+    \begin{solution}
+ 
+    \end{solution}
+\end{enumerate}
+ 
+Now consider a variation on the problem above. Suppose that neither the buyer
+nor the seller observes the buyer's valuation, but the buyer privately observes
+a signal possibly correlated with it. Assume henceforth that $\pi > v_\ell /
+v_h$.
+ 
+\begin{enumerate}
+    \item[(4)] Show that, if the signal is completely uninformative, so the
+        buyer's posterior belief about his value equals his prior, the seller
+        posts a price of $\pi v_h + (1-\pi)v_\ell$ and buyer surplus is 0.
+    \begin{solution}
+ 
+    \end{solution}
+ 
+    \item[(5)] Suppose that the buyer has access to the following signal: if
+        the buyer's value is $v_\ell$, he observes the signal realization $L$
+        with probability 1, whereas if his value is $v_h$, the buyer observes
+        the realization $L$ with probability $\frac{\lambda}{1-\lambda} \cdot
+        \frac{1-\pi}{\pi}$, where $0 < \lambda < \pi$, and the realization $H$
+        with probability $\frac{\pi - \lambda}{\pi(1-\lambda)}$. Show that
+        $\mathrm{P}(v_h \mid H) = 1$ and $\mathrm{P}(v_\ell \mid H) = 0$,
+        whereas $\mathrm{P}(v_h \mid L) = \lambda$ and $\mathrm{P}(v_\ell
+        \mid L) = 1 - \lambda$, therefore $\mathrm{P}(L) = \frac{1-\lambda}
+        {1-\lambda}$ and $\mathrm{P}(H) = \frac{\pi - \lambda}{1 - \lambda}$.
+    \begin{solution}
+ 
+    \end{solution}
+\end{enumerate}
+ 
+Let $v_\lambda = \lambda v_h + (1-\lambda)v_\ell$. Effectively, the signal in
+(5) above gives the buyer a value of $v_\lambda$ with probability
+$\frac{1-\pi}{1-\lambda}$ and a value of $v_h$ with probability $\frac{\pi -
+\lambda}{1-\lambda}$. Choose $\lambda$ so that the probability $\frac{\pi -
+\lambda}{1-\lambda}$ of $v_h$ equals $v_\lambda / v_h$. Thus, by (3), the
+seller is indifferent between posting the price $v_h$ and the price
+$v_\lambda$.
+ 
+\begin{enumerate}
+    \item[(6)] Show that $\lambda = 1 - \sqrt{\frac{1-\pi}{\hat{\pi}}}$, where
+        $\hat{\pi} = v_\ell / v_h$.
+    \begin{solution}
+ 
+    \end{solution}
+ 
+    \item[(7)] Find the buyer's prior surplus, $S_\lambda(\pi)$, as a result of
+        this signal. How does $S_\lambda(\pi)$ compare with $\tilde{S}(\pi)$
+        from (3) above? Discuss.
+    \begin{solution}
+ 
+    \end{solution}
+\end{enumerate}
+
+\subsubsection{Prelim: Fall 2025}\label{Rahman Prelim: Fall 2025}
+A seller owns a single indivisible object, and values it at 0. There is a
+buyer with valuation
+\[
+    v \sim U[0,1].
+\]
+The seller does not know the buyer's valuation, and designs an optimal
+mechanism to fulfill some objective, whereby the seller asks for the buyer's
+valuation and then awards the object to the buyer with probability $q(v)$ and
+charges the buyer an amount of money $p(v)$.
+ 
+\begin{enumerate}
+    \item[(1)] Assume that the seller wants to maximize own profit, $p(v)$.
+    \begin{enumerate}
+        \item[(a)] Show that the seller's virtual surplus can be written as
+            \[
+                2v - 1.
+            \]
+        \begin{solution}
+ 	
+        \end{solution}
+ 
+        \item[(b)] Describe the seller's optimal auction.
+        \begin{solution}
+ 
+        \end{solution}
+    \end{enumerate}
+ 
+    \item[(2)] Assume instead that the seller wants to maximize a weighted
+        average of own profit, $p(v)$ (with weight $\alpha \in [0,1]$), and
+        consumer surplus, $v - p(v)$ (with weight $1 - \alpha$).
+    \begin{enumerate}
+        \item[(a)] Show that the seller's virtual surplus can be written as
+            \[
+                (3\alpha - 1)v + 1 - 2\alpha.
+            \]
+            \textit{Hint.} First derive the seller's virtual surplus when the
+            buyer's valuation $v$ has a general CDF $F$ with PDF $f > 0$.
+        \begin{solution}
+ 
+        \end{solution}
+ 
+        \item[(b)] Describe the seller's optimal auction as a function of
+            $\alpha \in [0,1]$.
+        \begin{solution}
+ 
+        \end{solution}
+    \end{enumerate}
+\end{enumerate}
+
 \end{document}
